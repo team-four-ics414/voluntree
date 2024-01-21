@@ -11,6 +11,13 @@
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ],
+
+  "defaultNonprofits": [
+    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "createdAt":  "", "picture": "../app/public/images/nonprofit.png", "owner": "john@foo.com" },
+    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "createdAt":  "", "picture": "../app/public/images/nonprofit1.png", "owner": "john@foo.com" },
+    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "createdAt":  "", "picture": "../app/public/images/nonprofit2.png", "owner": "john@foo.com" }
+  ],
+
   "public": {
     "development": true
   },
