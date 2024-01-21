@@ -11,4 +11,8 @@ export const PAGE_IDS = {
   SIGN_IN: 'sign-in',
   SIGN_OUT: 'sign-out',
   SIGN_UP: 'sign-up',
+  ADD_NONPROFIT: 'add-nonprofit',
+  EDIT_NONPROFIT: 'edit-nonprofit',
+  LIST_NONPROFIT: 'list-nonprofit',
+  LIST_NONPROFIT_ADMIN: 'list-nonprofit-admin',
 };
