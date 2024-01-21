@@ -16,7 +16,7 @@ const NonprofitItem = ({ nonprofit }) => (
       <Card.Text>
         {nonprofit.mission}
       </Card.Text>
-      <Link className={COMPONENT_IDS.LIST_NONPROFIT_EDIT} to={`/edit/${nonprofit._id}`}>Edit</Link>
+      <Link className={COMPONENT_IDS.LIST_NONPROFIT_EDIT} to={`/edit-nonprofit/${nonprofit._id}`}>Edit</Link>
     </Card.Body>
   </Card>
 );

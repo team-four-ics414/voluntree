@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Roles } from 'meteor/alanning:roles';
+import { _ } from 'meteor/underscore';
 import BaseCollection from '../base/BaseCollection';
 import DBSchemaNonprofit from '../schema/DBSchemas';
 import { ROLE } from '../role/Role';
@@ -13,7 +14,7 @@ export const nonprofitPublications = {
 
 class NonprofitCollection extends BaseCollection {
   constructor() {
-    super('Stuffs', DBSchemaNonprofit);
+    super('Nonprofits', DBSchemaNonprofit);
   }
 
   /**
@@ -54,16 +55,16 @@ class NonprofitCollection extends BaseCollection {
       updateData.name = name;
     }
     if (mission) {
-      updateData.mission = name;
+      updateData.mission = mission;
     }
     if (contactInfo) {
-      updateData.contactInfo = name;
+      updateData.contactInfo = contactInfo;
     }
     if (location) {
-      updateData.location = name;
+      updateData.location = location;
     }
     if (picture) {
-      updateData.picture = name;
+      updateData.picture = picture;
     }
     this._collection.update(docID, { $set: updateData });
   }

@@ -6,7 +6,7 @@ const PropTypeNonprofit = PropTypes.shape({
   mission: PropTypes.string.isRequired,
   contactInfo: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
-  createdAt: PropTypes.instanceOf(Date).isRequired,
+  createdAt: PropTypes.instanceOf(Date),
   picture: PropTypes.string,
 });
 

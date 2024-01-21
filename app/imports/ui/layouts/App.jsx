@@ -15,6 +15,10 @@ import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
 import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
+import AddNonprofit from '../pages/AddNonprofit';
+import EditNonprofit from '../pages/EditNonprofit';
+import ListNonprofit from '../pages/ListNonprofit';
+import ListNonprofitAdmin from '../pages/ListNonprofitAdmin';
 import NotAuthorized from '../pages/NotAuthorized';
 import { ROLE } from '../../api/role/Role';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -41,11 +45,15 @@ const App = () => {
           <Route path="/signout" element={<SignOut />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/list" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
+          <Route path="/nonprofits" element={<ProtectedRoute ready={ready}><ListNonprofit /></ProtectedRoute>} />
           <Route path="/add" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
+          <Route path="/add-nonprofit" element={<ProtectedRoute><AddNonprofit /></ProtectedRoute>} />
           <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
           <Route path="/addorganization" element={<ProtectedRoute><AddOrganization /></ProtectedRoute>} />
           <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
+          <Route path="/edit-nonprofit/:_id" element={<ProtectedRoute><EditNonprofit /></ProtectedRoute>} />
           <Route path="/admin" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
+          <Route path="/nonprofits-admin" element={<AdminProtectedRoute ready={ready}><ListNonprofitAdmin /></AdminProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />

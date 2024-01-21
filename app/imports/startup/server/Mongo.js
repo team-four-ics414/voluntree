@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/StuffCollection';
 import { Activities } from '../../api/activities/Activities';
 import { Organizations } from '../../api/organization/Organization';
+import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 /* eslint-disable no-console */
 
 // Initialize the database with a default data document.
@@ -39,5 +40,19 @@ if (Organizations.collection.find().count() === 0) {
   if (Meteor.settings.defaultOrganizations) {
     console.log('Creating default organizations.');
     Meteor.settings.defaultOrganizations.forEach(data => addOrganization(data));
+  }
+}
+
+// Initialize the database with a default data document.
+function addNonprofit(nonprofit) {
+  console.log(`  Adding: ${nonprofit.name} (${nonprofit.owner})`);
+  Nonprofits.define(nonprofit);
+}
+
+// Initialize the NonprofitCollection if empty.
+if (Nonprofits.count() === 0) {
+  if (Meteor.settings.defaultNonprofits) {
+    console.log('Creating default nonprofits.');
+    Meteor.settings.defaultNonprofits.forEach(nonprofit => addNonprofit(nonprofit));
   }
 }

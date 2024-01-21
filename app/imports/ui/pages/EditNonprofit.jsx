@@ -5,7 +5,7 @@ import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
-import DBSchemaNonprofit from '../schema/DBSchemas';
+import DBSchemaNonprofit from '../../api/schema/DBSchemas';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';

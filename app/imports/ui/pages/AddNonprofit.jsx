@@ -4,7 +4,7 @@ import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, T
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import DBSchemaNonprofit from '../schema/DBSchemas';
+import DBSchemaNonprofit from '../../api/schema/DBSchemas';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
