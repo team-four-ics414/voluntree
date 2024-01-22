@@ -13,5 +13,11 @@
   ],
   "public": {
     "development": true
-  }
+  },
+  "defaultActivities": [
+
+  ],
+  "defaultOrganizations": [
+
+  ]
 }
