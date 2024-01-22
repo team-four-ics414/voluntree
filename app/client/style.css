@@ -28,6 +28,14 @@ body {
   --bs-alert-bg: var(--matr-navbar-bg);
 }
 
+/* Set the SignIn and SignUp alerts background. */
+#signin-page {
+  background: url("/images/light_background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+
 /* Define custom styles */
 .gray-background {
   background-color: var(--bs-gray-200);
