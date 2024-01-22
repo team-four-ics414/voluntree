@@ -11,7 +11,11 @@
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
  */
 body {
-  --bs-light-rgb: var(--matr-navbar-bg-rgb);
+  --bs-dark: var(--matr-navbar-text-color);
+  --bs-dark-rgb: var(--matr-navbar-bg-rgb);
+  background-size: cover;
+  background-image: url("/images/background.png");
+  color: white;
 }
 
 /* Set the SignIn and SignUp alerts background. */
