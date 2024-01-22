@@ -15,7 +15,12 @@ body {
 }
 
 /* Set the SignIn and SignUp alerts background. */
-#signin-page .alert-light, #signup-page .alert-light {
+#signup-page {
+  background: url("/images/light_background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+#signin-page .alert-light {
   --bs-alert-bg: var(--matr-navbar-bg);
 }
 
@@ -26,3 +31,4 @@ body {
   padding-top: 10px;
   padding-bottom: 20px;
 }
+
