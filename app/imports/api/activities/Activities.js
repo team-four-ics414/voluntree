@@ -22,11 +22,6 @@ class ActivitiesCollection {
     this.collection.attachSchema(this.schema);
     this.userPublicationName = `${this.name}.publication.user`;
 
-    if (Meteor.isServer) {
-      Meteor.startup(() => {
-        this.collection.rawCollection().createIndex({ owner: 1 }, { unique: true });
-      });
-    }
     Meteor.methods({
       // eslint-disable-next-line meteor/audit-argument-checks
       'Activities.insert'(activityData) {

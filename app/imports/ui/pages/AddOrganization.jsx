@@ -19,24 +19,21 @@ const AddOrganization = () => {
 
   const submit = (data) => {
     const { image, ...profileData } = data;
+    const concat = Object.values(profileData).join(' ');
     // eslint-disable-next-line no-shadow
     const insertProfile = (profileData) => {
       Meteor.call('Organizations.insert', profileData, (error) => {
         if (error) {
-          swal('Error', error.message, 'error');
+          swal('Error', 'Duplicate Organization Profile Found', 'error');
         } else {
           swal('Success', 'Organization added successfully', 'success');
-          if (fRef) {
-            fRef.reset();
-          }
+          fRef.reset();
         }
       });
     };
-    Meteor.call('textCheck', profileData.mission, (error) => {
+    Meteor.call('textCheck', concat, (error) => {
       if (error) {
-        // eslint-disable-next-line no-console
-        console.error(error);
-        swal('Error', 'Inappropriate Content in Mission', 'error');
+        swal('Error', 'Inappropriate Content Detected', 'error');
         return;
       }
       if (imageFile) {

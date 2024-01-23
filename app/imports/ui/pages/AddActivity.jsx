@@ -19,6 +19,7 @@ const AddActivity = () => {
 
   const submit = (data) => {
     const { image, ...activityData } = data;
+    const concat = Object.values(activityData).join(' ');
     // eslint-disable-next-line no-shadow
     const insertProfile = (activityData) => {
       Meteor.call('Activities.insert', activityData, (error) => {
@@ -26,16 +27,13 @@ const AddActivity = () => {
           swal('Error', error.message, 'error');
         } else {
           swal('Success', 'Activity added successfully', 'success');
-          if (fRef) {
-            fRef.reset();
-          }
+          fRef.reset();
         }
       });
     };
-    Meteor.call('textCheck', activityData.details, (error) => {
+    Meteor.call('textCheck', concat, (error) => {
       if (error) {
-        console.error(error);
-        swal('Error', 'Inappropriate Content in details', 'error');
+        swal('Error', 'Inappropriate Content Detected', 'error');
         return;
       }
       if (imageFile) {
@@ -64,7 +62,7 @@ const AddActivity = () => {
       <Container className="py-3">
         <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
           <Col xs={5}>
-            <Col className="text-center"><h2>Add Organization</h2></Col>
+            <Col className="text-center"><h2>Add Activity</h2></Col>
             <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
               <Card style={{ backgroundColor: 'white', border: 'none' }}>
                 <Card.Body>
