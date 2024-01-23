@@ -21,7 +21,7 @@ const AddActivity = () => {
     const { image, ...activityData } = data;
     // eslint-disable-next-line no-shadow
     const insertProfile = (activityData) => {
-      Activities.collection.insert(activityData, (error) => {
+      Meteor.call('Activities.insert', activityData, (error) => {
         if (error) {
           swal('Error', error.message, 'error');
         } else {

@@ -22,6 +22,17 @@ class OrganizationsCollection {
       Meteor.startup(() => {
         this.collection.rawCollection().createIndex({ owner: 1 }, { unique: true });
       });
+
+      Meteor.methods({
+        // eslint-disable-next-line meteor/audit-argument-checks
+        'Organizations.insert'(organizationData) {
+          if (!this.userId) {
+            throw new Meteor.Error('not-authorized');
+          }
+          // eslint-disable-next-line no-use-before-define
+          Organizations.collection.insert(organizationData);
+        },
+      });
     }
   }
 }

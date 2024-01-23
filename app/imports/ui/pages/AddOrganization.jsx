@@ -6,7 +6,6 @@ import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import FileField from '../components/FileField';
 import { Organizations } from '../../api/organization/Organization';
-import { defineMethod } from '../../api/base/BaseCollection.methods';
 
 const bridge = new SimpleSchema2Bridge(Organizations.schema);
 
@@ -22,13 +21,16 @@ const AddOrganization = () => {
     const { image, ...profileData } = data;
     // eslint-disable-next-line no-shadow
     const insertProfile = (profileData) => {
-      const collectionName = Organizations.name;
-      defineMethod.callPromise({ collectionName, profileData })
-        .catch(error => swal('Error', error.message, 'error'))
-        .then(() => {
-          swal('Success', 'Item added successfully', 'success');
-          fRef.reset();
-        });
+      Meteor.call('Organizations.insert', profileData, (error) => {
+        if (error) {
+          swal('Error', error.message, 'error');
+        } else {
+          swal('Success', 'Organization added successfully', 'success');
+          if (fRef) {
+            fRef.reset();
+          }
+        }
+      });
     };
     Meteor.call('textCheck', profileData.mission, (error) => {
       if (error) {
