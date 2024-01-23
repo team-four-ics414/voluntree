@@ -17,8 +17,6 @@ Meteor.methods({
       const result = await cloudinary.v2.uploader.upload(imageData, { resource_type: 'auto' });
       return result.secure_url;
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Error uploading to Cloudinary:', error);
       throw new Meteor.Error('cloudinary-upload-failed', 'Error uploading to Cloudinary');
     }
   },
@@ -42,8 +40,6 @@ Meteor.methods({
       }
       return true;
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error('Error calling OpenAI Moderation API:', error);
       throw new Meteor.Error('moderation-api-call-failed', `Failed to call OpenAI Moderation API: ${error.message}`);
     }
   },
