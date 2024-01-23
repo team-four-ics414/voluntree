@@ -1,9 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 import { Roles } from 'meteor/alanning:roles';
-import { _ } from 'meteor/underscore';
 import BaseCollection from '../base/BaseCollection';
-import DBSchemaNonprofit from '../schema/DBSchemas';
+import { DBSchemaNonprofit } from '../schema/DBSchemas';
 import { ROLE } from '../role/Role';
 
 export const nonprofitTypes = ['Business', 'Organization', 'Individual'];

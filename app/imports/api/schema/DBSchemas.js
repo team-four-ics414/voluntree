@@ -10,14 +10,11 @@ const DBSchemaNonprofit = new SimpleSchema({
   mission: String,
   contactInfo: String,
   location: String,
-  createdAt: {
-    type: Date,
-    optional: true,
-  },
+  createdAt: { type: Date, required: true, defaultValue: new Date() },
   picture: {
     type: String,
     optional: true,
   },
-});
+}, { requiredByDefault: false });
 
 export { DBSchemaNonprofit };
