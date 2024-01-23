@@ -7,6 +7,7 @@ const PropTypeNonprofit = PropTypes.shape({
   contactInfo: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
   createdAt: PropTypes.instanceOf(Date).isRequired,
+  _id: PropTypes.string.isRequired,
   picture: PropTypes.string,
 });
 

@@ -8,7 +8,7 @@ import { PropTypeNonprofit } from '../../api/propTypes/PropTypes';
 const NonprofitItem = ({ nonprofit }) => (
   <Card className="h-100">
     <Card.Header>
-      <Card.Img variant="top" src={nonprofit.picture} style={{ width: '75px' }} />
+      <Card.Img variant="top" src={nonprofit.picture} style={{ height: '75px', width: 'auto', margin: 'auto' }} />
       <Card.Title>{nonprofit.name}</Card.Title>
       <Card.Subtitle>{nonprofit.location}</Card.Subtitle>
     </Card.Header>
@@ -16,7 +16,7 @@ const NonprofitItem = ({ nonprofit }) => (
       <Card.Text>
         {nonprofit.mission}
       </Card.Text>
-      <Link className={COMPONENT_IDS.LIST_NONPROFIT_EDIT} to={`/edit-nonprofit/${nonprofit._id}`}>Edit</Link>
+      <Link className={COMPONENT_IDS.LIST_NONPROFIT_VIEW} to={`/view-nonprofit/${nonprofit._id}`}>View</Link>
     </Card.Body>
   </Card>
 );

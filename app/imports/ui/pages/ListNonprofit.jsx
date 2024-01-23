@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row, Button } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
@@ -17,7 +17,7 @@ const ListNonprofit = () => {
     // Determine if the subscription is ready
     const rdy = subscription.ready();
     // Get the Stuff documents
-    const nonprofitItems = Nonprofits.find({}, { sort: { name: 1 } }).fetch();
+    const nonprofitItems = Nonprofits.find({}).fetch();
     return {
       nonprofits: nonprofitItems,
       ready: rdy,
@@ -25,15 +25,16 @@ const ListNonprofit = () => {
   }, []);
   return (ready ? (
     <Container id={PAGE_IDS.LIST_NONPROFIT} className="py-3">
+      <Button href="/add-nonprofit">Add Nonprofit</Button>
       <Row className="justify-content-center">
         <Col md={7}>
           <Col className="text-center">
-            <h2>List Nonprofits</h2>
+            <h2>Nonprofits Dashboard</h2>
           </Col>
         </Col>
       </Row>
       <Row xs={1} md={2} lg={3} className="g-4">
-        {nonprofits.map((nonprofit) => (<Col key={nonprofit._id}><NonprofitItem nonprofit={nonprofit} /></Col>))}
+        {nonprofits.map((nonprofit) => <Col key={nonprofit._id}><NonprofitItem nonprofit={nonprofit} /></Col>)}
       </Row>
     </Container>
   ) : <LoadingSpinner message="Loading Nonprofits" />);

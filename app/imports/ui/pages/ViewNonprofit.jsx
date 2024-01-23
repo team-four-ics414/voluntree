@@ -1,13 +1,11 @@
 import React from 'react';
-import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, DateField, ErrorsField, HiddenField, NumField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
-import swal from 'sweetalert';
+import { Button, Card, Col, Container, Row, Image } from 'react-bootstrap';
+import { AutoForm, DateField, TextField } from 'uniforms-bootstrap5';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { DBSchemaNonprofit } from '../../api/schema/DBSchemas';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
-import { updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -33,39 +31,28 @@ const EditNonprofit = () => {
       ready: rdy,
     };
   }, [_id]);
-  // On submit, insert the data.
-  const submit = (data) => {
-    const { type, name, mission, contactInfo, location, createdAt, picture } = data;
-    const collectionName = Nonprofits.getCollectionName();
-    const updateData = { id: _id, type, name, mission, contactInfo, location, createdAt, picture };
-    updateMethod.callPromise({ collectionName, updateData })
-      .catch(error => swal('Error', error.message, 'error'))
-      .then(() => swal('Success', `${type} added successfully`, 'success'));
-  };
 
   return ready ? (
     <Container id={PAGE_IDS.EDIT_NONPROFIT} className="py-3">
+      <Button href="/nonprofits">Go Back</Button>
       <Row className="justify-content-center">
         <Col xs={5}>
-          <Col className="text-center"><h2>Add Nonprofit</h2></Col>
-          <AutoForm schema={bridge} onSubmit={data => submit(data)} model={doc}>
+          <Col className="text-center"><h2>View {doc.name}</h2></Col>
+          <AutoForm schema={bridge} model={doc}>
             <Card>
               <Card.Body>
                 <Row>
-                  <SelectField name="type" />
-                  <TextField name="name" />
+                  <Image src={doc.picture} style={{ height: '200px', width: 'auto', margin: 'auto' }} rounded />
+                  <TextField name="name" disabled />
                 </Row>
                 <Row>
-                  <TextField name="mission" />
-                  <TextField name="contactInfo" />
+                  <TextField name="mission" disabled />
                 </Row>
                 <Row>
-                  <DateField name="createdAt" />
-                  <TextField name="picture" />
+                  <TextField name="contactInfo" disabled />
+                  <DateField name="createdAt" disabled />
                 </Row>
-                <SubmitField value="Submit" />
-                <ErrorsField />
-                <HiddenField name="owner" />
+                <Button disabled>Get in touch</Button>
               </Card.Body>
             </Card>
           </AutoForm>

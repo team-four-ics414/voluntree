@@ -1,4 +1,5 @@
 export const COMPONENT_IDS = {
+  LIST_NONPROFIT_VIEW: 'list-nonprofit-view',
   LIST_STUFF_EDIT: 'list-stuff-edit',
   LIST_NONPROFIT_EDIT: 'list-nonprofit-edit',
   MANGAGE_DATABASE_DUMP: 'manage-database-dump',

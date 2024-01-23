@@ -11,6 +11,7 @@ const DBSchemaNonprofit = new SimpleSchema({
   contactInfo: String,
   location: String,
   createdAt: { type: Date, required: true, defaultValue: new Date() },
+  owner: String,
   picture: {
     type: String,
     optional: true,

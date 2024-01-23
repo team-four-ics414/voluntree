@@ -24,7 +24,7 @@ class NonprofitCollection extends BaseCollection {
    * @param condition the condition of the item.
    * @return {String} the docID of the new document.
    */
-  define({ type, name, mission, contactInfo, location, createdAt, picture, owner }) {
+  define({ type, name, mission, contactInfo, location, createdAt, owner, picture }) {
     const docID = this._collection.insert({
       type,
       name,
@@ -32,8 +32,8 @@ class NonprofitCollection extends BaseCollection {
       contactInfo,
       location,
       createdAt,
-      picture,
       owner,
+      picture,
     });
     return docID;
   }
@@ -151,9 +151,9 @@ class NonprofitCollection extends BaseCollection {
     const contactInfo = doc.contactInfo;
     const location = doc.location;
     const createdAt = doc.createdAt;
-    const picture = doc.picture;
     const owner = doc.owner;
-    return { type, name, mission, contactInfo, location, createdAt, picture, owner };
+    const picture = doc.picture;
+    return { type, name, mission, contactInfo, location, createdAt, owner, picture };
   }
 }
 

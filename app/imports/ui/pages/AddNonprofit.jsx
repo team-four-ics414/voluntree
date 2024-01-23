@@ -4,7 +4,7 @@ import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, T
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
-import DBSchemaNonprofit from '../../api/schema/DBSchemas';
+import { DBSchemaNonprofit } from '../../api/schema/DBSchemas';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
@@ -22,7 +22,7 @@ const AddNonprofit = () => {
     const { type, name, mission, contactInfo, location, createdAt, picture } = data;
     const owner = Meteor.user().username;
     const collectionName = Nonprofits.getCollectionName();
-    const definitionData = { type, name, mission, contactInfo, location, createdAt, picture, owner };
+    const definitionData = { type, name, mission, contactInfo, location, createdAt, owner, picture };
     defineMethod.callPromise({ collectionName, definitionData })
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => {
@@ -42,16 +42,16 @@ const AddNonprofit = () => {
             <Card>
               <Card.Body>
                 <Row>
-                  <SelectField name="type" />
+                  <SelectField name="type" placeholder="Please select" />
                   <TextField name="name" />
                 </Row>
                 <Row>
                   <TextField name="mission" />
-                  <NumField name="contactInfo" />
+                  <TextField name="contactInfo" />
                 </Row>
                 <Row>
                   <DateField name="createdAt" />
-                  <TextField name="picture" />
+                  <TextField name="picture">Picture URL</TextField>
                 </Row>
                 <SubmitField value="Submit" />
                 <ErrorsField />

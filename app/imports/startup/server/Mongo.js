@@ -19,6 +19,20 @@ if (Stuffs.count() === 0) {
   }
 }
 
+// Initialize the database with a default data document.
+function addNonprofit(nonprofit) {
+  console.log(`  Adding: ${nonprofit.name} (${nonprofit.owner})`);
+  Nonprofits.define(nonprofit);
+}
+
+// Initialize the NonprofitCollection if empty.
+if (Nonprofits.count() === 0) {
+  if (Meteor.settings.defaultNonprofits) {
+    console.log('Creating default nonprofits.');
+    Meteor.settings.defaultNonprofits.forEach(nonprofit => addNonprofit(nonprofit));
+  }
+}
+
 const addActivity = (activity) => {
   console.log(`  Adding: ${activity.name}`);
   Activities.collection.insert(activity);
@@ -40,19 +54,5 @@ if (Organizations.collection.find().count() === 0) {
   if (Meteor.settings.defaultOrganizations) {
     console.log('Creating default organizations.');
     Meteor.settings.defaultOrganizations.forEach(data => addOrganization(data));
-  }
-}
-
-// Initialize the database with a default data document.
-function addNonprofit(nonprofit) {
-  console.log(`  Adding: ${nonprofit.name} (${nonprofit.owner})`);
-  Nonprofits.define(nonprofit);
-}
-
-// Initialize the NonprofitCollection if empty.
-if (Nonprofits.count() === 0) {
-  if (Meteor.settings.defaultNonprofits) {
-    console.log('Creating default nonprofits.');
-    Meteor.settings.defaultNonprofits.forEach(nonprofit => addNonprofit(nonprofit));
   }
 }
