@@ -13,9 +13,8 @@ const NavBar = () => {
   const { currentUser } = useTracker(() => ({
     currentUser: Meteor.user() ? Meteor.user().username : '',
   }), []);
-  const menuStyle = { marginBottom: '10px' };
   return (
-    <Navbar bg="light" expand="lg" style={menuStyle}>
+    <Navbar bg="light" expand="lg">
       <Container>
         <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/"><Image src="/images/voluntree-logo.png" width="100px" /></Navbar.Brand>
         <Navbar.Toggle aria-controls={COMPONENT_IDS.NAVBAR_COLLAPSE} />
@@ -25,15 +24,19 @@ const NavBar = () => {
               <Nav.Link id={COMPONENT_IDS.NAVBAR_ADD_STUFF} as={NavLink} to="/add" key="add">Add Stuff</Nav.Link>,
               <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF} as={NavLink} to="/list" key="list">List Stuff</Nav.Link>,
               <Nav.Link  as={NavLink} to="/chat" key="chat">Chat</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT} as={NavLink} to="/nonprofits" key="list-nonprofit">List Nonprofits</Nav.Link>,
             ]) : ''}
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
-              [<Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF_ADMIN} as={NavLink} to="/admin" key="admin">Admin</Nav.Link>,
+              [<Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_STUFF_ADMIN} as={NavLink} to="/admin" key="admin">List Stuff (Admin)</Nav.Link>,
+                <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT_ADMIN} as={NavLink} to="/nonprofits-admin" key="admin-nonprofits">List Nonprofits (Admin)</Nav.Link>,
                 <NavDropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} title="Manage" key="manage-dropdown">
                   <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database"><CloudDownload /> Database</NavDropdown.Item>
                 </NavDropdown>]
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">
+            <Nav.Link id="opportunities" as={NavLink} to="/opportunities" key="list">Find Opportunities</Nav.Link>
+            <Nav.Link id="opportunities" as={NavLink} to="/faq" key="list">FAQ</Nav.Link>
             {currentUser === '' ? (
               <NavDropdown id={COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN} title="Login">
                 <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_IN} as={NavLink} to="/signin"><PersonFill />Sign in</NavDropdown.Item>

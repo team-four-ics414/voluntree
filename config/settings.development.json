@@ -11,6 +11,13 @@
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
     { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
   ],
+
+  "defaultNonprofits": [
+    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://i.pinimg.com/736x/54/79/8e/54798e4be7dd517809851673c244cb01--land-trust-logo-ideas.jpg", "owner": "john@foo.com" },
+    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://banner2.cleanpng.com/20180425/xse/kisspng-non-profit-organisation-organization-management-5ae0d3791a5453.9394870015246836411079.jpg", "owner": "john@foo.com" },
+    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://www.rippleslearning.com/wp-content/uploads/2018/09/ESM2-150ppp-1024x1024.jpg", "owner": "john@foo.com" }
+  ],
+
   "public": {
     "development": true
   },
