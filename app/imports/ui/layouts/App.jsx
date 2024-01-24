@@ -13,6 +13,7 @@ import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
+import FAQ from '../pages/FAQ';
 import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
 import AddNonprofit from '../pages/AddNonprofit';
@@ -45,6 +46,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/opportunities" element={<ListOpportunities />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/list" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />

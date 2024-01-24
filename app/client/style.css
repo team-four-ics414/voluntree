@@ -34,6 +34,11 @@ body {
   background-size: cover;
 }
 
+.faq-accordion div {
+  --bs-accordion-btn-bg: #D1D1D9;
+  --bs-accordion-active-bg: #65b9a6;
+}
+
 .filter-container {
   margin-bottom: 10px;
   font-size: 20px;
@@ -46,4 +51,5 @@ body {
   padding-top: 10px;
   padding-bottom: 20px;
 }
+
 
