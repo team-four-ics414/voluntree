@@ -14,6 +14,7 @@ import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
 import SignOut from '../pages/SignOut';
 import FAQ from '../pages/FAQ';
+import CommunityGroups from '../pages/CommunityGroups';
 import NavBar from '../components/NavBar';
 import SignIn from '../pages/SignIn';
 import AddNonprofit from '../pages/AddNonprofit';
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/addorganization" element={<ProtectedRoute><AddOrganization /></ProtectedRoute>} />
           <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
           <Route path="/edit-nonprofit/:_id" element={<ProtectedRoute><EditNonprofit /></ProtectedRoute>} />
+          <Route path="/community-groups" element={<ProtectedRoute><CommunityGroups /></ProtectedRoute>} />
           <Route path="/admin" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
           <Route path="/nonprofits-admin" element={<AdminProtectedRoute ready={ready}><ListNonprofitAdmin /></AdminProtectedRoute>} />
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
