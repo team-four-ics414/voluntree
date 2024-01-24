@@ -34,7 +34,10 @@ body {
   background-size: cover;
 }
 
-
+.filter-container {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
 
 /* Define custom styles */
 .gray-background {
