@@ -5,10 +5,10 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 
 const FAQ = () => (
   <Container id={PAGE_IDS.FAQ} className="py-3">
-    <Row className="align-middle text-center">
+    <Row className="align-middle text-left">
       <Col xs={12} className="d-flex flex-column justify-content-center">
-        <h1>FAQ</h1>
-        <Accordion defaultActiveKey="0">
+        <h1 className="text-center">FAQ</h1>
+        <Accordion defaultActiveKey="0" className="faq-accordion">
           <Accordion.Item eventKey="0">
             <Accordion.Header>How can I find volunteering opportunities that best suit my skills?</Accordion.Header>
             <Accordion.Body>
