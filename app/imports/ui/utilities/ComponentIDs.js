@@ -1,9 +1,13 @@
 export const COMPONENT_IDS = {
+  LIST_NONPROFIT_VIEW: 'list-nonprofit-view',
   LIST_STUFF_EDIT: 'list-stuff-edit',
+  LIST_NONPROFIT_EDIT: 'list-nonprofit-edit',
   MANGAGE_DATABASE_DUMP: 'manage-database-dump',
   NAVBAR_ADD_STUFF: 'navbar-add-stuff',
   NAVBAR_LIST_STUFF: 'navbar-list-stuff',
+  NAVBAR_LIST_NONPROFIT: 'navbar-list-nonprofit',
   NAVBAR_LIST_STUFF_ADMIN: 'navbar-list-stuff-admin',
+  NAVBAR_LIST_NONPROFIT_ADMIN: 'navbar-list-nonprofit-admin',
   NAVBAR_CURRENT_USER: 'navbar-current-user',
   NAVBAR_LANDING_PAGE: 'navbar-landing-page',
   NAVBAR_COLLAPSE: 'navbar-collapse',
