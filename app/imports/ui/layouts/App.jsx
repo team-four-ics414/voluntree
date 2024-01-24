@@ -25,6 +25,7 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import ManageDatabase from '../pages/ManageDatabase';
 import AddOrganization from '../pages/AddOrganization';
 import AddActivity from '../pages/AddActivity';
+import ListOpportunities from '../pages/ListOpportunities';
 import ViewNonprofit from '../pages/ViewNonprofit';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
@@ -44,6 +45,7 @@ const App = () => {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signout" element={<SignOut />} />
+          <Route path="/opportunities" element={<ListOpportunities />} />
           <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
           <Route path="/list" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
           <Route path="/nonprofits" element={<ProtectedRoute ready={ready}><ListNonprofit /></ProtectedRoute>} />
