@@ -22,6 +22,7 @@ import ManageDatabase from '../pages/ManageDatabase';
 import AddOrganization from '../pages/AddOrganization';
 import AddActivity from '../pages/AddActivity';
 
+
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
   const { ready } = useTracker(() => {
