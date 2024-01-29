@@ -29,6 +29,7 @@ import AddActivity from '../pages/AddActivity';
 import Chat from '../pages/Chat';
 import ListOpportunities from '../pages/ListOpportunities';
 import ViewNonprofit from '../pages/ViewNonprofit';
+import AboutUs from '../pages/AboutUs';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
