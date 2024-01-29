@@ -1,19 +1,85 @@
 import React from 'react';
-import { Container, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+import '../../../client/footer.css'; // Importing the CSS file
+import { Facebook, Instagram } from 'react-bootstrap-icons';
 
-/** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
+const SocialIcon = ({ link, Icon }) => (
+  <li>
+    <a href={link} className="icon-link">
+      <Icon />
+    </a>
+  </li>
+);
+const FooterColumn = ({ heading, links }) => (
+  <Col md={3} sm={6}>
+    <div className="footer-pad">
+      <h4>{heading}</h4>
+      <ul className="list-unstyled">
+        {links.map((link, index) => (
+          <li key={index}><a href={link.url}>{link.text}</a></li>
+        ))}
+      </ul>
+    </div>
+  </Col>
+);
+
 const Footer = () => {
-  const divStyle = { paddingTop: '15px' };
+  const year = new Date().getFullYear();
+
+  const columnLinks = [
+    {
+      heading: 'Resources',
+      links: [
+        { text: 'Website Tutorial', url: '#' },
+        { text: 'Accessibility', url: '#' },
+        { text: 'Disclaimer', url: '#' },
+        { text: 'Privacy Policy', url: '#' },
+        { text: 'FAQs', url: '#' },
+        { text: 'Webmaster', url: '#' },
+      ],
+    },
+    {
+      heading: 'Departments',
+      links: [
+        { text: 'Parks and Recreation', url: '#' },
+        { text: 'Public Works', url: '#' },
+        { text: 'Police Department', url: '#' },
+        { text: 'Fire', url: '#' },
+        { text: 'Mayor and City Council', url: '#' },
+      ],
+    },
+    // ... Add more columns as needed
+  ];
+
   return (
-    <footer className="mt-auto bg-light">
-      <Container style={divStyle}>
-        <Col className="text-center">
-          Department of Information and Computer Sciences <br />
-          University of Hawaii<br />
-          Honolulu, HI 96822 <br />
-          <a href="http://ics-software-engineering.github.io/meteor-application-template-production">Template Home Page</a>
-        </Col>
-      </Container>
+    <footer className="mainfooter" role="contentinfo">
+      <div className="footer-middle">
+        <Container>
+          <Row>
+            <Col md={3} sm={6}>
+              <div className="footer-pad">
+                <img src="images/voluntree-logo.png" alt="Voluntree Logo" className="img-fluid logo" />
+              </div>
+            </Col>
+            {columnLinks.map((column, index) => (
+              <FooterColumn key={index} heading={column.heading} links={column.links} />
+            ))}
+            <Col md={3}>
+              <h4>Follow Us</h4>
+              <ul className="social-network">
+                <SocialIcon link="#" Icon={Facebook} />
+                <SocialIcon link="#" Icon={Instagram} />
+                {/* Add more social icons as needed */}
+              </ul>
+            </Col>
+          </Row>
+          <Row>
+            <Col md={12} className="copy">
+              <p className="text-center">&copy; Copyright {year} - Voluntree. All rights reserved.</p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </footer>
   );
 };
