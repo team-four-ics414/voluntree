@@ -1,5 +1,7 @@
+import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
 import BaseCollection from '../base/BaseCollection';
+import Calendars from './CalendarCollection';
 
 class EventCollection extends BaseCollection {
   constructor() {
@@ -99,6 +101,48 @@ class EventCollection extends BaseCollection {
   }
 
   // Additional methods for event management can be added here
+
+  // Method to get count
+  getCount() {
+    return this._collection.find().count();
+  }
+
+  /**
+   * Check if the provided calendar ID is valid.
+   * @param calendarId The ID of the calendar to validate.
+   * @returns {boolean} True if the calendar exists, false otherwise.
+   */
+  isValidCalendar(calendarId) {
+    return !!Calendars.findOne({ _id: calendarId });
+  }
+
+  /**
+   * Defines a new event and updates the corresponding calendar.
+   * @param eventData An object representing the event.
+   * @returns The _id of the new document.
+   */
+  define(eventData) {
+    if (!this.isValidCalendar(eventData.calendarId)) {
+      throw new Meteor.Error('invalid-calendar', 'The provided calendar ID does not exist.');
+    }
+
+    // Insert the event
+    let eventId;
+    try {
+      eventId = this._collection.insert(eventData);
+    } catch (error) {
+      throw new Meteor.Error('insert-failed', error.message);
+    }
+
+    // Update the calendar with the new event
+    try {
+      Calendars.update(eventData.calendarId, { $push: { events: eventId } });
+    } catch (error) {
+      throw new Meteor.Error('calendar-update-failed', error.message);
+    }
+
+    return eventId;
+  }
 }
 
 export const Events = new EventCollection();
