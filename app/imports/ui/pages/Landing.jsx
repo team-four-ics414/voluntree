@@ -1,6 +1,7 @@
 import React from 'react';
 import { Col, Container, Image, Row } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import Calendar from '../components/calendar/Calendar';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
@@ -16,6 +17,7 @@ const Landing = () => (
       </Col>
 
     </Row>
+    <Calendar />
   </Container>
 );
 
