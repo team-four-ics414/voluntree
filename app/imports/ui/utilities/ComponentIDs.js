@@ -10,6 +10,7 @@ export const COMPONENT_IDS = {
   NAVBAR_LIST_NONPROFIT_ADMIN: 'navbar-list-nonprofit-admin',
   NAVBAR_CURRENT_USER: 'navbar-current-user',
   NAVBAR_LANDING_PAGE: 'navbar-landing-page',
+  NAVBAR_ABOUT_US: 'navbar-about-us',
   NAVBAR_COLLAPSE: 'navbar-collapse',
   NAVBAR_LOGIN_DROPDOWN: 'navbar-login-dropdown',
   NAVBAR_LOGIN_DROPDOWN_SIGN_IN: 'navbar-login-dropdown-sign-in',
@@ -25,5 +26,4 @@ export const COMPONENT_IDS = {
   SIGN_UP_FORM_EMAIL: 'sign-up-form-email',
   SIGN_UP_FORM_PASSWORD: 'sign-up-form-password',
   SIGN_UP_FORM_SUBMIT: 'sign-up-form-submit',
-  NAVBAR_ABOUT_US: 'navbar-about-us',
 };
