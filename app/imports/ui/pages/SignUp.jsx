@@ -10,6 +10,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
+import { EnvelopeFill, KeyFill, PersonFill } from 'react-bootstrap-icons';
 
 /**
  * SignUp component is similar to signin component, but we create a new user instead.
@@ -68,6 +69,42 @@ const SignUp = () => {
                 <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD} name="password" placeholder="Password" type="password" />
                 <ErrorsField />
                 <SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} />
+                <div className="text-center"><h2>Welcome to Voluntree</h2></div>
+                <Row className="justify-conetent-center  align-items-center">
+                  <Col style={{ maxWidth: '50%' }}>
+                    <div className="py-2 mt-3">Register Your Account Below</div>
+                    <div className="d-flex flex-row align-items-center py-2">
+                      <PersonFill size={30} />
+                      <TextField name="username" placeholder="Your Username" className="px-2 w-50" />
+                    </div>
+                    <div className="d-flex flex-row align-items-center py-2">
+                      <EnvelopeFill size={30} />
+                      <TextField name="email" placeholder="Your Email Address" className="px-2 w-50" />
+                    </div>
+                    <div className="d-flex flex-row align-items-center py-2">
+                      <KeyFill size={30} />
+                      <TextField name="password" placeholder="Password" type="password" className="px-2 w-50" />
+                    </div>
+                    <ErrorsField />
+                    <div className="py-3"><SubmitField /></div>
+                    <Alert variant="light">
+                      Already a member? Login
+                      {' '}
+                      <Link to="/signin">here</Link>
+                    </Alert>
+                    {error === '' ? (
+                      ''
+                    ) : (
+                      <Alert variant="danger">
+                        <Alert.Heading>Registration was not successful</Alert.Heading>
+                        {error}
+                      </Alert>
+                    )}
+                  </Col>
+                  <Col className="text-center">
+                    <Image src="/images/Signup-art.png" fluid width="500px" />
+                  </Col>
+                </Row>
               </Card.Body>
             </Card>
           </AutoForm>

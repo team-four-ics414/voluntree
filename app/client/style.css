@@ -19,8 +19,25 @@ body {
 }
 
 /* Set the SignIn and SignUp alerts background. */
+<<<<<<< Updated upstream
 #signin-page .alert-light, #signup-page .alert-light {
   --bs-alert-bg: var(--matr-navbar-bg);
+=======
+#signup-page {
+  background: url("/images/light_background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Set the SignIn and SignUp alerts background. */
+#signin-page {
+  background: url("/images/light_background.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+.filter-container {
+  margin-bottom: 10px;
+  font-size: 20px;
+>>>>>>> Stashed changes
 }
 
 /* Define custom styles */
