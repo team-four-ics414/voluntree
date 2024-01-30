@@ -66,6 +66,7 @@ const App = () => {
           <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
           <Route path="/notauthorized" element={<NotAuthorized />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
         <Footer />
       </div>
