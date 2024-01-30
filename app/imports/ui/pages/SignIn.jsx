@@ -5,8 +5,6 @@ import { Alert, Card, Col, Container, Row } from 'react-bootstrap';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
-import { PAGE_IDS } from '../utilities/PageIDs';
-import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
@@ -16,6 +14,7 @@ const SignIn = () => {
   const [error, setError] = useState('');
   const [redirect, setRedirect] = useState(false);
   const schema = new SimpleSchema({
+    username: String,
     email: String,
     password: String,
   });
@@ -43,15 +42,16 @@ const SignIn = () => {
   }
   // Otherwise return the Login form.
   return (
-    <Container id="signin-page" className="py-3">
-      <Row className="justify-content-center">
+    <Container id="signin-page" fluid className="py-3" style={{ height: '760px' }}>
+      <Row className="justify-content-center align-items-center h-100">
         <Col xs={5}>
           <Col className="text-center">
-            <h2>Login to your account</h2>
+            <h2>Login to your Voluntree account</h2>
           </Col>
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
             <Card>
               <Card.Body>
+                <TextField id="signin-form-username" name="username" placeholder="Username" />
                 <TextField id="signin-form-email" name="email" placeholder="E-mail address" />
                 <TextField id="signin-form-password" name="password" placeholder="Password" type="password" />
                 <ErrorsField />
