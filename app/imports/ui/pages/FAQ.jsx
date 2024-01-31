@@ -1,7 +1,8 @@
 import React from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Alert, Col, Container, Row } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { Link } from 'react-router-dom';
 
 const FAQ = () => (
   <Container id={PAGE_IDS.FAQ} className="py-3">
@@ -26,6 +27,8 @@ const FAQ = () => (
             <Accordion.Body>
               To sign up, create an account on our website, browse available opportunities, and click on &quot;Apply&quot; for the ones you&apos;re interested in.
               Follow the instructions provided by the organization to complete the application process.
+              <div> <Link to="/signup"> Click here to register for an account.</Link> </div>
+
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="3">
