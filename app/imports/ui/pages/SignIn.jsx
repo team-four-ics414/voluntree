@@ -15,7 +15,6 @@ const SignIn = () => {
   const [error, setError] = useState('');
   const [redirect, setRedirect] = useState(false);
   const schema = new SimpleSchema({
-    username: String,
     email: String,
     password: String,
   });
