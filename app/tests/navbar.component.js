@@ -54,6 +54,11 @@ class NavBar {
     await t.click(`#${COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_UP}`);
   }
 
+  /* Go to the volunteer opportunities page. */
+  async gotoOpportunitiesPage(testController) {
+    await testController.click('#opportunities-page');
+  }
+
   /* Go to the add stuff page. */
   async gotoAddStuffPage() {
     const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
