@@ -7,7 +7,8 @@ import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { PersonFill, EnvelopeFill, KeyFill } from 'react-bootstrap-icons';
-
+import { PAGE_IDS } from '../utilities/PageIDs';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 /**
  * SignUp component is similar to signin component, but we create a new user instead.
  */
@@ -42,7 +43,7 @@ const SignUp = ({ location }) => {
     return <Navigate to={from} />;
   }
   return (
-    <Container id="signup-page" fluid className="py-3" style={{ height: '760px' }}>
+    <Container id={PAGE_IDS.SIGN_UP} fluid className="py-3" style={{ height: '760px' }}>
       <Row className="justify-content-center align-items-center h-100">
         <Col sm={2} md={6}>
           <AutoForm schema={bridge} onSubmit={data => submit(data)}>
@@ -54,18 +55,18 @@ const SignUp = ({ location }) => {
                     <div className="py-2 mt-3">Register Your Account Below</div>
                     <div className="d-flex flex-row align-items-center py-2">
                       <PersonFill size={30} />
-                      <TextField name="username" placeholder="Your Username" className="px-2 w-100" />
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_FIRST_NAME} name="username" placeholder="Your Username" className="px-2 w-100" />
                     </div>
                     <div className="d-flex flex-row align-items-center py-2">
                       <EnvelopeFill size={30} />
-                      <TextField name="email" placeholder="Your Email Address" className="px-2 w-100" />
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_EMAIL} name="email" placeholder="Your Email Address" className="px-2 w-100" />
                     </div>
                     <div className="d-flex flex-row align-items-center py-2">
                       <KeyFill size={30} />
-                      <TextField name="password" placeholder="Password" type="password" className="px-2 w-100" />
+                      <TextField id={COMPONENT_IDS.SIGN_UP_FORM_PASSWORD} name="password" placeholder="Password" type="password" className="px-2 w-100" />
                     </div>
                     <ErrorsField />
-                    <div className="py-3"><SubmitField /></div>
+                    <div className="py-3"><SubmitField id={COMPONENT_IDS.SIGN_UP_FORM_SUBMIT} /></div>
                     <Alert variant="light">
                       Already a member? Login
                       {' '}

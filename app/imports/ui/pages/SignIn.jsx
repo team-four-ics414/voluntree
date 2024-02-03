@@ -6,7 +6,8 @@ import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import { EnvelopeFill, KeyFill } from 'react-bootstrap-icons';
-
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import { PAGE_IDS } from '../utilities/PageIDs';
 /**
  * Signin page overrides the form’s submit event and call Meteor’s loginWithPassword().
  * Authentication errors modify the component’s state to be displayed
@@ -15,7 +16,7 @@ const SignIn = () => {
   const [error, setError] = useState('');
   const [redirect, setRedirect] = useState(false);
   const schema = new SimpleSchema({
-    username: String,
+    // username: String,
     email: String,
     password: String,
   });
@@ -43,7 +44,7 @@ const SignIn = () => {
   }
   // Otherwise return the Login form.
   return (
-    <Container id="signin-page" fluid className="py-3" style={{ height: '760px' }}>
+    <Container id={PAGE_IDS.SIGN_IN} fluid className="py-3" style={{ height: '760px' }}>
       <Row className="justify-content-center align-items-center h-100">
         <Col xs={5}>
           <Col className="text-center">
@@ -53,11 +54,11 @@ const SignIn = () => {
             <Card>
               <Card.Body>
                 <EnvelopeFill size={30} />
-                <TextField id="signin-form-email" name="email" placeholder="Enter your email address" />
+                <TextField id={COMPONENT_IDS.SIGN_IN_FORM_EMAIL} name="email" placeholder="Enter your email address" />
                 <KeyFill size={30} />
-                <TextField id="signin-form-password" name="password" placeholder="Enter your password" type="password" />
+                <TextField id={COMPONENT_IDS.SIGN_IN_FORM_PASSWORD} name="password" placeholder="Enter your password" type="password" />
                 <ErrorsField />
-                <SubmitField id="signin-form-submit" />
+                <SubmitField id={COMPONENT_IDS.SIGN_IN_FORM_SUBMIT} />
               </Card.Body>
             </Card>
           </AutoForm>
