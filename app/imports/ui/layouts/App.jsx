@@ -30,7 +30,6 @@ import Chat from '../pages/Chat';
 import ListOpportunities from '../pages/ListOpportunities';
 import ViewNonprofit from '../pages/ViewNonprofit';
 
-
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
   const { ready } = useTracker(() => {
