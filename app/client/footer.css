@@ -1,16 +1,11 @@
 /*FOOTER*/
 footer {
-  background: linear-gradient(180deg, #00b29f, #004b59);
-  color: white;
-  margin-top: 100px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  background: linear-gradient(180deg, #ffffff, #00495a);
+  color: #ffffff;
 }
 
 footer a {
-  color: #fff;
+  color: #ffffff;
   font-size: 14px;
   transition-duration: 0.2s;
 }
@@ -75,3 +70,4 @@ ul.social-network li {
 .social-network a:hover {
   transform: rotate(360deg);
 }
+

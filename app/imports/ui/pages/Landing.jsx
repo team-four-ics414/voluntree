@@ -17,7 +17,9 @@ const Landing = () => (
       </Col>
 
     </Row>
-    <Calendar />
+    <Container className="shadow p-3 mb-5 bg-body rounded">
+      <Calendar />
+    </Container>
   </Container>
 );
 
