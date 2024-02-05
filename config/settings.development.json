@@ -22,46 +22,43 @@
   ],
   "defaultEvents": [
     {
-      "title": "Charity Concert",
-      "description": "A concert to raise funds for local charities.",
-      "startTime": "2023-02-15T18:00:00.000Z",
-      "endTime": "2023-02-15T21:00:00.000Z",
-      "location": "City Hall",
-      "calendarId": "calendar1",
-      "nonprofitId": "nonprofit1",
-      "activityDetails": "Music, food, and fun activities.",
-      "frequency": "Once",
-      "commitmentRequired": false,
-      "skillsRequired": [],
-      "accessibilityInfo": "",
-      "requirements": {
-        "backgroundCheck": false
-      },
-      "impact": "High",
-      "volunteerValueEstimate": 100,
-      "addedBy": "john@foo.com"
+      "title": "Community Beach Clean-Up",
+      "description": "Join us to clean up our local beach and protect marine life!",
+      "startTime": "2024-02-20T09:00:00.000Z",
+      "endTime": "2024-02-20T12:00:00.000Z",
+      "location": "Sunny Beach",
+      "calendarId": "1234",
+      "isVirtual": false,
+      "hostedBy": "Eco Warriors NGO",
+      "maxParticipants": 50,
+      "isOpenForRegistration": true,
+      "tags": ["environment", "community", "volunteer"]
     },
     {
-      "title": "Beach Clean-Up",
-      "description": "Community event to clean the local beach.",
-      "startTime": "2023-03-10T08:00:00.000Z",
-      "endTime": "2023-03-10T12:00:00.000Z",
-      "location": "Sunny Beach",
-      "nonprofitId": "nonprofit2",
-      "activityDetails": "Collecting trash and debris along the shoreline.",
-      "frequency": "Monthly",
-      "commitmentRequired": true,
-      "skillsRequired": ["Organizing", "Teamwork"],
-      "accessibilityInfo": "Accessible for wheelchairs",
-      "requirements": {
-        "backgroundCheck": true,
-        "ageRange": "16+"
-      },
-      "impact": "Medium",
-      "volunteerValueEstimate": 50,
-      "addedBy": "john@foo.com"
+      "title": "Virtual Coding Workshop",
+      "description": "Learn to code from the comfort of your home.",
+      "startTime": "2024-02-05T15:00:00.000Z",
+      "endTime": "2024-02-05T17:00:00.000Z",
+      "location": "Online",
+      "calendarId": "12345",
+      "isVirtual": true,
+      "hostedBy": "Code for All",
+      "maxParticipants": 100,
+      "isOpenForRegistration": true,
+      "tags": ["education", "technology", "workshop"]
+    },
+    {
+      "title": "Community Garden Planting",
+      "description": "Join us to plant flowers and vegetables in our local community garden.",
+      "startTime": "2024-02-15T10:00:00.000Z",
+      "endTime": "2024-02-15T12:00:00.000Z",
+      "location": "Green Park",
+      "calendarId": "123456",
+      "isVirtual": false,
+      "hostedBy": "Green Thumb Society",
+      "maxParticipants": 30,
+      "isOpenForRegistration": true,
+      "tags": ["environment", "community", "volunteer"]
     }
   ]
-
-
 }
