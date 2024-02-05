@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { MATPCollections } from '../../api/matp/MATPCollections';
 import { Organizations } from '../../api/organization/Organization';
 import { Activities } from '../../api/activities/Activities';
+import { Events } from '../../api/calendar/EventCollection';
 
 // Call publish for all the collections.
 MATPCollections.collections.forEach(c => c.publish());
@@ -28,4 +29,8 @@ Meteor.publish(Activities.userPublicationName, function () {
     return Activities.collection.find();
   }
   return this.ready();
+});
+
+Meteor.publish('events', function publishEvents() {
+  return Events.find();
 });

@@ -3,6 +3,7 @@ import { Stuffs } from '../../api/stuff/StuffCollection';
 import { Activities } from '../../api/activities/Activities';
 import { Organizations } from '../../api/organization/Organization';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
+import { Events } from '../../api/calendar/EventCollection';
 /* eslint-disable no-console */
 
 // Initialize the database with a default data document.
@@ -55,4 +56,20 @@ if (Organizations.collection.find().count() === 0) {
     console.log('Creating default organizations.');
     Meteor.settings.defaultOrganizations.forEach(data => addOrganization(data));
   }
+}
+
+const addEvent = (event) => {
+  console.log(`  Adding event: ${event.title}`);
+  // Handle the addition of event here
+  try {
+    Events.define(event);
+  } catch (error) {
+    console.error(`Error adding event ${event.title}: ${error.message}`);
+  }
+};
+
+// Initialize Events if empty
+if (Events.count() === 0 && Meteor.settings.defaultEvents) {
+  console.log('Creating default events.');
+  Meteor.settings.defaultEvents.forEach(event => addEvent(event));
 }

@@ -3,6 +3,7 @@ import { Stuffs } from '../stuff/StuffCollection';
 import { AdminProfiles } from '../user/AdminProfileCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
 import { Nonprofits } from '../nonprofit/NonprofitCollection';
+import { Events } from '../calendar/EventCollection';
 
 class MATPClass {
   collections;
@@ -15,6 +16,7 @@ class MATPClass {
     // list of all the MATPCollections collections
     this.collections = [
       AdminProfiles,
+      Events,
       Stuffs,
       UserProfiles,
       Nonprofits,
@@ -25,6 +27,7 @@ class MATPClass {
     this.collectionLoadSequence = [
       AdminProfiles,
       UserProfiles,
+      Events,
       Stuffs,
       Nonprofits,
     ];
