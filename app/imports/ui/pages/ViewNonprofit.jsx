@@ -33,7 +33,7 @@ const EditNonprofit = () => {
   }, [_id]);
 
   return ready ? (
-    <Container id={PAGE_IDS.EDIT_NONPROFIT} className="py-3">
+    <Container id={PAGE_IDS.VIEW_NONPROFIT} className="py-3">
       <Button href="/nonprofits">Go Back</Button>
       <Row className="justify-content-center">
         <Col xs={5}>

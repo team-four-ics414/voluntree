@@ -4,6 +4,7 @@ import { landingPage } from './landing.page';
 import { signInPage } from './signin.page';
 import { signUpPage } from './signup.page';
 import { navBar } from './navbar.component';
+import { listNonprofitPage } from './listNonprofit.page';
 import { COMPONENT_IDS } from '../imports/ui/utilities/ComponentIDs';
 
 /* global fixture:false, test:false */
@@ -73,4 +74,13 @@ test('Test that admin pages show up', async () => {
 //
 test('Test that opportunities page works', async (testController) => {
   await navBar.gotoOpportunitiesPage(testController);
+});
+
+test('Test the list nonprofits page works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoListNonprofit();
+  await listNonprofitPage.isDisplayed();
+  await listNonprofitPage.hasNonprofit(3);
 });

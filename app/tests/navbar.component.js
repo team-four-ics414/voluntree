@@ -99,6 +99,11 @@ class NavBar {
     await t.click(`#${COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN}`);
     await t.click(`#${COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE}`);
   }
+
+  /* Go to the list nonprofits page. Must be a logged in user. */
+  async gotoListNonprofit() {
+    await t.click(`#${COMPONENT_IDS.NAVBAR_LIST_NONPROFIT}`);
+  }
 }
 
 export const navBar = new NavBar();

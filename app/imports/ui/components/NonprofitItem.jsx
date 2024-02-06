@@ -6,7 +6,7 @@ import { PropTypeNonprofit } from '../../api/propTypes/PropTypes';
 
 /** Renders a single row in the List Stuff table. See pages/ListStuff.jsx. */
 const NonprofitItem = ({ nonprofit }) => (
-  <Card className="h-100">
+  <Card id={COMPONENT_IDS.NONPROFIT_CARD} className="h-100">
     <Card.Header>
       <Card.Img variant="top" src={nonprofit.picture} style={{ height: '75px', width: 'auto', margin: 'auto' }} />
       <Card.Title>{nonprofit.name}</Card.Title>
@@ -16,7 +16,7 @@ const NonprofitItem = ({ nonprofit }) => (
       <Card.Text>
         {nonprofit.mission}
       </Card.Text>
-      <Link className={COMPONENT_IDS.LIST_NONPROFIT_VIEW} to={`/view-nonprofit/${nonprofit._id}`}>View</Link>
+      <Link id={COMPONENT_IDS.LIST_NONPROFIT_VIEW} to={`/view-nonprofit/${nonprofit._id}`}>View</Link>
     </Card.Body>
   </Card>
 );
