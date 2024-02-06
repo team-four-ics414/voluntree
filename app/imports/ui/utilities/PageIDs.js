@@ -11,6 +11,7 @@ export const PAGE_IDS = {
   SIGN_IN: 'sign-in',
   SIGN_OUT: 'sign-out',
   SIGN_UP: 'sign-up',
+  FAQ: 'faq',
   CHAT: 'chat',
   ADD_NONPROFIT: 'add-nonprofit',
   EDIT_NONPROFIT: 'edit-nonprofit',
