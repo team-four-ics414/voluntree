@@ -19,7 +19,7 @@ class ListNonprofitPage {
   }
 
   async gotoViewNonprofitPage() {
-    const viewLinks = Selector(`#${PAGE_IDS.VIEW_NONPROFIT}`);
+    const viewLinks = Selector(`#${COMPONENT_IDS.LIST_NONPROFIT_VIEW}`);
     await t.click(viewLinks.nth(0));
   }
 

@@ -27,4 +27,6 @@ export const COMPONENT_IDS = {
   NAVBAR_LIST_NONPROFIT: 'navbar-list-nonprofit',
   NAVBAR_LIST_NONPROFIT_ADMIN: 'navbar-list-nonprofit-admin',
   NONPROFIT_CARD: 'nonprofit-card',
+  NONPROFIT_VIEW_GOBACK: 'nonprofit-view-goback',
+  NONPROFIT_GET_IN_TOUCH: 'nonprofit_get_in_touch',
 };

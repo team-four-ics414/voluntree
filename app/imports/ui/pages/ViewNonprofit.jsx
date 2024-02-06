@@ -8,6 +8,7 @@ import { DBSchemaNonprofit } from '../../api/schema/DBSchemas';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = DBSchemaNonprofit;
@@ -34,7 +35,7 @@ const EditNonprofit = () => {
 
   return ready ? (
     <Container id={PAGE_IDS.VIEW_NONPROFIT} className="py-3">
-      <Button href="/nonprofits">Go Back</Button>
+      <Button id={COMPONENT_IDS.NONPROFIT_VIEW_GOBACK} href="/nonprofits">Go Back</Button>
       <Row className="justify-content-center">
         <Col xs={5}>
           <Col className="text-center"><h2>View {doc.name}</h2></Col>
@@ -52,7 +53,7 @@ const EditNonprofit = () => {
                   <TextField name="contactInfo" disabled />
                   <DateField name="createdAt" disabled />
                 </Row>
-                <Button disabled>Get in touch</Button>
+                <Button id={COMPONENT_IDS.NONPROFIT_GET_IN_TOUCH} disabled>Get in touch</Button>
               </Card.Body>
             </Card>
           </AutoForm>

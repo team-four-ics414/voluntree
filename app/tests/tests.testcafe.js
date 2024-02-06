@@ -5,6 +5,7 @@ import { signInPage } from './signin.page';
 import { signUpPage } from './signup.page';
 import { navBar } from './navbar.component';
 import { listNonprofitPage } from './listNonprofit.page';
+import { viewNonprofitPage } from './viewNonprofit.page';
 import { COMPONENT_IDS } from '../imports/ui/utilities/ComponentIDs';
 
 /* global fixture:false, test:false */
@@ -83,4 +84,15 @@ test('Test the list nonprofits page works', async () => {
   await navBar.gotoListNonprofit();
   await listNonprofitPage.isDisplayed();
   await listNonprofitPage.hasNonprofit(3);
+});
+
+test('Test the view nonprofit page works', async () => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoListNonprofit();
+  await listNonprofitPage.gotoViewNonprofitPage();
+  await viewNonprofitPage.isDisplayed();
+  await viewNonprofitPage.goBack();
+  await listNonprofitPage.isDisplayed();
 });
