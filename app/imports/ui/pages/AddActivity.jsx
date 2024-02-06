@@ -4,10 +4,26 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import SimpleSchema from 'simpl-schema';
 import FileField from '../components/FileField';
-import { Activities } from '../../api/activities/Activities';
+import { defineMethod } from '../../api/base/BaseCollection.methods';
+import { Activity } from '../../api/activities/ActivityCollection';
 
-const bridge = new SimpleSchema2Bridge(Activities.schema);
+const formSchema = new SimpleSchema({
+  time: String,
+  name: String,
+  details: String,
+  createdAt: Date,
+  benefits: String,
+  location: String,
+  frequency: String,
+  requirement: String,
+  contactInfo: String,
+  image: { type: String, optional: true },
+  owner: String,
+});
+
+const bridge = new SimpleSchema2Bridge(formSchema);
 
 const AddActivity = () => {
   const [imageFile, setImageFile] = useState(null);
@@ -19,17 +35,17 @@ const AddActivity = () => {
 
   const submit = (data) => {
     const { image, ...activityData } = data;
-    const concat = Object.values(activityData).join(' ');
+    const concat = Object.values(data).join(' ');
     // eslint-disable-next-line no-shadow
     const insertProfile = (activityData) => {
-      Meteor.call('Activities.insert', activityData, (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        } else {
-          swal('Success', 'Activity added successfully', 'success');
-          fRef.reset();
-        }
-      });
+      const { time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, owner } = activityData;
+      const collectionName = Activity.getCollectionName();
+      const definitionData = { time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner };
+      defineMethod.callPromise({ collectionName, definitionData })
+        .catch(error => swal('Error', error.message, 'error'))
+        .then(() => {
+          swal('Success', 'Item added successfully', 'success');
+        });
     };
     Meteor.call('textCheck', concat, (error) => {
       if (error) {
@@ -68,8 +84,8 @@ const AddActivity = () => {
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField inputClassName="border-dark" name="name" />
                       <TextField inputClassName="border-dark" name="time" />
+                      <TextField inputClassName="border-dark" name="name" />
                       <TextField inputClassName="border-dark" name="details" />
                       <TextField inputClassName="border-dark" name="benefits" />
                     </Col>
@@ -86,7 +102,7 @@ const AddActivity = () => {
                   <ErrorsField />
                   <SubmitField inputClassName="p-2 bg-white border-1 rounded-1 mt-1" value="Submit" />
                   <HiddenField name="createdAt" value={new Date()} />
-                  <HiddenField name="owner" value={Meteor.userId()} />
+                  <HiddenField name="owner" value={Meteor.user().username} />
                 </Card.Body>
               </Card>
             </AutoForm>

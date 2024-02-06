@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { MATPCollections } from '../../api/matp/MATPCollections';
 import { Organizations } from '../../api/organization/Organization';
-import { Activities } from '../../api/activities/Activities';
 import { Events } from '../../api/calendar/EventCollection';
 
 // Call publish for all the collections.
@@ -20,13 +19,6 @@ Meteor.publish(null, function () {
 Meteor.publish(Organizations.userPublicationName, function () {
   if (this.userId) {
     return Organizations.collection.find();
-  }
-  return this.ready();
-});
-
-Meteor.publish(Activities.userPublicationName, function () {
-  if (this.userId) {
-    return Activities.collection.find();
   }
   return this.ready();
 });

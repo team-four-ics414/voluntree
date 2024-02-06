@@ -4,6 +4,7 @@ import { AdminProfiles } from '../user/AdminProfileCollection';
 import { UserProfiles } from '../user/UserProfileCollection';
 import { Nonprofits } from '../nonprofit/NonprofitCollection';
 import { Events } from '../calendar/EventCollection';
+import { Activity } from '../activities/ActivityCollection';
 
 class MATPClass {
   collections;
@@ -20,6 +21,7 @@ class MATPClass {
       Stuffs,
       UserProfiles,
       Nonprofits,
+      Activity,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -30,6 +32,7 @@ class MATPClass {
       Events,
       Stuffs,
       Nonprofits,
+      Activity,
     ];
 
     /*
