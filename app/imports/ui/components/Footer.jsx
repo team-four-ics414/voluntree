@@ -50,7 +50,7 @@ const Footer = () => {
         { text: 'Accessibility', url: '#' },
         { text: 'Disclaimer', url: '#' },
         { text: 'Privacy Policy', url: '#' },
-        { text: 'FAQs', url: '#' },
+        { text: 'FAQs', url: '/faq' },
         { text: 'Webmaster', url: '#' },
       ],
     },
