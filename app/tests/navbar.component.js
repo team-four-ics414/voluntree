@@ -59,6 +59,11 @@ class NavBar {
     await testController.click('#opportunities-page');
   }
 
+  /* Go to the FAQ page. */
+  async gotoFAQ(testController) {
+    await testController.click('#faq');
+  }
+
   /* Go to the add stuff page. */
   async gotoAddStuffPage() {
     const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
