@@ -42,30 +42,32 @@ const App = () => {
     <Router>
       <div className="d-flex flex-column min-vh-100">
         <NavBar />
-        <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signout" element={<SignOut />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/opportunities" element={<ListOpportunities />} />
-          <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-          <Route path="/list" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
-          <Route path="/nonprofits" element={<ProtectedRoute ready={ready}><ListNonprofit /></ProtectedRoute>} />
-          <Route path="/add" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
-          <Route path="/add-nonprofit" element={<ProtectedRoute><AddNonprofit /></ProtectedRoute>} />
-          <Route path="/view-nonprofit/:_id" element={<ProtectedRoute><ViewNonprofit /></ProtectedRoute>} />
-          <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
-          <Route path="/addorganization" element={<ProtectedRoute><AddOrganization /></ProtectedRoute>} />
-          <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
-          <Route path="/chat" element={<ProtectedRoute><SideChat /></ProtectedRoute>} />
-          <Route path="/edit-nonprofit/:_id" element={<ProtectedRoute><EditNonprofit /></ProtectedRoute>} />
-          <Route path="/admin" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
-          <Route path="/nonprofits-admin" element={<AdminProtectedRoute ready={ready}><ListNonprofitAdmin /></AdminProtectedRoute>} />
-          <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
-          <Route path="/notauthorized" element={<NotAuthorized />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="flex-grow-1">
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/signout" element={<SignOut />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="/opportunities" element={<ListOpportunities />} />
+            <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+            <Route path="/list" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
+            <Route path="/nonprofits" element={<ProtectedRoute ready={ready}><ListNonprofit /></ProtectedRoute>} />
+            <Route path="/add" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
+            <Route path="/add-nonprofit" element={<ProtectedRoute><AddNonprofit /></ProtectedRoute>} />
+            <Route path="/view-nonprofit/:_id" element={<ProtectedRoute><ViewNonprofit /></ProtectedRoute>} />
+            <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
+            <Route path="/addorganization" element={<ProtectedRoute><AddOrganization /></ProtectedRoute>} />
+            <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
+            <Route path="/chat" element={<ProtectedRoute><SideChat /></ProtectedRoute>} />
+            <Route path="/edit-nonprofit/:_id" element={<ProtectedRoute><EditNonprofit /></ProtectedRoute>} />
+            <Route path="/admin" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
+            <Route path="/nonprofits-admin" element={<AdminProtectedRoute ready={ready}><ListNonprofitAdmin /></AdminProtectedRoute>} />
+            <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
+            <Route path="/notauthorized" element={<NotAuthorized />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
         <Footer />
       </div>
     </Router>

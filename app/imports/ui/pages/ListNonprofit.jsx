@@ -7,17 +7,17 @@ import LoadingSpinner from '../components/LoadingSpinner';
 import NonprofitItem from '../components/NonprofitItem';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
-/* Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
+/* Renders a table containing all of the Nonprofits documents. Use <NonprofitItem> to render each row. */
 const ListNonprofit = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
   const { ready, nonprofits } = useTracker(() => {
     // Note that this subscription will get cleaned up
     // when your component is unmounted or deps change.
-    // Get access to Stuff documents.
+    // Get access to Nonprofits documents.
     const subscription = Nonprofits.subscribeNonprofit();
     // Determine if the subscription is ready
     const rdy = subscription.ready();
-    // Get the Stuff documents
+    // Get the Nonprofits documents
     const nonprofitItems = Nonprofits.find({}).fetch();
     return {
       nonprofits: nonprofitItems,
