@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
-import '../../../client/footer.css'; // Importing the CSS file
 import { Facebook, Instagram } from 'react-bootstrap-icons';
 
 const SocialIcon = ({ link, Icon }) => (
@@ -14,12 +13,14 @@ const SocialIcon = ({ link, Icon }) => (
 
 SocialIcon.propTypes = {
   link: PropTypes.string.isRequired,
-  Icon: PropTypes.elementType.isRequired, // elementType is used for React components passed as props
+  Icon: PropTypes.elementType.isRequired,
 };
+
 const FooterColumn = ({ heading, links }) => (
-  <Col md={3} sm={6}>
+  <Col md={2} sm={6}>
     <div className="footer-pad">
       <h4>{heading}</h4>
+      <img src="/images/footer-underline.png" alt="Underline" className="underline-image" />
       <ul className="list-unstyled">
         {links.map((link, index) => (
           <li key={index}><a href={link.url}>{link.text}</a></li>
@@ -64,7 +65,6 @@ const Footer = () => {
         { text: 'Mayor and City Council', url: '#' },
       ],
     },
-    // ... Add more columns as needed
   ];
 
   return (
@@ -72,16 +72,13 @@ const Footer = () => {
       <div className="footer-middle">
         <Container>
           <Row>
-            <Col md={3} sm={6}>
-              <div className="footer-pad">
-                <img src="images/voluntree-logo.png" alt="Voluntree Logo" className="img-fluid logo" />
-              </div>
-            </Col>
             {columnLinks.map((column, index) => (
               <FooterColumn key={index} heading={column.heading} links={column.links} />
             ))}
-            <Col md={3}>
+            <Col md={4} />
+            <Col md={2}>
               <h4>Follow Us</h4>
+              <img src="/images/footer-underline.png" alt="Underline" className="underline-image" />
               <ul className="social-network">
                 <SocialIcon link="#" Icon={Facebook} />
                 <SocialIcon link="#" Icon={Instagram} />
