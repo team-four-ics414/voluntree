@@ -10,7 +10,7 @@ export const activityPublications = {
 
 class ActivityCollection extends BaseCollection {
   constructor() {
-    super('ActivityCollection', new SimpleSchema({
+    super('Activity', new SimpleSchema({
       time: String,
       name: String,
       details: String,

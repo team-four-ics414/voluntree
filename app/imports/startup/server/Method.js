@@ -3,9 +3,9 @@ import cloudinary from 'cloudinary';
 import { HTTP } from 'meteor/http';
 
 cloudinary.config({
-  cloud_name: 'djoahlpoc',
-  api_key: '513547556632438',
-  api_secret: 'Fp6cEWLBdbmAfrQlshHfA-jOgXs',
+  cloud_name: 'YOUR-KEY-HERE',
+  api_key: 'YOUR-KEY-HERE',
+  api_secret: 'YOUR-KEY-HERE',
 });
 
 Meteor.methods({
@@ -26,7 +26,7 @@ Meteor.methods({
       const response = await HTTP.call('POST', 'https://api.openai.com/v1/moderations', {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${'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'}`,
+          Authorization: `Bearer ${'YOUR-KEY-HERE'}`,
         },
         data: {
           input: text,
