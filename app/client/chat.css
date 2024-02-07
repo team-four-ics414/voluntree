@@ -1,0 +1,91 @@
+.chatColumn {
+  position: absolute;
+  right: 1%;
+  height: 700px;
+  width: 300px;
+  z-index: 500;
+  color: black;
+  border: 10px solid seagreen;
+  border-radius: 10px;
+}
+
+/* General chat box styles */
+.chat-box {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 0;
+  overflow-y: auto; /* Enable scrolling for messages */
+  height: 100%;
+}
+
+/* Header styles */
+.chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+/* Message styles */
+.chat-messages {
+  padding-top: 10px;
+  margin-bottom: 50px;
+  border: 2px solid seagreen;
+  solid-opacity: 0.5%;
+}
+
+.sender-text {
+  border: 5px solid seagreen;
+  background-color: seagreen;
+  border-radius: 5px;
+  margin: 7px 0 10px 0;
+  justify-content: start;
+  padding: 1px 2px 1px 2px;
+  font-size: 13.5px;
+  width: 200px;
+}
+
+.receiver-text {
+  border: 5px solid grey;
+  background-color: grey;
+  border-radius: 5px;
+  margin: 7px 0 10px 0;
+  font-size: 13.5px;
+}
+
+/* Input form styles */
+.chat-input-box {
+  padding-top: 5px;
+  position: absolute;
+  bottom: 2%;
+  width: 60px;
+}
+
+.chat-input input {
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.chat-toggle {
+  position: absolute;
+  right: 5%;
+}
+
+.send-button {
+  background-color: seagreen;
+  color: white;
+  width: 40px;
+  height: auto;
+  bottom: 2%;
+  position: absolute;
+  right: 5%;
+  padding: 5px;
+}
