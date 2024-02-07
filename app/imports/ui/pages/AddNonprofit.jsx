@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, DateField, ErrorsField, NumField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, DateField, ErrorsField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
@@ -8,6 +8,7 @@ import { DBSchemaNonprofit } from '../../api/schema/DBSchemas';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = DBSchemaNonprofit;
@@ -53,7 +54,7 @@ const AddNonprofit = () => {
                   <DateField name="createdAt" />
                   <TextField name="picture">Picture URL</TextField>
                 </Row>
-                <SubmitField value="Submit" />
+                <SubmitField id={COMPONENT_IDS.NONPROFIT_ADD_SUBMIT_BTN} value="Submit" />
                 <ErrorsField />
               </Card.Body>
             </Card>

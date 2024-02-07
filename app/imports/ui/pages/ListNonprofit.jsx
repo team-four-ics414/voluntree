@@ -5,6 +5,7 @@ import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import NonprofitItem from '../components/NonprofitItem';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /* Renders a table containing all of the Stuff documents. Use <StuffItem> to render each row. */
 const ListNonprofit = () => {
@@ -25,7 +26,7 @@ const ListNonprofit = () => {
   }, []);
   return (ready ? (
     <Container id={PAGE_IDS.LIST_NONPROFIT} className="py-3">
-      <Button href="/add-nonprofit">Add Nonprofit</Button>
+      <Button id={COMPONENT_IDS.NONPROFIT_ADD_BTN} href="/add-nonprofit">Add Nonprofit</Button>
       <Row className="justify-content-center">
         <Col md={7}>
           <Col className="text-center">

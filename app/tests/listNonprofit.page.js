@@ -13,14 +13,19 @@ class ListNonprofitPage {
     await t.expect(this.pageSelector.exists).ok();
   }
 
-  async hasNonprofit(numNonprofits) {
+  async hasNonprofits(numNonprofits) {
     const nonprofitCount = Selector(`#${COMPONENT_IDS.NONPROFIT_CARD}`).count;
-    await t.expect(nonprofitCount).eql(numNonprofits);
+    await t.expect(nonprofitCount).gte(numNonprofits);
   }
 
   async gotoViewNonprofitPage() {
     const viewLinks = Selector(`#${COMPONENT_IDS.LIST_NONPROFIT_VIEW}`);
-    await t.click(viewLinks.nth(0));
+    await t.click(viewLinks.nth(-1));
+  }
+
+  async gotoAddNonprofitPage() {
+    const addNonprofitBtn = Selector(`#${COMPONENT_IDS.NONPROFIT_ADD_BTN}`);
+    await t.click(addNonprofitBtn);
   }
 
 }

@@ -29,4 +29,6 @@ export const COMPONENT_IDS = {
   NONPROFIT_CARD: 'nonprofit-card',
   NONPROFIT_VIEW_GOBACK: 'nonprofit-view-goback',
   NONPROFIT_GET_IN_TOUCH: 'nonprofit_get_in_touch',
+  NONPROFIT_ADD_BTN: 'nonprofit_add_btn',
+  NONPROFIT_ADD_SUBMIT_BTN: 'nonprofit_add_submit_btn',
 };

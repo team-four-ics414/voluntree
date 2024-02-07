@@ -7,7 +7,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { useParams } from 'react-router';
 import { DBSchemaNonprofit } from '../../api/schema/DBSchemas';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
-import { updateMethod } from '../../api/base/BaseCollection.methods';
+import { removeItMethod, updateMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
 
@@ -42,6 +42,12 @@ const EditNonprofit = () => {
       .catch(error => swal('Error', error.message, 'error'))
       .then(() => swal('Success', `${type} added successfully`, 'success'));
   };
+
+  // On delete, remove the instance of nonprofit.
+  // const delete = () => {
+  //   const collectionName = Nonprofits.getCollectionName();
+  //   removeItMethod.callPromise({ collectionName,  })
+  // };
 
   return ready ? (
     <Container id={PAGE_IDS.EDIT_NONPROFIT} className="py-3">
