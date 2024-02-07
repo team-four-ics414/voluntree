@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/StuffCollection';
-import { Activities } from '../../api/activities/Activities';
 import { Organizations } from '../../api/organization/Organization';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { Events } from '../../api/calendar/EventCollection';
+import { Activity } from '../../api/activities/ActivityCollection';
 /* eslint-disable no-console */
 
 // Initialize the database with a default data document.
@@ -36,13 +36,13 @@ if (Nonprofits.count() === 0) {
 
 const addActivity = (activity) => {
   console.log(`  Adding: ${activity.name}`);
-  Activities.collection.insert(activity);
+  Activity.collection.insert(activity);
 };
 
-if (Activities.collection.find().count() === 0) {
-  if (Meteor.settings.defaultActivities) {
-    console.log('Creating default activities.');
-    Meteor.settings.defaultActivities.forEach(data => addActivity(data));
+if (Activity.count() === 0) {
+  if (Meteor.settings.defaultActivity) {
+    console.log('Creating Default ActivityCollection.');
+    Meteor.settings.defaultActivity.forEach(data => addActivity(data));
   }
 }
 

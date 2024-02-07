@@ -4,10 +4,35 @@ import { Container, Row, Col, Card } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
+import SimpleSchema from 'simpl-schema';
 import FileField from '../components/FileField';
-import { Activities } from '../../api/activities/Activities';
+import { defineMethod } from '../../api/base/BaseCollection.methods';
+import { Activity } from '../../api/activities/ActivityCollection';
 
-const bridge = new SimpleSchema2Bridge(Activities.schema);
+const formSchema = new SimpleSchema({
+  time: String,
+  name: String,
+  details: String,
+  createdAt: {
+    type: Date,
+    defaultValue: new Date(), // Ensure default value for createdAt
+  },
+  benefits: String,
+  location: String,
+  frequency: String,
+  requirement: String,
+  contactInfo: String,
+  image: {
+    type: String,
+    optional: true, // Ensure this matches your database schema and it's truly optional
+  },
+  owner: {
+    type: String,
+    defaultValue: () => Meteor.userId(), // Ensure default value for owner
+  },
+});
+
+const bridge = new SimpleSchema2Bridge(formSchema);
 
 const AddActivity = () => {
   const [imageFile, setImageFile] = useState(null);
@@ -18,41 +43,43 @@ const AddActivity = () => {
   };
 
   const submit = (data) => {
-    const { image, ...activityData } = data;
+    const { image, ...activityData } = data; // Initially exclude image from activityData
+
+    // Concatenate all text fields for textCheck
     const concat = Object.values(activityData).join(' ');
-    // eslint-disable-next-line no-shadow
-    const insertProfile = (activityData) => {
-      Meteor.call('Activities.insert', activityData, (error) => {
-        if (error) {
-          swal('Error', error.message, 'error');
-        } else {
-          swal('Success', 'Activity added successfully', 'success');
-          fRef.reset();
-        }
-      });
+
+    // Define the insert function
+    const insertProfile = (finalData) => {
+      const collectionName = Activity.getCollectionName();
+      defineMethod.callPromise({ collectionName, definitionData: finalData })
+        .then(() => swal('Success', 'Item added successfully', 'success'))
+        .catch(error => swal('Error', error.message, 'error'));
+      fRef.reset();
     };
+
+    // Check for inappropriate content
     Meteor.call('textCheck', concat, (error) => {
       if (error) {
         swal('Error', 'Inappropriate Content Detected', 'error');
         return;
       }
+      // Handle image upload if file is selected
       if (imageFile) {
         const reader = new FileReader();
-        reader.onloadend = function () {
+        reader.onloadend = () => {
           const fileData = reader.result;
-
           Meteor.call('uploadImage', fileData, (err, imageUrl) => {
             if (err) {
               swal('Error', 'Failed to upload image.', 'error');
             } else {
-              activityData.image = imageUrl;
-              insertProfile(activityData);
+              const finalData = { ...activityData, image: imageUrl }; // Incorporate image URL
+              insertProfile(finalData); // Insert with image URL
             }
           });
         };
         reader.readAsDataURL(imageFile);
       } else {
-        insertProfile(activityData);
+        insertProfile(activityData); // Insert without image URL
       }
     });
   };
@@ -61,15 +88,15 @@ const AddActivity = () => {
     <div>
       <Container className="py-3">
         <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
-          <Col xs={5}>
-            <Col className="text-center"><h2>Add Activity</h2></Col>
+          <Col xs={12} md={8} lg={5}>
+            <h2 className="text-center">Add Activity</h2>
             <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
               <Card style={{ backgroundColor: 'white', border: 'none' }}>
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField inputClassName="border-dark" name="name" />
                       <TextField inputClassName="border-dark" name="time" />
+                      <TextField inputClassName="border-dark" name="name" />
                       <TextField inputClassName="border-dark" name="details" />
                       <TextField inputClassName="border-dark" name="benefits" />
                     </Col>

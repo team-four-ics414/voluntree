@@ -21,7 +21,7 @@
   "public": {
     "development": true
   },
-  "defaultActivities": [
+  "defaultActivity": [
 
   ],
   "defaultOrganizations": [
