@@ -1,4 +1,4 @@
-import { Selector, t, ClientFunction } from 'testcafe';
+// import { Selector, t, ClientFunction } from 'testcafe';
 import { /* manageDatabasePage, */ signOutPage } from './simple.page';
 import { landingPage } from './landing.page';
 import { signInPage } from './signin.page';

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Alert, Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
-import { PAGE_IDS } from '../utilities/PageIDs';
 import { Link } from 'react-router-dom';
+import { PAGE_IDS } from '../utilities/PageIDs';
 
 const FAQ = () => (
   <Container id={PAGE_IDS.FAQ} className="py-3">
