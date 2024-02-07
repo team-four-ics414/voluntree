@@ -62,22 +62,17 @@ test('Test that admin pages show up', async () => {
   await navBar.gotoSignInPage();
   await signInPage.signin(adminCredentials.username, adminCredentials.password);
   await navBar.isLoggedIn(adminCredentials.username);
-  // await navBar.gotoAddStuffPage();
-  // await addStuffPage.isDisplayed();
-  // await navBar.gotoListStuffPage();
-  // await listStuffPage.isDisplayed();
   // want to see if we can get to the editStuffPage
   // const editLinks = await Selector(`.${COMPONENT_IDS.LIST_STUFF_EDIT}`);
   // await t.click(editLinks.nth(0));
-  // await editStuffPage.isDisplayed();
-  // await navBar.gotoListStuffAdminPage();
-  // await listStuffAdminPage.isDisplayed();
-  // await navBar.gotoManageDatabasePage();
-  // await manageDatabasePage.isDisplayed();
 });
 //
 test('Test that opportunities page works', async (testController) => {
   await navBar.gotoOpportunitiesPage(testController);
+});
+
+test('Test that FAQ page shows up', async (testController) => {
+  await navBar.gotoFAQ(testController);
 });
 
 test('Test the list nonprofits page works', async () => {
