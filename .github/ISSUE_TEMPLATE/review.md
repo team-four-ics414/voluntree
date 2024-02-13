@@ -25,11 +25,11 @@ review-xxx
 
 ## Checklists
 
-* [Architecture](../checklists/architecture-checklist.md)
-* [Design](../checklists/design-checklist.md)
-* [JS](../checklists/js-checklist.md)
-* [React](../checklists/react-checklist.md)
-* [Testing](../checklists/testing-checklist.md)
+* [Architecture](../../checklists/architecture-checklist.md)
+* [Design](../../checklists/design-checklist.md)
+* [JS](../../checklists/js-checklist.md)
+* [React](../../checklists/react-checklist.md)
+* [Testing](../../checklists/testing-checklist.md)
 
 ## Due date
 
