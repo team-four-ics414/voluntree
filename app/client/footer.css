@@ -14,13 +14,13 @@ footer a {
 }
 
 footer a:hover {
-  color: #009088; /* Green color */
+  color: #009088;
   text-decoration: none;
 }
 
 .copy {
   font-size: 12px;
-  padding: 5px;
+  padding: 6px;
   margin-top: 50px;
   border-top: 3px solid #11af97;
   color: #11af97 !important;
