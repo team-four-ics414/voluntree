@@ -1,24 +1,29 @@
 /*FOOTER*/
 footer {
-  background: linear-gradient(180deg, #ffffff, #00495a);
-  color: #ffffff;
+  background-image: url("/images/footer-image.png");
+  background-position: center;
+  padding: 50px;
+  margin-top: 50px;
+  /*margin-bottom: 10px;*/
 }
 
 footer a {
-  color: #ffffff;
+  color: #0d8d78;
   font-size: 14px;
   transition-duration: 0.2s;
 }
 
 footer a:hover {
-  color: #54D007; /* Green color */
+  color: #009088;
   text-decoration: none;
 }
 
 .copy {
   font-size: 12px;
-  padding: 10px;
-  border-top: 1px solid #FFFFFF;
+  padding: 6px;
+  margin-top: 50px;
+  border-top: 3px solid #11af97;
+  color: #11af97 !important;
 }
 
 .footer-middle {
@@ -40,7 +45,7 @@ ul.social-network li {
 }
 
 .social-network a {
-  background-color: #009088;
+  background-color: #54D007;
   display: inline-block;
   border-radius: 50%;
   text-align: center;
@@ -70,4 +75,3 @@ ul.social-network li {
 .social-network a:hover {
   transform: rotate(360deg);
 }
-
