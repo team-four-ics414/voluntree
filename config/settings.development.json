@@ -13,9 +13,9 @@
   ],
 
   "defaultNonprofits": [
-    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://w1.pngwing.com/pngs/114/237/png-transparent-bank-volunteering-charitable-organization-voluntary-association-donation-community-random-act-of-kindness-volunteer-management.png", "owner": "john@foo.com" },
-    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://banner2.cleanpng.com/20180425/xse/kisspng-non-profit-organisation-organization-management-5ae0d3791a5453.9394870015246836411079.jpg", "owner": "john@foo.com" },
-    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://www.rippleslearning.com/wp-content/uploads/2018/09/ESM2-150ppp-1024x1024.jpg", "owner": "john@foo.com" }
+    { "type": "501(c) Nonprofits", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://w1.pngwing.com/pngs/114/237/png-transparent-bank-volunteering-charitable-organization-voluntary-association-donation-community-random-act-of-kindness-volunteer-management.png", "owner": "john@foo.com" },
+    { "type": "Govt, Hospice, State-Level", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://banner2.cleanpng.com/20180425/xse/kisspng-non-profit-organisation-organization-management-5ae0d3791a5453.9394870015246836411079.jpg", "owner": "john@foo.com" },
+    { "type": "Schools", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://www.rippleslearning.com/wp-content/uploads/2018/09/ESM2-150ppp-1024x1024.jpg", "owner": "john@foo.com" }
   ],
 
   "public": {

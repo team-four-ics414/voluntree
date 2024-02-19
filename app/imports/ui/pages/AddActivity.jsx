@@ -15,7 +15,7 @@ const formSchema = new SimpleSchema({
   details: String,
   createdAt: {
     type: Date,
-    defaultValue: new Date(), // Ensure default value for createdAt
+    defaultValue: new Date(),
   },
   benefits: String,
   location: String,
@@ -24,11 +24,11 @@ const formSchema = new SimpleSchema({
   contactInfo: String,
   image: {
     type: String,
-    optional: true, // Ensure this matches your database schema and it's truly optional
+    optional: true,
   },
   owner: {
     type: String,
-    defaultValue: () => Meteor.userId(), // Ensure default value for owner
+    defaultValue: () => Meteor.userId(),
   },
 });
 
@@ -91,7 +91,7 @@ const AddActivity = () => {
           <Col xs={12} md={8} lg={5}>
             <h2 className="text-center">Add Activity</h2>
             <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-              <Card style={{ backgroundColor: 'white', border: 'none' }}>
+              <Card>
                 <Card.Body>
                   <Row>
                     <Col>
@@ -111,7 +111,7 @@ const AddActivity = () => {
                     <FileField name="image" onChange={handleImageChange} />
                   </div>
                   <ErrorsField />
-                  <SubmitField inputClassName="p-2 bg-white border-1 rounded-1 mt-1" value="Submit" />
+                  <SubmitField value="Submit" />
                   <HiddenField name="createdAt" value={new Date()} />
                   <HiddenField name="owner" value={Meteor.userId()} />
                 </Card.Body>

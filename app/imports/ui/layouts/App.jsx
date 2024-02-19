@@ -24,7 +24,6 @@ import NotAuthorized from '../pages/NotAuthorized';
 import { ROLE } from '../../api/role/Role';
 import LoadingSpinner from '../components/LoadingSpinner';
 import ManageDatabase from '../pages/ManageDatabase';
-import AddOrganization from '../pages/AddOrganization';
 import AddActivity from '../pages/AddActivity';
 import SideChat from '../components/SideChat';
 import ListOpportunities from '../pages/ListOpportunities';
@@ -57,8 +56,7 @@ const App = () => {
             <Route path="/add-nonprofit" element={<ProtectedRoute><AddNonprofit /></ProtectedRoute>} />
             <Route path="/view-nonprofit/:_id" element={<ProtectedRoute><ViewNonprofit /></ProtectedRoute>} />
             <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
-            <Route path="/addorganization" element={<ProtectedRoute><AddOrganization /></ProtectedRoute>} />
-            <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
+            <Route path="/add-activity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
             <Route path="/chat" element={<ProtectedRoute><SideChat /></ProtectedRoute>} />
             <Route path="/edit-nonprofit/:_id" element={<ProtectedRoute><EditNonprofit /></ProtectedRoute>} />
             <Route path="/admin" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />

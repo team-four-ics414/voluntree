@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { Stuffs } from '../../api/stuff/StuffCollection';
-import { Organizations } from '../../api/organization/Organization';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { Events } from '../../api/calendar/EventCollection';
 import { Activity } from '../../api/activities/ActivityCollection';
@@ -43,18 +42,6 @@ if (Activity.count() === 0) {
   if (Meteor.settings.defaultActivity) {
     console.log('Creating Default ActivityCollection.');
     Meteor.settings.defaultActivity.forEach(data => addActivity(data));
-  }
-}
-
-const addOrganization = (Organization) => {
-  console.log(`  Adding: ${Organization.name}`);
-  Organizations.collection.insert(Organization);
-};
-
-if (Organizations.collection.find().count() === 0) {
-  if (Meteor.settings.defaultOrganizations) {
-    console.log('Creating default organizations.');
-    Meteor.settings.defaultOrganizations.forEach(data => addOrganization(data));
   }
 }
 
