@@ -74,7 +74,7 @@ const ListOpportunities = () => {
       filtered = filtered.filter(opportunity => opportunity.name.toLowerCase().includes(normalizedQuery) ||
         opportunity.description.toLowerCase().includes(normalizedQuery));
     }
-    if (selectedCategory) {
+    if (selectedCategory && selectedCategory !== 'All') {
       filtered = filtered.filter(opportunity => opportunity.category === selectedCategory);
     }
     return filtered;
@@ -107,7 +107,8 @@ const ListOpportunities = () => {
                   Filter By Category
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  {[' ', 'Agriculture', 'Cleanup', 'Education', 'Medicine', 'Animals', 'Arts & Culture', 'Faith-Based', 'Technology', 'Disaster Relief'].map((category, index) => (
+                  <Dropdown.Item onClick={() => handleCategorySelect('All')} active={!selectedCategory}>All</Dropdown.Item>
+                  {['Agriculture', 'Cleanup', 'Education', 'Medicine', 'Animals', 'Arts & Culture', 'Faith-Based', 'Technology', 'Disaster Relief'].map((category, index) => (
                     <Dropdown.Item
                       key={index}
                       onClick={() => handleCategorySelect(category)}
@@ -144,7 +145,6 @@ const ListOpportunities = () => {
               </Col>
             ))}
           </Row>
-          {/* Information Card */}
           {showInfo && selectedOpportunity && (
             <div className={`information-card ${showInfo ? 'active' : ''}`}>
               <h2>{selectedOpportunity.name}</h2>
