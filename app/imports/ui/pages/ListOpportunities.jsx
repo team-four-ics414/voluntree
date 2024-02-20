@@ -1,29 +1,14 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-
-// eslint-disable-next-line react/prop-types
-const DropdownFilter = ({ filter, handleChangeFilter }) => (
-  <div>
-    {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-    <label className="filter-container">Filter: </label>
-    <select
-      name="filter"
-      value={filter}
-      onChange={handleChangeFilter}
-    >
-      <option value="">-- Please Select --</option>
-      <option value="all">All</option>
-      <option value="Cleanup">Cleanup</option>
-      <option value="Education">Education</option>
-      <option value="Medicine">Medicine</option>
-    </select>
-  </div>
-);
+import { Container, Row, Col, Button, Form, Dropdown } from 'react-bootstrap';
+import { BsSearch } from 'react-icons/bs';
 
 const ListOpportunities = () => {
   const [showInfo, setShowInfo] = useState(false);
-  const [filter, setFilter] = useState('all');
+  const [selectedOpportunity, setSelectedOpportunity] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
+  // TO BE REPLACED WITH ACTUAL DATA FROM COLLECTION
   const opportunities = [
     {
       name: 'Agriculture',
@@ -49,34 +34,91 @@ const ListOpportunities = () => {
       description: 'Assist in medical outreach programs.',
       category: 'Medicine',
     },
+    {
+      name: 'Arts & Culture',
+      image: 'images/sample1.jpg',
+      description: '',
+      category: 'Arts & Culture',
+    },
+    {
+      name: 'Seniors',
+      image: 'images/sample1.jpg',
+      description: '',
+      category: 'Nursing',
+    },
+    {
+      name: 'Church',
+      image: 'images/sample1.jpg',
+      description: '',
+      category: 'Faith-Based',
+    },
   ];
 
-  // eslint-disable-next-line no-unused-vars
   const handleInfoClick = (opportunity) => {
-    // Add functionality to handle information click
     setShowInfo(!showInfo);
+    setSelectedOpportunity(opportunity);
   };
 
-  const handleChangeFilter = (event) => {
-    setFilter(event.target.value);
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category === selectedCategory ? null : category); // Toggle selected category
   };
 
   const filteredOpportunities = () => {
-    if (filter === 'all') {
-      return opportunities;
+    let filtered = opportunities;
+    if (searchQuery) {
+      const normalizedQuery = searchQuery.toLowerCase();
+      filtered = filtered.filter(opportunity => opportunity.name.toLowerCase().includes(normalizedQuery) ||
+        opportunity.description.toLowerCase().includes(normalizedQuery));
     }
-    return opportunities.filter((opportunity) => opportunity.category === filter);
+    if (selectedCategory) {
+      filtered = filtered.filter(opportunity => opportunity.category === selectedCategory);
+    }
+    return filtered;
   };
 
   return (
     <Container className="py-3">
-      <Row className={`py-3 ${showInfo ? 'blur-background' : ''}`}>
+      <Row className={`py-3 ${showInfo ? '' : 'blur-background'}`}>
         <Col>
-          <Col className="text-center">
-            <h2>Volunteer Opportunities</h2>
+          <Col className="text-start">
+            <div className="d-flex align-items-center">
+              <BsSearch size={15} color="white" className="mr-2" />
+              <h3 className="search-header">Find Volunteer Opportunities</h3>
+            </div>
           </Col>
+          {/* Search bar */}
           <Row className="mb-3">
-            <DropdownFilter filter={filter} handleChangeFilter={handleChangeFilter} />
+            <Col xs={8} md={6}>
+              <Form.Control
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={handleSearchInputChange}
+                className="search-input"
+              />
+            </Col>
+            <Col>
+              <Dropdown className="mb-3">
+                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                  Filter By Category
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {[' ', 'Agriculture', 'Cleanup', 'Education', 'Medicine', 'Animals', 'Arts & Culture', 'Faith-Based', 'Technology', 'Disaster Relief'].map((category, index) => (
+                    <Dropdown.Item
+                      key={index}
+                      onClick={() => handleCategorySelect(category)}
+                      active={selectedCategory === category}
+                    >
+                      {category}
+                    </Dropdown.Item>
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
           </Row>
           {/* Opportunity Cards */}
           <Row xs={1} md={2} lg={3} className={`g-4 ${showInfo ? 'slide-out' : ''}`}>
@@ -102,6 +144,23 @@ const ListOpportunities = () => {
               </Col>
             ))}
           </Row>
+          {/* Information Card */}
+          {showInfo && selectedOpportunity && (
+            <div className={`information-card ${showInfo ? 'active' : ''}`}>
+              <h2>{selectedOpportunity.name}</h2>
+              <img
+                src={selectedOpportunity.image}
+                alt={selectedOpportunity.name}
+                className="card-img-top"
+                style={{ height: '200px', objectFit: 'cover' }}
+              />
+              <p>{selectedOpportunity.description}</p>
+              {/* TO DO: add more info */}
+              <Button variant="secondary" onClick={handleInfoClick}>
+                Close
+              </Button>
+            </div>
+          )}
         </Col>
       </Row>
     </Container>

@@ -44,10 +44,41 @@ body {
   font-size: 20px;
 }
 
-/* Define custom styles */
 .gray-background {
   background-color: var(--bs-gray-200);
   color: var(--bs-dark);
   padding-top: 10px;
   padding-bottom: 20px;
 }
+
+.search-header {
+  font-size: medium;
+  color: #ffffff;
+  margin-bottom: 1px;
+}
+
+.information-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 100%;
+  background-color: #fff;
+  padding: 20px;
+  transition: transform 0.5s ease;
+  transform: translateX(-100%);
+}
+
+.information-card.active {
+  transform: translateX(0);
+}
+
+.slide-in {
+  left: 0;
+}
+
+.fade-out {
+  opacity: 0.5;
+}
+
+
