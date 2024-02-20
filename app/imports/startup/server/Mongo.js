@@ -33,10 +33,10 @@ if (Nonprofits.count() === 0) {
   }
 }
 
-const addActivity = (activity) => {
-  console.log(`  Adding: ${activity.name}`);
-  Activity.collection.insert(activity);
-};
+function addActivity(activity) {
+  console.log(`  Adding: ${activity.name} (${activity.owner})`);
+  Activity.define(activity);
+}
 
 if (Activity.count() === 0) {
   if (Meteor.settings.defaultActivity) {
