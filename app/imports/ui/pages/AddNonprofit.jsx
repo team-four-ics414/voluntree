@@ -9,6 +9,7 @@ import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import FileField from '../components/FileField';
 import { DBSchemaNonprofit } from '../../api/schema/DBSchemas';
+import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 const bridge = new SimpleSchema2Bridge(DBSchemaNonprofit);
 
@@ -80,7 +81,7 @@ const AddNonprofit = () => {
                 </div>
                 <ErrorsField />
                 <HiddenField name="owner" value={Meteor.userId()} />
-                <SubmitField value="Submit" />
+                <SubmitField id={COMPONENT_IDS.NONPROFIT_ADD_SUBMIT_BTN} value="Submit" />
               </Card.Body>
             </Card>
           </AutoForm>
