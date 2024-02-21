@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
@@ -21,9 +21,20 @@ import { Events } from '../../../api/calendar/EventCollection';
  */
 
 moment.locale('en');
-const localizer = momentLocalizer(moment); // Updated way to set localizer
+const localizer = momentLocalizer(moment);
 
 const MyCalendar = ({ events }) => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredEvents, setFilteredEvents] = useState([]);
+
+  const handleSearchInputChange = event => {
+    const query = event.target.value.toLowerCase();
+    setSearchQuery(query);
+    // eslint-disable-next-line no-shadow
+    const filteredEvents = events.filter(event => event.title.toLowerCase().includes(query));
+    setFilteredEvents(filteredEvents);
+  };
+
   const formattedEvents = events.map(event => ({
     ...event,
     start: new Date(event.startTime),
@@ -31,13 +42,34 @@ const MyCalendar = ({ events }) => {
   }));
 
   return (
-    <div style={{ height: '700px' }}>
-      <Calendar
-        localizer={localizer} // Updated prop usage
-        events={formattedEvents}
-        defaultDate={new Date()}
-        defaultView="month"
-      />
+    <div style={{ display: 'flex', height: '700px' }}>
+      <div style={{ flex: '0 0 300px', marginRight: '20px' }}>
+        <input
+          className="event-search"
+          type="text"
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+          placeholder="Search for events..."
+        />
+        <div>
+          <h3>Matching Events:</h3>
+          <ul>
+            {filteredEvents.map(event => (
+              <li key={event._id}>
+                <strong>{moment(event.startTime).format('MMM Do, YYYY')}</strong>: {event.title}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div style={{ flex: '1' }}>
+        <Calendar
+          localizer={localizer}
+          events={formattedEvents}
+          defaultDate={new Date()}
+          defaultView="month"
+        />
+      </div>
     </div>
   );
 };
