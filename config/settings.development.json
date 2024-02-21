@@ -13,16 +13,148 @@
   ],
 
   "defaultNonprofits": [
-    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://w1.pngwing.com/pngs/114/237/png-transparent-bank-volunteering-charitable-organization-voluntary-association-donation-community-random-act-of-kindness-volunteer-management.png", "owner": "john@foo.com" },
-    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://banner2.cleanpng.com/20180425/xse/kisspng-non-profit-organisation-organization-management-5ae0d3791a5453.9394870015246836411079.jpg", "owner": "john@foo.com" },
-    { "type": "Business", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://www.rippleslearning.com/wp-content/uploads/2018/09/ESM2-150ppp-1024x1024.jpg", "owner": "john@foo.com" }
+    { "type": "501(c) Nonprofits", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://w1.pngwing.com/pngs/114/237/png-transparent-bank-volunteering-charitable-organization-voluntary-association-donation-community-random-act-of-kindness-volunteer-management.png", "owner": "john@foo.com" },
+    { "type": "Govt, Hospice, State-Level", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://banner2.cleanpng.com/20180425/xse/kisspng-non-profit-organisation-organization-management-5ae0d3791a5453.9394870015246836411079.jpg", "owner": "john@foo.com" },
+    { "type": "Schools", "name": "Hopeful Hearts Team", "mission":  "Make World a better place", "contactInfo": "808-000-0000", "location":  "Fake Street 15, 96788", "picture": "https://www.rippleslearning.com/wp-content/uploads/2018/09/ESM2-150ppp-1024x1024.jpg", "owner": "john@foo.com" }
   ],
 
   "public": {
     "development": true
   },
   "defaultActivity": [
-
+    {
+    "time": "08:00 - 12:00",
+    "name": "Beach Cleanup at Waikiki",
+    "details": "Join us for a morning of community service cleaning Waikiki Beach. Supplies provided.",
+    "createdAt": "2024-03-01T12:00:00Z",
+    "benefits": "Contribute to a cleaner environment, meet community members.",
+    "location": { "lat": 21.2795, "lng": -157.8290 },
+    "frequency": "Monthly",
+    "requirement": "Please wear sun protection and bring water.",
+    "contactInfo": "waikikicleanup@nonprofit.org",
+    "image": "https://example.com/beachcleanup.jpg",
+    "owner": "WaikikiNatureGroup"
+    },
+    {
+      "time": "09:00 - 13:00",
+      "name": "Kailua Beach Park Restoration",
+      "details": "Help restore native plants and remove invasive species at Kailua Beach Park.",
+      "createdAt": "2024-03-02T12:00:00Z",
+      "benefits": "Restore natural habitats, learn about local flora.",
+      "location": { "lat": 21.3997, "lng": -157.7393 },
+      "frequency": "Biweekly",
+      "requirement": "Gardening gloves recommended.",
+      "contactInfo": "restorekailua@nonprofit.org",
+      "image": "https://example.com/parkrestoration.jpg",
+      "owner": "EcoHawaiiGroup"
+    },
+    {
+      "time": "10:00 - 14:00",
+      "name": "Food Distribution at Haleiwa",
+      "details": "Distribute food and supplies to families in need in the Haleiwa community.",
+      "createdAt": "2024-03-03T12:00:00Z",
+      "benefits": "Support local families, volunteer experience.",
+      "location": { "lat": 21.5928, "lng": -158.1033 },
+      "frequency": "Weekly",
+      "requirement": "Health and safety training provided on-site.",
+      "contactInfo": "haleiwahelp@nonprofit.org",
+      "image": "https://example.com/fooddistribution.jpg",
+      "owner": "FoodBankOahu"
+    },
+    {
+      "time": "07:30 - 11:30",
+      "name": "Manoa Valley Tree Planting",
+      "details": "Join our effort to reforest parts of Manoa Valley. All tools and guidance provided.",
+      "createdAt": "2024-03-04T12:00:00Z",
+      "benefits": "Combat climate change, beautify the valley.",
+      "location": { "lat": 21.3331, "lng": -157.8025 },
+      "frequency": "Monthly",
+      "requirement": "Wear appropriate clothing and footwear for muddy conditions.",
+      "contactInfo": "manoatrees@nonprofit.org",
+      "image": "https://example.com/treepanting.jpg",
+      "owner": "GreenIslandFoundation"
+    },
+    {
+      "time": "15:00 - 19:00",
+      "name": "After School Tutoring in Waianae",
+      "details": "Provide tutoring and homework help to students in Waianae. Subjects vary.",
+      "createdAt": "2024-03-05T12:00:00Z",
+      "benefits": "Help students succeed academically, mentorship experience.",
+      "location": { "lat": 21.4449, "lng": -158.1901 },
+      "frequency": "Weekdays",
+      "requirement": "Background check and education in relevant subjects.",
+      "contactInfo": "waianaetutors@nonprofit.org",
+      "image": "https://example.com/tutoring.jpg",
+      "owner": "EducationFirst"
+    },
+    {
+      "time": "08:30 - 13:00",
+      "name": "Historic Preservation at Iolani Palace",
+      "details": "Assist in preserving and maintaining the historic Iolani Palace and its grounds.",
+      "createdAt": "2024-03-06T12:00:00Z",
+      "benefits": "Learn about Hawaiian history, contribute to preservation.",
+      "location": { "lat": 21.3069, "lng": -157.8583 },
+      "frequency": "Monthly",
+      "requirement": "Respect for cultural heritage, attention to detail.",
+      "contactInfo": "preserveiolani@nonprofit.org",
+      "image": "https://example.com/preservation.jpg",
+      "owner": "HeritageHawaii"
+    },
+    {
+      "time": "09:00 - 12:00",
+      "name": "Conservation Work at Waimea Valley",
+      "details": "Engage in various conservation activities to protect the ecosystems of Waimea Valley.",
+      "createdAt": "2024-03-07T12:00:00Z",
+      "benefits": "Protect native species, outdoor activity.",
+      "location": { "lat": 21.6395, "lng": -158.0572 },
+      "frequency": "Weekly",
+      "requirement": "Ability to perform physical tasks outdoors.",
+      "contactInfo": "waimeaconservation@nonprofit.org",
+      "image": "https://example.com/conservation.jpg",
+      "owner": "NatureGuardians"
+    },
+    {
+      "time": "10:00 - 15:00",
+      "name": "Senior Companion Program in Mililani",
+      "details": "Spend time with seniors, assist with errands, and provide companionship.",
+      "createdAt": "2024-03-08T12:00:00Z",
+      "benefits": "Improve the well-being of elderly, gain valuable social experience.",
+      "location": { "lat": 21.4513, "lng": -158.0153 },
+      "frequency": "Weekly",
+      "requirement": "Compassion, patience, and good communication skills.",
+      "contactInfo": "mililaniseniors@nonprofit.org",
+      "image": "https://example.com/seniorcompanion.jpg",
+      "owner": "CompanionCare"
+    },
+    {
+      "time": "07:00 - 10:00",
+      "name": "Sunrise Shell Beach Cleanup",
+      "details": "Help clean up one of Oahu's beautiful beaches early in the morning.",
+      "createdAt": "2024-03-09T12:00:00Z",
+      "benefits": "Environmental impact, community service.",
+      "location": { "lat": 21.5619, "lng": -158.0719 },
+      "frequency": "Monthly",
+      "requirement": "Bring gloves and wear sturdy shoes.",
+      "contactInfo": "shellbeachclean@nonprofit.org",
+      "image": "https://example.com/beachclean.jpg",
+      "owner": "OceanWatch"
+    },
+    {
+      "time": "11:00 - 16:00",
+      "name": "Urban Gardening in Downtown Honolulu",
+      "details": "Join our urban gardening project and help grow food for local homeless shelters.",
+      "createdAt": "2024-03-10T12:00:00Z",
+      "benefits": "Learn about sustainable gardening, support the community.",
+      "location": {
+        "lat": 21.3071,
+        "lng": -157.8582
+      },
+      "frequency": "Weekly",
+      "requirement": "Interest in gardening and sustainability.",
+      "contactInfo": "honolulugardens@nonprofit.org",
+      "image": "https://example.com/urbangardening.jpg",
+      "owner": "GreenThumbCommunity"
+    }
   ],
   "defaultOrganizations": [
 

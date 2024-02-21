@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-bootstrap5';
@@ -15,20 +15,19 @@ const formSchema = new SimpleSchema({
   details: String,
   createdAt: {
     type: Date,
-    defaultValue: new Date(), // Ensure default value for createdAt
+    defaultValue: new Date(),
   },
   benefits: String,
-  location: String,
   frequency: String,
   requirement: String,
   contactInfo: String,
   image: {
     type: String,
-    optional: true, // Ensure this matches your database schema and it's truly optional
+    optional: true,
   },
   owner: {
     type: String,
-    defaultValue: () => Meteor.userId(), // Ensure default value for owner
+    defaultValue: () => Meteor.userId(),
   },
 });
 
@@ -36,34 +35,57 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 
 const AddActivity = () => {
   const [imageFile, setImageFile] = useState(null);
+  const [location, setLocation] = useState(null);
   let fRef = null;
+
+  useEffect(() => {
+    const loadGooglePlacesScript = document.createElement('script');
+    loadGooglePlacesScript.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR-KEY-HERE&libraries=places';
+    document.body.appendChild(loadGooglePlacesScript);
+
+    loadGooglePlacesScript.onload = () => {
+      // eslint-disable-next-line no-use-before-define
+      initializeAutocomplete();
+    };
+  }, []);
+
+  const initializeAutocomplete = () => {
+    const input = document.getElementById('location');
+    // eslint-disable-next-line no-undef
+    const autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.addListener('place_changed', () => {
+      const place = autocomplete.getPlace();
+      setLocation({
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+      });
+    });
+  };
 
   const handleImageChange = (file) => {
     setImageFile(file);
   };
 
   const submit = (data) => {
-    const { image, ...activityData } = data; // Initially exclude image from activityData
-
-    // Concatenate all text fields for textCheck
+    const { image, ...activityData } = data;
     const concat = Object.values(activityData).join(' ');
 
-    // Define the insert function
     const insertProfile = (finalData) => {
       const collectionName = Activity.getCollectionName();
       defineMethod.callPromise({ collectionName, definitionData: finalData })
-        .then(() => swal('Success', 'Item added successfully', 'success'))
+        .then(() => {
+          swal('Success', 'Item added successfully', 'success');
+          fRef.reset();
+        })
         .catch(error => swal('Error', error.message, 'error'));
-      fRef.reset();
     };
 
-    // Check for inappropriate content
     Meteor.call('textCheck', concat, (error) => {
       if (error) {
         swal('Error', 'Inappropriate Content Detected', 'error');
         return;
       }
-      // Handle image upload if file is selected
+
       if (imageFile) {
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -72,14 +94,15 @@ const AddActivity = () => {
             if (err) {
               swal('Error', 'Failed to upload image.', 'error');
             } else {
-              const finalData = { ...activityData, image: imageUrl }; // Incorporate image URL
-              insertProfile(finalData); // Insert with image URL
+              const finalData = { ...activityData, image: imageUrl, location }; //
+              insertProfile(finalData);
             }
           });
         };
         reader.readAsDataURL(imageFile);
       } else {
-        insertProfile(activityData); // Insert without image URL
+        const finalData = { ...activityData, location };
+        insertProfile(finalData);
       }
     });
   };
@@ -90,8 +113,8 @@ const AddActivity = () => {
         <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
           <Col xs={12} md={8} lg={5}>
             <h2 className="text-center">Add Activity</h2>
-            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
-              <Card style={{ backgroundColor: 'white', border: 'none' }}>
+            <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={submit}>
+              <Card>
                 <Card.Body>
                   <Row>
                     <Col>
@@ -103,15 +126,17 @@ const AddActivity = () => {
                     <Col>
                       <TextField inputClassName="border-dark" name="frequency" />
                       <TextField inputClassName="border-dark" name="requirement" />
-                      <TextField inputClassName="border-dark" name="location" />
                       <TextField inputClassName="border-dark" name="contactInfo" />
+                      {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+                      <label htmlFor="location">Location</label>
+                      <input type="text" id="location" className="form-control border-dark" />
                     </Col>
                   </Row>
                   <div className="mb-3">
                     <FileField name="image" onChange={handleImageChange} />
                   </div>
                   <ErrorsField />
-                  <SubmitField inputClassName="p-2 bg-white border-1 rounded-1 mt-1" value="Submit" />
+                  <SubmitField value="Submit" />
                   <HiddenField name="createdAt" value={new Date()} />
                   <HiddenField name="owner" value={Meteor.userId()} />
                 </Card.Body>

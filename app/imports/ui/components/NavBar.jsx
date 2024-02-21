@@ -28,7 +28,8 @@ const NavBar = () => {
                 <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT_ADMIN} as={NavLink} to="/nonprofits-admin" key="admin-nonprofits">List Nonprofits (Admin)</Nav.Link>,
                 <NavDropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} title="Manage" key="manage-dropdown">
                   <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database"><CloudDownload /> Database</NavDropdown.Item>
-                </NavDropdown>]
+                </NavDropdown>,
+              ]
             ) : ''}
           </Nav>
           <Nav className="justify-content-end">
