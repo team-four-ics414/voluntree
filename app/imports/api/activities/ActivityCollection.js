@@ -16,7 +16,20 @@ class ActivityCollection extends BaseCollection {
       details: String,
       createdAt: Date,
       benefits: String,
-      location: String,
+      location: {
+        type: Object,
+        optional: true,
+      },
+      'location.lat': {
+        type: Number,
+        min: -90,
+        max: 90,
+      },
+      'location.lng': {
+        type: Number,
+        min: -180,
+        max: 180,
+      },
       frequency: String,
       requirement: String,
       contactInfo: String,

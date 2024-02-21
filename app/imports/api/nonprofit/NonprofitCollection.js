@@ -5,7 +5,7 @@ import BaseCollection from '../base/BaseCollection';
 import { DBSchemaNonprofit } from '../schema/DBSchemas';
 import { ROLE } from '../role/Role';
 
-export const nonprofitTypes = ['Business', 'Organization', 'Individual'];
+export const nonprofitTypes = ['501(c) Nonprofits', 'Govt, Hospice, State-Level', 'Schools', 'Non-US NGO', 'Other'];
 export const nonprofitPublications = {
   nonprofit: 'Nonprofit',
   nonprofitAdmin: 'NonprofitAdmin',

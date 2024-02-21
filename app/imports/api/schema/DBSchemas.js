@@ -3,7 +3,7 @@ import SimpleSchema from 'simpl-schema';
 const DBSchemaNonprofit = new SimpleSchema({
   type: {
     type: String,
-    allowedValues: ['Business', 'Organization', 'Individual'],
+    allowedValues: ['501(c) Nonprofits', 'Govt, Hospice, State-Level', 'Schools', 'Non-US NGO', 'Other'],
     required: true,
   },
   name: String,

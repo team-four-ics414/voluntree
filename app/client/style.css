@@ -5,6 +5,7 @@
 :root {
   --matr-navbar-bg: #ECECEC;
   --matr-navbar-bg-rgb: 236, 236, 236;
+  --matr-navbar-text-color: black;
 }
 
 /* Change bootstrap variable values.
@@ -13,9 +14,11 @@
 body {
   --bs-dark: var(--matr-navbar-text-color);
   --bs-dark-rgb: var(--matr-navbar-bg-rgb);
-  background-size: cover;
-  background-image: url("/images/background.png");
-  color: white;
+  --bs-body-font-family: 'Raleway', system-ui;
+  /*--bs-body-bg: #3f7d2b;*/
+  /*background-size: cover;*/
+  /*background-image: url("/images/background.png");*/
+  /*--bs-body-color: white;*/
 }
 
 /* Set the SignIn and SignUp alerts background. */
@@ -44,6 +47,17 @@ body {
   font-size: 20px;
 }
 
+ /*Landing page */
+#landing-accordion div {
+  --bs-accordion-btn-bg: #D1D1D9;
+  --bs-accordion-active-bg: #65b9a6;
+}
+
+/*#landing {*/
+/*  background-color: #a8c87e80;*/
+/*}*/
+
+/* Define custom styles */
 .gray-background {
   background-color: var(--bs-gray-200);
   color: var(--bs-dark);
@@ -82,3 +96,8 @@ body {
 }
 
 
+/* Define custom styles */
+.lightgreen-background {
+  background-color: rgb(185, 255, 157);
+  color: var(--bs-dark);
+}
