@@ -67,7 +67,7 @@ body {
 
 .search-header {
   font-size: medium;
-  color: #ffffff;
+  color: #0c8f1e;
   margin-bottom: 1px;
 }
 
@@ -77,6 +77,7 @@ body {
   left: 0;
   width: 800px;
   height: 100%;
+  z-index: 5000;
   background-color: #fff;
   padding: 20px;
   transition: transform 0.5s ease;
@@ -98,6 +99,6 @@ body {
 
 /* Define custom styles */
 .lightgreen-background {
-  background-color: rgb(185, 255, 157);
+  background-color: #9fd8d6;
   color: var(--bs-dark);
 }
