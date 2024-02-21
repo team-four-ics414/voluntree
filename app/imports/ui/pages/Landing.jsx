@@ -3,6 +3,7 @@ import { Col, Container, Row, ListGroup, Image, Accordion } from 'react-bootstra
 import { PAGE_IDS } from '../utilities/PageIDs';
 import Calendar from '../components/calendar/Calendar';
 import SideChat from '../components/SideChat';
+import CardSlider from '../components/CardSlider';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
 /* A simple static component to render some text for the landing page. */
@@ -32,6 +33,9 @@ const Landing = () => (
         </p>
       </Col>
     </Row>
+    <Container style={{ margin: '20px 5px' }}>
+      <CardSlider />
+    </Container>
     <Row className="pb-5">
       <Col>
         <h3 className="text-center pb-4">Transforming Volunteer Engagement</h3>
