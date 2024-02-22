@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { MATPCollections } from '../../api/matp/MATPCollections';
 import { Events } from '../../api/calendar/EventCollection';
+import { Calendars } from '../../api/calendar/CalendarCollection';
 
 // Call publish for all the collections.
 MATPCollections.collections.forEach(c => c.publish());
@@ -15,6 +16,14 @@ Meteor.publish(null, function () {
   this.ready();
 });
 
-Meteor.publish('events', function publishEvents() {
-  return Events.find();
+if (Meteor.isServer) {
+  Meteor.publish('events.all', function () {
+    return Events.find();
+  });
+}
+Meteor.publish('calendars.all', function () {
+  if (!this.userId) {
+    return this.ready();
+  }
+  return Calendars.find();
 });

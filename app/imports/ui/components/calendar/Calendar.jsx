@@ -1,30 +1,70 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
+import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import '../../../../client/calendarstyles.css';
-import moment from 'moment';
 import { Events } from '../../../api/calendar/EventCollection';
+import EventModal from './EventModal';
 
-/*
-  * This component is a calendar that displays events from the database.
-  * It uses the react-big-calendar package to display the events.
-  * The events are fetched from the database and formatted to be used by the react-big-calendar package.
-  * The events are then displayed on the calendar.
-  * The calendar is displayed in the CalendarPage component.
-  * The events are fetched from the database using the withTracker function.
-  * The events are then passed to the MyCalendar component as a prop.
-  * The MyCalendar component then formats the events and displays them on the calendar.
-  * https://jquense.github.io/react-big-calendar/examples/?path=/story/about-big-calendar--page
- */
-
+// Setup localizer
 moment.locale('en');
-const localizer = momentLocalizer(moment); // Updated way to set localizer
+const localizer = momentLocalizer(moment);
 
 const MyCalendar = ({ events }) => {
-  const formattedEvents = events.map(event => ({
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  // Event handlers
+  const handleSelectEvent = useCallback((event) => {
+    setSelectedEvent(event);
+    setIsModalVisible(true);
+  }, []);
+
+  const handleSelectSlot = useCallback(({ start, end }) => {
+    setSelectedEvent({ start, end });
+    setIsModalVisible(true);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setIsModalVisible(false);
+    setSelectedEvent(null);
+  }, []);
+
+  const handleEventOperation = useCallback((operation, eventData) => {
+    const method = operation === 'update' ? 'Events.update' : 'Events.insert';
+    const args = operation === 'update' ? [eventData._id, eventData] : [eventData];
+
+    Meteor.call(method, ...args, (error) => {
+      if (error) {
+        alert(`Error: ${error.reason}`);
+      } else {
+        handleCloseModal();
+      }
+    });
+  }, [handleCloseModal]);
+
+  const handleSave = useCallback((eventData) => {
+    const operation = eventData._id ? 'update' : 'insert';
+    handleEventOperation(operation, eventData);
+  }, [handleEventOperation]);
+
+  const handleDelete = useCallback((eventId) => {
+    if (window.confirm('Are you sure you want to delete this event?')) {
+      Meteor.call('Events.remove', eventId, (error) => {
+        if (!error) {
+          handleCloseModal();
+        } else {
+          alert(`Error: ${error.reason}`);
+        }
+      });
+    }
+  }, [handleCloseModal]);
+
+  // Formatting events for the calendar
+  const formattedEvents = events.map((event) => ({
     ...event,
     start: new Date(event.startTime),
     end: new Date(event.endTime),
@@ -33,18 +73,30 @@ const MyCalendar = ({ events }) => {
   return (
     <div style={{ height: '700px' }}>
       <Calendar
-        localizer={localizer} // Updated prop usage
+        localizer={localizer}
         events={formattedEvents}
         defaultDate={new Date()}
         defaultView="month"
+        onSelectEvent={handleSelectEvent}
+        onSelectSlot={handleSelectSlot}
+        selectable
       />
+      {isModalVisible && (
+        <EventModal
+          show={isModalVisible}
+          handleClose={handleCloseModal}
+          handleSave={handleSave}
+          handleDelete={() => selectedEvent && handleDelete(selectedEvent._id)}
+          event={selectedEvent}
+        />
+      )}
     </div>
   );
 };
 
 MyCalendar.propTypes = {
   events: PropTypes.arrayOf(PropTypes.shape({
-    _id: PropTypes.string.isRequired,
+    _id: PropTypes.string,
     title: PropTypes.string.isRequired,
     startTime: PropTypes.instanceOf(Date).isRequired,
     endTime: PropTypes.instanceOf(Date).isRequired,
@@ -52,7 +104,8 @@ MyCalendar.propTypes = {
 };
 
 export default withTracker(() => {
-  Meteor.subscribe('events');
-  const events = Events.find().fetch();
+  const eventsHandle = Meteor.subscribe('events.all');
+  const loading = !eventsHandle.ready();
+  const events = !loading ? Events.find().fetch() : [];
   return { events };
 })(MyCalendar);
