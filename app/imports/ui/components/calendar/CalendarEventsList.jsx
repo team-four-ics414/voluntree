@@ -1,6 +1,7 @@
 // imports
 import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Button, Modal } from 'react-bootstrap';
 import { Calendars } from '../../../api/calendar/CalendarCollection';
@@ -50,6 +51,17 @@ const CalendarEventsList = ({ events, isLoading }) => {
       </Modal>
     </div>
   );
+};
+
+// Define prop types
+CalendarEventsList.propTypes = {
+  events: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    // Include other properties as necessary
+  })).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {

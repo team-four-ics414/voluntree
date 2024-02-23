@@ -1,5 +1,5 @@
-// imports
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
 import { Meteor } from 'meteor/meteor';
 import { Button, Form, Alert } from 'react-bootstrap';
 
@@ -25,13 +25,12 @@ const CalendarEventForm = ({ existingEvent, onSuccess }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const eventData = { title, description, startDate: new Date(startDate), endDate: new Date(endDate), allDay };
-
     const method = existingEvent ? 'calendar.update' : 'calendar.insert';
     const args = existingEvent ? [existingEvent._id, eventData] : [eventData];
 
-    Meteor.call(method, ...args, (error, response) => {
-      if (error) {
-        setError(`Error: ${error.message}`);
+    Meteor.call(method, ...args, (apiError, response) => {
+      if (apiError) {
+        setError(`Error: ${apiError.message}`);
       } else {
         onSuccess(); // Close modal on success
         alert(existingEvent ? 'Event updated successfully!' : `New event added with ID: ${response}`);
@@ -93,9 +92,9 @@ const CalendarEventForm = ({ existingEvent, onSuccess }) => {
       {existingEvent && (
         <Button
           variant="danger"
-          onClick={() => Meteor.call('calendar.remove', existingEvent._id, (error) => {
-            if (error) {
-              setError(`Error: ${error.message}`);
+          onClick={() => Meteor.call('calendar.remove', existingEvent._id, (removeError) => { // Renamed `error` to `removeError`
+            if (removeError) {
+              setError(`Error: ${removeError.message}`);
             } else {
               onSuccess(); // Close modal and refresh list
               alert('Event deleted successfully');
@@ -105,9 +104,27 @@ const CalendarEventForm = ({ existingEvent, onSuccess }) => {
         >
           Delete Event
         </Button>
+
       )}
     </Form>
   );
+};
+
+// Prop validation
+CalendarEventForm.propTypes = {
+  existingEvent: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    startDate: PropTypes.instanceOf(Date).isRequired,
+    endDate: PropTypes.instanceOf(Date).isRequired,
+    allDay: PropTypes.bool,
+  }),
+  onSuccess: PropTypes.func.isRequired,
+};
+
+CalendarEventForm.defaultProps = {
+  existingEvent: null, // Or an appropriate default object structure
 };
 
 export default CalendarEventForm;
