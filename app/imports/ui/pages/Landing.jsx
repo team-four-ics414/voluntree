@@ -37,7 +37,7 @@ const Landing = () => (
     <Container style={{ margin: '20px 5px' }}>
       <CardSlider />
     </Container>
-    <Row className="pb-5">
+    <Row className="py-5 my-5">
       <Col>
         <h3 className="text-center pb-4">Transforming Volunteer Engagement</h3>
         <Accordion id={COMPONENT_IDS.LANDING_ACCORDION}>
@@ -66,7 +66,7 @@ const Landing = () => (
         <Image src="/images/volunteers.jpg" alt="Volunteers" fluid rounded />
       </Col>
     </Row>
-    <Row className="pb-5">
+    <Row className="pb-5 my-5">
       <Col className="d-flex flex-wrap align-items-center">
         <Image src="/images/volunteers1.jpg" alt="Volunteers" fluid rounded />
       </Col>
