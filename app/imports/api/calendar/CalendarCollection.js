@@ -1,65 +1,49 @@
 import SimpleSchema from 'simpl-schema';
-import { check } from 'meteor/check';
 import BaseCollection from '../base/BaseCollection';
 
-const objectIdPattern = /^[0-9a-fA-F]{24}$/;
+// Define the schema for a calendar event
+const CalendarEventSchema = new SimpleSchema({
+  title: String,
+  description: {
+    type: String,
+    optional: true,
+  },
+  startDate: Date,
+  endDate: Date,
+  allDay: {
+    type: Boolean,
+    optional: true,
+  },
+  // Extend with more fields as needed
+});
 
 class CalendarCollection extends BaseCollection {
   constructor() {
-    const calendarSchema = new SimpleSchema({
-      name: String,
-      description: { type: String, optional: true },
-      createdAt: {
-        type: Date,
-        autoValue() {
-          if (this.isInsert) {
-            return new Date();
-          } else if (this.isUpsert) {
-            return { $setOnInsert: new Date() };
-          }
-          this.unset(); // Prevent user from supplying their own value
-        },
-      },
-      ownerId: {
-        type: String,
-        regEx: objectIdPattern,
-      },
-      // Add startTime and endTime to the schema
-      startTime: Date,
-      endTime: Date,
-    });
-    super('Calendars', calendarSchema);
+    super('Calendar', CalendarEventSchema);
   }
 
-  define(calendarData) {
-    // Additional validation or checks can be performed here
-    return this._collection.insert(calendarData);
+  /**
+   * Defines a new Calendar event.
+   * @param {Object} eventDetails - The details of the event.
+   * @returns {String} The docID of the created document.
+   */
+  define(eventDetails) {
+    // Implement additional validation or preprocessing as needed
+    const docId = this._collection.insert(eventDetails);
+    return docId;
   }
 
-  update(calendarId, calendarData) {
-    check(calendarId, String);
-    this._schema.validate(calendarData, { keys: Object.keys(calendarData) });
-    return this._collection.update(calendarId, { $set: calendarData });
+  /**
+   * Updates an existing Calendar event.
+   * @param docId {String} - The ID of the document to update.
+   * @param {Object} updateData - The data to update the document with.
+   */
+  update(docId, updateData) {
+    const updateCount = this._collection.update(docId, { $set: updateData });
+    return updateCount;
   }
 
-  remove(calendarId) {
-    check(calendarId, String);
-    return this._collection.remove(calendarId);
-  }
-
-  findAll() {
-    return this._collection.find().fetch();
-  }
-
-  findById(calendarId) {
-    check(calendarId, String);
-    return this._collection.findOne(calendarId);
-  }
-
-  findByOwner(ownerId) {
-    check(ownerId, String);
-    return this._collection.find({ ownerId }).fetch();
-  }
+  // Implement additional methods as necessary, following the patterns established in BaseCollection
 }
 
 export const Calendars = new CalendarCollection();

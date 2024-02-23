@@ -3,6 +3,7 @@ import { Stuffs } from '../../api/stuff/StuffCollection';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { Events } from '../../api/calendar/EventCollection';
 import { Activity } from '../../api/activities/ActivityCollection';
+import { Calendars } from '../../api/calendar/CalendarCollection';
 /* eslint-disable no-console */
 
 // Initialize the database with a default data document.
@@ -59,4 +60,19 @@ const addEvent = (event) => {
 if (Events.count() === 0 && Meteor.settings.defaultEvents) {
   console.log('Creating default events.');
   Meteor.settings.defaultEvents.forEach(event => addEvent(event));
+}
+
+function addCalendarEvent(calendarEvent) {
+  console.log(`  Adding calendar event: ${calendarEvent.title}`);
+  try {
+    Calendars.define(calendarEvent);
+  } catch (error) {
+    console.error(`Error adding calendar event ${calendarEvent.title}: ${error.message}`);
+  }
+}
+
+// Initialize CalendarCollection if empty
+if (Calendars.count() === 0 && Meteor.settings.defaultCalendarEvents) {
+  console.log('Creating default calendar events.');
+  Meteor.settings.defaultCalendarEvents.forEach(calendarEvent => addCalendarEvent(calendarEvent));
 }

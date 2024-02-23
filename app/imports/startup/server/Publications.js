@@ -1,6 +1,5 @@
 import { Meteor } from 'meteor/meteor';
 import { MATPCollections } from '../../api/matp/MATPCollections';
-import { Events } from '../../api/calendar/EventCollection';
 import { Calendars } from '../../api/calendar/CalendarCollection';
 
 // Call publish for all the collections.
@@ -16,14 +15,6 @@ Meteor.publish(null, function () {
   this.ready();
 });
 
-if (Meteor.isServer) {
-  Meteor.publish('events.all', function () {
-    return Events.find();
-  });
-}
-Meteor.publish('calendars.all', function () {
-  if (!this.userId) {
-    return this.ready();
-  }
-  return Calendars.find();
+Meteor.publish('calendar.all', function publishAll() {
+  return Calendars.find({}); // Make sure Calendars is the instance of your collection
 });
