@@ -43,6 +43,10 @@ class CalendarCollection extends BaseCollection {
     return updateCount;
   }
 
+  removeIt(docId) {
+    const removeCount = this._collection.remove(docId);
+    return removeCount;
+  }
   // Implement additional methods as necessary, following the patterns established in BaseCollection
 }
 

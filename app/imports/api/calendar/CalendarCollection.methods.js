@@ -1,21 +1,23 @@
 import { Meteor } from 'meteor/meteor';
 import { check, Match } from 'meteor/check';
-import { Calendar } from '/imports/api/calendar/CalendarCollection';
+import { Calendars } from '/imports/api/calendar/CalendarCollection'; // Make sure this path is correct
 
 Meteor.methods({
   'calendar.insert'(eventData) {
     check(eventData, {
-      eventDate: Date,
       title: String,
       description: Match.Maybe(String),
-      location: Match.Maybe(String),
+      startDate: Date,
+      endDate: Date,
+      allDay: Match.Maybe(Boolean),
+      // Include additional fields as needed
     });
 
     if (!this.userId) {
-      throw new Meteor.Error('not-authorized', 'You must be signed in to add a new event.');
+      throw new Meteor.Error('not-authorized');
     }
 
-    const eventId = Calendar.define({
+    const eventId = Calendars.define({
       ...eventData,
       createdAt: new Date(),
       owner: this.userId,
@@ -26,42 +28,30 @@ Meteor.methods({
 
   'calendar.update'(eventId, updateData) {
     check(eventId, String);
-    check(updateData, {
-      eventDate: Match.Maybe(Date),
-      title: Match.Maybe(String),
-      description: Match.Maybe(String),
-      location: Match.Maybe(String),
-    });
+    check(updateData, Object); // For simplicity, checking for an object, refine as needed
 
     if (!this.userId) {
-      throw new Meteor.Error('not-authorized', 'You must be signed in to update an event.');
+      throw new Meteor.Error('not-authorized');
     }
 
-    // Optional: Check if the user is the owner of the event or has permission to update it
+    // Additional ownership or permission checks as needed
 
-    Calendar.update(eventId, {
-      $set: {
-        ...updateData,
-        // updatedAt: new Date(), // Consider adding an updatedAt field
-      },
-    });
+    Calendars.update(eventId, updateData);
 
-    return eventId; // Optionally return some value or confirmation
+    return eventId;
   },
 
   'calendar.remove'(eventId) {
     check(eventId, String);
 
     if (!this.userId) {
-      throw new Meteor.Error('not-authorized', 'You must be signed in to remove an event.');
+      throw new Meteor.Error('not-authorized');
     }
 
-    // Optional: Check if the user is the owner of the event or has permission to remove it
+    // Additional ownership or permission checks as needed
 
-    Calendar.removeIt(eventId);
+    Calendars.removeIt(eventId);
 
-    return eventId; // Optionally return some value or confirmation
+    return eventId;
   },
-
-  // You can add more methods (e.g., for publishing or subscribing) following similar patterns
 });
