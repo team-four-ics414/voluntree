@@ -6,6 +6,7 @@ import SideChat from '../components/SideChat';
 import CardSlider from '../components/CardSlider';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import CalendarEventsList from '../components/calendar/CalendarEventsList';
+import ActivityDashboard from '../components/activities/ActivityDashboard';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
@@ -105,6 +106,7 @@ const Landing = () => (
     <Container className="shadow p-3 mb-5 bg-body rounded">
       <Calendar />
       <CalendarEventsList />
+      <ActivityDashboard />
     </Container>
   </Container>
 );
