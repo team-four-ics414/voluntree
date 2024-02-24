@@ -12,7 +12,10 @@ Meteor.methods({
       details: String,
       createdAt: Date,
       benefits: String,
-      location: Object,
+      location: {
+        lat: Number,
+        lng: Number,
+      },
       frequency: String,
       requirement: String,
       contactInfo: String,
@@ -34,21 +37,29 @@ Meteor.methods({
     check(activityId, String);
     check(changes, Object);
 
-    // Ensure the user is logged in before updating an activity
     if (!this.userId) {
       throw new Meteor.Error('Not authorized.');
     }
 
     const activity = Activity.findDoc(activityId);
 
-    // Optional: Check if the user is the owner or has a specific role
     if (activity.owner !== this.userId && !Roles.userIsInRole(this.userId, [ROLE.ADMIN])) {
       throw new Meteor.Error('Not authorized to update this activity.');
     }
 
     Activity.assertValidRoleForMethod(this.userId);
 
-    return Activity.update(activityId, changes);
+    // Create a copy of the changes object to avoid ESLint warning
+    const updates = { ...changes };
+
+    // Adjust for nested location updates if necessary
+    if (updates.location) {
+      updates['location.lat'] = updates.location.lat;
+      updates['location.lng'] = updates.location.lng;
+      delete updates.location; // Remove the nested location object to avoid schema conflict
+    }
+
+    return Activity.update(activityId, updates);
   },
 
   'activity.remove'(activityId) {
