@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import PropTypes from 'prop-types';
 import React from 'react';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Activity } from '../../../api/activities/ActivityCollection'; // Adjust the import path as necessary
@@ -28,6 +29,16 @@ const ActivityList = ({ activities }) => (
     </div>
   </div>
 );
+
+ActivityList.propTypes = {
+  activities: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      // Add more specific PropTypes for other properties as needed
+    }),
+  ).isRequired,
+};
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe('ActivityCollection');
