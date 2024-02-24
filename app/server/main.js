@@ -7,3 +7,4 @@ import '../imports/api/base/BaseCollection.methods';
 import '../imports/api/user/UserProfileCollection.methods';
 import '../imports/api/calendar/EventCollection.methods';
 import '../imports/api/calendar/CalendarCollection.methods';
+import '../imports/api/activities/ActivityCollection.methods';

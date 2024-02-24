@@ -36,6 +36,14 @@ const ActivityForm = ({ activity, onSuccess }) => {
     }
   }, [activity]);
 
+  useEffect(() => {
+    if (Meteor.userId()) {
+      setFormData(prevState => ({
+        ...prevState,
+        owner: Meteor.userId(),
+      }));
+    }
+  }, []);
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === 'location.lat' || name === 'location.lng') {
@@ -71,7 +79,26 @@ const ActivityForm = ({ activity, onSuccess }) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      {/* Existing Fields */}
+      <Form.Group>
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Time</Form.Label>
+        <Form.Control
+          type="text"
+          name="time"
+          value={formData.time}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
       <Form.Group>
         <Form.Label>Details</Form.Label>
         <Form.Control
@@ -106,6 +133,42 @@ const ActivityForm = ({ activity, onSuccess }) => {
           type="number"
           name="location.lng"
           value={formData.location.lng}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Frequency</Form.Label>
+        <Form.Control
+          type="text"
+          name="frequency"
+          value={formData.frequency}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Requirement</Form.Label>
+        <Form.Control
+          type="text"
+          name="requirement"
+          value={formData.requirement}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Contact Info</Form.Label>
+        <Form.Control
+          type="text"
+          name="contactInfo"
+          value={formData.contactInfo}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Image</Form.Label>
+        <Form.Control
+          type="text"
+          name="image"
+          value={formData.image}
           onChange={handleChange}
         />
       </Form.Group>
