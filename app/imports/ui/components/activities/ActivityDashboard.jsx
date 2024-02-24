@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Button, Modal, ListGroup } from 'react-bootstrap';
 import { Activity } from '../../../api/activities/ActivityCollection';
 import ActivityForm from './ActivityForm';
+import AddToCalendar from './AddToCalendar'; // Import the AddToCalendar component
 
 const ActivityDashboard = ({ activities, isLoading }) => {
   const [showModal, setShowModal] = useState(false);
@@ -43,6 +45,8 @@ const ActivityDashboard = ({ activities, isLoading }) => {
             {activity.name} - {activity.time}
             <Button variant="info" onClick={() => openModal(activity)}>Edit</Button>
             <Button variant="danger" onClick={() => handleDelete(activity._id)}>Delete</Button>
+            {/* Add the "Add to Calendar" button here */}
+            <AddToCalendar activity={activity} />
           </ListGroup.Item>
         ))}
       </ListGroup>
@@ -57,6 +61,30 @@ const ActivityDashboard = ({ activities, isLoading }) => {
       </Modal>
     </div>
   );
+};
+
+ActivityDashboard.propTypes = {
+  activities: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      time: PropTypes.string.isRequired,
+      details: PropTypes.string.isRequired,
+      createdAt: PropTypes.instanceOf(Date).isRequired,
+      benefits: PropTypes.string.isRequired,
+      location: PropTypes.shape({
+        lat: PropTypes.number,
+        lng: PropTypes.number,
+      }),
+      frequency: PropTypes.string,
+      requirement: PropTypes.string.isRequired,
+      contactInfo: PropTypes.string.isRequired,
+      image: PropTypes.string,
+      owner: PropTypes.string.isRequired,
+      // Add more specific PropTypes for other properties as needed
+    }),
+  ).isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
