@@ -14,6 +14,10 @@ const CalendarEventSchema = new SimpleSchema({
     type: Boolean,
     optional: true,
   },
+  activityId: {
+    type: String,
+    optional: true, // Make optional if not all calendar events are linked to an activity
+  },
   // Extend with more fields as needed
 });
 

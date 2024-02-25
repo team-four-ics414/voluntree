@@ -5,7 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import { Button, Modal, ListGroup } from 'react-bootstrap';
 import { Activity } from '../../../api/activities/ActivityCollection';
 import ActivityForm from './ActivityForm';
-import AddToCalendar from './AddToCalendar'; // Import the AddToCalendar component
+import AddToCalendar from './AddToCalendar'; // Ensure this is correctly imported
 
 const ActivityDashboard = ({ activities, isLoading }) => {
   const [showModal, setShowModal] = useState(false);
@@ -21,16 +21,23 @@ const ActivityDashboard = ({ activities, isLoading }) => {
     setCurrentActivity(null); // Reset current activity
   };
 
+  // Combined function to handle both activity and calendar removal
   const handleDelete = (activityId) => {
-    Meteor.call('activity.remove', activityId, (error) => {
+    Meteor.call('calendar.removeByActivityId', activityId, (error, response) => {
       if (error) {
-        alert(`Error removing activity: ${error.message}`);
+        alert(`Error removing associated calendar events: ${error.message}`);
       } else {
-        alert('Activity removed successfully');
+        // Proceed to remove the activity itself
+        Meteor.call('activity.remove', activityId, (error) => {
+          if (error) {
+            alert(`Error removing activity: ${error.message}`);
+          } else {
+            alert(`Activity removed successfully. Calendar events removed: ${response.count}`);
+          }
+        });
       }
     });
   };
-
   if (isLoading) {
     return <div>Loading activities...</div>;
   }
@@ -45,7 +52,6 @@ const ActivityDashboard = ({ activities, isLoading }) => {
             {activity.name} - {activity.time}
             <Button variant="info" onClick={() => openModal(activity)}>Edit</Button>
             <Button variant="danger" onClick={() => handleDelete(activity._id)}>Delete</Button>
-            {/* Add the "Add to Calendar" button here */}
             <AddToCalendar activity={activity} />
           </ListGroup.Item>
         ))}
@@ -69,19 +75,18 @@ ActivityDashboard.propTypes = {
       _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       time: PropTypes.string.isRequired,
-      details: PropTypes.string.isRequired,
-      createdAt: PropTypes.instanceOf(Date).isRequired,
-      benefits: PropTypes.string.isRequired,
+      details: PropTypes.string,
+      createdAt: PropTypes.instanceOf(Date),
+      benefits: PropTypes.string,
       location: PropTypes.shape({
         lat: PropTypes.number,
         lng: PropTypes.number,
       }),
       frequency: PropTypes.string,
-      requirement: PropTypes.string.isRequired,
-      contactInfo: PropTypes.string.isRequired,
+      requirement: PropTypes.string,
+      contactInfo: PropTypes.string,
       image: PropTypes.string,
       owner: PropTypes.string.isRequired,
-      // Add more specific PropTypes for other properties as needed
     }),
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,

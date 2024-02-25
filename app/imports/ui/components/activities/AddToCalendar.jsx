@@ -25,8 +25,15 @@ const AddToCalendar = ({ activity }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const eventData = { title, description, startDate: new Date(startDate), endDate: new Date(endDate), allDay };
-    // Decide on the method to call based on whether you're adding a new event or updating an existing one.
+    // Include activityId in the eventData object
+    const eventData = {
+      title,
+      description,
+      startDate: new Date(startDate),
+      endDate: new Date(endDate),
+      allDay,
+      activityId: activity._id, // Include the activityId here
+    };
     Meteor.call('calendar.insert', eventData, (apiError, response) => {
       if (apiError) {
         setError(`Error: ${apiError.message}`);
@@ -118,6 +125,7 @@ AddToCalendar.propTypes = {
     details: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,
+    _id: PropTypes.string.isRequired,
   }).isRequired,
 };
 
