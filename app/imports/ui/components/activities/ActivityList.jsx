@@ -10,7 +10,7 @@ import { Activity } from '../../../api/activities/ActivityCollection'; // Adjust
  */
 const ActivityList = ({ activities }) => (
   <div className="container mt-3">
-    <h2 className="mb-4">Activities</h2>
+    <h2 className="mb-4">Activities List</h2>
     <div className="row row-cols-1 row-cols-md-3 g-4">
       {activities.map((activity) => (
         <div key={activity._id} className="col">

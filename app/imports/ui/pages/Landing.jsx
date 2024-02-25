@@ -107,6 +107,8 @@ const Landing = () => (
     <h2 className="text-center">You can see upcoming events in the calendar!</h2>
     <Container className="shadow p-3 mb-5 bg-body rounded">
       <Calendar />
+    </Container>
+    <Container>
       <CalendarEventsList />
       <ActivityDashboard />
       <ActivityList />

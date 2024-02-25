@@ -29,7 +29,6 @@ Meteor.methods({
 
     const eventId = Calendars.define({
       ...eventData,
-      createdAt: new Date(),
       owner: this.userId,
     });
 

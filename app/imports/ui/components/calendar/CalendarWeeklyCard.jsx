@@ -29,7 +29,7 @@ const CalendarWeeklyCard = ({ events, isLoading }) => {
                 <Button variant="info" onClick={() => handleJoin(event._id)}>Volunteer</Button>
               </Card.Body>
               <Card.Footer>
-                <small className="text-muted">Last updated {event.lastUpdated}</small>
+                <small className="text-muted">Last updated {new Date(event.createdAt).toDateString()}</small>
               </Card.Footer>
             </Card>
           </Col>
@@ -44,6 +44,7 @@ CalendarWeeklyCard.propTypes = {
     _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
+    createdAt: PropTypes.instanceOf(Date),
     imageUrl: PropTypes.string, // Ensure you include this in your propTypes
     lastUpdated: PropTypes.string, // Adjust according to your data model
   })).isRequired,
@@ -51,12 +52,11 @@ CalendarWeeklyCard.propTypes = {
 };
 
 export default withTracker(() => {
-  // Subscribe to the specific publication
   const handle = Meteor.subscribe('calendar.thisWeek');
-
-  // No need to filter by dates here since the publication takes care of it
+  const events = Calendars.find({}, { sort: { startDate: 1 } }).fetch();
+  console.log(events); // Debug: Check the structure and data of fetched events
   return {
     isLoading: !handle.ready(),
-    events: Calendars.find({}, { sort: { startDate: 1 } }).fetch(), // Assuming you want to sort them by start date
+    events,
   };
 })(CalendarWeeklyCard);
