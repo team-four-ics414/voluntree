@@ -1,46 +1,44 @@
+import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Meteor } from 'meteor/meteor';
-import { Button, Modal, ListGroup } from 'react-bootstrap';
+import { Button, Modal, ListGroup, Alert } from 'react-bootstrap';
 import { Activity } from '../../../api/activities/ActivityCollection';
+import { Calendars } from '../../../api/calendar/CalendarCollection';
+
 import ActivityForm from './ActivityForm';
-import AddToCalendar from './AddToCalendar'; // Ensure this is correctly imported
+import AddToCalendar from './AddToCalendar';
 
 const ActivityDashboard = ({ activities, isLoading }) => {
   const [showModal, setShowModal] = useState(false);
   const [currentActivity, setCurrentActivity] = useState(null);
+  const [error, setError] = useState('');
 
   const openModal = (activity = null) => {
     setCurrentActivity(activity);
     setShowModal(true);
+    setError(''); // Clear previous errors
   };
 
   const closeModal = () => {
     setShowModal(false);
-    setCurrentActivity(null); // Reset current activity
+    setCurrentActivity(null);
+    setError('');
   };
 
-  // Combined function to handle both activity and calendar removal
   const handleDelete = (activityId) => {
-    // Attempt to remove any associated calendar events
     Meteor.call('calendar.removeByActivityId', activityId, (error, response) => {
       if (error) {
-        console.log(`Error removing associated calendar events: ${error.message}`);
-        // Proceed to remove the activity even if there's an error
-      } else if (response && response.count > 0) {
-        console.log(`Calendar events removed: ${response.count}`);
+        setError(`Error removing associated calendar events: ${error.message}`);
       } else {
-        console.log('No calendar events found or removed.');
+        Meteor.call('activity.remove', activityId, (removeError) => {
+          if (removeError) {
+            setError(`Error removing activity: ${removeError.message}`);
+          } else {
+            // Optionally, you can use a state or context to show success feedback
+          }
+        });
       }
-      // Proceed to remove the activity itself regardless of the calendar events
-      Meteor.call('activity.remove', activityId, (removeError) => {
-        if (removeError) {
-          alert(`Error removing activity: ${removeError.message}`);
-        } else {
-          alert('Activity removed successfully.');
-        }
-      });
     });
   };
 
@@ -48,9 +46,12 @@ const ActivityDashboard = ({ activities, isLoading }) => {
     return <div>Loading activities...</div>;
   }
 
+  const checkActivityAddedStatus = (activityId) => !!Calendars.findOne({ activityId });
+
   return (
     <div>
       <h2>Activity Dashboard</h2>
+      {error && <Alert variant="danger">{error}</Alert>}
       <Button onClick={() => openModal()}>Add Activity</Button>
       <ListGroup>
         {activities.map((activity) => (
@@ -58,7 +59,7 @@ const ActivityDashboard = ({ activities, isLoading }) => {
             {activity.name} - {activity.time}
             <Button variant="info" onClick={() => openModal(activity)}>Edit</Button>
             <Button variant="danger" onClick={() => handleDelete(activity._id)}>Delete</Button>
-            <AddToCalendar activity={activity} />
+            <AddToCalendar activity={activity} isAlreadyAdded={checkActivityAddedStatus(activity._id)} />
           </ListGroup.Item>
         ))}
       </ListGroup>
@@ -84,7 +85,7 @@ ActivityDashboard.propTypes = {
       details: PropTypes.string,
       createdAt: PropTypes.instanceOf(Date),
       benefits: PropTypes.string,
-      location: PropTypes.shape({
+      location: PropTypes.exact({
         lat: PropTypes.number,
         lng: PropTypes.number,
       }),
@@ -99,9 +100,9 @@ ActivityDashboard.propTypes = {
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('ActivityCollection');
+  const handle = Meteor.subscribe('ActivityCollection'); // Ensure this matches the publication name
   return {
-    isLoading: !subscription.ready(),
+    isLoading: !handle.ready(),
     activities: Activity.find().fetch(),
   };
 })(ActivityDashboard);
