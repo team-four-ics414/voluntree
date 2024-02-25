@@ -27,18 +27,27 @@ const ActivityDashboard = ({ activities, isLoading }) => {
   };
 
   const handleDelete = (activityId) => {
-    Meteor.call('calendar.removeByActivityId', activityId, (error, response) => {
-      if (error) {
-        setError(`Error removing associated calendar events: ${error.message}`);
+    // Attempt to remove any associated calendar events
+    Meteor.call('calendar.removeByActivityId', activityId, (Calendarerror, response) => {
+      if (Calendarerror) {
+        console.log(`Error removing associated calendar events: ${error.message}`);
+        // Log the error but do not stop the deletion process
+      } else if (response && response.count > 0) {
+        console.log(`Calendar events removed: ${response.count}`);
       } else {
-        Meteor.call('activity.remove', activityId, (removeError) => {
-          if (removeError) {
-            setError(`Error removing activity: ${removeError.message}`);
-          } else {
-            // Optionally, you can use a state or context to show success feedback
-          }
-        });
+        console.log('No calendar events found or removed.');
       }
+      // Proceed to remove the activity itself regardless of the calendar events
+      Meteor.call('activity.remove', activityId, (removeError) => {
+        if (removeError) {
+          setError(`Error removing activity: ${removeError.message}`);
+        } else {
+          // Optionally, update the UI or give feedback that the activity was successfully removed
+          setError('');
+          alert('Activity removed successfully.');
+          // Force a refresh or update of the activity list if necessary
+        }
+      });
     });
   };
 

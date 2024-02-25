@@ -105,14 +105,13 @@ Meteor.methods({
   },
 
   'calendar.checkExists'(activityId) {
-    check(activityId, String); // Addressing the audit-argument-checks warning
+    check(activityId, String);
 
     if (!this.userId) {
-      throw new Meteor.Error('Not Authorized', 'You must be logged in to check calendar events.');
+      throw new Meteor.Error('not-authorized', 'You must be logged in to perform this action.');
     }
 
-    // Simplified existence check
-    const exists = !!Calendars.findOne({ activityId: activityId });
-    return exists;
+    const eventExists = !!Calendars.findOne({ activityId });
+    return eventExists;
   },
 });
