@@ -28,8 +28,8 @@ const ActivityDashboard = ({ activities, isLoading }) => {
         alert(`Error removing associated calendar events: ${error.message}`);
       } else {
         // Proceed to remove the activity itself
-        Meteor.call('activity.remove', activityId, (error) => {
-          if (error) {
+        Meteor.call('activity.remove', activityId, (removeError) => {
+          if (removeError) {
             alert(`Error removing activity: ${error.message}`);
           } else {
             alert(`Activity removed successfully. Calendar events removed: ${response.count}`);

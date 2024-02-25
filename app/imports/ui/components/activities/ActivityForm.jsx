@@ -179,8 +179,30 @@ const ActivityForm = ({ activity, onSuccess }) => {
 };
 
 ActivityForm.propTypes = {
-  activity: PropTypes.object,
+  // Define the shape more specifically for activity
+  activity: PropTypes.shape({
+    _id: PropTypes.string,
+    name: PropTypes.string,
+    time: PropTypes.string,
+    details: PropTypes.string,
+    createdAt: PropTypes.instanceOf(Date),
+    benefits: PropTypes.string,
+    location: PropTypes.shape({
+      lat: PropTypes.number,
+      lng: PropTypes.number,
+    }),
+    frequency: PropTypes.string,
+    requirement: PropTypes.string,
+    contactInfo: PropTypes.string,
+    image: PropTypes.string,
+    owner: PropTypes.string,
+  }),
   onSuccess: PropTypes.func.isRequired,
+};
+
+// Providing default values for props
+ActivityForm.defaultProps = {
+  activity: null, // Specify a default value (null) for the activity if it's not required
 };
 
 export default ActivityForm;
