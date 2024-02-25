@@ -1,7 +1,7 @@
+import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal, Form, Alert } from 'react-bootstrap';
-import { Meteor } from 'meteor/meteor';
 
 const AddToCalendar = ({ activity }) => {
   const [showModal, setShowModal] = useState(false);
@@ -25,22 +25,38 @@ const AddToCalendar = ({ activity }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Include activityId in the eventData object
-    const eventData = {
-      title,
-      description,
-      startDate: new Date(startDate),
-      endDate: new Date(endDate),
-      allDay,
-      activityId: activity._id, // Include the activityId here
-    };
-    Meteor.call('calendar.insert', eventData, (apiError, response) => {
-      if (apiError) {
-        setError(`Error: ${apiError.message}`);
-      } else {
-        closeModal(); // Close modal on success
-        alert(`New event added with ID: ${response}`);
+
+    // Check if an event for this activity already exists in the calendar
+    Meteor.call('calendar.checkExists', activity._id, (checkError, exists) => {
+      if (checkError) {
+        setError(`Error checking for existing event: ${checkError.message}`);
+        return;
       }
+
+      // If the event already exists, display an error and prevent adding a new one
+      if (exists) {
+        setError('An event for this activity already exists in the calendar.');
+        return; // Stop here to prevent adding a duplicate event
+      }
+
+      // If no event exists, proceed to insert a new event
+      const eventData = {
+        title,
+        description,
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+        allDay,
+        activityId: activity._id,
+      };
+
+      Meteor.call('calendar.insert', eventData, (apiError, response) => {
+        if (apiError) {
+          setError(`Error adding event: ${apiError.message}`);
+        } else {
+          closeModal(); // Close the modal on successful event addition
+          alert(`Event added successfully with ID: ${response}`);
+        }
+      });
     });
   };
 
@@ -121,11 +137,11 @@ const AddToCalendar = ({ activity }) => {
 
 AddToCalendar.propTypes = {
   activity: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     details: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,
-    _id: PropTypes.string.isRequired,
   }).isRequired,
 };
 

@@ -29,7 +29,6 @@ Meteor.methods({
 
     const eventId = Calendars.define({
       ...eventData,
-      createdAt: new Date(),
       owner: this.userId,
     });
 
@@ -92,4 +91,27 @@ Meteor.methods({
     return { removed: true, count: eventsToRemove.length };
   },
 
+  'calendar.findUpcomingThreeEvents'() {
+    // This method could be called without a user being logged in, remove if user authentication is needed
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time part to avoid missing events on the current day
+
+    return Calendars.find({
+      startDate: { $gte: today },
+    }, {
+      sort: { startDate: 1 }, // sort by event date ascending
+      limit: 3,
+    }).fetch();
+  },
+
+  'calendar.checkExists'(activityId) {
+    check(activityId, String);
+
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized', 'You must be logged in to perform this action.');
+    }
+
+    const eventExists = !!Calendars.findOne({ activityId });
+    return eventExists;
+  },
 });

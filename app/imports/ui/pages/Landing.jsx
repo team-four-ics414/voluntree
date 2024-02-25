@@ -8,6 +8,8 @@ import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 import CalendarEventsList from '../components/calendar/CalendarEventsList';
 import ActivityDashboard from '../components/activities/ActivityDashboard';
 import ActivityList from '../components/activities/ActivityList';
+import RecentActivityList from '../components/activities/RecentActivityList';
+import CalendarWeeklyCard from '../components/calendar/CalendarWeeklyCard';
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
   <Container id={PAGE_IDS.LANDING} className="py-3">
@@ -105,9 +107,13 @@ const Landing = () => (
     <h2 className="text-center">You can see upcoming events in the calendar!</h2>
     <Container className="shadow p-3 mb-5 bg-body rounded">
       <Calendar />
+    </Container>
+    <Container>
       <CalendarEventsList />
       <ActivityDashboard />
       <ActivityList />
+      <RecentActivityList />
+      <CalendarWeeklyCard />
     </Container>
   </Container>
 );

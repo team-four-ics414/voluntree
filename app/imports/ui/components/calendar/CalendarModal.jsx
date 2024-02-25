@@ -118,12 +118,18 @@ const CalendarModal = ({ show, handleClose, event, handleSave, handleDelete }) =
 CalendarModal.propTypes = {
   show: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  event: PropTypes.object,
+  event: PropTypes.shape({
+    _id: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+    location: PropTypes.string,
+    start: PropTypes.instanceOf(Date),
+    end: PropTypes.instanceOf(Date),
+  }),
   handleSave: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
 };
 
-// Define defaultProps
 CalendarModal.defaultProps = {
   event: null,
 };
