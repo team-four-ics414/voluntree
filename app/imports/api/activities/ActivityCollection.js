@@ -149,7 +149,7 @@ class ActivityCollection extends BaseCollection {
     const frequency = doc.frequency;
     const requirement = doc.requirement;
     const contactInfo = doc.contactInfo;
-    const image = doc.details;
+    const image = doc.image;
     const owner = doc.owner;
     return { time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner };
   }
