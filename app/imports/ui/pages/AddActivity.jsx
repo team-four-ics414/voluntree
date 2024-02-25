@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, HiddenField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
@@ -112,31 +112,33 @@ const AddActivity = () => {
       <Container className="py-3">
         <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
           <Col xs={12} md={8} lg={5}>
-            <h2 className="text-center">Add Activity</h2>
+            <Card style={{ backgroundColor: '#65b9a6', padding: '10px', borderBottomRightRadius: '0px', borderBottomLeftRadius: '0px' }}>
+              <h2 className="add-activity">Add Activity</h2>
+            </Card>
             <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={submit}>
-              <Card>
+              <Card style={{ backgroundColor: '#eaf6ff', padding: '20px', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', borderRadius: '10px', borderTopRightRadius: '0px', borderTopLeftRadius: '0px' }}>
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField inputClassName="border-dark" name="time" />
-                      <TextField inputClassName="border-dark" name="name" />
-                      <TextField inputClassName="border-dark" name="details" />
-                      <TextField inputClassName="border-dark" name="benefits" />
+                      <TextField className="border-light-blue" name="time" />
+                      <TextField className="border-light-blue" name="name" />
+                      <TextField className="border-light-blue" name="details" />
+                      <TextField className="border-light-blue" name="benefits" />
                     </Col>
                     <Col>
-                      <TextField inputClassName="border-dark" name="frequency" />
-                      <TextField inputClassName="border-dark" name="requirement" />
-                      <TextField inputClassName="border-dark" name="contactInfo" />
+                      <TextField className="border-light-blue" name="frequency" />
+                      <TextField className="border-light-blue" name="requirement" />
+                      <TextField className="border-light-blue" name="contactInfo" />
                       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-                      <label htmlFor="location">Location</label>
-                      <input type="text" id="location" className="form-control border-dark" />
+                      <label className="border-light-blue" htmlFor="location">Location</label>
+                      <input type="text" id="location" className="form-control border-light-blue" />
                     </Col>
                   </Row>
                   <div className="mb-3">
                     <FileField name="image" onChange={handleImageChange} />
                   </div>
                   <ErrorsField />
-                  <SubmitField value="Submit" />
+                  <button type="submit" className="submit-button">Submit</button>
                   <HiddenField name="createdAt" value={new Date()} />
                   <HiddenField name="owner" value={Meteor.userId()} />
                 </Card.Body>

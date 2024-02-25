@@ -102,3 +102,35 @@ body {
   background-color: #9fd8d6;
   color: var(--bs-dark);
 }
+
+/* Add Activity Form */
+.add-activity{
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.submit-button {
+  background-color: #65b9a6 !important;
+  color: #fff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  display: block;
+  margin: 0 auto;
+}
+.submit-button:hover {
+  background-color: #9fbed8 !important;
+}
+
+.border-light-blue {
+  color: #9fd8d6;
+}
+
+.border-light-blue{
+  color: #004c8b;
+  font-weight: bold;
+}
