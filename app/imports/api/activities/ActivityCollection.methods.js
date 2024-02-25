@@ -21,6 +21,7 @@ Meteor.methods({
       contactInfo: String,
       image: Match.Maybe(String),
       owner: String,
+      calendarId: Match.Maybe(String),
     });
 
     // Ensure the user is logged in before inserting an activity
@@ -80,5 +81,15 @@ Meteor.methods({
     Activity.assertValidRoleForMethod(this.userId);
 
     return Activity.removeIt(activityId);
+  },
+
+  'activity.updateWithCalendarId'(activityId, calendarId) {
+    check(activityId, String);
+    check(calendarId, String);
+
+    // Update the activity with the calendarId
+    Activity.update(activityId, {
+      $set: { calendarId: calendarId },
+    });
   },
 });

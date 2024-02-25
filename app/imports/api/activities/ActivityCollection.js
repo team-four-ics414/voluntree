@@ -35,10 +35,14 @@ class ActivityCollection extends BaseCollection {
       contactInfo: String,
       image: { type: String, optional: true },
       owner: String,
+      calendarId: {
+        type: String,
+        optional: true, // Make optional if not all calendar events are linked to an activity
+      },
     }));
   }
 
-  define({ time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner }) {
+  define({ time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner, calendarId }) {
     const docID = this._collection.insert({
       time,
       name,
@@ -51,11 +55,12 @@ class ActivityCollection extends BaseCollection {
       contactInfo,
       image,
       owner,
+      calendarId,
     });
     return docID;
   }
 
-  update(docID, { time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner }) {
+  update(docID, { time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner, calendarId }) {
     const updateData = {};
     if (time) {
       updateData.time = time;
@@ -89,6 +94,9 @@ class ActivityCollection extends BaseCollection {
     }
     if (contactInfo) {
       updateData.owner = owner;
+    }
+    if (calendarId) {
+      updateData.calendarId = calendarId;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -151,7 +159,8 @@ class ActivityCollection extends BaseCollection {
     const contactInfo = doc.contactInfo;
     const image = doc.image;
     const owner = doc.owner;
-    return { time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner };
+    const calendarId = doc.calendarId;
+    return { time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner, calendarId };
   }
 }
 

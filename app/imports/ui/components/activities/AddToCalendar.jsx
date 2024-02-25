@@ -1,7 +1,7 @@
+import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal, Form, Alert } from 'react-bootstrap';
-import { Meteor } from 'meteor/meteor';
 
 const AddToCalendar = ({ activity }) => {
   const [showModal, setShowModal] = useState(false);
@@ -121,11 +121,11 @@ const AddToCalendar = ({ activity }) => {
 
 AddToCalendar.propTypes = {
   activity: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     details: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,
-    _id: PropTypes.string.isRequired,
   }).isRequired,
 };
 
