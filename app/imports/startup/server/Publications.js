@@ -1,7 +1,9 @@
 import { Meteor } from 'meteor/meteor';
+import { Roles } from 'meteor/alanning:roles';
 import { MATPCollections } from '../../api/matp/MATPCollections';
 import { Calendars } from '../../api/calendar/CalendarCollection';
 import { Activity } from '../../api/activities/ActivityCollection';
+import { Organizations } from '../../api/organization/OrganizationCollection';
 
 // Call publish for all the collections.
 MATPCollections.collections.forEach(c => c.publish());
@@ -39,4 +41,40 @@ Meteor.publish('calendar.thisWeek', function () {
       $lte: endOfWeek,
     },
   });
+});
+
+Meteor.publish('organizations.custom', function () {
+  if (Roles.userIsInRole(this.userId, ['admin'])) {
+    // Admin users get all data
+    return Organizations.find({});
+  } if (this.userId) {
+    // Logged-in but non-admin users get all except 'createdAt' and 'createdBy'
+    return Organizations.find({}, {
+      fields: {
+        name: 1,
+        type: 1,
+        missionStatement: 1,
+        contactEmail: 1,
+        website: 1,
+        description: 1,
+        email: 1,
+        phoneNumber: 1,
+        address: 1,
+        // 'createdAt' and 'createdBy' are excluded for non-admins
+      },
+    });
+  }
+  // Non-logged-in users get limited fields
+  return Organizations.find({}, {
+    fields: {
+      name: 1,
+      type: 1,
+      missionStatement: 1,
+      email: 1,
+      website: 1,
+      phoneNumber: 1,
+      address: 1,
+    },
+  });
+
 });
