@@ -4,6 +4,9 @@ import { MATPCollections } from '../../api/matp/MATPCollections';
 import { Calendars } from '../../api/calendar/CalendarCollection';
 import { Activity } from '../../api/activities/ActivityCollection';
 import { Organizations } from '../../api/organization/OrganizationCollection';
+import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { ProfileInterests } from '../../api/interest/ProfileInterestCollection';
+import { Interests } from '../../api/interest/InterestCollection';
 
 // Call publish for all the collections.
 MATPCollections.collections.forEach(c => c.publish());
@@ -76,5 +79,11 @@ Meteor.publish('organizations.custom', function () {
       address: 1,
     },
   });
+});
 
+Meteor.publish('UserProfilesPublication', function publish() {
+  if (this.userId) {
+    return UserProfiles.find();
+  }
+  return this.ready();
 });

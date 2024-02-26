@@ -1,8 +1,77 @@
 {
   "defaultAccounts": [
-    { "email": "admin@foo.com", "password": "changeme", "role": "ADMIN", "firstName": "Admin", "lastName": "MATRP"
+    {
+      "email": "admin@foo.com",
+      "password": "changeme",
+      "role": "ADMIN",
+      "firstName": "Admin",
+      "lastName": "MATRP",
+      "picture": "/images/defaultuserprofile.png",
+      "interests": ["System Administration", "Security"]
     },
-    { "email": "john@foo.com", "password": "changeme", "role": "USER" , "firstName": "John", "lastName": "Doe" }
+    {
+      "email": "john@foo.com",
+      "password": "changeme",
+      "role": "USER",
+      "firstName": "John",
+      "lastName": "Doe",
+      "picture": "images/defaultuserprofile.png",
+      "interests": ["Software Engineering", "Web Development"]
+    },
+    {
+      "email": "johnson@hawaii.edu",
+      "password": "changeme",
+      "role": "USER",
+      "firstName": "Philip",
+      "lastName": "Johnson",
+      "picture": "https://github.com/philipmjohnson.png",
+      "interests": ["Software Engineering", "Climate Change"]
+    },
+    {
+      "email": "henric@hawaii.edu",
+      "password": "changeme",
+      "role": "USER",
+      "firstName": "Henri",
+      "lastName": "Casanova",
+      "picture": "http://www.ics.hawaii.edu/wp-content/uploads/2013/08/Henri_Casanova1.jpg",
+      "interests": ["HPC", "Distributed Computing"]
+    },
+    {
+      "email": "cmoore@hawaii.edu",
+      "password": "changeme",
+      "role": "USER",
+      "firstName": "Carleton",
+      "lastName": "Moore",
+      "picture": "https://github.com/cammoore.png",
+      "interests": ["Software Engineering", "Renewable Energy"]
+    },
+    {
+      "email": "achriste@hawaii.edu",
+      "password": "changeme",
+      "role": "USER",
+      "firstName": "Anthony",
+      "lastName": "Christe",
+      "picture": "https://anthonyjchriste.github.io/images/me.png",
+      "interests": ["AI", "Distributed Computing"]
+    },
+    {
+      "email": "leighj@hawaii.edu",
+      "password": "changeme",
+      "role": "USER",
+      "firstName": "Jason",
+      "lastName": "Leigh",
+      "picture": "http://www.ics.hawaii.edu/wp-content/uploads/2013/08/Jason_Leigh-2014.jpg",
+      "interests": ["Visualization"]
+    },
+    {
+      "email": "sin8@hawaii.edu",
+      "password": "changeme",
+      "role": "USER",
+      "firstName": "Serge",
+      "lastName": "Negrashov",
+      "picture": "https://sergey-negrashov.github.io/images/serge.jpg",
+      "interests": ["Scalable IP Networks"]
+    }
   ],
 
   "defaultData": [

@@ -17,6 +17,7 @@ class BaseProfileCollection extends BaseCollection {
       lastName: String,
       role: String,
       userID: /^[23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrstuvwxyz]{17}$/,
+      picture: { type: String, optional: true },
     })));
   }
 
