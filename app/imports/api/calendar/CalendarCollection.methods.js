@@ -69,6 +69,7 @@ Meteor.methods({
    */
   // eslint-disable-next-line meteor/audit-argument-checks
   'calendar.update'(eventId, updateData) {
+    console.log('eventId', eventId, 'updateData', updateData);
     try {
       check(eventId, String);
       check(updateData, {
@@ -79,7 +80,7 @@ Meteor.methods({
         allDay: Match.Optional(Boolean),
         activityId: Match.Optional(String),
       });
-
+      console.log('updateData', updateData);
       if (!this.userId) {
         throw new Meteor.Error('not-authorized', 'You must be logged in to perform this action.');
       }
@@ -91,7 +92,7 @@ Meteor.methods({
         }
       }
 
-      Calendars.update(eventId, { $set: updateData });
+      Calendars.update(eventId, updateData);
 
       return eventId;
     } catch (error) {
