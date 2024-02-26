@@ -1,11 +1,10 @@
-// imports
-import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
+import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Card, Modal, Container, Row, Col, Spinner } from 'react-bootstrap';
 import { Calendars } from '../../../api/calendar/CalendarCollection';
-import CalendarEventForm from './CalendarEventForm'; // Assuming it's in the same directory
+import CalendarEventForm from './CalendarEventForm'; // Ensure this is adapted to Bootstrap if necessary
 import { getRandomBackground } from '../../utilities/RandomBackground';
 
 const CalendarEventsList = ({ events, isLoading }) => {
@@ -19,28 +18,37 @@ const CalendarEventsList = ({ events, isLoading }) => {
   };
 
   if (isLoading) {
-    return <div className="text-center p-5">Loading...</div>;
+    return (
+      <div className="d-flex justify-content-center p-5">
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      </div>
+    );
   }
 
   return (
-    <div>
+    <Container>
       <h2 className="mt-3 mb-4">Calendar Events</h2>
       <Button variant="primary" onClick={() => handleShow()}>
         Add New Event
       </Button>
-      <div className="d-flex flex-wrap">
+      <Row xs={1} md={2} lg={3} className="g-4 mt-3">
         {events.map((event) => (
-          <div className="card m-2" style={{ width: '18rem', backgroundImage: `url(${getRandomBackground()})`, backgroundSize: 'cover' }} key={event._id}>
-            <div className="card-body" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}> { /* // Added a slight white overlay for readability */ }
-              <h5 className="card-title">{event.title}</h5>
-              <p className="card-text">{event.description}</p>
-              <Button variant="secondary" onClick={() => handleShow(event)}>
-                Edit
-              </Button>
-            </div>
-          </div>
+          <Col key={event._id}>
+            <Card className="h-100" style={{ backgroundImage: `url(${getRandomBackground()})`, backgroundSize: 'cover' }}>
+              <Card.Img variant="top" src={getRandomBackground()} style={{ opacity: 0 }} />
+              <Card.Body style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
+                <Card.Title>{event.title}</Card.Title>
+                <Card.Text>{event.description}</Card.Text>
+                <Button variant="secondary" onClick={() => handleShow(event)}>
+                  Edit
+                </Button>
+              </Card.Body>
+            </Card>
+          </Col>
         ))}
-      </div>
+      </Row>
 
       <Modal show={showModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
@@ -50,7 +58,7 @@ const CalendarEventsList = ({ events, isLoading }) => {
           <CalendarEventForm existingEvent={selectedEvent} onSuccess={handleClose} />
         </Modal.Body>
       </Modal>
-    </div>
+    </Container>
   );
 };
 
@@ -60,13 +68,12 @@ CalendarEventsList.propTypes = {
     _id: PropTypes.string.isRequired,
     title: PropTypes.string,
     description: PropTypes.string,
-    // Include other properties as necessary
   })).isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
-  const handle = Meteor.subscribe('calendar.all'); // Ensure this matches the publication name
+  const handle = Meteor.subscribe('calendar.all');
   return {
     isLoading: !handle.ready(),
     events: Calendars.find().fetch(),
