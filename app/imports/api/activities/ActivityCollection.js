@@ -72,7 +72,7 @@ class ActivityCollection extends BaseCollection {
       updateData.details = details;
     }
     if (createdAt) {
-      updateData.details = createdAt;
+      updateData.createdAt = createdAt;
     }
     if (benefits) {
       updateData.benefits = benefits;
@@ -92,7 +92,7 @@ class ActivityCollection extends BaseCollection {
     if (image) {
       updateData.image = image;
     }
-    if (contactInfo) {
+    if (owner) {
       updateData.owner = owner;
     }
     if (calendarId) {
