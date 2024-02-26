@@ -6,6 +6,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Button, Modal } from 'react-bootstrap';
 import { Calendars } from '../../../api/calendar/CalendarCollection';
 import CalendarEventForm from './CalendarEventForm'; // Assuming it's in the same directory
+import { getRandomBackground } from '../../utilities/RandomBackground';
 
 const CalendarEventsList = ({ events, isLoading }) => {
   const [showModal, setShowModal] = useState(false);
@@ -29,8 +30,8 @@ const CalendarEventsList = ({ events, isLoading }) => {
       </Button>
       <div className="d-flex flex-wrap">
         {events.map((event) => (
-          <div className="card m-2" style={{ width: '18rem' }} key={event._id}>
-            <div className="card-body">
+          <div className="card m-2" style={{ width: '18rem', backgroundImage: `url(${getRandomBackground()})`, backgroundSize: 'cover' }} key={event._id}>
+            <div className="card-body" style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}> { /* // Added a slight white overlay for readability */ }
               <h5 className="card-title">{event.title}</h5>
               <p className="card-text">{event.description}</p>
               <Button variant="secondary" onClick={() => handleShow(event)}>
