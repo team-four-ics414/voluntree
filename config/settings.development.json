@@ -101,7 +101,7 @@
     "frequency": "Monthly",
     "requirement": "Please wear sun protection and bring water.",
     "contactInfo": "waikikicleanup@nonprofit.org",
-    "image": "https://example.com/beachcleanup.jpg",
+    "image": "/images/sample3.jpg",
     "owner": "WaikikiNatureGroup"
     },
     {
@@ -114,7 +114,7 @@
       "frequency": "Biweekly",
       "requirement": "Gardening gloves recommended.",
       "contactInfo": "restorekailua@nonprofit.org",
-      "image": "https://example.com/parkrestoration.jpg",
+      "image": "/images/sample3.jpg",
       "owner": "EcoHawaiiGroup"
     },
     {
@@ -127,7 +127,7 @@
       "frequency": "Weekly",
       "requirement": "Health and safety training provided on-site.",
       "contactInfo": "haleiwahelp@nonprofit.org",
-      "image": "https://example.com/fooddistribution.jpg",
+      "image": "/images/sample4.jpg",
       "owner": "FoodBankOahu"
     },
     {
@@ -140,7 +140,7 @@
       "frequency": "Monthly",
       "requirement": "Wear appropriate clothing and footwear for muddy conditions.",
       "contactInfo": "manoatrees@nonprofit.org",
-      "image": "https://example.com/treepanting.jpg",
+      "image": "/images/sample4.jpg",
       "owner": "GreenIslandFoundation"
     },
     {
@@ -153,7 +153,7 @@
       "frequency": "Weekdays",
       "requirement": "Background check and education in relevant subjects.",
       "contactInfo": "waianaetutors@nonprofit.org",
-      "image": "https://example.com/tutoring.jpg",
+      "image": "/images/sample1.jpg",
       "owner": "EducationFirst"
     },
     {
@@ -166,7 +166,7 @@
       "frequency": "Monthly",
       "requirement": "Respect for cultural heritage, attention to detail.",
       "contactInfo": "preserveiolani@nonprofit.org",
-      "image": "https://example.com/preservation.jpg",
+      "image": "/images/sample2.jpg",
       "owner": "HeritageHawaii"
     },
     {
@@ -179,7 +179,7 @@
       "frequency": "Weekly",
       "requirement": "Ability to perform physical tasks outdoors.",
       "contactInfo": "waimeaconservation@nonprofit.org",
-      "image": "https://example.com/conservation.jpg",
+      "image": "/images/sample2.jpg",
       "owner": "NatureGuardians"
     },
     {
@@ -192,7 +192,7 @@
       "frequency": "Weekly",
       "requirement": "Compassion, patience, and good communication skills.",
       "contactInfo": "mililaniseniors@nonprofit.org",
-      "image": "https://example.com/seniorcompanion.jpg",
+      "image": "/images/volunteers.jpg",
       "owner": "CompanionCare"
     },
     {
@@ -205,7 +205,7 @@
       "frequency": "Monthly",
       "requirement": "Bring gloves and wear sturdy shoes.",
       "contactInfo": "shellbeachclean@nonprofit.org",
-      "image": "https://example.com/beachclean.jpg",
+      "image": "/images/sample3.jpg",
       "owner": "OceanWatch"
     },
     {
@@ -221,7 +221,7 @@
       "frequency": "Weekly",
       "requirement": "Interest in gardening and sustainability.",
       "contactInfo": "honolulugardens@nonprofit.org",
-      "image": "https://example.com/urbangardening.jpg",
+      "image": "/images/volunteers1.jpg",
       "owner": "GreenThumbCommunity"
     }
   ],
