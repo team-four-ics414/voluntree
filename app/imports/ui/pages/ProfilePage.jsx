@@ -4,15 +4,11 @@ import { Container, Card, Image, Row, Col, Badge } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
-import { ProfileInterests } from '../../api/interest/ProfileInterestCollection';
-import { Interests } from '../../api/interest/InterestCollection';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 function getProfileData(userId) {
   const profile = UserProfiles.findOne({ userId });
-  const profileInterests = ProfileInterests.find({ profileId: userId }).fetch();
-  const interests = profileInterests.map(({ interestId }) => Interests.findOne(interestId).name);
-  return { ...profile, interests };
+  return { ...profile };
 }
 
 const ProfileCard = ({ profile }) => (

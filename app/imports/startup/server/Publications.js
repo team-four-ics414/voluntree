@@ -5,8 +5,6 @@ import { Calendars } from '../../api/calendar/CalendarCollection';
 import { Activity } from '../../api/activities/ActivityCollection';
 import { Organizations } from '../../api/organization/OrganizationCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
-import { ProfileInterests } from '../../api/interest/ProfileInterestCollection';
-import { Interests } from '../../api/interest/InterestCollection';
 
 // Call publish for all the collections.
 MATPCollections.collections.forEach(c => c.publish());

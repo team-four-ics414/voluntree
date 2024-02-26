@@ -7,6 +7,8 @@ class UserProfileCollection extends BaseProfileCollection {
   constructor() {
     super('UserProfile', new SimpleSchema({
       picture: { type: String, optional: true },
+      interests: { type: Array, optional: true },
+      'interests.$': { type: String },
       // add more user profile fields here
     }));
   }
@@ -18,14 +20,14 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param firstName The first name.
    * @param lastName The last name.
    */
-  define({ email, firstName, lastName, password, picture = '' }) {
+  define({ email, firstName, lastName, password, picture = '', interests = [] }) {
     // if (Meteor.isServer) {
     const username = email;
-    const user = this.findOne({ email, firstName, lastName, picture });
+    const user = this.findOne({ email, firstName, lastName, picture, interests });
     if (!user) {
       const role = ROLE.USER;
       const userID = Users.define({ username, role, password });
-      const profileID = this._collection.insert({ email, firstName, lastName, userID, role, picture });
+      const profileID = this._collection.insert({ email, firstName, lastName, userID, role, picture, interests });
       // this._collection.update(profileID, { $set: { userID } });
       return profileID;
     }
@@ -40,7 +42,7 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
    */
-  update(docID, { firstName, lastName, picture }) {
+  update(docID, { firstName, lastName, picture, interests }) {
     this.assertDefined(docID);
     const updateData = {};
     if (firstName) {
@@ -51,6 +53,9 @@ class UserProfileCollection extends BaseProfileCollection {
     }
     if (picture) {
       updateData.picture = picture;
+    }
+    if (interests) {
+      updateData.interests = interests;
     }
     this._collection.update(docID, { $set: updateData });
   }
@@ -105,7 +110,8 @@ class UserProfileCollection extends BaseProfileCollection {
     const firstName = doc.firstName;
     const lastName = doc.lastName;
     const picture = doc.picture;
-    return { email, firstName, lastName, picture }; // CAM this is not enough for the define method. We lose the password.
+    const interests = doc.interests;
+    return { email, firstName, lastName, picture, interests }; // CAM this is not enough for the define method. We lose the password.
   }
 }
 

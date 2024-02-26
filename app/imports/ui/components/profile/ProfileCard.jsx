@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 // ProfileCard Component
 const ProfileCard = ({ profile }) => (
-  <Col xs={12} sm={6} md={4} lg={3}>
+  <Col xs={12} sm={6} md={4} lg={3} className="py-2 px-2">
     <Card className="h-100">
       <Card.Header className="text-center">
         <Image src={profile.picture || '/images/defaultuserprofile.png'} alt={`${profile.firstName} ${profile.lastName}'s profile picture`} roundedCircle className="img-fluid" style={{ maxWidth: '200px' }} />
