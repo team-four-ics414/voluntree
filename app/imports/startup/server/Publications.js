@@ -5,6 +5,7 @@ import { Calendars } from '../../api/calendar/CalendarCollection';
 import { Activity } from '../../api/activities/ActivityCollection';
 import { Organizations } from '../../api/organization/OrganizationCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { Messages } from '../../api/messaging/MessagesCollection';
 
 // Call publish for all the collections.
 MATPCollections.collections.forEach(c => c.publish());
@@ -91,4 +92,33 @@ Meteor.publish('CurrentUserProfile', function publish() {
     return this.ready();
   }
   return UserProfiles.find({ userId: this.userId });
+});
+
+Meteor.publish('allMessages', function publishAllMessages() {
+  if (!this.userId) {
+    return this.ready();
+  }
+
+  return Messages.find({
+    $or: [
+      { senderId: this.userId },
+      { receiverId: this.userId },
+    ],
+  }, {
+    fields: {
+      text: 1,
+      senderId: 1,
+      receiverId: 1,
+      createdAt: 1,
+      // Ensure senderName is handled correctly as noted above
+    },
+
+  });
+});
+
+Meteor.publish('userName', function publishUserName() {
+  if (!this.userId) {
+    return this.ready();
+  }
+  return UserProfiles.publishUserName();
 });
