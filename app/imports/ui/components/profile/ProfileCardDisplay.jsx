@@ -35,13 +35,11 @@ ProfilesDisplay.defaultProps = {
 
 export default withTracker(() => {
   const handle = Meteor.subscribe('CurrentUserProfile');
-  const ready = handle.ready();
-  const hasError = !ready; // Simplified error handling, adjust based on your error handling logic
-  const profile = ready ? UserProfiles.find().fetch() : [];
+  const isLoading = !handle.ready(); // Renamed from 'ready' to 'isLoading' to match the expected prop
+  const profile = handle.ready() ? UserProfiles.find().fetch() : [];
 
   return {
-    profile: profile[0] || null, // Pass the first profile found, or null if not found
-    ready,
-    hasError, // Pass error state to the component
+    profile: profile[0] || null, // Ensure a single profile or null is passed
+    isLoading, // Correctly pass isLoading to match PropTypes expectation
   };
 })(ProfilesDisplay);
