@@ -30,6 +30,8 @@ const ProfileList = ({ profilesData, ready, hasError }) => {
 
   return (
     <Container className="py-4">
+      <h2 className="mt-3 mb-4 text-center">Profile List</h2>
+
       <div className="d-flex flex-wrap justify-content-start">
         {profilesData.map((profile, index) => (
           <ProfileCard key={profile._id || index} profile={profile} />

@@ -34,12 +34,18 @@ ProfilesDisplay.defaultProps = {
 };
 
 export default withTracker(() => {
+  const userId = Meteor.userId();
+  // console.log('Current User ID:', userId); // Debugging line
+
   const handle = Meteor.subscribe('CurrentUserProfile');
-  const isLoading = !handle.ready(); // Renamed from 'ready' to 'isLoading' to match the expected prop
-  const profile = handle.ready() ? UserProfiles.find().fetch() : [];
+  const isLoading = !handle.ready();
+  const profile = UserProfiles.findOne({ userID: userId });
+  // const profile = UserProfiles.findOne({ userId }); // this was wrong
+  // admin profile doesn't show up
+  // console.log('Profile found:', profile); // Debugging line
 
   return {
-    profile: profile[0] || null, // Ensure a single profile or null is passed
-    isLoading, // Correctly pass isLoading to match PropTypes expectation
+    profile,
+    isLoading,
   };
 })(ProfilesDisplay);
