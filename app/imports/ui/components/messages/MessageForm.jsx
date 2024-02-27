@@ -15,25 +15,28 @@ const MessageForm = () => {
         setText('');
         setEmail('');
       }
-      console.log('text', text, 'email', email);
     });
   };
 
   return (
-    <form onSubmit={sendMessage}>
+    <form onSubmit={sendMessage} className="flex flex-col space-y-4 p-4">
       <input
         type="email"
         placeholder="Recipient's email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
+        className="form-input px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
       <input
         type="text"
         placeholder="Type a message"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        className="form-input px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
-      <button type="submit">Send</button>
+      <button type="submit" className="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+        Send
+      </button>
     </form>
   );
 };

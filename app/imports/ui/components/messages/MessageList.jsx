@@ -10,39 +10,44 @@ const MessageList = ({ messages, loading }) => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading messages...</span>
-        </div>
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900" />
       </div>
     );
   }
 
   if (messages.length === 0) {
-    return <div className="alert alert-info" role="alert">No messages found</div>;
+    return <div className="text-center p-4 mx-auto text-gray-500">No messages found</div>;
   }
 
   return (
-    <ul className="list-group list-group-flush">
+    <ul className="divide-y divide-gray-300 overflow-auto max-h-96">
       {messages.map((message) => {
         const isSentByCurrentUser = message.senderId === Meteor.userId();
         const senderProfile = UserProfiles.findOne({ userID: message.senderId });
         const senderName = senderProfile ? `${senderProfile.firstName} ${senderProfile.lastName}` : 'Unknown';
+        const avatarUrl = senderProfile && senderProfile.picture ? senderProfile.picture : '/images/defaultuserprofile.png';
 
         return (
-          <li key={message._id} className={`list-group-item ${isSentByCurrentUser ? 'text-end' : 'text-start'}`}>
-            {!isSentByCurrentUser && (
-              <strong>{senderName}</strong>
-            )}
-            {isSentByCurrentUser && (
-              <strong>You</strong>
-            )}
-            <div>{message.text}</div>
-            <div><small>Sent: {message.createdAt.toLocaleString()}</small></div>
+          <li key={message._id} className={`flex items-start space-x-2 px-4 py-2 ${isSentByCurrentUser ? 'flex-row-reverse text-right' : 'text-left'}`}>
+            <div className="flex flex-col items-center">
+              {/* Avatar */}
+              <img src={avatarUrl} alt={`${senderName}'s `} className="w-10 h-10 rounded-full mb-1" />
+
+              {/* Sender Name */}
+              <p className="text-xs font-medium">{isSentByCurrentUser ? 'You' : senderName}</p>
+            </div>
+
+            {/* Message Content */}
+            <div className="flex-1">
+              <p className="text-sm text-gray-800">{message.text}</p>
+              <p className="text-xs text-gray-500">Sent: {message.createdAt.toLocaleString()}</p>
+            </div>
           </li>
         );
       })}
     </ul>
+
   );
 };
 

@@ -3,7 +3,7 @@ import MessageList from './MessageList';
 import MessageForm from './MessageForm';
 
 const MessagingDashboard = () => (
-  <div>
+  <div className="flex flex-col items-center justify-center p-4">
     <MessageList />
     <MessageForm />
   </div>
