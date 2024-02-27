@@ -26,20 +26,17 @@ const MessageList = ({ messages, loading }) => {
     <ul className="list-group list-group-flush">
       {messages.map((message) => {
         const isSentByCurrentUser = message.senderId === Meteor.userId();
-        const messageAlignment = isSentByCurrentUser ? 'text-end' : 'text-start';
-
-        const recipient = UserProfiles.findOne({ userID: message.receiverId });
-        const recipientName = recipient ? `${recipient.firstName} ${recipient.lastName}` : 'Unknown';
-
         const senderProfile = UserProfiles.findOne({ userID: message.senderId });
-        // const senderName = senderProfile ? `${senderProfile.firstName} ${senderProfile.lastName}` : 'Unknown';
-        const senderName = senderProfile ? 'You' : 'Unknown';
+        const senderName = senderProfile ? `${senderProfile.firstName} ${senderProfile.lastName}` : 'Unknown';
 
         return (
-          <li key={message._id} className={`list-group-item ${messageAlignment}`}>
-            <strong>
-              {senderName} to {recipientName}:
-            </strong>
+          <li key={message._id} className={`list-group-item ${isSentByCurrentUser ? 'text-end' : 'text-start'}`}>
+            {!isSentByCurrentUser && (
+              <strong>{senderName}</strong>
+            )}
+            {isSentByCurrentUser && (
+              <strong>You</strong>
+            )}
             <div>{message.text}</div>
             <div><small>Sent: {message.createdAt.toLocaleString()}</small></div>
           </li>
