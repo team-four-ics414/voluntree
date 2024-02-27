@@ -11,6 +11,7 @@ import ActivityList from '../components/activities/ActivityList';
 import RecentActivityList from '../components/activities/RecentActivityList';
 import CalendarWeeklyCard from '../components/calendar/CalendarWeeklyCard';
 import ProfileList from '../components/profile/ProfileList';
+import MessageForm from '../components/messages/MessageForm';
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
   <Container id={PAGE_IDS.LANDING} className="py-3">
@@ -116,6 +117,7 @@ const Landing = () => (
       <RecentActivityList />
       <CalendarWeeklyCard />
       <ProfileList />
+      <MessageForm />
     </Container>
   </Container>
 );

@@ -1,25 +1,26 @@
 // /imports/api/messages/methods.js
 import { Meteor } from 'meteor/meteor';
-import Messages from './messages.js';
+import { Accounts } from 'meteor/accounts-base';
+import Messages from './MessagesCollection';
 
 Meteor.methods({
-  'messages.send'(text, email) {
+  'messages.sendByEmail'(messageText, recipientEmail) {
     if (!this.userId) {
-      throw new Meteor.Error('Not authorized.');
+      throw new Meteor.Error('not-authorized', 'You must be logged in to send messages.');
+    }
+    // Find recipient by email
+    const recipient = Accounts.findUserByEmail(recipientEmail);
+    if (!recipient) {
+      throw new Meteor.Error('recipient-not-found', 'No user found with that email address.');
     }
 
-    // Find the user by email
-    const receiver = Accounts.findUserByEmail(email);
-    if (!receiver) {
-      throw new Meteor.Error('Receiver not found.');
-    }
-
-    // Insert the message
+    // Insert the message into the database
     Messages.insert({
-      text,
-      senderId: this.userId,
-      receiverId: receiver._id,
+      text: messageText,
       createdAt: new Date(),
+      senderId: this.userId,
+      receiverId: recipient._id,
     });
+    // Possibly send a notification to the recipient, etc.
   },
 });
