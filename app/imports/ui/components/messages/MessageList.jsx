@@ -1,28 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import { Messages } from '../../../api/messaging/MessagesCollection';
+import { UserProfiles } from '../../../api/user/UserProfileCollection';
 
-const MessageList = ({ messages, loading, currentUser }) => {
+const MessageList = ({ messages, loading }) => {
+  useEffect(() => {}, [messages]);
+
   if (loading) {
-    return <div>Loading messages...</div>;
+    return (
+      <div className="d-flex justify-content-center">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading messages...</span>
+        </div>
+      </div>
+    );
   }
 
   if (messages.length === 0) {
-    return <div>No messages found</div>;
+    return <div className="alert alert-info" role="alert">No messages found</div>;
   }
 
   return (
-    <ul className="message-list" style={{ listStyleType: 'none', padding: 0 }}>
+    <ul className="list-group list-group-flush">
       {messages.map((message) => {
-        const isSentByCurrentUser = message.senderId === currentUser._id;
-        const messageAlignment = isSentByCurrentUser ? 'right' : 'left';
-        const displayName = isSentByCurrentUser ? 'You' : message.senderName || 'Unknown';
+        const isSentByCurrentUser = message.senderId === Meteor.userId();
+        const messageAlignment = isSentByCurrentUser ? 'text-end' : 'text-start';
+
+        const recipient = UserProfiles.findOne({ userID: message.receiverId });
+        const recipientName = recipient ? `${recipient.firstName} ${recipient.lastName}` : 'Unknown';
+
+        const senderProfile = UserProfiles.findOne({ userID: message.senderId });
+        // const senderName = senderProfile ? `${senderProfile.firstName} ${senderProfile.lastName}` : 'Unknown';
+        const senderName = senderProfile ? 'You' : 'Unknown';
 
         return (
-          <li key={message._id} style={{ textAlign: messageAlignment, marginBottom: '10px' }}>
-            <strong>{displayName}:</strong>
+          <li key={message._id} className={`list-group-item ${messageAlignment}`}>
+            <strong>
+              {senderName} to {recipientName}:
+            </strong>
             <div>{message.text}</div>
             <div><small>Sent: {message.createdAt.toLocaleString()}</small></div>
           </li>
@@ -38,20 +55,16 @@ MessageList.propTypes = {
     text: PropTypes.string.isRequired,
     createdAt: PropTypes.instanceOf(Date).isRequired,
     senderId: PropTypes.string.isRequired,
-    senderName: PropTypes.string,
+    receiverId: PropTypes.string.isRequired,
   })).isRequired,
   loading: PropTypes.bool.isRequired,
-  currentUser: PropTypes.object.isRequired,
 };
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe('allMessages');
-  const loading = !subscription.ready();
-  const currentUser = Meteor.user(); // Getting the current user to identify sent and received messages
+  const profilesSubscription = Meteor.subscribe('UserProfilesPublication');
+  const loading = !subscription.ready() || !profilesSubscription.ready();
   const messages = Messages.find({}, { sort: { createdAt: -1 } }).fetch();
 
-  // Optionally, enrich messages with sender names if not already included
-  // This might require additional logic or a separate subscription
-
-  return { messages, loading, currentUser };
+  return { messages, loading };
 })(MessageList);

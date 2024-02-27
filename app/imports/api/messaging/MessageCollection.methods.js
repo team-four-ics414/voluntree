@@ -5,24 +5,23 @@ import { Messages } from './MessagesCollection'; // Ensure you're importing the 
 
 Meteor.methods({
   'messages.sendByEmail'(messageText, recipientEmail) {
+    check(messageText, String);
+    check(recipientEmail, String);
     if (!this.userId) {
       throw new Meteor.Error('not-authorized', 'You must be logged in to send messages.');
     }
 
-    const sender = Meteor.users.findOne(this.userId);
     const recipient = Accounts.findUserByEmail(recipientEmail);
     if (!recipient) {
       throw new Meteor.Error('recipient-not-found', 'No user found with that email address.');
     }
 
-    const senderName = sender.profile ? sender.profile.name : "Sender's Name"; // Adjust based on your user schema
-
     Messages.define({
       text: messageText,
       createdAt: new Date(),
       senderId: this.userId,
-      senderName: senderName, // Now including senderName
       receiverId: recipient._id,
     });
+    console.log('Message sent to', recipientEmail, 'from', this.userId, 'with text', messageText, 'at', new Date(), 'recipient ID:', recipient._id, 'sender ID:', this.userId);
   },
 });

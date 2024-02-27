@@ -102,10 +102,16 @@ Meteor.publish('allMessages', function publishAllMessages() {
       text: 1,
       senderId: 1,
       receiverId: 1,
-      senderName: 1,
       createdAt: 1,
       // Ensure senderName is handled correctly as noted above
     },
-  });
 
+  });
+});
+
+Meteor.publish('userName', function publishUserName() {
+  if (!this.userId) {
+    return this.ready();
+  }
+  return UserProfiles.publishUserName();
 });

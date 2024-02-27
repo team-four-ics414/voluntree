@@ -113,6 +113,15 @@ class UserProfileCollection extends BaseProfileCollection {
     const interests = doc.interests;
     return { email, firstName, lastName, picture, interests }; // CAM this is not enough for the define method. We lose the password.
   }
+
+  /**
+   * Publishes the first and last name associated with a user's ID.
+   * @param {string} userId The ID of the user.
+   */
+  publishUserName(userId) {
+    this._collection._ensureIndex({ userID: 1 }); // Ensure an index for efficient queries
+    return this._collection.find({ userID: userId }, { fields: { firstName: 1, lastName: 1 } });
+  }
 }
 
 /**
