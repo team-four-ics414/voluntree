@@ -85,3 +85,10 @@ Meteor.publish('UserProfilesPublication', function publish() {
   }
   return this.ready();
 });
+
+Meteor.publish('CurrentUserProfile', function publish() {
+  if (!this.userId) {
+    return this.ready();
+  }
+  return UserProfiles.find({ userId: this.userId });
+});

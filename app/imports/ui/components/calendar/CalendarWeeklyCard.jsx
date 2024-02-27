@@ -54,7 +54,6 @@ CalendarWeeklyCard.propTypes = {
 export default withTracker(() => {
   const handle = Meteor.subscribe('calendar.thisWeek');
   const events = Calendars.find({}, { sort: { startDate: 1 } }).fetch();
-  console.log(events); // Debug: Check the structure and data of fetched events
   return {
     isLoading: !handle.ready(),
     events,
