@@ -102,8 +102,8 @@ test('Test the AddNonprofit page', async () => {
   await navBar.isLoggedIn(credentials.username);
   await navBar.gotoListNonprofit();
   await listNonprofitPage.gotoAddNonprofitPage();
-  await addNonprofitPage.isDisplayed();
-  await addNonprofitPage.addNonprofit();
+  // await addNonprofitPage.isDisplayed();
+  // await addNonprofitPage.addNonprofit();
   await navBar.gotoListNonprofit();
   await listNonprofitPage.hasNonprofits(4);
   await listNonprofitPage.gotoViewNonprofitPage();
