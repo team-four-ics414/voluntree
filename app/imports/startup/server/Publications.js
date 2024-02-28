@@ -269,7 +269,7 @@ Meteor.publish('conversationsWithLatestMessagesAndProfiles', async function () {
   }
 });
 
-Meteor.publish('conversations.list', function() {
+Meteor.publish('conversations.list', function () {
   if (!this.userId) {
     return this.ready();
   }
@@ -278,9 +278,7 @@ Meteor.publish('conversations.list', function() {
   const conversationIds = conversations.fetch().map(convo => convo._id);
 
   // Fetch latest message for each conversation
-  const latestMessages = conversationIds.map(conversationId => {
-    return Messages.findOne({ conversationId: conversationId }, { sort: { createdAt: -1 } });
-  }).filter(Boolean); // Filter out any undefined results if a conversation has no messages
+  const latestMessages = conversationIds.map(conversationId => Messages.findOne({ conversationId: conversationId }, { sort: { createdAt: -1 } })).filter(Boolean); // Filter out any undefined results if a conversation has no messages
 
   const latestMessageIds = latestMessages.map(message => message._id);
 
