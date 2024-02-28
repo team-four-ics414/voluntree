@@ -24,7 +24,6 @@ const ChatInterface = () => {
     });
   };
 
-
   return (
     <div className="flex flex-row h-screen">
       <div className="w-1/3 bg-gray-100 overflow-auto">
