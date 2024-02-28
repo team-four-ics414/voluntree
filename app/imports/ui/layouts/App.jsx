@@ -29,6 +29,7 @@ import SideChat from '../components/SideChat';
 import ListOpportunities from '../pages/ListOpportunities';
 import ViewNonprofit from '../pages/ViewNonprofit';
 import MapSearch from '../pages/MapSearch';
+import UserProfile from '../pages/UserProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -59,6 +60,7 @@ const App = () => {
             <Route path="/view-nonprofit/:_id" element={<ProtectedRoute><ViewNonprofit /></ProtectedRoute>} />
             <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
             <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
             <Route path="/chat" element={<ProtectedRoute><SideChat /></ProtectedRoute>} />
             <Route path="/edit-nonprofit/:_id" element={<ProtectedRoute><EditNonprofit /></ProtectedRoute>} />
             <Route path="/admin" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />

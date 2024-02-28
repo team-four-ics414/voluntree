@@ -5,7 +5,8 @@ import ConversationsList from '../../chat/ConversationsList';
 
 const MessagingDashboard = () => (
   <div className="flex flex-col items-center justify-center p-4">
-    <ConversationsList />
+    <h2 className="mt-3 mb-4 text-center">Messaging Example</h2>
+
     <MessageList />
     <MessageForm />
   </div>

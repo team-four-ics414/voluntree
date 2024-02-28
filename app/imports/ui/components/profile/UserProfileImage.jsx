@@ -6,4 +6,12 @@ const UserProfileImage = ({ picture }) => {
   return <img src={picture} alt="Profile" style={{ width: '100px', height: '100px', borderRadius: '50%' }} />;
 };
 
+UserProfileImage.propTypes = {
+  picture: PropTypes.string, // Define 'picture' prop type
+};
+
+UserProfileImage.defaultProps = {
+  picture: '/images/defaultuserprofile.png', // Set default prop value for 'picture'
+};
+
 export default UserProfileImage;
