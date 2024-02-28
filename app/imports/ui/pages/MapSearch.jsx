@@ -4,6 +4,14 @@ import { GoogleMap, LoadScript, StandaloneSearchBox, Marker, InfoWindow } from '
 import { Button } from 'react-bootstrap';
 import { Activity } from '../../api/activities/ActivityCollection';
 
+let api_keys = null;
+try {
+  // eslint-disable-next-line global-require
+  api_keys = require('../../api/api_keys.json');
+} catch (Error) {
+  console.log('Api keys are not imported');
+}
+
 const containerStyle = {
   width: '100%',
   height: '800px',
@@ -61,7 +69,7 @@ const MapSearch = () => {
 
   return (
     <LoadScript
-      googleMapsApiKey="YOUR-KEY-HERE"
+      googleMapsApiKey={api_keys ? api_keys.google : 'YOUR-KEY-HERE'}
       libraries={['places']}
       onLoad={() => setIsMapScriptLoaded(true)}
     >

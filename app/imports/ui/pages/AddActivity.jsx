@@ -9,6 +9,14 @@ import FileField from '../components/FileField';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { Activity } from '../../api/activities/ActivityCollection';
 
+let api_keys = null;
+try {
+  // eslint-disable-next-line global-require
+  api_keys = require('../../api/api_keys.json');
+} catch (Error) {
+  console.log('Api keys are not imported');
+}
+
 const formSchema = new SimpleSchema({
   time: String,
   name: String,
@@ -40,7 +48,7 @@ const AddActivity = () => {
 
   useEffect(() => {
     const loadGooglePlacesScript = document.createElement('script');
-    loadGooglePlacesScript.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR-KEY-HERE&libraries=places';
+    loadGooglePlacesScript.src = `https://maps.googleapis.com/maps/api/js?key=${api_keys ? api_keys.google : 'YOUR-KEY-HERE'}&libraries=places`;
     document.body.appendChild(loadGooglePlacesScript);
 
     loadGooglePlacesScript.onload = () => {
