@@ -34,4 +34,5 @@ export const COMPONENT_IDS = {
   NONPROFIT_ADD_SUBMIT_BTN: 'nonprofit_add_submit_btn',
   // Landing/Home page related
   LANDING_ACCORDION: 'landing-accordion',
+  NAVBAR_VOLUNTEER_FORUM: 'navbar-list-nonprofit',
 };

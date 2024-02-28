@@ -30,6 +30,7 @@ import ListOpportunities from '../pages/ListOpportunities';
 import ViewNonprofit from '../pages/ViewNonprofit';
 import MapSearch from '../pages/MapSearch';
 import UserProfile from '../pages/UserProfile';
+import VolunteerForum from '../pages/VolunteerForum';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
             <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
             <Route path="/list" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
             <Route path="/nonprofits" element={<ProtectedRoute ready={ready}><ListNonprofit /></ProtectedRoute>} />
+            <Route path="/forum" element={<ProtectedRoute ready={ready}><VolunteerForum /></ProtectedRoute>} />
             <Route path="/mapsearch" element={<ProtectedRoute><MapSearch /></ProtectedRoute>} />
             <Route path="/add" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
             <Route path="/add-nonprofit" element={<ProtectedRoute><AddNonprofit /></ProtectedRoute>} />
