@@ -114,6 +114,7 @@ Meteor.methods({
 
       throw new Meteor.Error('receiverId-undefined', 'receiverId must be provided.');
     }
+    check(receiverId, String); // Validate receiverID making sure it's not undefine
     if (!this.userId) {
       throw new Meteor.Error('not-authorized', 'You must be logged in to add messages.');
     }

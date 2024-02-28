@@ -1,30 +1,26 @@
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
+import PropTypes from 'prop-types';
 
-// Add conversationId prop to the component
-const MessageForm = ({ conversationId }) => {
+// Ensure you're accepting receiverId as a prop here
+const MessageForm = ({ conversationId, receiverId }) => {
   const [text, setText] = useState('');
-
-  // Since we're focusing on sending messages within a conversation,
-  // there's no need to select a user from a list. The conversationId prop
-  // determines the conversation context.
 
   const sendMessage = (e) => {
     e.preventDefault();
-    if (!text.trim() || !conversationId) return; // Ensure we have text and a conversationId
+    // Make sure to use receiverId from the component's props
+    if (!text.trim() || !conversationId || !receiverId) return; // Check for valid input
 
-    Meteor.call('messages.add', { text, conversationId, receiverId: '<RECEIVER_ID>' }, (error) => {
+    Meteor.call('messages.add', { text, conversationId, receiverId }, (error) => {
       if (error) {
-        console.error(`Failed to send message: ${error}`); // Log error to console for debugging
+        console.error(`Failed to send message: ${error}`);
         alert(`Failed to send message: ${error.message}`);
       } else {
         alert('Message sent successfully!');
-        setText(''); // Reset the message text only on successful send
+        setText(''); // Clear the input field after sending
       }
     });
   };
-
-  // Removed the isLoading and users tracker since it's no longer needed for this use case
 
   return (
     <form onSubmit={sendMessage} className="flex flex-col space-y-4 p-4">
@@ -34,17 +30,22 @@ const MessageForm = ({ conversationId }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         className="form-input px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-        disabled={!conversationId} // Disable input if no conversation is selected
+        disabled={!conversationId} // Disable the input if no conversation is selected
       />
       <button
         type="submit"
         className="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-        disabled={!text.trim() || !conversationId} // Disable button if no text or no conversationId
+        disabled={!text.trim() || !conversationId || !receiverId} // Disable the button if necessary fields are missing
       >
         Send
       </button>
     </form>
   );
+};
+
+MessageForm.propTypes = {
+  conversationId: PropTypes.string.isRequired,
+  receiverId: PropTypes.string.isRequired,
 };
 
 export default MessageForm;
