@@ -44,8 +44,8 @@ const MessageForm = ({ conversationId, receiverId }) => {
 };
 
 MessageForm.propTypes = {
-  conversationId: PropTypes.string.isRequired,
-  receiverId: PropTypes.string.isRequired,
+  conversationId: PropTypes.string,
+  receiverId: PropTypes.string,
 };
 
 export default MessageForm;
