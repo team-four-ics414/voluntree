@@ -7,7 +7,7 @@ import { navBar } from './navbar.component';
 import { listNonprofitPage } from './listNonprofit.page';
 import { viewNonprofitPage } from './viewNonprofit.page';
 // import { COMPONENT_IDS } from '../imports/ui/utilities/ComponentIDs';
-import { addNonprofitPage } from './addNonprofit.page';
+// import { addNonprofitPage } from './addNonprofit.page';
 // import { removeItMethod } from '../imports/api/base/BaseCollection.methods';
 
 /* global fixture:false, test:false */
