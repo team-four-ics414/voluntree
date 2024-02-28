@@ -1,11 +1,8 @@
-import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
+import BaseCollection from '../base/BaseCollection';
+import { Messages } from './MessagesCollection';
 
-// Initialize the Mongo collection
-const ConversationsMongoCollection = new Mongo.Collection('conversations');
-
-// Define the schema
+// Define the schema for a conversation
 const ConversationSchema = new SimpleSchema({
   participants: {
     type: Array,
@@ -15,65 +12,82 @@ const ConversationSchema = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    defaultValue: () => new Date(), // Set default value to current date/time
+    defaultValue: () => new Date(), // Use a function for dynamic defaults
+  },
+  lastUpdated: {
+    type: Date,
+    defaultValue: () => new Date(),
   },
   lastMessage: {
     type: String,
     optional: true,
   },
-  lastMessageAt: {
+  lastMessageCreatedAt: {
     type: Date,
     optional: true,
   },
+  // Add any other fields that might be necessary for your application
 });
 
-// Attach the schema to the collection
-ConversationsMongoCollection.attachSchema(ConversationSchema);
-
-class ConversationsCollection {
-  constructor(collection) {
-    this._collection = collection;
+class ConversationsCollection extends BaseCollection {
+  constructor() {
+    super('Conversations', ConversationSchema);
   }
 
-  // Define a new conversation
+  /**
+   * Defines a new conversation.
+   * @param {Object} conversationDetails The details of the conversation.
+   * @returns {String} The ID of the newly created conversation document.
+   */
   define(conversationDetails) {
-    try {
-      const docId = this._collection.insert(conversationDetails);
-      return docId;
-    } catch (error) {
-      throw new Meteor.Error('insert-failed', 'Could not insert conversation.');
-    }
+    const newConversationDetails = {
+      ...conversationDetails,
+      createdAt: conversationDetails.createdAt || new Date(),
+      lastUpdated: conversationDetails.lastUpdated || new Date(),
+    };
+
+    // Implement additional validation or preprocessing as needed
+    const docId = this._collection.insert(newConversationDetails);
+    return docId;
   }
 
-  // Update an existing conversation
+  /**
+   * Adds a message to a conversation and updates the lastUpdated field.
+   * @param {String} conversationId The ID of the conversation.
+   * @param {Object} messageDetails The details of the message to add.
+   * @returns {String} The ID of the newly added message.
+   */
+  addMessage(conversationId, messageDetails) {
+    const messageId = Messages.define({
+      ...messageDetails,
+      conversationId,
+    });
+    this.update(conversationId, { lastUpdated: new Date() }); // Ensure this matches your schema
+    return messageId;
+  }
+
+  /**
+   * Updates an existing conversation.
+   * @param {String} docId The ID of the conversation to update.
+   * @param {Object} updateData The update operation or data to apply.
+   * @returns {Number} The number of documents affected.
+   */
   update(docId, updateData) {
-    try {
-      const updateCount = this._collection.update(docId, { $set: updateData });
-      return updateCount;
-    } catch (error) {
-      throw new Meteor.Error('update-failed', 'Could not update conversation.');
-    }
+    const updateCount = this._collection.update(docId, { $set: updateData });
+    return updateCount;
   }
 
-  // Remove a conversation
+  /**
+   * Removes a conversation.
+   * @param {String} docId The ID of the document to remove.
+   * @returns {Number} The number of documents removed.
+   */
   removeIt(docId) {
-    try {
-      const removeCount = this._collection.remove(docId);
-      return removeCount;
-    } catch (error) {
-      throw new Meteor.Error('remove-failed', 'Could not remove conversation.');
-    }
+    const removeCount = this._collection.remove(docId);
+    return removeCount;
   }
 
-  // Add this method
-  find(selector, options) {
-    return this._collection.find(selector, options);
-  }
-
-  // You can also add a findOne method if needed
-  findOne(selector, options) {
-    return this._collection.findOne(selector, options);
-  }
+  // Implement additional methods as needed, following the structure and practices from BaseCollection
 }
 
-export const Conversations = new ConversationsCollection(ConversationsMongoCollection);
+export const Conversations = new ConversationsCollection();

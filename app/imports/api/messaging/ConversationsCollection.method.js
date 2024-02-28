@@ -1,120 +1,97 @@
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import { check, Match } from 'meteor/check';
 import { Conversations } from './ConversationsCollection';
 import { Messages } from './MessagesCollection';
 
 Meteor.methods({
-  'messages.send'(messageText, participantIds) {
-    check(messageText, String);
+  /**
+   * Creates a new conversation with given participant IDs.
+   *
+   * @param {Array} participantIds - Array of participant user IDs.
+   * @returns {string} The ID of the newly created conversation.
+   * @throws {Meteor.Error} if the operation fails.
+   */
+  'conversations.create'(participantIds) {
     check(participantIds, [String]);
 
+    // Additional validation can be performed here
+
     if (!this.userId) {
-      throw new Meteor.Error('not-authorized', 'You must be logged in to send messages.');
+      throw new Meteor.Error('not-authorized', 'You must be logged in to perform this action.');
     }
 
-    // Ensure all participants include the sender
-    if (!participantIds.includes(this.userId)) {
-      participantIds.push(this.userId);
+    try {
+      const conversationId = Conversations.define({ participants: participantIds });
+      return conversationId;
+    } catch (error) {
+      throw new Meteor.Error('conversations.create.failed', error.message);
     }
+  },
 
-    // Find or create conversation
-    let conversation = Conversations.findOne({ participants: { $all: participantIds, $size: participantIds.length } });
-    if (!conversation) {
-      conversation = {
-        _id: Conversations.insert({
-          participants: participantIds,
-          createdAt: new Date(),
-        }),
-      };
-    }
-
-    // Insert message linked to the conversation
-    Messages.insert({
-      text: messageText,
-      createdAt: new Date(),
-      senderId: this.userId,
-      conversationId: conversation._id,
+  /**
+   * Adds a message to a specified conversation.
+   *
+   * @param {string} conversationId - The ID of the conversation.
+   * @param {Object} messageDetails - The details of the message including text and optionally other data.
+   * @returns {string} The ID of the newly added message.
+   * @throws {Meteor.Error} if the operation fails or validation fails.
+   */
+  'conversations.addMessage'(conversationId, messageDetails) {
+    check(conversationId, String);
+    check(messageDetails, {
+      text: String,
+      // Extend with other fields as necessary
     });
 
-    // Update conversation last message info
-    Conversations.update(conversation._id, {
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized', 'You must be logged in to perform this action.');
+    }
+
+    // Validate messageDetails structure and content as necessary
+
+    try {
+      const messageId = Messages.define({
+        ...messageDetails,
+        conversationId,
+        senderId: this.userId,
+        createdAt: new Date(),
+      });
+      Conversations.update(conversationId, { lastUpdated: new Date() }); // Update the conversation's lastUpdated field
+      return messageId;
+    } catch (error) {
+      throw new Meteor.Error('conversations.addMessage.failed', error.message);
+    }
+  },
+
+  'getLatestMessageForConversations'(conversationIds) {
+    check(conversationIds, [String]);
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized');
+    }
+
+    const latestMessages = conversationIds.map(id => Messages.findOne({ conversationId: id }, { sort: { createdAt: -1 } }));
+
+    return latestMessages.filter(Boolean); // Filter out any undefined entries
+  },
+
+  'addMessage'(conversationId, messageDetails) {
+    check(conversationId, String);
+    check(messageDetails, {
+      text: String,
+    });
+    const messageId = Messages.define({
+      ...messageDetails,
+      conversationId,
+    });
+    this._collection.update(conversationId, {
       $set: {
-        lastMessage: messageText,
-        lastMessageAt: new Date(),
+        lastUpdated: new Date(),
+        lastMessage: messageDetails.text,
+        lastMessageCreatedAt: new Date(),
       },
     });
+    return messageId;
   },
-});
 
-/* Create or Update Conversation
-This method checks if a conversation between participants already exists. If so, it updates the conversation's last message details; if not, it creates a new conversation. */
-Meteor.methods({
-  'conversations.upsert'(participantIds, lastMessageText) {
-    check(participantIds, [String]);
-    check(lastMessageText, String);
-
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized', 'You must be logged in to update conversations.');
-    }
-
-    const conversation = Conversations.findOne({ participants: { $all: participantIds, $size: participantIds.length } });
-
-    if (conversation) {
-      Conversations.update(conversation._id, {
-        $set: {
-          lastMessage: lastMessageText,
-          lastMessageAt: new Date(),
-        },
-      });
-    } else {
-      Conversations.insert({
-        participants: participantIds,
-        createdAt: new Date(),
-        lastMessage: lastMessageText,
-        lastMessageAt: new Date(),
-      });
-    }
-  },
-});
-
-/* Retrieve Conversations for a User
-This method fetches all conversations a user is part of, potentially with some basic pagination support. */
-Meteor.methods({
-  'conversations.forUser'(limit = 10) {
-    check(limit, Number);
-
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized', 'You must be logged in to view conversations.');
-    }
-
-    return Conversations.find({ participants: this.userId }, { sort: { lastMessageAt: -1 }, limit: limit }).fetch();
-  },
-});
-
-/* Send Message in a Conversation
-This method is an extension of the messages.sendByEmail method you provided, tailored for sending messages within a conversation context. */
-Meteor.methods({
-  'messages.sendToConversation'(conversationId, messageText) {
-    check(conversationId, String);
-    check(messageText, String);
-
-    if (!this.userId) {
-      throw new Meteor.Error('not-authorized', 'You must be logged in to send messages.');
-    }
-
-    const conversation = Conversations.findOne({ _id: conversationId });
-    if (!conversation) {
-      throw new Meteor.Error('conversation-not-found', 'No conversation found with that ID.');
-    }
-
-    Messages.define({
-      text: messageText,
-      createdAt: new Date(),
-      senderId: this.userId,
-      conversationId: conversationId,
-    });
-
-    // Update conversation last message info
-    Meteor.call('conversations.upsert', conversation.participants, messageText);
-  },
+  // Additional methods related to conversations and messages can follow here
 });

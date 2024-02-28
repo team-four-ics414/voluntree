@@ -4,16 +4,20 @@ import { Meteor } from 'meteor/meteor';
 const MessageForm = () => {
   const [text, setText] = useState('');
   const [email, setEmail] = useState('');
+  // Removed conversationId state since it's not directly used in this simplified form
 
   const sendMessage = (e) => {
     e.preventDefault();
 
-    Meteor.call('messages.sendByEmail', text, email, (error) => {
+    // Call a method to send a message, assuming it handles conversation logic
+    Meteor.call('messages.sendByEmail', text, email, (error, conversationId) => {
       if (error) {
         alert(error.error);
       } else {
         setText('');
         setEmail('');
+        // Optionally do something with conversationId, like redirecting to a conversation view
+        console.log('Message sent in conversation:', conversationId);
       }
     });
   };

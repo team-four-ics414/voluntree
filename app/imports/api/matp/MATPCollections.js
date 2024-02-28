@@ -6,6 +6,7 @@ import { Nonprofits } from '../nonprofit/NonprofitCollection';
 import { Events } from '../calendar/EventCollection';
 import { Activity } from '../activities/ActivityCollection';
 import { Messages } from '../messaging/MessagesCollection';
+import { Conversations } from '../messaging/ConversationsCollection';
 
 class MATPClass {
   collections;
@@ -24,6 +25,7 @@ class MATPClass {
       Nonprofits,
       Activity,
       Messages,
+      Conversations,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -36,6 +38,7 @@ class MATPClass {
       Nonprofits,
       Activity,
       Messages,
+      Conversations,
     ];
 
     /*
