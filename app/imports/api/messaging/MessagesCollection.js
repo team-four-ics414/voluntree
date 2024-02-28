@@ -9,13 +9,17 @@ const MessageSchema = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    defaultValue: new Date(), // Consider using a function here if you want the default value to be the insertion time
+    defaultValue: () => new Date(), // Ensures a fresh timestamp for each message
   },
   senderId: {
     type: String,
   },
   receiverId: {
     type: String,
+  },
+  conversationId: {
+    type: String,
+    optional: true,
   },
   // Extend with more fields as needed
 });

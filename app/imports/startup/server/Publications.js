@@ -6,7 +6,7 @@ import { Activity } from '../../api/activities/ActivityCollection';
 import { Organizations } from '../../api/organization/OrganizationCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Messages } from '../../api/messaging/MessagesCollection';
-
+import { Conversations } from '../../api/messaging/ConversationsCollection';
 // Call publish for all the collections.
 MATPCollections.collections.forEach(c => c.publish());
 
@@ -20,78 +20,110 @@ Meteor.publish(null, function () {
   this.ready();
 });
 
-Meteor.publish('calendar.all', function publishAll() {
-  return Calendars.find({}); // Make sure Calendars is the instance of your collection
+// Publish all calendars
+Meteor.publish('calendar.all', function publishCalendarAll() {
+  return Calendars.find({});
 });
 
+// Publish recent activities
 Meteor.publish('recentActivities.public', function publishRecentActivities() {
-  // No user authentication check here
   return Activity.find({}, { sort: { createdAt: -1 }, limit: 3 });
 });
 
-Meteor.publish('calendar.thisWeek', function () {
+// Publish this week's calendars
+Meteor.publish('calendar.thisWeek', function publishCalendarThisWeek() {
   const today = new Date();
-  const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1))); // Adjust to your week start (e.g., Sunday or Monday)
+  const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + (today.getDay() === 0 ? -6 : 1)));
   startOfWeek.setHours(0, 0, 0, 0);
-  const endOfWeek = new Date(startOfWeek);
-  endOfWeek.setDate(startOfWeek.getDate() + 6);
+  const endOfWeek = new Date(startOfWeek.getTime() + 6 * 24 * 60 * 60 * 1000);
   endOfWeek.setHours(23, 59, 59, 999);
 
   return Calendars.find({
-    startDate: {
-      $gte: startOfWeek,
-      $lte: endOfWeek,
-    },
+    startDate: { $gte: startOfWeek, $lte: endOfWeek },
   });
 });
 
-Meteor.publish('organizations.custom', function () {
+// Publish organizations with custom access control
+Meteor.publish('organizations.custom', function publishOrganizationsCustom() {
   if (Roles.userIsInRole(this.userId, ['admin'])) {
-    // Admin users get all data
     return Organizations.find({});
   } if (this.userId) {
-    // Logged-in but non-admin users get all except 'createdAt' and 'createdBy'
     return Organizations.find({}, {
-      fields: {
-        name: 1,
-        type: 1,
-        missionStatement: 1,
-        contactEmail: 1,
-        website: 1,
-        description: 1,
-        email: 1,
-        phoneNumber: 1,
-        address: 1,
-        // 'createdAt' and 'createdBy' are excluded for non-admins
-      },
+      fields: Organizations.publicFields,
     });
   }
-  // Non-logged-in users get limited fields
   return Organizations.find({}, {
-    fields: {
-      name: 1,
-      type: 1,
-      missionStatement: 1,
-      email: 1,
-      website: 1,
-      phoneNumber: 1,
-      address: 1,
-    },
+    fields: Organizations.limitedPublicFields,
   });
+
 });
 
-Meteor.publish('UserProfilesPublication', function publish() {
-  if (this.userId) {
-    return UserProfiles.find();
+// Publish user profiles
+Meteor.publish('UserProfilesPublication', function publishUserProfiles() {
+  if (!this.userId) {
+    return this.ready();
   }
-  return this.ready();
+  return UserProfiles.find();
 });
 
-Meteor.publish('CurrentUserProfile', function publish() {
+// Publish current user profile
+Meteor.publish('CurrentUserProfile', function publishCurrentUserProfile() {
   if (!this.userId) {
     return this.ready();
   }
   return UserProfiles.find({ userId: this.userId });
+});
+
+// Publish all messages relevant to the current user
+Meteor.publish('userMessages', function publishUserMessages() {
+  if (!this.userId) {
+    return this.ready();
+  }
+  return Messages.find({ $or: [{ senderId: this.userId }, { receiverId: this.userId }] });
+});
+
+// Publish conversations list for the current user
+Meteor.publishComposite('conversations.list', function () {
+  if (!this.userId) {
+    return this.ready();
+  }
+
+  return {
+    find() {
+      // First, find the conversations where the user is a participant
+      return Conversations.find({
+        participants: { $in: [this.userId] },
+      });
+    },
+    children: [
+      {
+        find(conversation) {
+          // Then, for each conversation, find the last message
+          return Messages.find({ conversationId: conversation._id }, { sort: { createdAt: -1 }, limit: 1 });
+        },
+      },
+      {
+        find(conversation) {
+          // Additionally, find the participant's user profiles for each conversation
+          return UserProfiles.find({ userId: { $in: conversation.participants } });
+        },
+      },
+    ],
+  };
+});
+
+// Publish messages in a specific conversation
+Meteor.publish('messages.inConversation', function publishMessagesInConversation(conversationId) {
+  if (!this.userId) {
+    return this.ready();
+  }
+
+  // Verify user is a participant in the conversation
+  const isParticipant = Conversations.findOne({ _id: conversationId, participants: this.userId });
+  if (!isParticipant) {
+    return this.ready();
+  }
+  return Messages.find({ conversationId: conversationId });
 });
 
 Meteor.publish('allMessages', function publishAllMessages() {
@@ -114,11 +146,4 @@ Meteor.publish('allMessages', function publishAllMessages() {
     },
 
   });
-});
-
-Meteor.publish('userName', function publishUserName() {
-  if (!this.userId) {
-    return this.ready();
-  }
-  return UserProfiles.publishUserName();
 });
