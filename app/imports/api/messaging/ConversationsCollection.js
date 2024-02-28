@@ -26,6 +26,20 @@ const ConversationSchema = new SimpleSchema({
     type: Date,
     optional: true,
   },
+  status: {
+    type: String,
+    allowedValues: ['seen', 'delivered', 'sent'],
+    optional: true,
+  },
+  type: {
+    type: String,
+    allowedValues: ['personal', 'work', 'other'],
+    optional: true,
+  },
+  title: {
+    type: String,
+    optional: true,
+  },
   // Add any other fields that might be necessary for your application
 });
 
@@ -85,6 +99,36 @@ class ConversationsCollection extends BaseCollection {
   removeIt(docId) {
     const removeCount = this._collection.remove(docId);
     return removeCount;
+  }
+
+  /**
+   * Updates the status of a conversation.
+   * @param {String} conversationId The ID of the conversation.
+   * @param {String} status The new status of the conversation.
+   * @returns {Number} The number of documents affected.
+   */
+  updateStatus(conversationId, status) {
+    return this.update(conversationId, { status });
+  }
+
+  /**
+   * Sets the title of a conversation, useful for group chats.
+   * @param {String} conversationId The ID of the conversation.
+   * @param {String} title The title of the conversation.
+   * @returns {Number} The number of documents affected.
+   */
+  setTitle(conversationId, title) {
+    return this.update(conversationId, { title });
+  }
+
+  /**
+   * Changes the type of a conversation.
+   * @param {String} conversationId The ID of the conversation.
+   * @param {String} type The new type of the conversation.
+   * @returns {Number} The number of documents affected.
+   */
+  updateType(conversationId, type) {
+    return this.update(conversationId, { type });
   }
 
   // Implement additional methods as needed, following the structure and practices from BaseCollection

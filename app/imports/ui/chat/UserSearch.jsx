@@ -3,24 +3,24 @@ import { Meteor } from 'meteor/meteor';
 
 const UserSearch = ({ onUserSelected }) => {
   const [email, setEmail] = useState('');
+  const [error, setError] = useState(''); // State to store the error message
 
   const handleSearch = () => {
-    // Implement the logic to search for the user by email.
-    // This might involve calling a Meteor method or querying a collection.
-    // For demonstration, let's assume we have a method 'users.findByEmail'
+    setError(''); // Clear previous error messages
     Meteor.call('users.findByEmail', email, (error, user) => {
       if (error) {
         console.error('Search error:', error);
+        setError(error.reason || 'Failed to search for user.'); // Set the error message
       } else if (user) {
         onUserSelected(user);
       } else {
-        alert('No user found with that email');
+        setError('No user found with that email.'); // Set a custom error message
       }
     });
   };
 
   return (
-    <div className="flex items-center space-x-2 p-4">
+    <div className="flex flex-col items-center space-y-2 p-4">
       <input
         type="text"
         placeholder="Search user by email..."
@@ -29,6 +29,7 @@ const UserSearch = ({ onUserSelected }) => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <button className="btn btn-primary" onClick={handleSearch}>Search</button>
+      {error && <p className="text-red-500">{error}</p>} {/* Display error message */}
     </div>
   );
 };

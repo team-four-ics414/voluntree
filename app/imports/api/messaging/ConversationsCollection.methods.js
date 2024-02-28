@@ -1,5 +1,8 @@
 import { Meteor } from 'meteor/meteor';
-import { check, Match } from 'meteor/check';
+import { check } from 'meteor/check';
+import SimpleSchema from 'simpl-schema';
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { CallPromiseMixin } from 'meteor/didericis:callpromise-mixin';
 import { Conversations } from './ConversationsCollection';
 import { Messages } from './MessagesCollection';
 
@@ -93,5 +96,88 @@ Meteor.methods({
     return messageId;
   },
 
+  /**
+   * Updates the status of a conversation (e.g., seen, delivered).
+   */
+  updateConversationStatus: new ValidatedMethod({
+    name: 'conversations.updateStatus',
+    mixins: [CallPromiseMixin],
+    validate: new SimpleSchema({
+      conversationId: { type: String },
+      status: { type: String, allowedValues: ['seen', 'delivered', 'sent'] },
+    }).validator(),
+    run({ conversationId, status }) {
+      if (!this.userId) {
+        throw new Meteor.Error('not-authorized');
+      }
+
+      return Conversations.update(conversationId, {
+        $set: { status },
+      });
+    },
+  }),
+
+  /**
+   * Sets or updates the title of a conversation.
+   */
+  updateConversationTitle: new ValidatedMethod({
+    name: 'conversations.updateTitle',
+    mixins: [CallPromiseMixin],
+    validate: new SimpleSchema({
+      conversationId: { type: String },
+      title: { type: String },
+    }).validator(),
+    run({ conversationId, title }) {
+      if (!this.userId) {
+        throw new Meteor.Error('not-authorized');
+      }
+
+      return Conversations.update(conversationId, {
+        $set: { title },
+      });
+    },
+  }),
+
+  /**
+   * Changes the type of a conversation.
+   */
+  updateConversationType: new ValidatedMethod({
+    name: 'conversations.updateType',
+    mixins: [CallPromiseMixin],
+    validate: new SimpleSchema({
+      conversationId: { type: String },
+      type: { type: String, allowedValues: ['personal', 'work', 'other'] },
+    }).validator(),
+    run({ conversationId, type }) {
+      if (!this.userId) {
+        throw new Meteor.Error('not-authorized');
+      }
+
+      return Conversations.update(conversationId, {
+        $set: { type },
+      });
+    },
+  }),
+
+  'conversations.initiate'(userId) {
+    console.log('Initiating conversation with userId:', userId);
+    check(userId, String);
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized', 'You must be logged in to initiate a conversation.');
+    }
+
+    // Check if a conversation between these two users already exists
+    let conversation = Conversations.findOne({ participants: { $all: [this.userId, userId] } });
+
+    if (!conversation) {
+      // If not, create a new conversation
+      conversation = Conversations.define({ participants: [this.userId, userId] });
+      return conversation;
+    }
+
+    // If a conversation already exists, return its ID
+    return conversation._id;
+  },
   // Additional methods related to conversations and messages can follow here
 });
+console.log('Conversations methods file is loaded.');
