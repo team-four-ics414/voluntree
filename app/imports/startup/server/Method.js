@@ -34,7 +34,7 @@ Meteor.methods({
       const response = await HTTP.call('POST', 'https://api.openai.com/v1/moderations', {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${'YOUR-KEY-HERE'}`,
+          Authorization: `Bearer ${api_keys ? api_keys.openAi : 'YOUR-KEY-HERE'}`,
         },
         data: {
           input: text,
