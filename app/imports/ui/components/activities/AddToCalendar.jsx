@@ -62,7 +62,7 @@ const AddToCalendar = ({ activity }) => {
 
   return (
     <>
-      <Button variant="success" onClick={openModal}>Add to Calendar</Button>
+      <Button variant="success" onClick={openModal}>Add Calendar</Button>
       <Modal show={showModal} onHide={closeModal}>
         <Modal.Header closeButton>
           <Modal.Title>Add to Calendar</Modal.Title>

@@ -77,7 +77,7 @@ const ActivityDashboard = ({ activities, isLoading }) => {
             <div className="flex items-center space-x-2">
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded" onClick={() => openModal(activity)}>Edit</button>
               <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onClick={() => handleDelete(activity._id)}>Delete</button>
-              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded" onClick={() => removeCalendarEvents(activity._id)}>Remove Calendar Events</button>
+              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded" onClick={() => removeCalendarEvents(activity._id)}>Remove Calendar</button>
               <AddToCalendar activity={activity} isAlreadyAdded={checkActivityAddedStatus(activity._id)} />
             </div>
           </div>

@@ -5,7 +5,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import { Messages } from '../../api/messaging/MessagesCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 
-const ConversationDetails = ({ messages, isLoading, userProfiles, currentUserProfile }) => {
+const ConversationDetails = ({ messages, isLoading, currentUserProfile }) => {
   const endOfMessagesRef = useRef(null);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ ConversationDetails.propTypes = {
   })).isRequired,
   isLoading: PropTypes.bool.isRequired,
   userProfiles: PropTypes.array.isRequired,
-  currentUserProfile: PropTypes.object, // Added prop type for currentUserProfile
+  currentUserProfile: PropTypes.object,
 };
 
 export default withTracker((props) => {

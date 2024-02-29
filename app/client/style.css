@@ -134,3 +134,7 @@ body {
   color: #004c8b;
   font-weight: bold;
 }
+
+.gradient-custom {
+  background-image: linear-gradient(to bottom right, rgb(158, 214, 212), rgb(0, 76, 91));
+}
