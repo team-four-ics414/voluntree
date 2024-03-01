@@ -8,6 +8,11 @@
   --matr-navbar-text-color: black;
 }
 
+/*Navbar*/
+.nav-link {
+  margin: 0 25px 0 25px;
+}
+
 /* Change bootstrap variable values.
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
  */
