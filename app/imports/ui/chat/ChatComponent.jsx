@@ -183,7 +183,7 @@ const ChatComponent = () => {
                               messageRefs.current[message._id] = el;
                             }}
                           >
-                            <div className="backdrop-blur-md rounded-lg p-4 shadow">
+                            <div className="= rounded-lg p-4 shadow">
                               <p className="font-bold text-white">{senderName}</p>
                               <p className="text-white break-words message-content">{message.text}</p>
                               <p className="text-xs text-white">{new Date(message.createdAt).toLocaleString()}</p>
@@ -199,7 +199,7 @@ const ChatComponent = () => {
             }
             <div className="mt-4">
               <textarea
-                className="form-control w-full rounded-lg bg-white/20 p-2 text-white"
+                className="form-control w-full rounded-lg bg-white/20 p-2 text-white gradient-custom border-none"
                 rows="4"
                 placeholder="Type a message..."
                 value={currentMessage}
