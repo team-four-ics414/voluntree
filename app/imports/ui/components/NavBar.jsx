@@ -19,22 +19,26 @@ const NavBar = () => {
         <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/"><Image src="/images/voluntree-logo.png" width="100px" /></Navbar.Brand>
         <Navbar.Toggle aria-controls={COMPONENT_IDS.NAVBAR_COLLAPSE} />
         <Navbar.Collapse id={COMPONENT_IDS.NAVBAR_COLLAPSE}>
-          <Nav className="me-auto justify-content-start">
+          <Nav className="mx-auto">
             {currentUser ? ([
-              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT} as={NavLink} to="/nonprofits" key="list-nonprofit">List Nonprofits</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_DEVELOPMENT} as={NavLink} to="/development" key="development">Development</Nav.Link>,
             ]) : ''}
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
               [
-                <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT_ADMIN} as={NavLink} to="/nonprofits-admin" key="admin-nonprofits">List Nonprofits (Admin)</Nav.Link>,
+                // <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT_ADMIN} as={NavLink} to="/nonprofits-admin" key="admin-nonprofits">List Nonprofits (Admin)</Nav.Link>,
                 <NavDropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} title="Manage" key="manage-dropdown">
-                  <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database"><CloudDownload /> Database</NavDropdown.Item>
+                  <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database"><CloudDownload />Database</NavDropdown.Item>
                 </NavDropdown>,
               ]
             ) : ''}
+            <Nav.Link id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/" key="landing">Home</Nav.Link>
+            <NavDropdown id={COMPONENT_IDS.NAVBAR_FIND_DROPDOWN} title="Find">
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT} as={NavLink} to="/nonprofits" key="list-nonprofit">Nonprofits</Nav.Link>
+              <Nav.Link id="opportunities-page" as={NavLink} to="/opportunities" key="list">Opportunities</Nav.Link>
+            </NavDropdown>
+            <Nav.Link id="faq" as={NavLink} to="/faq" key="faq">FAQ</Nav.Link>
           </Nav>
           <Nav className="justify-content-end">
-            <Nav.Link id="opportunities-page" as={NavLink} to="/opportunities" key="list">Find Opportunities</Nav.Link>
-            <Nav.Link id="faq" as={NavLink} to="/faq" key="faq">FAQ</Nav.Link>
             {currentUser === '' ? (
               <NavDropdown id={COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN} title="Login">
                 <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_LOGIN_DROPDOWN_SIGN_IN} as={NavLink} to="/signin"><PersonFill />Sign in</NavDropdown.Item>

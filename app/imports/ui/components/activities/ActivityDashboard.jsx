@@ -45,10 +45,10 @@ const ActivityDashboard = ({ activities, isLoading }) => {
   };
 
   const removeCalendarEvents = (activityId) => {
-    Meteor.call('calendar.removeByActivityId', activityId, (error, response) => {
-      if (error) {
-        console.error('Error removing calendar events:', error);
-        alert(`Error: ${error.message}`);
+    Meteor.call('calendar.removeByActivityId', activityId, (removeerror, response) => {
+      if (removeerror) {
+        console.error('Error removing calendar events:', removeerror);
+        alert(`Error: ${removeerror.message}`);
       } else {
         console.log('Calendar events removed:', response);
         alert('Calendar events removed successfully.');
@@ -67,7 +67,7 @@ const ActivityDashboard = ({ activities, isLoading }) => {
     <div className="p-5">
       <h2 className="text-2xl font-bold mb-4">Activity Dashboard</h2>
       {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">{error}</div>}
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4" onClick={() => openModal()}>Add Activity</button>
+      <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4" onClick={() => openModal()}>Add Activity</button>
       <div className="divide-y divide-gray-200">
         {activities.map((activity) => (
           <div className="flex justify-between items-center py-3" key={activity._id}>
@@ -78,6 +78,13 @@ const ActivityDashboard = ({ activities, isLoading }) => {
               <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded" onClick={() => openModal(activity)}>Edit</button>
               <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onClick={() => handleDelete(activity._id)}>Delete</button>
               <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded" onClick={() => removeCalendarEvents(activity._id)}>Remove Calendar</button>
+              <button
+                type="button" // Add the type attribute
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
+                onClick={() => openModal(activity)}
+              >Edit
+              </button>              <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onClick={() => handleDelete(activity._id)}>Delete</button>
+              <button type="button" className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded" onClick={() => removeCalendarEvents(activity._id)}>Remove Calendar Events</button>
               <AddToCalendar activity={activity} isAlreadyAdded={checkActivityAddedStatus(activity._id)} />
             </div>
           </div>
@@ -105,7 +112,7 @@ const ActivityDashboard = ({ activities, isLoading }) => {
                 </div>
               </div>
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button onClick={closeModal} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                <button type="button" onClick={closeModal} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                   Close
                 </button>
               </div>

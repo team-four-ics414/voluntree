@@ -19,7 +19,7 @@ import SignIn from '../pages/SignIn';
 import AddNonprofit from '../pages/AddNonprofit';
 import EditNonprofit from '../pages/EditNonprofit';
 import ListNonprofit from '../pages/ListNonprofit';
-import ListNonprofitAdmin from '../pages/ListNonprofitAdmin';
+// import ListNonprofitAdmin from '../pages/ListNonprofitAdmin';
 import NotAuthorized from '../pages/NotAuthorized';
 import { ROLE } from '../../api/role/Role';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -30,6 +30,7 @@ import ListOpportunities from '../pages/ListOpportunities';
 import ViewNonprofit from '../pages/ViewNonprofit';
 import MapSearch from '../pages/MapSearch';
 import UserProfile from '../pages/UserProfile';
+import Development from '../pages/Development';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -53,21 +54,21 @@ const App = () => {
             <Route path="/opportunities" element={<ListOpportunities />} />
             <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
             <Route path="/list" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
-            <Route path="/nonprofits" element={<ProtectedRoute ready={ready}><ListNonprofit /></ProtectedRoute>} />
+            <Route path="/nonprofits" element={<ListNonprofit />} />
             <Route path="/mapsearch" element={<ProtectedRoute><MapSearch /></ProtectedRoute>} />
             <Route path="/add" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
             <Route path="/add-nonprofit" element={<ProtectedRoute><AddNonprofit /></ProtectedRoute>} />
-            <Route path="/view-nonprofit/:_id" element={<ProtectedRoute><ViewNonprofit /></ProtectedRoute>} />
+            <Route path="/view-nonprofit/:_id" element={<ViewNonprofit />} />
             <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
             <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
             <Route path="/chat" element={<ProtectedRoute><SideChat /></ProtectedRoute>} />
             <Route path="/edit-nonprofit/:_id" element={<ProtectedRoute><EditNonprofit /></ProtectedRoute>} />
             <Route path="/admin" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
-            <Route path="/nonprofits-admin" element={<AdminProtectedRoute ready={ready}><ListNonprofitAdmin /></AdminProtectedRoute>} />
+            {/* <Route path="/nonprofits-admin" element={<AdminProtectedRoute ready={ready}><ListNonprofitAdmin /></AdminProtectedRoute>} /> */}
             <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
             <Route path="/notauthorized" element={<NotAuthorized />} />
-
+            <Route path="/development" element={<ProtectedRoute><Development /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
