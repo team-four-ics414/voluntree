@@ -14,6 +14,7 @@ import ProfileList from '../components/profile/ProfileList';
 import ProfilesDisplay from '../components/profile/ProfileCardDisplay';
 import ChatInterface from '../chat/ChatInteface';
 import Test from '../components/chat/Test';
+import ChatComponent from '../chat/ChatComponent';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
@@ -123,6 +124,7 @@ const Landing = () => (
       <ProfilesDisplay />
       <ChatInterface />
       <Test />
+      <ChatComponent />
     </Container>
   </Container>
 );

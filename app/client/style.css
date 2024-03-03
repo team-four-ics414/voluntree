@@ -138,3 +138,22 @@ body {
 .gradient-custom {
   background-image: linear-gradient(to bottom right, rgb(158, 214, 212), rgb(0, 76, 91));
 }
+
+/* Chat CSS Start */
+.text-white.break-words { /* Assuming this is the class applied to your message text */
+  word-wrap: break-word;
+}
+
+.message-container {
+  max-width: 80%; /* Adjust as needed */
+}
+
+.message-text {
+  word-wrap: break-word;
+}
+
+.message-container .message-content {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal !important; /* Force override */
+}
