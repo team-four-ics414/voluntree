@@ -19,4 +19,5 @@ export const PAGE_IDS = {
   LIST_NONPROFIT: 'list-nonprofit',
   LIST_NONPROFIT_ADMIN: 'list-nonprofit-admin',
   VIEW_NONPROFIT: 'view-nonprofit',
+  USER_DASHBOARD: 'user-dashboard',
 };
