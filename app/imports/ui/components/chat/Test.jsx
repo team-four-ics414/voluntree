@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ChatComponent = () => {
+const TestChatComponent = () => {
   const [currentMessage, setCurrentMessage] = useState('');
 
   // Dummy data for members and messages.
@@ -78,4 +78,4 @@ const ChatComponent = () => {
   );
 };
 
-export default ChatComponent;
+export default TestChatComponent;

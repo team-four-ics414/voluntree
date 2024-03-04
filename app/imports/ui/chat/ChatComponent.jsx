@@ -4,6 +4,7 @@ import { useTracker } from 'meteor/react-meteor-data';
 import { Conversations } from '../../api/messaging/ConversationsCollection';
 import { Messages } from '../../api/messaging/MessagesCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
+import { getTimeSince } from '../utilities/GetTimeSince';
 
 const ChatComponent = () => {
   const [activeConversationId, setActiveConversationId] = useState(null);
@@ -130,15 +131,14 @@ const ChatComponent = () => {
         <div className="flex flex-wrap -mx-2 ">
           {/* Members/Conversations List */}
           <div className="w-full md:w-6/12 lg:w-5/12 xl:w-5/12 px-2 mb-4 md:mb-0">
-            <h5 className="text-center text-white font-bold mb-3">Members</h5>
+            <h5 className="text-center text-white font-bold mb-3">Conversations</h5>
             <ul className="mask-custom rounded-2xl p-4 overflow-auto" style={{ maxHeight: '80vh' }}>
               {conversations.map(({ _id, latestMessage, profile }) => (
-                <li key={_id} aria-label={`Conversation with ${profile?.firstName} ${profile?.lastName}`}>
+                <li key={_id} className="border-b border-white/30">
                   <button
                     type="button"
-                    className={`flex justify-between items-center p-2 border-b 
-                    border-white/30 but ${activeConversationId === _id ?
-                  'backdrop-blur-md rounded-lg p-4 shadow' : ''}`}
+                    aria-label={`Conversation with ${profile?.firstName} ${profile?.lastName}`}
+                    className={`w-full text-left flex justify-between items-center p-2 ${activeConversationId === _id ? 'backdrop-blur-md rounded-lg shadow' : ''}`}
                     onClick={() => handleSelectConversation(_id)}
                   >
                     <div className="flex items-center">
@@ -148,11 +148,15 @@ const ChatComponent = () => {
                         <p className="text-white text-sm">{truncateText(latestMessage?.text, 20)}</p>
                       </div>
                     </div>
-                    {/* Placeholder for unread message count, if applicable */}
+                    <div>
+                      <p className="text-white text-sm mb-1">{latestMessage ? `${getTimeSince(latestMessage.createdAt)} ago` : 'No messages'}</p>
+                      {latestMessage?.unreadCount > 0 && <span className="badge bg-danger float-end">{latestMessage?.unreadCount}</span>}
+                    </div>
                   </button>
                 </li>
               ))}
             </ul>
+
           </div>
 
           {/* Messages Display Area */}
