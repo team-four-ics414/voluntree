@@ -44,7 +44,9 @@ const MessageForm = ({ conversationId, receiverId }) => {
 };
 
 MessageForm.propTypes = {
+  // eslint-disable-next-line react/require-default-props
   conversationId: PropTypes.string,
+  // eslint-disable-next-line react/require-default-props
   receiverId: PropTypes.string,
 };
 

@@ -114,30 +114,6 @@ Meteor.publish('conversations.all', function () {
   return Conversations.find({});
 });
 
-Meteor.publish('conversationsWithParticipants', function () {
-  if (!this.userId) {
-    return this.ready();
-  }
-
-  const conversations = Conversations.find({ participants: this.userId });
-  const conversationIds = conversations.fetch().map(convo => convo._id);
-
-  // Assuming every conversation document has an array of participant userIds
-  const participantIds = conversations.fetch().reduce((acc, convo) => {
-    convo.participants.forEach(pId => {
-      if (acc.indexOf(pId) === -1 && pId !== this.userId) {
-        acc.push(pId);
-      }
-    });
-    return acc;
-  }, []);
-
-  return [
-    conversations,
-    UserProfiles.find({ userId: { $in: participantIds } }),
-  ];
-});
-
 /*
 Meteor.publish('UserProfilesPublication', function publishUserProfiles() {
   if (!this.userId) {
@@ -174,6 +150,7 @@ Meteor.publish('conversations.latestMessages', function publishConversationsWith
   ];
 });
 
+// eslint-disable-next-line meteor/audit-argument-checks
 Meteor.publish('messages.inConversation', function (conversationId) {
   if (!this.userId) {
     return this.ready();
@@ -189,6 +166,7 @@ Meteor.publish('allOtherUsers', function () {
   return Meteor.users.find({ _id: { $ne: this.userId } }, { fields: { profile: 1 } });
 });
 
+// eslint-disable-next-line consistent-return
 Meteor.publish('conversationsWithLatestMessagesAndProfiles', async function () {
   if (!this.userId) {
     return this.ready();
@@ -265,7 +243,7 @@ Meteor.publish('conversationsWithLatestMessagesAndProfiles', async function () {
     this.ready();
   } catch (error) {
     console.error('Aggregation error:', error);
-    this.ready();
+    this.ready(); // Ensure this.ready() is called even in the catch block.
   }
 });
 

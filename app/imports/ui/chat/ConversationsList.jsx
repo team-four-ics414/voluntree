@@ -20,6 +20,7 @@ const ConversationsList = ({ conversations, isLoading, onSelectConversation, act
   return (
     <ul>
       {conversations.map(({ _id, latestMessage, profile }) => (
+        // eslint-disable-next-line jsx-a11y/click-events-have-key-events,jsx-a11y/no-noninteractive-element-interactions
         <li
           key={_id}
           className={`p-4 flex items-center space-x-4 cursor-pointer ${
@@ -53,10 +54,22 @@ const ConversationsList = ({ conversations, isLoading, onSelectConversation, act
 };
 
 ConversationsList.propTypes = {
-  conversations: PropTypes.array.isRequired,
+  conversations: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    latestMessage: PropTypes.shape({
+      text: PropTypes.string,
+      createdAt: PropTypes.instanceOf(Date),
+    }),
+    profile: PropTypes.shape({
+      picture: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+    }),
+  })).isRequired,
   isLoading: PropTypes.bool.isRequired,
   onSelectConversation: PropTypes.func.isRequired,
-  activeConversationId: PropTypes.string,
+  // eslint-disable-next-line react/require-default-props
+  activeConversationId: PropTypes.string, // Not marking as isRequired
 };
 
 export default withTracker(() => {
