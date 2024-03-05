@@ -7,7 +7,7 @@ import { UserProfiles } from './UserProfileCollection';
 import { MATPCollections } from '../matp/MATPCollections';
 import { testDefine, testUpdate } from '../utilities/test-helpers';
 
-/* eslint prefer-arrow-callback: "off",  no-unused-expressions: "off" */
+/* eslint prefer-arrow-callback: "off", no-unused-expressions: "off" */
 /* eslint-env mocha */
 
 const collectionName = UserProfiles.getCollectionName();
@@ -16,55 +16,58 @@ if (Meteor.isServer) {
   describe(collectionName, function testSuite() {
     const collection = MATPCollections.getCollection(collectionName);
 
-    before(function setup() {
-      removeAllEntities();
+    before(async function setup() {
+      await removeAllEntities();
     });
 
-    after(function teardown() {
-      removeAllEntities();
+    after(async function teardown() {
+      await removeAllEntities();
     });
 
-    it('Can define and removeIt', function test1(done) {
-      fc.assert(
-        fc.property(
+    it('Can define and removeIt', async function test1() {
+      await fc.assert(
+        fc.asyncProperty(
           fc.lorem({ maxCount: 1 }),
           fc.lorem({ maxCount: 1 }),
-          (firstName, lastName) => {
+          async (firstName, lastName) => {
             const email = faker.internet.email();
             const definitionData = { email, firstName, lastName };
-            testDefine(collection, definitionData);
+            await testDefine(collection, definitionData);
           },
         ),
       );
-      done();
     });
 
-    it('Cannot define duplicates', function test2() {
+    it('Cannot define duplicates', async function test2() {
       const email = faker.internet.email();
       const firstName = faker.name.firstName();
       const lastName = faker.name.lastName();
-      const docID1 = collection.define({ email, firstName, lastName });
-      const docID2 = collection.define({ email, firstName, lastName });
-      expect(docID1).to.equal(docID2);
+      const docID1 = await collection.define({ email, firstName, lastName });
+      try {
+        await collection.define({ email, firstName, lastName });
+        throw new Error('Duplicate definition did not throw an error');
+      } catch (error) {
+        expect(error.message).not.to.equal('Duplicate definition did not throw an error');
+      }
+      await collection.removeIt(docID1);
     });
 
-    it('Can update', function test3(done) {
-      const email = faker.internet.email();
-      const firstName = faker.name.firstName();
-      const lastName = faker.name.lastName();
-      const password = faker.internet.password();
-      const docID = collection.define({ email, firstName, lastName, password });
-      fc.assert(
-        fc.property(
+    it('Can update', async function test3() {
+      await fc.assert(
+        fc.asyncProperty(
           fc.lorem({ maxCount: 1 }),
           fc.lorem({ maxCount: 1 }),
-          (fName, lName) => {
+          async (fName, lName) => {
+            const email = faker.internet.email();
+            const firstName = faker.name.firstName();
+            const lastName = faker.name.lastName();
+            const password = faker.internet.password();
+            const docID = await collection.define({ email, firstName, lastName, password });
             const updateData = { firstName: fName, lastName: lName };
-            testUpdate(collection, docID, updateData);
+            await testUpdate(collection, docID, updateData);
           },
         ),
       );
-      done();
     });
   });
 }
