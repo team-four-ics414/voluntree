@@ -5,6 +5,7 @@ import { Conversations } from '../../api/messaging/ConversationsCollection';
 import { Messages } from '../../api/messaging/MessagesCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { getTimeSince } from '../utilities/GetTimeSince';
+import UserSearch from './UserSearch';
 
 const ChatComponent = () => {
   const [activeConversationId, setActiveConversationId] = useState(null);
@@ -121,9 +122,22 @@ const ChatComponent = () => {
     return <div className="text-center">Loading conversations...</div>;
   }
 
-  function truncateText(text, maxLength) {
+  function truncateText(text = '', maxLength) {
     return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   }
+
+  const handleUserSelected = (user) => {
+    const userId = user._id;
+    console.log('Calling initiate with userId:', userId);
+    Meteor.call('conversations.initiate', userId, (error, result) => {
+      if (error) {
+        console.error('Error initiating conversation:', error);
+      } else {
+        console.log('Conversation initiated with ID:', result);
+        setActiveConversationId(result);
+      }
+    });
+  };
 
   return (
     <section className="h-100 gradient-custom h-screen">
@@ -132,7 +146,10 @@ const ChatComponent = () => {
           {/* Members/Conversations List */}
           <div className="w-full md:w-6/12 lg:w-5/12 xl:w-5/12 px-2 mb-4 md:mb-0">
             <h5 className="text-center text-white font-bold mb-3">Conversations</h5>
+
             <ul className="mask-custom rounded-2xl p-4 overflow-auto" style={{ maxHeight: '80vh' }}>
+              <UserSearch onUserSelected={handleUserSelected} />
+
               {conversations.map(({ _id, latestMessage, profile }) => (
                 <li key={_id} className="border-b border-white/30">
                   <button
