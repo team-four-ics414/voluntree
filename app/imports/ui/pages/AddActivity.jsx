@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, DateField, ErrorsField, HiddenField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
@@ -18,7 +18,11 @@ try {
 }
 
 const formSchema = new SimpleSchema({
-  time: String,
+  startTime: Date,
+  endTime: {
+    type: Date,
+    optional: true, // Assuming endTime might be optional
+  },
   name: String,
   details: String,
   createdAt: {
@@ -128,7 +132,8 @@ const AddActivity = () => {
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField className="border-light-blue" name="time" />
+                      <DateField className="border-light-blue" name="startTime" label="Start Time" />
+                      <DateField className="border-light-blue" name="endTime" label="End Time" />
                       <TextField className="border-light-blue" name="name" />
                       <TextField className="border-light-blue" name="details" />
                       <TextField className="border-light-blue" name="benefits" />

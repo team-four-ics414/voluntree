@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 const ActivityForm = ({ activity, onSuccess }) => {
   const [formData, setFormData] = useState({
     name: '',
-    time: '',
+    startTime: '',
+    endTime: '',
     details: '',
     createdAt: new Date(), // This should be handled on the server-side ideally
     benefits: '',
@@ -22,7 +23,8 @@ const ActivityForm = ({ activity, onSuccess }) => {
     if (activity) {
       setFormData({
         name: activity.name,
-        time: activity.time,
+        startTime: activity.startTime,
+        endTime: activity.endTime,
         details: activity.details,
         createdAt: activity.createdAt,
         benefits: activity.benefits,
@@ -90,11 +92,11 @@ const ActivityForm = ({ activity, onSuccess }) => {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Time</Form.Label>
+        <Form.Label>startTime</Form.Label>
         <Form.Control
           type="text"
           name="time"
-          value={formData.time}
+          value={formData.startTime}
           onChange={handleChange}
           required
         />
@@ -183,7 +185,8 @@ ActivityForm.propTypes = {
   activity: PropTypes.shape({
     _id: PropTypes.string,
     name: PropTypes.string,
-    time: PropTypes.string,
+    startTime: PropTypes.instanceOf(Date),
+    endTime: PropTypes.instanceOf(Date),
     details: PropTypes.string,
     createdAt: PropTypes.instanceOf(Date),
     benefits: PropTypes.string,

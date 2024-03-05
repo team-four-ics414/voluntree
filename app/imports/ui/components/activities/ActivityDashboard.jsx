@@ -72,7 +72,7 @@ const ActivityDashboard = ({ activities, isLoading }) => {
         {activities.map((activity) => (
           <div className="flex justify-between items-center py-3" key={activity._id}>
             <div>
-              {activity.name} - {activity.time}
+              {activity.name} - {activity.startTime.toDateString()}
             </div>
             <div className="flex items-center space-x-2">
               <button
@@ -127,7 +127,8 @@ ActivityDashboard.propTypes = {
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      time: PropTypes.string.isRequired,
+      startTime: PropTypes.instanceOf(Date),
+      endTime: PropTypes.instanceOf(Date),
       details: PropTypes.string,
       createdAt: PropTypes.instanceOf(Date),
       benefits: PropTypes.string,
