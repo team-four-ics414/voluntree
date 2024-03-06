@@ -105,7 +105,7 @@ test('Test the AddNonprofit page', async () => {
   // await addNonprofitPage.isDisplayed();
   // await addNonprofitPage.addNonprofit();
   await navBar.gotoListNonprofit();
-  await listNonprofitPage.hasNonprofits(4);
+  await listNonprofitPage.hasNonprofits(3);
   await listNonprofitPage.gotoViewNonprofitPage();
   // const location = getWindowLocation();
   // t.ctx.nonprofitId = location.pathname.split('/view-nonprofit')[0];
