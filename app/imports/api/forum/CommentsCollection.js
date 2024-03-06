@@ -7,7 +7,6 @@ class CommentsCollection {
     this.collection = new Mongo.Collection(this.name);
     this.schema = new SimpleSchema({
       comment: String,
-      image: { type: String, optional: true },
       createdAt: Date,
       owner: String,
       postId: String,
