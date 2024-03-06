@@ -5,6 +5,7 @@ import { Events } from '../../api/calendar/EventCollection';
 import { Activity } from '../../api/activities/ActivityCollection';
 import { Calendars } from '../../api/calendar/CalendarCollection';
 import { Organizations } from '../../api/organization/OrganizationCollection';
+import { Posts } from '../../api/forum/PostsCollection';
 /* eslint-disable no-console */
 
 // Initialize the database with a default data document.
@@ -93,4 +94,21 @@ function addOrganization(organization) {
 if (Organizations.count() === 0 && Meteor.settings.defaultOrganizations) {
   console.log('Creating default organizations.');
   Meteor.settings.defaultOrganizations.forEach(organization => addOrganization(organization));
+}
+
+// Function to add default Forum Posts
+function addForumPost(post) {
+  console.log(`  Adding Post: ${post.title}`);
+  try {
+    Posts.define(post);
+    console.log(`  Successfully added post: ${post.title}`);
+  } catch (error) {
+    console.error(`Error adding organization ${post.title}: ${error}`);
+  }
+}
+
+// Initialize Forum Posts if empty
+if (Posts.count() === 0 && Meteor.settings.defaultPosts) {
+  console.log('Creating default organizations.');
+  Meteor.settings.defaultPosts.forEach(post => addForumPost(post));
 }
