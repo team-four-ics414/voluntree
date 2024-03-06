@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, SelectField, SubmitField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, HiddenField, SelectField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
@@ -60,19 +60,21 @@ const AddNonprofit = () => {
 
   return (
     <Container id={PAGE_IDS.ADD_NONPROFIT} className="py-3">
-      <Row className="justify-content-center">
+      <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
         <Col xs={12} md={8} lg={5}>
-          <h2 className="text-center">Add Nonprofit</h2>
+          <Card style={{ backgroundColor: '#65b9a6', padding: '10px', borderBottomRightRadius: '0px', borderBottomLeftRadius: '0px' }}>
+            <h2 className="add-activity-nonprofit">Add Nonprofit</h2>
+          </Card>
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data)}>
-            <Card>
+            <Card style={{ backgroundColor: '#eaf6ff', padding: '20px', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', borderRadius: '10px', borderTopRightRadius: '0px', borderTopLeftRadius: '0px' }}>
               <Card.Body>
                 <Row>
                   <Col>
-                    <SelectField name="type" placeholder="Please select" />
-                    <TextField name="name" />
-                    <TextField name="mission" />
-                    <TextField name="contactInfo" />
-                    <TextField name="location" />
+                    <SelectField className="border-light-blue" name="type" placeholder="Please select" />
+                    <TextField className="border-light-blue" name="name" />
+                    <TextField className="border-light-blue" name="mission" />
+                    <TextField className="border-light-blue" name="contactInfo" />
+                    <TextField className="border-light-blue" name="location" />
                     <HiddenField name="createdAt" value={new Date()} />
                   </Col>
                 </Row>
@@ -81,7 +83,7 @@ const AddNonprofit = () => {
                 </div>
                 <ErrorsField />
                 <HiddenField name="owner" value={Meteor.userId()} />
-                <SubmitField id={COMPONENT_IDS.NONPROFIT_ADD_SUBMIT_BTN} value="Submit" />
+                <button id={COMPONENT_IDS.NONPROFIT_ADD_SUBMIT_BTN} type="submit" className="submit-button">Submit</button>
               </Card.Body>
             </Card>
           </AutoForm>

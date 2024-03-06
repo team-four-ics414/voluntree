@@ -7,6 +7,8 @@ import { Events } from '../calendar/EventCollection';
 import { Activity } from '../activities/ActivityCollection';
 import { Messages } from '../messaging/MessagesCollection';
 import { Conversations } from '../messaging/ConversationsCollection';
+import { Pending } from '../activities/PendingCollection';
+import { Volunteer } from '../activities/VolunteerCollection';
 
 class MATPClass {
   collections;
@@ -26,6 +28,8 @@ class MATPClass {
       Activity,
       Messages,
       Conversations,
+      Volunteer,
+      Pending,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -39,6 +43,8 @@ class MATPClass {
       Activity,
       Messages,
       Conversations,
+      Volunteer,
+      Pending,
     ];
 
     /*

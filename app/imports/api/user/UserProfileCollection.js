@@ -1,4 +1,6 @@
 import SimpleSchema from 'simpl-schema';
+import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
 import BaseProfileCollection from './BaseProfileCollection';
 import { ROLE } from '../role/Role';
 import { Users } from './UserCollection';
@@ -21,19 +23,26 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param lastName The last name.
    */
   define({ email, firstName, lastName, password, picture = '', interests = [] }) {
-    // if (Meteor.isServer) {
-    const username = email;
-    const user = this.findOne({ email, firstName, lastName, picture, interests });
-    if (!user) {
+    // Ensure operation only runs on the server to prevent client-side security issues.
+    if (Meteor.isServer) {
+      const username = email;
+      // Check for duplicate email in Meteor accounts to prevent account duplication.
+      if (Accounts.findUserByEmail(email)) {
+        throw new Meteor.Error('email-exists', 'An account with this email already exists.');
+      }
+
+      // Check for duplicate profile in the UserProfile collection.
+      const duplicateProfile = this.findOne({ email });
+      if (duplicateProfile) {
+        throw new Meteor.Error('profile-exists', 'A profile with this email already exists.');
+      }
+
       const role = ROLE.USER;
       const userID = Users.define({ username, role, password });
       const profileID = this._collection.insert({ email, firstName, lastName, userID, role, picture, interests });
-      // this._collection.update(profileID, { $set: { userID } });
       return profileID;
     }
-    return user._id;
-    // }
-    // return undefined;
+    throw new Meteor.Error('not-allowed', 'This operation is not allowed on the client.');
   }
 
   /**
@@ -43,21 +52,13 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param lastName new last name (optional).
    */
   update(docID, { firstName, lastName, picture, interests }) {
-    this.assertDefined(docID);
-    const updateData = {};
-    if (firstName) {
-      updateData.firstName = firstName;
+    if (Meteor.isServer) {
+      this.assertDefined(docID);
+      const updateData = { ...(firstName && { firstName }), ...(lastName && { lastName }), ...(picture && { picture }), ...(interests && { interests }) };
+      this._collection.update(docID, { $set: updateData });
+    } else {
+      throw new Meteor.Error('not-allowed', 'This operation is not allowed on the client.');
     }
-    if (lastName) {
-      updateData.lastName = lastName;
-    }
-    if (picture) {
-      updateData.picture = picture;
-    }
-    if (interests) {
-      updateData.interests = interests;
-    }
-    this._collection.update(docID, { $set: updateData });
   }
 
   /**
@@ -66,10 +67,18 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param profileID The ID for this profile object.
    */
   removeIt(profileID) {
-    if (this.isDefined(profileID)) {
-      return super.removeIt(profileID);
+    if (Meteor.isServer) {
+      if (this.isDefined(profileID)) {
+        const profile = this.findOne(profileID);
+        if (profile && profile.userID) {
+          // Directly remove the user from the Meteor.users collection.
+          Meteor.users.remove(profile.userID);
+        }
+        return super.removeIt(profileID); // Assuming this removes the profile from your custom collection.
+      }
+      return false;
     }
-    return null;
+    throw new Meteor.Error('not-allowed', 'This operation is not allowed on the client.');
   }
 
   /**

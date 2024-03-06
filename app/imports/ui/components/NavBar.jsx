@@ -7,6 +7,7 @@ import { Container, Navbar, Nav, NavDropdown, Image } from 'react-bootstrap';
 import { BoxArrowRight, CloudDownload, PersonFill, PersonPlusFill } from 'react-bootstrap-icons';
 import { ROLE } from '../../api/role/Role';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+import Mailbox from './MailBox';
 
 const NavBar = () => {
   // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
@@ -21,7 +22,9 @@ const NavBar = () => {
         <Navbar.Collapse id={COMPONENT_IDS.NAVBAR_COLLAPSE}>
           <Nav className="mx-auto">
             {currentUser ? ([
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT} as={NavLink} to="/nonprofits" key="list-nonprofit">List Nonprofits</Nav.Link>,
               <Nav.Link id={COMPONENT_IDS.NAVBAR_DEVELOPMENT} as={NavLink} to="/development" key="development">Development</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_VOLUNTEER_FORUM} as={NavLink} to="/forum" key="volunteer-forum">Forum</Nav.Link>,
             ]) : ''}
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
               [
@@ -34,6 +37,7 @@ const NavBar = () => {
             <Nav.Link id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/" key="landing">Home</Nav.Link>
             <NavDropdown id={COMPONENT_IDS.NAVBAR_FIND_DROPDOWN} title="Find">
               <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT} as={NavLink} to="/nonprofits" key="list-nonprofit">Nonprofits</Nav.Link>
+              <Nav.Link as={NavLink} to="/mapsearch" key="map-activity">Map Search</Nav.Link>
               <Nav.Link id="opportunities-page" as={NavLink} to="/opportunities" key="list">Opportunities</Nav.Link>
             </NavDropdown>
             <Nav.Link id="faq" as={NavLink} to="/faq" key="faq">FAQ</Nav.Link>
@@ -49,6 +53,7 @@ const NavBar = () => {
                 <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_SIGN_OUT} as={NavLink} to="/signout"><BoxArrowRight /> Sign out</NavDropdown.Item>
               </NavDropdown>
             )}
+            <Mailbox />
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -6,7 +6,8 @@ import PropTypes from 'prop-types';
 const ActivityForm = ({ activity, onSuccess }) => {
   const [formData, setFormData] = useState({
     name: '',
-    time: '',
+    startTime: '',
+    endTime: '',
     details: '',
     createdAt: new Date(), // This should be handled on the server-side ideally
     benefits: '',
@@ -22,7 +23,8 @@ const ActivityForm = ({ activity, onSuccess }) => {
     if (activity) {
       setFormData({
         name: activity.name,
-        time: activity.time,
+        startTime: activity.startTime,
+        endTime: activity.endTime,
         details: activity.details,
         createdAt: activity.createdAt,
         benefits: activity.benefits,
@@ -92,28 +94,48 @@ const ActivityForm = ({ activity, onSuccess }) => {
           />
         </Form.Group>
 
-        <Form.Group as={Col}>
-          <Form.Label>Time</Form.Label>
-          <Form.Control
+        <Form.Group>
+        <Form.Label>startTime</Form.Label>
+        <Form.Control
             type="text"
-            placeholder="HH:MM / Any description"
             name="time"
-            value={formData.time}
+            value={formData.startTime}
             onChange={handleChange}
             required
-          />
-        </Form.Group>
+        />
+      </Form.Group>
       </Row>
 
       <Form.Group className="mb-3">
-        <Form.Label>Details</Form.Label>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group>
+        <Form.Label>Name</Form.Label>
         <Form.Control
-          as="textarea"
-          rows={3}
-          name="details"
-          value={formData.details}
+          type="text"
+          name="name"
+          value={formData.name}
           onChange={handleChange}
           required
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>startTime</Form.Label>
+        <Form.Control
+          type="text"
+          name="time"
+          value={formData.startTime}
+          onChange={handleChange}
+          required
+        />
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Details</Form.Label>
+        <Form.Control
+            type="text"
+            name="details"
+            value={formData.details}
+            onChange={handleChange}
+            required
         />
       </Form.Group>
       <Form.Group>
@@ -194,7 +216,8 @@ ActivityForm.propTypes = {
   activity: PropTypes.shape({
     _id: PropTypes.string,
     name: PropTypes.string,
-    time: PropTypes.string,
+    startTime: PropTypes.instanceOf(Date),
+    endTime: PropTypes.instanceOf(Date),
     details: PropTypes.string,
     createdAt: PropTypes.instanceOf(Date),
     benefits: PropTypes.string,
