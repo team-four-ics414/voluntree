@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Col } from 'react-bootstrap';
 import { Activity } from '../../../api/activities/ActivityCollection';
 import ActivityForm from './ActivityForm';
 import AddToCalendar from './AddToCalendar';
@@ -75,15 +76,8 @@ const ActivityDashboard = ({ activities, isLoading }) => {
               {activity.name} - {activity.time}
             </div>
             <div className="flex items-center space-x-2">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded" onClick={() => openModal(activity)}>Edit</button>
-              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onClick={() => handleDelete(activity._id)}>Delete</button>
-              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded" onClick={() => removeCalendarEvents(activity._id)}>Remove Calendar</button>
-              <button
-                type="button" // Add the type attribute
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
-                onClick={() => openModal(activity)}
-              >Edit
-              </button>              <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onClick={() => handleDelete(activity._id)}>Delete</button>
+              <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded" onClick={() => openModal(activity)}>Edit</button>
+              <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onClick={() => handleDelete(activity._id)}>Delete</button>
               <button type="button" className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded" onClick={() => removeCalendarEvents(activity._id)}>Remove Calendar Events</button>
               <AddToCalendar activity={activity} isAlreadyAdded={checkActivityAddedStatus(activity._id)} />
             </div>
@@ -111,10 +105,22 @@ const ActivityDashboard = ({ activities, isLoading }) => {
                   </div>
                 </div>
               </div>
+
               <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button type="button" onClick={closeModal} className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
-                  Close
-                </button>
+                <Col className="">
+
+                  <button
+                    type="button"
+                    onClick={closeModal}
+                    className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300,
+                             shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50,
+                             focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0,
+                             sm:ml-3 sm:w-auto sm:text-sm"
+                  >
+                    Close
+                  </button>
+                </Col>
+
               </div>
             </div>
           </div>

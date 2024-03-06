@@ -5,29 +5,29 @@ function createTimeAgoGenerator() {
   const history = []; // Stores the history of time-ago strings
 
   const GetTimeSince = (date) => {
-    const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+    const seconds = Math.floor((new Date() - date) / 1000);
+    let interval = seconds / 31536000;
 
-    let interval = seconds / 31536000; // 365 * 24 * 60 * 60
     if (interval > 1) {
-      return `${Math.floor(interval)} years`;
+      return `${Math.floor(interval)} years ago`;
     }
-    interval = seconds / 2592000; // 30 * 24 * 60 * 60
+    interval = seconds / 2592000;
     if (interval > 1) {
-      return `${Math.floor(interval)} months`;
+      return `${Math.floor(interval)} months ago`;
     }
-    interval = seconds / 86400; // 24 * 60 * 60
+    interval = seconds / 86400;
     if (interval > 1) {
-      return `${Math.floor(interval)} days`;
+      return `${Math.floor(interval)} days ago`;
     }
-    interval = seconds / 3600; // 60 * 60
+    interval = seconds / 3600;
     if (interval > 1) {
-      return `${Math.floor(interval)} hours`;
+      return `${Math.floor(interval)} hours ago`;
     }
     interval = seconds / 60;
-    if (interval > 1) {
-      return `${Math.floor(interval)} minutes`;
+    if (interval > 5) {
+      return `${Math.floor(interval)} minutes ago`;
     }
-    return `${Math.floor(seconds)} seconds`;
+    return 'Just now';
   };
 
   return function (date) {
@@ -52,3 +52,13 @@ function createTimeAgoGenerator() {
 const getTimeSince = createTimeAgoGenerator();
 
 export { getTimeSince };
+
+// eslint-disable-next-line default-param-last
+function truncateText(text = '', maxLength) {
+  if (!text) {
+    return '';
+  }
+  return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+}
+
+export { truncateText };

@@ -122,10 +122,6 @@ const ChatComponent = () => {
     return <div className="text-center">Loading conversations...</div>;
   }
 
-  function truncateText(text = '', maxLength) {
-    return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
-  }
-
   const handleUserSelected = (user) => {
     const userId = user._id;
     console.log('Calling initiate with userId:', userId);
@@ -138,6 +134,10 @@ const ChatComponent = () => {
       }
     });
   };
+  // eslint-disable-next-line default-param-last
+  function truncateText(text = '', maxLength) {
+    return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
+  }
 
   return (
     <section className="h-100 gradient-custom h-screen">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Col, Row } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 
@@ -78,31 +78,38 @@ const ActivityForm = ({ activity, onSuccess }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Label>Name</Form.Label>
-        <Form.Control
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Time</Form.Label>
-        <Form.Control
-          type="text"
-          name="time"
-          value={formData.time}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
-      <Form.Group>
+    <Form onSubmit={handleSubmit} className="mt-3">
+      <Row className="mb-3">
+        <Form.Group as={Col}>
+          <Form.Label>Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter activity name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group as={Col}>
+          <Form.Label>Time</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="HH:MM / Any description"
+            name="time"
+            value={formData.time}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+      </Row>
+
+      <Form.Group className="mb-3">
         <Form.Label>Details</Form.Label>
         <Form.Control
-          type="text"
+          as="textarea"
+          rows={3}
           name="details"
           value={formData.details}
           onChange={handleChange}
@@ -119,22 +126,26 @@ const ActivityForm = ({ activity, onSuccess }) => {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Latitude</Form.Label>
-        <Form.Control
-          type="number"
-          name="location.lat"
-          value={formData.location.lat}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      <Form.Group>
-        <Form.Label>Longitude</Form.Label>
-        <Form.Control
-          type="number"
-          name="location.lng"
-          value={formData.location.lng}
-          onChange={handleChange}
-        />
+        <Row className="mb-3">
+          <Col>
+            <Form.Label>Latitude</Form.Label>
+            <Form.Control
+              type="number"
+              name="location.lat"
+              value={formData.location.lat}
+              onChange={handleChange}
+            />
+          </Col>
+          <Col>
+            <Form.Label>Longitude</Form.Label>
+            <Form.Control
+              type="number"
+              name="location.lng"
+              value={formData.location.lng}
+              onChange={handleChange}
+            />
+          </Col>
+        </Row>
       </Form.Group>
       <Form.Group>
         <Form.Label>Frequency</Form.Label>

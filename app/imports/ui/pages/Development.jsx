@@ -9,7 +9,7 @@ import CalendarWeeklyCard from '../components/calendar/CalendarWeeklyCard';
 import ProfileList from '../components/profile/ProfileList';
 import ProfilesDisplay from '../components/profile/ProfileCardDisplay';
 import ChatComponent from '../chat/ChatComponent';
-import TestChatComponent from '../components/chat/Test';
+import ChatInterface from '../components/chat/ChatInteface';
 
 const Development = () => (
   <Container id={PAGE_IDS.DEVELOPMENT}>
@@ -21,7 +21,7 @@ const Development = () => (
     <ProfileList />
     <ProfilesDisplay />
     <ChatComponent />
-    <TestChatComponent />
+    <ChatInterface />
   </Container>
 );
 
