@@ -6,6 +6,8 @@ import { Button, Card, Modal, Container, Row, Col, Spinner } from 'react-bootstr
 import { Calendars } from '../../../api/calendar/CalendarCollection';
 import CalendarEventForm from './CalendarEventForm'; // Ensure this is adapted to Bootstrap if necessary
 import { getRandomBackground } from '../../utilities/RandomBackground';
+import { formatDate } from '../../utilities/GetTimeSince';
+import CalendarDateOverlay from './CalendarDateOverlay';
 
 const CalendarEventsList = ({ events, isLoading }) => {
   const [showModal, setShowModal] = useState(false);
@@ -37,6 +39,8 @@ const CalendarEventsList = ({ events, isLoading }) => {
         {events.map((event) => (
           <Col key={event._id}>
             <Card className="h-100" style={{ backgroundImage: `url(${getRandomBackground()})`, backgroundSize: 'cover' }}>
+              <CalendarDateOverlay date={new Date(event.startDate)} />
+
               <Card.Img variant="top" src={getRandomBackground()} style={{ opacity: 0 }} />
               <Card.Body style={{ backgroundColor: 'rgba(255, 255, 255, 0.8)' }}>
                 <Card.Title>{event.title}</Card.Title>

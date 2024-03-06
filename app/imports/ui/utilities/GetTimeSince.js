@@ -62,3 +62,13 @@ function truncateText(text = '', maxLength) {
 }
 
 export { truncateText };
+
+function formatDate(dateString) {
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const date = new Date(dateString);
+  const dayName = daysOfWeek[date.getDay()];
+  const dateNumber = date.getDate();
+  return `${dayName}, ${dateNumber}`;
+}
+
+export { formatDate };
