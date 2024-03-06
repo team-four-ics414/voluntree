@@ -1,23 +1,18 @@
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
-import BaseCollection from '../base/BaseCollection'; // Adjust the path as necessary
+import BaseCollection from '../base/BaseCollection';
 
 // Define the schema for a message
 const MessageSchema = new SimpleSchema({
-  text: {
-    type: String,
-  },
+  text: String,
   createdAt: {
     type: Date,
-    defaultValue: new Date(), // Consider using a function here if you want the default value to be the insertion time
+    defaultValue: () => new Date(), // Use a function for dynamic defaults
   },
-  senderId: {
-    type: String,
-  },
-  receiverId: {
-    type: String,
-  },
-  // Extend with more fields as needed
+  senderId: String,
+  receiverId: String,
+  conversationId: String,
+  // Add any other fields that might be necessary for your application
 });
 
 class MessagesCollection extends BaseCollection {
@@ -27,34 +22,39 @@ class MessagesCollection extends BaseCollection {
 
   /**
    * Defines a new message.
-   * @param {Object} messageDetails - The details of the message.
-   * @returns {String} The docID of the created document.
+   * @param {Object} messageDetails The details of the message.
+   * @returns {String} The ID of the newly created message document.
    */
   define(messageDetails) {
-    try {
-      const docId = this._collection.insert(messageDetails);
-      return docId;
-    } catch (error) {
-      // Handle or log error appropriately
-      throw new Meteor.Error('insert-failed', 'Could not insert message.');
-    }
+    // Implement additional validation or preprocessing as needed
+    const docId = this._collection.insert(messageDetails);
+    return docId;
   }
 
   /**
    * Updates an existing message.
-   * @param docId {String} - The ID of the document to update.
-   * @param {Object} updateData - The data to update the document with.
+   * @param {String} docId The ID of the message to update.
+   * @param {Object} updateData The update operation or data to apply.
+   * @returns {Number} The number of documents affected.
    */
   update(docId, updateData) {
     const updateCount = this._collection.update(docId, { $set: updateData });
+    if (updateCount === 0) {
+      throw new Meteor.Error('update-failed', 'Could not update message. No message found with provided ID.');
+    }
     return updateCount;
   }
 
-  removeIt(docId) {
-    const removeCount = this._collection.remove(docId);
-    return removeCount;
+  /**
+   * Retrieves all messages for a given conversation.
+   * @param {String} conversationId The ID of the conversation.
+   * @returns {Array} An array of message documents.
+   */
+  findMessagesByConversation(conversationId) {
+    return this._collection.find({ conversationId }).fetch();
   }
-  // Implement additional methods as necessary, following the patterns established in BaseCollection
+
+  // Additional methods as necessary, following the patterns established in BaseCollection
 }
 
 export const Messages = new MessagesCollection();

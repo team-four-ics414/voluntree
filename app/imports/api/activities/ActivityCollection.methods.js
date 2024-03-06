@@ -8,7 +8,11 @@ Meteor.methods({
   'activity.insert'(activity) {
     check(activity, {
       name: String,
-      time: String,
+      startTime: Date,
+      endTime: {
+        type: Date,
+        optional: true, // Assuming endTime might be optional
+      },
       details: String,
       createdAt: Date,
       benefits: String,

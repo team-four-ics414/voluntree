@@ -8,6 +8,11 @@
   --matr-navbar-text-color: black;
 }
 
+/*Navbar*/
+.nav-link {
+  margin: 0 25px 0 25px;
+}
+
 /* Change bootstrap variable values.
  See https://getbootstrap.com/docs/5.2/customize/css-variables/
  */
@@ -103,8 +108,8 @@ body {
   color: var(--bs-dark);
 }
 
-/* Add Activity Form */
-.add-activity{
+/* Add Activity + Add Nonprofit Form */
+.add-activity-nonprofit{
   color: #fff;
   font-family: Arial, sans-serif;
   text-align: center;
@@ -134,3 +139,59 @@ body {
   color: #004c8b;
   font-weight: bold;
 }
+
+/* SpecificEvent Page */
+.specific-event-container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.event-image {
+  width: 100%;
+  border-radius: 10px; /* Rounded corners for the image */
+}
+
+.event-details {
+  padding: 20px;
+}
+
+.event-name {
+  color: #09b22f;
+}
+
+.bold-text {
+  font-weight: bold;
+  color: #09b22f;
+}
+
+.event-info {
+  margin-bottom: 10px;
+}
+
+.opt-in-switch {
+  margin-bottom: 10px;
+}
+
+.interest-button {
+  background-color: #28a745 !important;
+  border-color: #0d8d78 !important;
+  width: 150px;
+  margin-top: 160px;
+  display: flex;
+  justify-content: flex-end;
+}
+.interest-button:hover {
+  background-color: #65b9a6 !important;
+  border-color: #1e7e34 !important;
+}
+
+.interest-content {
+  display: flex;
+  align-items: center;
+}
+
+.heart-icon {
+  margin-right: 20px;
+}
+

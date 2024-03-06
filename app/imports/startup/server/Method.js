@@ -2,10 +2,18 @@ import { Meteor } from 'meteor/meteor';
 import cloudinary from 'cloudinary';
 import { HTTP } from 'meteor/http';
 
+let api_keys = null;
+try {
+  // eslint-disable-next-line global-require
+  api_keys = require('../../api/api_keys.json');
+} catch (Error) {
+  console.log('Api keys are not imported');
+}
+
 cloudinary.config({
-  cloud_name: 'YOUR-KEY-HERE',
-  api_key: 'YOUR-KEY-HERE',
-  api_secret: 'YOUR-KEY-HERE',
+  cloud_name: api_keys ? api_keys.cloudinary.cloud_name : 'YOUR-KEY-HERE',
+  api_key: api_keys ? api_keys.cloudinary.api_key : 'YOUR-KEY-HERE',
+  api_secret: api_keys ? api_keys.cloudinary.api_secret : 'YOUR-KEY-HERE',
 });
 
 Meteor.methods({
@@ -26,7 +34,7 @@ Meteor.methods({
       const response = await HTTP.call('POST', 'https://api.openai.com/v1/moderations', {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${'YOUR-KEY-HERE'}`,
+          Authorization: `Bearer ${api_keys ? api_keys.openAi : 'YOUR-KEY-HERE'}`,
         },
         data: {
           input: text,

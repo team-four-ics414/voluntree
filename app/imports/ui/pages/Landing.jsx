@@ -5,14 +5,7 @@ import Calendar from '../components/calendar/Calendar';
 import SideChat from '../components/SideChat';
 import CardSlider from '../components/CardSlider';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
-import CalendarEventsList from '../components/calendar/CalendarEventsList';
-import ActivityDashboard from '../components/activities/ActivityDashboard';
-import ActivityList from '../components/activities/ActivityList';
-import RecentActivityList from '../components/activities/RecentActivityList';
-import CalendarWeeklyCard from '../components/calendar/CalendarWeeklyCard';
-import ProfileList from '../components/profile/ProfileList';
-import ProfilesDisplay from '../components/profile/ProfileCardDisplay';
-import MessagingDashboard from '../components/messages/MessagingDashboard';
+
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
   <Container id={PAGE_IDS.LANDING} className="py-3">
@@ -43,7 +36,7 @@ const Landing = () => (
     <Container style={{ margin: '20px 5px' }}>
       <CardSlider />
     </Container>
-    <Row className="pb-5">
+    <Row className="py-5">
       <Col>
         <h3 className="text-center pb-4">Transforming Volunteer Engagement</h3>
         <Accordion id={COMPONENT_IDS.LANDING_ACCORDION}>
@@ -110,16 +103,6 @@ const Landing = () => (
     <h2 className="text-center">You can see upcoming events in the calendar!</h2>
     <Container className="shadow p-3 mb-5 bg-body rounded">
       <Calendar />
-    </Container>
-    <Container>
-      <CalendarEventsList />
-      <ActivityDashboard />
-      <ActivityList />
-      <RecentActivityList />
-      <CalendarWeeklyCard />
-      <ProfileList />
-      <ProfilesDisplay />
-      <MessagingDashboard />
     </Container>
   </Container>
 );

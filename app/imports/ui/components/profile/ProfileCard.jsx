@@ -7,7 +7,9 @@ const ProfileCard = ({ profile }) => (
   <Col xs={12} sm={6} md={4} lg={3} className="py-2 px-2">
     <Card className="h-100">
       <Card.Header className="text-center">
-        <Image src={profile.picture || '/images/defaultuserprofile.png'} alt={`${profile.firstName} ${profile.lastName}'s profile picture`} roundedCircle className="img-fluid" style={{ maxWidth: '200px' }} />
+        <div className="d-flex justify-content-center align-items-center">
+          <Image src={profile.picture || '/images/defaultuserprofile.png'} alt={`${profile.firstName} ${profile.lastName}'s profile picture`} roundedCircle className="img-fluid" style={{ maxWidth: '100%', maxHeight: '70%' }} />
+        </div>
         <Card.Title className="mt-2">{profile.firstName} {profile.lastName}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{profile.title}</Card.Subtitle>
         {/* Optionally display email if needed */}

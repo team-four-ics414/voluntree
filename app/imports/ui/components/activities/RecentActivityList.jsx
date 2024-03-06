@@ -21,7 +21,7 @@ const RecentActivityList = ({ recentActivities }) => (
               <p className="card-text">{activity.details}</p>
             </div>
             <div className="card-footer">
-              <small className="text-muted">Posted on {new Date(activity.createdAt).toDateString()}</small>
+              <small className="text-muted">Posted on {activity.startTime.toDateString()}</small>
             </div>
           </div>
         </div>

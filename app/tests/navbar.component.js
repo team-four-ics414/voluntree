@@ -55,8 +55,14 @@ class NavBar {
   }
 
   /* Go to the volunteer opportunities page. */
-  async gotoOpportunitiesPage(testController) {
-    await testController.click('#opportunities-page');
+  async gotoOpportunitiesPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t
+      .click(`#${COMPONENT_IDS.NAVBAR_FIND_DROPDOWN}`)
+      .click('#opportunities-page');
   }
 
   /* Go to the FAQ page. */
@@ -107,7 +113,13 @@ class NavBar {
 
   /* Go to the list nonprofits page. Must be a logged in user. */
   async gotoListNonprofit() {
-    await t.click(`#${COMPONENT_IDS.NAVBAR_LIST_NONPROFIT}`);
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t
+      .click(`#${COMPONENT_IDS.NAVBAR_FIND_DROPDOWN}`)
+      .click(`#${COMPONENT_IDS.NAVBAR_LIST_NONPROFIT}`);
   }
 }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Container, Row, Col, Card } from 'react-bootstrap';
-import { AutoForm, ErrorsField, HiddenField, TextField } from 'uniforms-bootstrap5';
+import { AutoForm, DateField, ErrorsField, HiddenField, TextField } from 'uniforms-bootstrap5';
 import swal from 'sweetalert';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
@@ -9,8 +9,20 @@ import FileField from '../components/FileField';
 import { defineMethod } from '../../api/base/BaseCollection.methods';
 import { Activity } from '../../api/activities/ActivityCollection';
 
+let api_keys = null;
+try {
+  // eslint-disable-next-line global-require
+  api_keys = require('../../api/api_keys.json');
+} catch (Error) {
+  console.log('Api keys are not imported');
+}
+
 const formSchema = new SimpleSchema({
-  time: String,
+  startTime: Date,
+  endTime: {
+    type: Date,
+    optional: true, // Assuming endTime might be optional
+  },
   name: String,
   details: String,
   createdAt: {
@@ -40,7 +52,7 @@ const AddActivity = () => {
 
   useEffect(() => {
     const loadGooglePlacesScript = document.createElement('script');
-    loadGooglePlacesScript.src = 'https://maps.googleapis.com/maps/api/js?key=YOUR-KEY-HERE&libraries=places';
+    loadGooglePlacesScript.src = `https://maps.googleapis.com/maps/api/js?key=${api_keys ? api_keys.google : 'YOUR-KEY-HERE'}&libraries=places`;
     document.body.appendChild(loadGooglePlacesScript);
 
     loadGooglePlacesScript.onload = () => {
@@ -113,14 +125,15 @@ const AddActivity = () => {
         <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
           <Col xs={12} md={8} lg={5}>
             <Card style={{ backgroundColor: '#65b9a6', padding: '10px', borderBottomRightRadius: '0px', borderBottomLeftRadius: '0px' }}>
-              <h2 className="add-activity">Add Activity</h2>
+              <h2 className="add-activity-nonprofit">Add Activity</h2>
             </Card>
             <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={submit}>
               <Card style={{ backgroundColor: '#eaf6ff', padding: '20px', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', borderRadius: '10px', borderTopRightRadius: '0px', borderTopLeftRadius: '0px' }}>
                 <Card.Body>
                   <Row>
                     <Col>
-                      <TextField className="border-light-blue" name="time" />
+                      <DateField className="border-light-blue" name="startTime" label="Start Time" />
+                      <DateField className="border-light-blue" name="endTime" label="End Time" />
                       <TextField className="border-light-blue" name="name" />
                       <TextField className="border-light-blue" name="details" />
                       <TextField className="border-light-blue" name="benefits" />
@@ -140,7 +153,7 @@ const AddActivity = () => {
                   <ErrorsField />
                   <button type="submit" className="submit-button">Submit</button>
                   <HiddenField name="createdAt" value={new Date()} />
-                  <HiddenField name="owner" value={Meteor.userId()} />
+                  <HiddenField name="owner" value={Meteor.user()?.username} />
                 </Card.Body>
               </Card>
             </AutoForm>
