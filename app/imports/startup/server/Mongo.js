@@ -5,6 +5,9 @@ import { Events } from '../../api/calendar/EventCollection';
 import { Activity } from '../../api/activities/ActivityCollection';
 import { Calendars } from '../../api/calendar/CalendarCollection';
 import { Organizations } from '../../api/organization/OrganizationCollection';
+import { Volunteer } from '../../api/activities/VolunteerCollection';
+import { Pending } from '../../api/activities/PendingCollection';
+
 /* eslint-disable no-console */
 
 // Initialize the database with a default data document.
@@ -44,6 +47,30 @@ if (Activity.count() === 0) {
   if (Meteor.settings.defaultActivity) {
     console.log('Creating Default ActivityCollection.');
     Meteor.settings.defaultActivity.forEach(data => addActivity(data));
+  }
+}
+
+function addPending(pending) {
+  console.log(`  Adding: ${pending.owner}`);
+  Pending.define(pending);
+}
+
+if (Pending.count() === 0) {
+  if (Meteor.settings.defaultPending) {
+    console.log('Creating Default PendingCollection.');
+    Meteor.settings.defaultPending.forEach(data => addPending(data));
+  }
+}
+
+function addVolunteer(volunteer) {
+  console.log(`  Adding: ${volunteer.owner}`);
+  Volunteer.define(volunteer);
+}
+
+if (Volunteer.count() === 0) {
+  if (Meteor.settings.defaultVolunteer) {
+    console.log('Creating Default VolunteerCollection.');
+    Meteor.settings.defaultVolunteer.forEach(data => addVolunteer(data));
   }
 }
 

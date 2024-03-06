@@ -11,7 +11,11 @@ export const activityPublications = {
 class ActivityCollection extends BaseCollection {
   constructor() {
     super('Activity', new SimpleSchema({
-      time: String,
+      startTime: Date,
+      endTime: {
+        type: Date,
+        optional: true, // Assuming endTime might be optional
+      },
       name: String,
       details: String,
       createdAt: Date,
@@ -30,6 +34,15 @@ class ActivityCollection extends BaseCollection {
         min: -180,
         max: 180,
       },
+      isOpenForRegistration: {
+        type: Boolean,
+        optional: true,
+      },
+      tags: {
+        type: Array,
+        optional: true,
+      },
+      'tags.$': String,
       frequency: String,
       requirement: String,
       contactInfo: String,
@@ -42,14 +55,17 @@ class ActivityCollection extends BaseCollection {
     }));
   }
 
-  define({ time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner, calendarId }) {
+  define({ startTime, endTime, name, details, createdAt, benefits, location, isOpenForRegistration, tags, frequency, requirement, contactInfo, image, owner, calendarId }) {
     const docID = this._collection.insert({
-      time,
+      startTime,
+      endTime,
       name,
       details,
       createdAt,
       benefits,
       location,
+      isOpenForRegistration,
+      tags,
       frequency,
       requirement,
       contactInfo,
@@ -60,10 +76,13 @@ class ActivityCollection extends BaseCollection {
     return docID;
   }
 
-  update(docID, { time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner, calendarId }) {
+  update(docID, { startTime, endTime, name, details, createdAt, benefits, location, isOpenForRegistration, tags, frequency, requirement, contactInfo, image, owner, calendarId }) {
     const updateData = {};
-    if (time) {
-      updateData.time = time;
+    if (startTime) {
+      updateData.startTime = startTime;
+    }
+    if (endTime) {
+      updateData.endTime = endTime;
     }
     if (name) {
       updateData.name = name;
@@ -79,6 +98,12 @@ class ActivityCollection extends BaseCollection {
     }
     if (location) {
       updateData.location = location;
+    }
+    if (isOpenForRegistration) {
+      updateData.isOpenForRegistration = isOpenForRegistration;
+    }
+    if (tags) {
+      updateData.tags = tags;
     }
     if (frequency) {
       updateData.frequency = frequency;
@@ -148,19 +173,22 @@ class ActivityCollection extends BaseCollection {
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const time = doc.time;
+    const startTime = doc.startTime;
+    const endTime = doc.endTime;
     const name = doc.name;
     const details = doc.details;
     const createdAt = doc.createdAt;
     const benefits = doc.benefits;
     const location = doc.location;
+    const isOpenForRegistration = doc.location;
+    const tags = doc.tags;
     const frequency = doc.frequency;
     const requirement = doc.requirement;
     const contactInfo = doc.contactInfo;
     const image = doc.image;
     const owner = doc.owner;
     const calendarId = doc.calendarId;
-    return { time, name, details, createdAt, benefits, location, frequency, requirement, contactInfo, image, owner, calendarId };
+    return { startTime, endTime, name, details, createdAt, benefits, location, isOpenForRegistration, tags, frequency, requirement, contactInfo, image, owner, calendarId };
   }
 }
 
