@@ -121,7 +121,7 @@ const AddActivity = () => {
         <Row className="justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
           <Col xs={12} md={8} lg={5}>
             <Card style={{ backgroundColor: '#65b9a6', padding: '10px', borderBottomRightRadius: '0px', borderBottomLeftRadius: '0px' }}>
-              <h2 className="add-activity">Add Activity</h2>
+              <h2 className="add-activity-nonprofit">Add Activity</h2>
             </Card>
             <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={submit}>
               <Card style={{ backgroundColor: '#eaf6ff', padding: '20px', boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', borderRadius: '10px', borderTopRightRadius: '0px', borderTopLeftRadius: '0px' }}>
