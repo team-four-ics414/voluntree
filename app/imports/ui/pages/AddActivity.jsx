@@ -153,7 +153,7 @@ const AddActivity = () => {
                   <ErrorsField />
                   <button type="submit" className="submit-button">Submit</button>
                   <HiddenField name="createdAt" value={new Date()} />
-                  <HiddenField name="owner" value={Meteor.userId()} />
+                  <HiddenField name="owner" value={Meteor.user()?.username} />
                 </Card.Body>
               </Card>
             </AutoForm>

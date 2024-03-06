@@ -90,6 +90,48 @@
   "public": {
     "development": true
   },
+
+  "defaultVolunteer": [
+  ],
+
+  "defaultPending": [
+    {
+      "activityID": "FNHetKwN5oqthaqWc",
+      "activityName": "Urban Gardening in Downtown Honolulu",
+      "organizationID": "admin@foo.com",
+      "comment": "testing 1 if this works, confirm if it does",
+      "owner": "john@foo.com"
+    },
+    {
+      "activityID": "FNHetKwN5oqthaqWc",
+      "activityName": "Urban Gardening in Downtown Honolulu",
+      "organizationID": "admin@foo.com",
+      "comment": "testing 2 if this works, confirm if it does",
+      "owner": "john@foo.com"
+    },
+    {
+      "activityID": "FNHetKwN5oqthaqWc",
+      "activityName": "Urban Gardening in Downtown Honolulu",
+      "organizationID": "admin@foo.com",
+      "comment": "testing 3 if this works, confirm if it does",
+      "owner": "john@foo.com"
+    },
+    {
+      "activityID": "FNHetKwN5oqthaqWc",
+      "activityName": "Urban Gardening in Downtown Honolulu",
+      "organizationID": "admin@foo.com",
+      "comment": "testing 4 if this works, confirm if it does",
+      "owner": "john@foo.com"
+    },
+    {
+      "activityID": "FNHetKwN5oqthaqWc",
+      "activityName": "Urban Gardening in Downtown Honolulu",
+      "organizationID": "admin@foo.com",
+      "comment": "testing 5 if this works, confirm if it does",
+      "owner": "john@foo.com"
+    }
+  ],
+
   "defaultActivity": [
       {
         "startTime": "2024-03-01T08:00:00Z",
@@ -104,7 +146,7 @@
         "requirement": "Please wear sun protection and bring water.",
         "contactInfo": "waikikicleanup@nonprofit.org",
         "image": "https://thumbs.dreamstime.com/z/multiracial-human-characters-picking-up-litter-beach-coastal-cleanup-volunteers-collecting-trash-bags-recycle-145554237.jpg",
-        "owner": "WaikikiNatureGroup"
+        "owner": "admin@foo.com"
       },
       {
         "startTime": "2024-03-02T09:00:00Z",
@@ -119,7 +161,7 @@
         "requirement": "Gardening gloves recommended.",
         "contactInfo": "restorekailua@nonprofit.org",
         "image": "https://www.signupgenius.com/cms/socialMediaImages/beach-clean-up-tips-ideas-facebook-1200x630.png",
-        "owner": "EcoHawaiiGroup"
+        "owner": "admin@foo.com"
       },
       {
         "startTime": "2024-03-03T10:00:00Z",
@@ -134,7 +176,7 @@
         "requirement": "Health and safety training provided on-site.",
         "contactInfo": "haleiwahelp@nonprofit.org",
         "image": "https://foodbanknews.org/wp-content/uploads/2023/04/DSC_8539_0.jpg",
-        "owner": "FoodBankOahu"
+        "owner": "admin@foo.com"
       },
       {
         "startTime": "2024-03-04T07:30:00Z",
@@ -149,7 +191,7 @@
         "requirement": "Wear appropriate clothing and footwear for muddy conditions.",
         "contactInfo": "manoatrees@nonprofit.org",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSVG5zyNLF--dcpPJlflAEJYrhMYRTqWeSBw&usqp=CAU",
-        "owner": "GreenIslandFoundation"
+        "owner": "admin@foo.com"
       },
       {
         "startTime": "2024-03-05T15:00:00Z",
@@ -164,7 +206,7 @@
         "requirement": "Background check and education in relevant subjects.",
         "contactInfo": "waianaetutors@nonprofit.org",
         "image": "https://learningroof.com/wp-content/uploads/2021/09/Welcome-Back-to-School-Instagram-Post-1200-x-568-px-2.jpg",
-        "owner": "EducationFirst"
+        "owner": "admin@foo.com"
       },
       {
         "startTime": "2024-03-06T08:30:00Z",
@@ -179,7 +221,7 @@
         "requirement": "Respect for cultural heritage, attention to detail.",
         "contactInfo": "preserveiolani@nonprofit.org",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIVTeT1jeqP-Vcz_Pm0nAhStlKMjv17WpNPA&usqp=CAU",
-        "owner": "HeritageHawaii"
+        "owner": "admin@foo.com"
       },
       {
         "startTime": "2024-03-07T09:00:00Z",
@@ -194,7 +236,7 @@
         "requirement": "Ability to perform physical tasks outdoors.",
         "contactInfo": "waimeaconservation@nonprofit.org",
         "image": "/images/sample2.jpg",
-        "owner": "NatureGuardians"
+        "owner": "admin@foo.com"
       },
       {
         "startTime": "2024-03-08T10:00:00Z",
@@ -209,7 +251,7 @@
         "requirement": "Compassion, patience, and good communication skills.",
         "contactInfo": "mililaniseniors@nonprofit.org",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrha1OCvuJsNyeH5vPKbHa3EtfNYi_fLpPrQ&usqp=CAU",
-        "owner": "CompanionCare"
+        "owner": "admin@foo.com"
       },
       {
         "startTime": "2024-03-09T07:00:00Z",
@@ -224,7 +266,7 @@
         "requirement": "Bring gloves and wear sturdy shoes.",
         "contactInfo": "shellbeachclean@nonprofit.org",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCLuT0H5f6LYSDQjIUHEM2zNRStfxb6pkLVCZ2OwBtvg&s",
-        "owner": "OceanWatch"
+        "owner": "admin@foo.com"
       },
       {
         "startTime": "2024-03-10T11:00:00Z",
@@ -242,7 +284,7 @@
         "requirement": "Interest in gardening and sustainability.",
         "contactInfo": "honolulugardens@nonprofit.org",
         "image": "https://wpcdn.us-midwest-1.vip.tn-cloud.net/www.honolulumagazine.com/content/uploads/data-import/987cb9b4/Veggies1.jpg",
-        "owner": "GreenThumbCommunity"
+        "owner": "admin@foo.com"
       }
   ],
   "defaultCalendarEvents": [
