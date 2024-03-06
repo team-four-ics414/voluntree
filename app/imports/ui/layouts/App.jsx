@@ -31,6 +31,7 @@ import ViewNonprofit from '../pages/ViewNonprofit';
 import MapSearch from '../pages/MapSearch';
 import UserProfile from '../pages/UserProfile';
 import Development from '../pages/Development';
+import SpecificEvent from '../pages/SpecificEvent';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -69,6 +70,7 @@ const App = () => {
             <Route path="/manage-database" element={<AdminProtectedRoute ready={ready}><ManageDatabase /></AdminProtectedRoute>} />
             <Route path="/notauthorized" element={<NotAuthorized />} />
             <Route path="/development" element={<ProtectedRoute><Development /></ProtectedRoute>} />
+            <Route path="/specificevent" element={<ProtectedRoute><SpecificEvent /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
