@@ -7,6 +7,7 @@ import { Calendars } from '../../api/calendar/CalendarCollection';
 import { Organizations } from '../../api/organization/OrganizationCollection';
 import { Volunteer } from '../../api/activities/VolunteerCollection';
 import { Pending } from '../../api/activities/PendingCollection';
+// import { Posts } from '../../api/forum/PostsCollection';
 
 /* eslint-disable no-console */
 
@@ -121,3 +122,4 @@ if (Organizations.count() === 0 && Meteor.settings.defaultOrganizations) {
   console.log('Creating default organizations.');
   Meteor.settings.defaultOrganizations.forEach(organization => addOrganization(organization));
 }
+
