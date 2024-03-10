@@ -6,13 +6,11 @@ import { ROLE } from '../role/Role';
 
 Meteor.methods({
   'activity.insert'(activity) {
+    console.log('Inserting activity:', activity);
     check(activity, {
       name: String,
       startTime: Date,
-      endTime: {
-        type: Date,
-        optional: true, // Assuming endTime might be optional
-      },
+      endTime: Match.Maybe(Date), // This allows for Date or undefined
       details: String,
       createdAt: Date,
       benefits: String,

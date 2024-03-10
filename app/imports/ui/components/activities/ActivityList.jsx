@@ -1,13 +1,22 @@
-import { Meteor } from 'meteor/meteor';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
+import { Meteor } from 'meteor/meteor';
 import { Activity } from '../../../api/activities/ActivityCollection'; // Adjust the import path as necessary
 
 /**
- * Component to display a list of activities.
- * @param {Object[]} activities - Array of activity objects to display.
+ * Formats the date into a human-readable string.
+ * If the date is not provided or invalid, returns 'N/A'.
+ * @param {Date} date - The date to format.
+ * @returns {string} - The formatted date string or 'N/A'.
  */
+const formatDate = (date) => {
+  if (!date || !(date instanceof Date)) {
+    return 'N/A';
+  }
+  return date.toDateString();
+};
+
 const ActivityList = ({ activities }) => (
   <div className="container mt-3">
     <h2 className="mb-4">Activities List</h2>
@@ -21,11 +30,12 @@ const ActivityList = ({ activities }) => (
               <p className="card-text">{activity.details}</p>
             </div>
             <div className="card-footer">
-              <small className="text-muted">Event start on {activity.startTime.toDateString()}</small>
+              <small className="text-muted">Event start on {formatDate(activity.startTime)}</small>
             </div>
           </div>
         </div>
       ))}
+
     </div>
   </div>
 );
@@ -35,7 +45,9 @@ ActivityList.propTypes = {
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      // Add more specific PropTypes for other properties as needed
+      image: PropTypes.string,
+      details: PropTypes.string,
+      startTime: PropTypes.instanceOf(Date), // Ensure this matches the expected type
     }),
   ).isRequired,
 };

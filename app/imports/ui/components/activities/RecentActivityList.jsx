@@ -8,6 +8,20 @@ import { Activity } from '../../../api/activities/ActivityCollection'; // Ensure
  * Component to display a list of the 3 most recent activities.
  * @param {Object[]} recentActivities - Array of activity objects to display.
  */
+
+/**
+ * Formats the date into a human-readable string.
+ * If the date is not provided or invalid, returns 'N/A'.
+ * @param {Date} date - The date to format.
+ * @returns {string} - The formatted date string or 'N/A'.
+ */
+const formatDate = (date) => {
+  if (!date || !(date instanceof Date)) {
+    return 'N/A';
+  }
+  return date.toDateString();
+};
+
 const RecentActivityList = ({ recentActivities }) => (
   <div className="container mt-3">
     <h2 className="mb-4">Recent Activities</h2>
@@ -21,7 +35,8 @@ const RecentActivityList = ({ recentActivities }) => (
               <p className="card-text">{activity.details}</p>
             </div>
             <div className="card-footer">
-              <small className="text-muted">Posted on {activity.startTime.toDateString()}</small>
+              <small className="text-muted">Event start on {formatDate(activity.startTime)}</small>
+
             </div>
           </div>
         </div>
@@ -36,23 +51,17 @@ RecentActivityList.propTypes = {
       _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       details: PropTypes.string,
-      createdAt: PropTypes.instanceOf(Date),
+      startTime: PropTypes.instanceOf(Date), // Ensure this matches the expected type
       image: PropTypes.string,
-      // Add any other fields you need from the activity
     }),
   ).isRequired,
 };
 
 export default withTracker(() => {
   const subscription = Meteor.subscribe('recentActivities.public');
-  // Fetch the 3 most recent activities by createdAt field in descending order
   const recentActivities = Activity.find({}, { sort: { createdAt: -1 }, limit: 3 }).fetch();
-
-  // Reverse the array to display them in ascending order
-  const reversedActivities = recentActivities.reverse();
-
   return {
     isLoading: !subscription.ready(),
-    recentActivities: reversedActivities, // Now in ascending order
+    recentActivities,
   };
 })(RecentActivityList);

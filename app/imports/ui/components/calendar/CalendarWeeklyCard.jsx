@@ -15,6 +15,19 @@ const CalendarWeeklyCard = ({ events, isLoading }) => {
     return <div className="text-center p-5">Loading...</div>;
   }
 
+  /**
+   * Formats the date into a human-readable string.
+   * If the date is not provided or invalid, returns 'N/A'.
+   * @param {Date} date - The date to format.
+   * @returns {string} - The formatted date string or 'N/A'.
+   */
+  const formatDate = (date) => {
+    if (!date || !(date instanceof Date)) {
+      return 'N/A';
+    }
+    return date.toDateString();
+  };
+
   return (
     <Container>
       <h2 className="mt-3 mb-4 text-center">Weekly Calendar Events</h2>
@@ -29,7 +42,7 @@ const CalendarWeeklyCard = ({ events, isLoading }) => {
                 <Button variant="info" onClick={() => handleJoin(event._id)}>Volunteer</Button>
               </Card.Body>
               <Card.Footer>
-                <small className="text-muted">Last updated {new Date(event.createdAt).toDateString()}</small>
+                <small className="text-muted">Last updated {formatDate(event.createdAt)}</small>
               </Card.Footer>
             </Card>
           </Col>

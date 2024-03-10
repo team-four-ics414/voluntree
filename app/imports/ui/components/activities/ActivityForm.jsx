@@ -3,32 +3,41 @@ import { Button, Form, Col, Row } from 'react-bootstrap';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 
+// Helper function to format Date objects for datetime-local input fields
+const formatDateForInput = (date) => {
+  if (!date) return '';
+  // Adjust date to local timezone to avoid off-by-one errors
+  const localDate = new Date(date);
+  localDate.setMinutes(date.getMinutes() - localDate.getTimezoneOffset());
+  return localDate.toISOString().slice(0, 16); // Format as 'YYYY-MM-DDThh:mm'
+};
+
 const ActivityForm = ({ activity, onSuccess }) => {
   const [formData, setFormData] = useState({
     name: '',
     startTime: '',
     endTime: '',
     details: '',
-    createdAt: new Date(), // This should be handled on the server-side ideally
+    createdAt: formatDateForInput(new Date()), // Ideally handled server-side
     benefits: '',
     location: { lat: 0, lng: 0 },
     frequency: '',
     requirement: '',
     contactInfo: '',
     image: '',
-    owner: '', // This should be set based on the logged-in user's ID ideally
+    owner: '', // Set based on logged-in user's ID
   });
 
   useEffect(() => {
     if (activity) {
       setFormData({
         name: activity.name,
-        startTime: activity.startTime,
-        endTime: activity.endTime,
+        startTime: formatDateForInput(activity.startTime),
+        endTime: formatDateForInput(activity.endTime),
         details: activity.details,
-        createdAt: activity.createdAt,
+        createdAt: formatDateForInput(activity.createdAt),
         benefits: activity.benefits,
-        location: activity.location,
+        location: activity.location || { lat: 0, lng: 0 },
         frequency: activity.frequency,
         requirement: activity.requirement,
         contactInfo: activity.contactInfo,
@@ -40,24 +49,26 @@ const ActivityForm = ({ activity, onSuccess }) => {
 
   useEffect(() => {
     if (Meteor.userId()) {
-      setFormData(prevState => ({
+      setFormData((prevState) => ({
         ...prevState,
         owner: Meteor.userId(),
       }));
     }
   }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'location.lat' || name === 'location.lng') {
-      setFormData(prevState => ({
+    if (name.startsWith('location.')) {
+      const field = name.split('.')[1];
+      setFormData((prevState) => ({
         ...prevState,
         location: {
           ...prevState.location,
-          [name.split('.')[1]]: parseFloat(value),
+          [field]: parseFloat(value),
         },
       }));
     } else {
-      setFormData(prevState => ({
+      setFormData((prevState) => ({
         ...prevState,
         [name]: value,
       }));
@@ -66,76 +77,89 @@ const ActivityForm = ({ activity, onSuccess }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const method = activity ? 'activity.update' : 'activity.insert';
-    const args = activity ? [activity._id, formData] : [formData];
 
-    Meteor.call(method, ...args, (error) => {
+    // Convert string representations of dates back to Date objects
+    const adjustedData = {
+      ...formData,
+      startTime: new Date(formData.startTime),
+      endTime: formData.endTime ? new Date(formData.endTime) : undefined, // Ensure this is a Date or not provided
+      createdAt: new Date(),
+      location: formData.location && formData.location.lat && formData.location.lng
+        ? {
+          lat: Number(formData.location.lat),
+          lng: Number(formData.location.lng),
+        }
+        : undefined, // Ensure location is properly formatted or excluded if not provided
+    };
+
+    // Filter out any fields that are not provided (i.e., are undefined)
+    Object.keys(adjustedData).forEach((key) => {
+      if (adjustedData[key] === undefined) {
+        delete adjustedData[key];
+      }
+    });
+
+    const method = activity ? 'activity.update' : 'activity.insert';
+    const methodArgs = activity ? [activity._id, adjustedData] : [adjustedData];
+
+    Meteor.call(method, ...methodArgs, (error) => {
       if (error) {
-        alert(`Error: ${error.message}`);
+        console.error('Error saving activity:', error);
+        alert(`Error: ${error.reason || error.message}`);
       } else {
-        alert('Activity saved successfully');
-        onSuccess();
+        alert('Activity saved successfully!');
+        if (onSuccess) {
+          onSuccess();
+        }
       }
     });
   };
 
   return (
     <Form onSubmit={handleSubmit} className="mt-3">
-      <Row className="mb-3">
-        <Form.Group as={Col}>
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter activity name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group>
-        <Form.Label>startTime</Form.Label>
-        <Form.Control
-            type="text"
-            name="time"
-            value={formData.startTime}
-            onChange={handleChange}
-            required
-        />
-      </Form.Group>
-      </Row>
-
-      <Form.Group className="mb-3">
-    <Form onSubmit={handleSubmit}>
-      <Form.Group>
+      <Form.Group as={Col}>
         <Form.Label>Name</Form.Label>
         <Form.Control
           type="text"
+          placeholder="Enter activity name"
           name="name"
           value={formData.name}
           onChange={handleChange}
           required
         />
       </Form.Group>
-      <Form.Group>
-        <Form.Label>startTime</Form.Label>
-        <Form.Control
-          type="text"
-          name="time"
-          value={formData.startTime}
-          onChange={handleChange}
-          required
-        />
-      </Form.Group>
+      <Row className="mb-3">
+
+        <Form.Group as={Col}>
+          <Form.Label>Start Time</Form.Label>
+          <Form.Control
+            type="datetime-local"
+            name="startTime"
+            value={formData.startTime}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+
+        <Form.Group as={Col}>
+          <Form.Label>End Time</Form.Label>
+          <Form.Control
+            type="datetime-local"
+            name="endTime"
+            value={formData.endTime}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+      </Row>
       <Form.Group>
         <Form.Label>Details</Form.Label>
         <Form.Control
-            type="text"
-            name="details"
-            value={formData.details}
-            onChange={handleChange}
-            required
+          type="text"
+          name="details"
+          value={formData.details}
+          onChange={handleChange}
+          required
         />
       </Form.Group>
       <Form.Group>
@@ -231,12 +255,13 @@ ActivityForm.propTypes = {
     image: PropTypes.string,
     owner: PropTypes.string,
   }),
-  onSuccess: PropTypes.func.isRequired,
+  onSuccess: PropTypes.func,
 };
 
 // Providing default values for props
 ActivityForm.defaultProps = {
   activity: null, // Specify a default value (null) for the activity if it's not required
+  onSuccess: () => {}, // Specify a default value (empty function) for onSuccess if it's not required
 };
 
 export default ActivityForm;

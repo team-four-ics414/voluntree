@@ -58,6 +58,19 @@ const ActivityDashboard = ({ activities, isLoading }) => {
     });
   };
 
+  /**
+   * Formats the date into a human-readable string.
+   * If the date is not provided or invalid, returns 'N/A'.
+   * @param {Date} date - The date to format.
+   * @returns {string} - The formatted date string or 'N/A'.
+   */
+  const formatDate = (date) => {
+    if (!date || !(date instanceof Date)) {
+      return 'N/A';
+    }
+    return date.toDateString();
+  };
+
   if (isLoading) {
     return <div className="flex items-center justify-center h-screen"><div className="text-lg font-medium">Loading activities...</div></div>;
   }
@@ -73,7 +86,7 @@ const ActivityDashboard = ({ activities, isLoading }) => {
         {activities.map((activity) => (
           <div className="flex justify-between items-center py-3" key={activity._id}>
             <div>
-              {activity.name} - {activity.time}
+              {activity.name} - {formatDate(activity.startTime)}
             </div>
             <div className="flex items-center space-x-2">
               <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded" onClick={() => openModal(activity)}>Edit</button>
@@ -135,7 +148,8 @@ ActivityDashboard.propTypes = {
     PropTypes.shape({
       _id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      time: PropTypes.string.isRequired,
+      startTime: PropTypes.instanceOf(Date),
+      endTime: PropTypes.instanceOf(Date),
       details: PropTypes.string,
       createdAt: PropTypes.instanceOf(Date),
       benefits: PropTypes.string,
