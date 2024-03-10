@@ -45,7 +45,7 @@ class ActivityCollection extends BaseCollection {
       'tags.$': String,
       frequency: String,
       requirement: String,
-      contactInfo: String,
+      contactInfo: String, // What contactInfo are we using?
       image: { type: String, optional: true },
       owner: String,
       calendarId: {
