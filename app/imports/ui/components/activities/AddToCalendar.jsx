@@ -16,8 +16,13 @@ const AddToCalendar = ({ activity }) => {
   const openModal = () => {
     setTitle(activity.name);
     setDescription(activity.details);
-    setStartDate(activity.startDate); // Ensure startDate is in the correct format
-    setEndDate(activity.endDate); // Ensure endDate is in the correct format
+
+    // Convert startTime and endTime from the activity object to the ISO local string format
+    const formattedStartTime = activity.startTime ? new Date(activity.startTime).toISOString().slice(0, 16) : '';
+    const formattedEndTime = activity.endTime ? new Date(activity.endTime).toISOString().slice(0, 16) : '';
+
+    setStartDate(formattedStartTime);
+    setEndDate(formattedEndTime);
     setShowModal(true);
   };
 
@@ -142,6 +147,8 @@ AddToCalendar.propTypes = {
     details: PropTypes.string,
     startDate: PropTypes.string,
     endDate: PropTypes.string,
+    startTime: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+    endTime: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   }).isRequired,
 };
 

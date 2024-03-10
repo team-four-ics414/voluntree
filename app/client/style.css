@@ -187,20 +187,20 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 60px; /* adjust as necessary */
+  width: 70px; /* adjust as necessary */
   background-color: #fff;
   color: #000;
   text-align: center;
   font-family: Arial, sans-serif; /* Use your desired font-family */
-  border: 1px solid #ccc; /* subtle border */
+  border: 0px solid #ccc; /* subtle border */
   box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* optional shadow for depth */
 
 }
 
 .calendar-overlay-day {
   font-size: 24px; /* large font size for the day */
-  padding: 5px 0; /* some padding at the top */
-  border-bottom: 2px solid #d9534f; /* a red bar to separate day and month */
+  padding: 2px 0; /* some padding at the top */
+  border-bottom: 0px solid #d9534f; /* a red bar to separate day and month */
 }
 
 .calendar-overlay-month {
