@@ -47,4 +47,9 @@ MessageForm.propTypes = {
   receiverId: PropTypes.string, // Making these props optional
 };
 
+MessageForm.defaultProps = {
+  conversationId: null,
+  receiverId: null,
+};
+
 export default MessageForm;

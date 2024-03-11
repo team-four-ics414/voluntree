@@ -45,10 +45,25 @@ const ConversationsList = ({ conversations, isLoading, onSelectConversation, act
 };
 
 ConversationsList.propTypes = {
-  conversations: PropTypes.array.isRequired,
+  conversations: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    latestMessage: PropTypes.shape({
+      text: PropTypes.string,
+      createdAt: PropTypes.instanceOf(Date),
+    }),
+    profile: PropTypes.shape({
+      picture: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+    }),
+  })).isRequired,
   isLoading: PropTypes.bool.isRequired,
   onSelectConversation: PropTypes.func.isRequired,
   activeConversationId: PropTypes.string,
+};
+
+ConversationsList.defaultProps = {
+  activeConversationId: null,
 };
 
 export default withTracker(() => {

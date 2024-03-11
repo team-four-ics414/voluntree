@@ -10,7 +10,8 @@ const TestChatComponent = () => {
   ];
 
   const messages = [
-    { id: 1, sender: 'Brad Pitt', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', time: '12 mins ago', avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp' },
+    { id: 1, sender: 'Brad Pitt', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ' +
+          'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', time: '12 mins ago', avatar: 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp' },
     // ... more messages
   ];
 

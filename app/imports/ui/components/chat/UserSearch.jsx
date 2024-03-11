@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes
 import { Meteor } from 'meteor/meteor';
 
 const UserSearch = ({ onUserSelected }) => {
   const [email, setEmail] = useState('');
-  const [error, setError] = useState(''); // State to store the error message
+  const [errorMessage, setErrorMessage] = useState(''); // Rename to avoid shadowing
 
   const handleSearch = () => {
-    setError(''); // Clear previous error messages
+    setErrorMessage(''); // Clear previous error messages
     Meteor.call('users.findByEmail', email, (error, user) => {
       if (error) {
         console.error('Search error:', error);
-        setError(error.reason || 'Failed to search for user.'); // Set the error message
+        setErrorMessage(error.reason || 'Failed to search for user.'); // Use setErrorMessage here
       } else if (user) {
         onUserSelected(user);
       } else {
-        setError('No user found with that email.'); // Set a custom error message
+        setErrorMessage('No user found with that email.'); // Use setErrorMessage here
       }
     });
   };
@@ -28,10 +29,14 @@ const UserSearch = ({ onUserSelected }) => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <button className="btn btn-primary" onClick={handleSearch}>Search</button>
-      {error && <p className="text-red-500">{error}</p>} {/* Display error message */}
+      <button className="btn btn-primary" onClick={handleSearch} type="button">Search</button> {/* Add type="button" */}
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>} {/* Use errorMessage for display */}
     </div>
   );
+};
+
+UserSearch.propTypes = {
+  onUserSelected: PropTypes.func.isRequired, // Add PropTypes validation for onUserSelected
 };
 
 export default UserSearch;
