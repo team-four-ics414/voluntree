@@ -36,7 +36,9 @@ const ConversationsList = ({ conversations, isLoading, onSelectConversation, act
           <div>
             <h5 className="mb-1">{profile?.firstName || 'User'} {profile?.lastName || ''}</h5>
             <small className="text-muted">{latestMessage?.text || 'No messages yet'}</small><br />
-            <small className="text-muted">{getTimeSince(latestMessage?.createdAt) ? getTimeSince(new Date(latestMessage.createdAt)).toLocaleString() : 'Unknown'}</small>
+            <small className="text-muted">
+              {latestMessage && latestMessage.createdAt ? getTimeSince(new Date(latestMessage.createdAt)) : 'Unknown'}
+            </small>
           </div>
         </button>
       ))}
