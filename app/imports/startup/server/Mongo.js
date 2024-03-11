@@ -122,4 +122,3 @@ if (Organizations.count() === 0 && Meteor.settings.defaultOrganizations) {
   console.log('Creating default organizations.');
   Meteor.settings.defaultOrganizations.forEach(organization => addOrganization(organization));
 }
-
