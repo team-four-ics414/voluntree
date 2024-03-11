@@ -6,7 +6,6 @@ import { Button, Card, Modal, Container, Row, Col, Spinner } from 'react-bootstr
 import { Calendars } from '../../../api/calendar/CalendarCollection';
 import CalendarEventForm from './CalendarEventForm'; // Ensure this is adapted to Bootstrap if necessary
 import { getRandomBackground } from '../../utilities/RandomBackground';
-import { formatDate } from '../../utilities/GetTimeSince';
 import CalendarDateOverlay from './CalendarDateOverlay';
 
 const CalendarEventsList = ({ events, isLoading }) => {
