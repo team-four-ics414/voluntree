@@ -19,6 +19,7 @@ import SignIn from '../pages/SignIn';
 import AddNonprofit from '../pages/AddNonprofit';
 import EditNonprofit from '../pages/EditNonprofit';
 import ListNonprofit from '../pages/ListNonprofit';
+import UsersProfilesPage from '../pages/UsersProfiles';
 // import ListNonprofitAdmin from '../pages/ListNonprofitAdmin';
 import NotAuthorized from '../pages/NotAuthorized';
 import { ROLE } from '../../api/role/Role';
@@ -33,6 +34,7 @@ import UserProfile from '../pages/UserProfile';
 import Development from '../pages/Development';
 import SpecificEvent from '../pages/SpecificEvent';
 import VolunteerForum from '../pages/VolunteerForum';
+import UsersProfiles from '../pages/UsersProfiles';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -74,6 +76,7 @@ const App = () => {
             <Route path="/notauthorized" element={<NotAuthorized />} />
             <Route path="/development" element={<ProtectedRoute><Development /></ProtectedRoute>} />
             <Route path="/specificevent" element={<ProtectedRoute><SpecificEvent /></ProtectedRoute>} />
+            <Route path="/usersprofile" element={<ProtectedRoute><UsersProfiles /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
