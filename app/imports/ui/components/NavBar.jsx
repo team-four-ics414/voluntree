@@ -23,10 +23,13 @@ const NavBar = () => {
           <Nav className="mx-auto">
             {currentUser ? ([
               <Nav.Link id={COMPONENT_IDS.NAVBAR_DEVELOPMENT} as={NavLink} to="/development" key="development">Development</Nav.Link>,
+              <Nav.Link id={COMPONENT_IDS.NAVBAR_USERS_PROFILE} as={NavLink} to="/profile" key="profile">My Dashboard</Nav.Link>,
+
               <Nav.Link id={COMPONENT_IDS.NAVBAR_VOLUNTEER_FORUM} as={NavLink} to="/forum" key="volunteer-forum">Forum</Nav.Link>,
             ]) : ''}
             {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
               [
+                <Nav.Link id={COMPONENT_IDS.NAVBAR_USERS_PROFILE} as={NavLink} to="/usersprofile" key="usersprofile">Users Profiles</Nav.Link>,
                 // <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT_ADMIN} as={NavLink} to="/nonprofits-admin" key="admin-nonprofits">List Nonprofits (Admin)</Nav.Link>,
                 <NavDropdown id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN} title="Manage" key="manage-dropdown">
                   <NavDropdown.Item id={COMPONENT_IDS.NAVBAR_MANAGE_DROPDOWN_DATABASE} key="manage-database" as={NavLink} to="/manage-database"><CloudDownload />Database</NavDropdown.Item>

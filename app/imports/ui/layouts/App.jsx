@@ -76,7 +76,7 @@ const App = () => {
             <Route path="/notauthorized" element={<NotAuthorized />} />
             <Route path="/development" element={<ProtectedRoute><Development /></ProtectedRoute>} />
             <Route path="/specificevent" element={<ProtectedRoute><SpecificEvent /></ProtectedRoute>} />
-            <Route path="/usersprofile" element={<ProtectedRoute><UsersProfiles /></ProtectedRoute>} />
+            <Route path="/usersprofile" element={<AdminProtectedRoute ready={ready}><UsersProfiles /></AdminProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
