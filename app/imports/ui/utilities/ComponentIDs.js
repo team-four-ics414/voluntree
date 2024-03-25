@@ -23,7 +23,7 @@ export const COMPONENT_IDS = {
   SIGN_UP_FORM_EMAIL: 'sign-up-form-email',
   SIGN_UP_FORM_PASSWORD: 'sign-up-form-password',
   SIGN_UP_FORM_SUBMIT: 'sign-up-form-submit',
-  NAVBAR_USER_PROFILE: 'navbar_userprofile',
+  NAVBAR_USER_PROFILE: 'navbar-userprofile',
   NAVBAR_USERS_PROFILE: 'navbar-usersprofile',
   //   Nonprofit related:
   LIST_NONPROFIT_VIEW: 'list-nonprofit-view',
