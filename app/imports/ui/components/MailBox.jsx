@@ -3,22 +3,32 @@ import { Toast, Button, Pagination } from 'react-bootstrap';
 import { EnvelopeCheckFill, EnvelopeExclamationFill, CheckCircle, XCircle } from 'react-bootstrap-icons';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
+import swal from 'sweetalert';
 import { Pending } from '../../api/activities/PendingCollection';
+import { Volunteer } from '../../api/activities/VolunteerCollection';
 
 const MailBox = () => {
   const [show, setShow] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const notificationsPerPage = 3;
 
-  const { notifications, notificationsReady } = useTracker(() => {
-    const subscription = Pending.subscribePending();
-    const ready = subscription.ready();
+  // eslint-disable-next-line no-unused-vars
+  const { notifications, notificationsReady, volunteerActivities } = useTracker(() => {
+    const pendingSubscription = Pending.subscribePending();
+    const volunteerSubscription = Volunteer.subscribeVolunteer(); // Subscribe to Volunteer
+    const ready = pendingSubscription.ready() && volunteerSubscription.ready();
     const pendingNotifications = Pending.find({ organizationID: Meteor.user()?.username }, { sort: { createdAt: -1 } }).fetch();
+    const volunteerNotifications = Volunteer.find({ owner: Meteor.user()?.username }, { sort: { createdAt: -1 } }).fetch();
     return {
       notifications: pendingNotifications.map(item => ({
         id: item._id,
         title: item.activityName,
         body: `${item.owner} : ${item.comment}`,
+      })),
+      volunteerActivities: volunteerNotifications.map(item => ({
+        id: item._id,
+        activityName: item.activityName,
+        participants: item.participant,
       })),
       notificationsReady: ready,
     };
@@ -32,12 +42,41 @@ const MailBox = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleCheckClick = () => {
-    console.log('Check clicked');
+  const handleCheckClick = (notification) => {
+    const ownerEmail = notification.body.split(' : ')[0];
+    const volunteerActivity = Volunteer.findOne({ activityName: notification.title });
+    if (volunteerActivity && ownerEmail) {
+      Meteor.call('volunteer.addToParticipant', volunteerActivity._id, ownerEmail, (error) => {
+        if (error) {
+          swal('Error', 'Could not add participant to volunteer activity.', 'error');
+        } else {
+          swal('Success', 'Participant added to volunteer activity.', 'success');
+        }
+      });
+    } else {
+      swal('Error', 'No matching volunteer activity found or missing participant information.');
+    }
   };
 
-  const handleXClick = () => {
-    console.log('X clicked');
+  const handleXClick = (notificationId) => {
+    swal({
+      title: 'Confirm Denied?',
+      text: 'Once denied, you will not be able to accept again!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          Meteor.call('pending.remove', notificationId, (error) => {
+            if (error) {
+              swal('Error', 'Could not denied the volunteer.', 'error');
+            } else {
+              swal('Completed', 'Volunteer Denied.', 'success');
+            }
+          });
+        }
+      });
   };
 
   return (
@@ -69,10 +108,10 @@ const MailBox = () => {
                   </Toast.Header>
                   <Toast.Body>{notification.body}</Toast.Body>
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button variant="success" onClick={handleCheckClick} style={{ marginRight: '10px', marginBottom: '5px' }}>
+                    <Button variant="success" onClick={() => handleCheckClick(notification)} style={{ marginRight: '10px', marginBottom: '5px' }}>
                       <CheckCircle style={{ fontSize: '1rem' }} />
                     </Button>
-                    <Button variant="danger" onClick={handleXClick} style={{ marginLeft: '10px', marginBottom: '5px' }}>
+                    <Button variant="danger" onClick={() => handleXClick(notification.id)} style={{ marginLeft: '10px', marginBottom: '5px' }}>
                       <XCircle style={{ fontSize: '1rem' }} />
                     </Button>
                   </div>
