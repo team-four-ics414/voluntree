@@ -50,6 +50,11 @@ const MailBox = () => {
         if (error) {
           swal('Error', 'Could not add participant to volunteer activity.', 'error');
         } else {
+          Meteor.call('pending.remove', notification.id, (removeError) => {
+            if (removeError) {
+              swal('Error', 'Could not remove the pending request.', 'error');
+            }
+          });
           swal('Success', 'Participant added to volunteer activity.', 'success');
         }
       });
