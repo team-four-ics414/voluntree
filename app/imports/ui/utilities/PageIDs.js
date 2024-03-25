@@ -10,7 +10,7 @@ export const PAGE_IDS = {
   NOT_FOUND: 'not-found',
   SIGN_IN: 'sign-in',
   SIGN_OUT: 'sign-out',
-  USER_PROFILE: 'userprofile',
+  USER_PROFILE: 'userprofilepage',
   SIGN_UP: 'sign-up',
   FAQ: 'faq',
   CHAT: 'chat',
