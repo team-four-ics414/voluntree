@@ -12,7 +12,7 @@ const UserProfilePage = () => (
         <h2>
           <p>User Profile</p>
         </h2>
-
+        {/*<ProfileList />*/}
         <ProfilesDisplay />
 
       </Col>
