@@ -49,7 +49,6 @@ class VolunteerCollection extends BaseCollection {
     check(newParticipant, String);
     const updateData = { $addToSet: { participant: newParticipant } };
     this._collection.update(docID, updateData);
-    console.log('Participant added:', this._collection.findOne(docID));
   }
 
   removeIt(name) {
