@@ -21,6 +21,8 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param password The password for this user.
    * @param firstName The first name.
    * @param lastName The last name.
+   * @param picture The picture URL.
+   * @param interests An array of strings representing the user's interests.
    */
   define({ email, firstName, lastName, password, picture = '', interests = [] }) {
     // Ensure operation only runs on the server to prevent client-side security issues.
@@ -50,6 +52,8 @@ class UserProfileCollection extends BaseProfileCollection {
    * @param docID the id of the UserProfile
    * @param firstName new first name (optional).
    * @param lastName new last name (optional).
+   * @param picture new picture (optional).
+   * @param interests new interests (optional).
    */
   update(docID, { firstName, lastName, picture, interests }) {
     if (Meteor.isServer) {

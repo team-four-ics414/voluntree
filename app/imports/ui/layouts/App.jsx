@@ -19,6 +19,7 @@ import SignIn from '../pages/SignIn';
 import AddNonprofit from '../pages/AddNonprofit';
 import EditNonprofit from '../pages/EditNonprofit';
 import ListNonprofit from '../pages/ListNonprofit';
+import UsersProfilesPage from '../pages/UsersProfiles';
 // import ListNonprofitAdmin from '../pages/ListNonprofitAdmin';
 import NotAuthorized from '../pages/NotAuthorized';
 import { ROLE } from '../../api/role/Role';
@@ -34,6 +35,8 @@ import Development from '../pages/Development';
 import SpecificEvent from '../pages/SpecificEvent';
 import VolunteerForum from '../pages/VolunteerForum';
 import VolunteerList from '../pages/VolunteerList';
+import UsersProfiles from '../pages/UsersProfiles';
+import UserProfilePage from '../pages/UserProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -67,7 +70,7 @@ const App = () => {
             <Route path="/view-nonprofit/:_id" element={<ViewNonprofit />} />
             <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
             <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
-            <Route path="/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+            <Route path="/userprofilepage" element={<ProtectedRoute><UserProfilePage /></ProtectedRoute>} />
             <Route path="/chat" element={<ProtectedRoute><SideChat /></ProtectedRoute>} />
             <Route path="/edit-nonprofit/:_id" element={<ProtectedRoute><EditNonprofit /></ProtectedRoute>} />
             <Route path="/admin" element={<AdminProtectedRoute ready={ready}><ListStuffAdmin /></AdminProtectedRoute>} />
@@ -76,6 +79,7 @@ const App = () => {
             <Route path="/notauthorized" element={<NotAuthorized />} />
             <Route path="/development" element={<ProtectedRoute><Development /></ProtectedRoute>} />
             <Route path="/specificevent" element={<ProtectedRoute><SpecificEvent /></ProtectedRoute>} />
+            <Route path="/usersprofile" element={<AdminProtectedRoute ready={ready}><UsersProfiles /></AdminProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

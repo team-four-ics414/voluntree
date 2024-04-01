@@ -35,14 +35,15 @@ ProfilesDisplay.defaultProps = {
 
 export default withTracker(() => {
   const userId = Meteor.userId();
-  // console.log('Current User ID:', userId); // Debugging line
+  console.log('Current User ID:', userId); // Debugging line
 
-  const handle = Meteor.subscribe('CurrentUserProfile');
+  const handle = Meteor.subscribe('UserProfilesPublication');
   const isLoading = !handle.ready();
+  console.log(`isLoading: ${isLoading}`)
   const profile = UserProfiles.findOne({ userID: userId });
   // const profile = UserProfiles.findOne({ userId }); // this was wrong
   // admin profile doesn't show up
-  // console.log('Profile found:', profile); // Debugging line
+  console.log('Profile found:', profile); // Debugging line
 
   return {
     profile,

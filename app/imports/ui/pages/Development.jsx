@@ -18,7 +18,7 @@ const Development = () => (
     <ActivityList />
     <RecentActivityList />
     <CalendarWeeklyCard />
-    <ProfileList />
+    {/*<ProfileList />*/}
     <ProfilesDisplay />
     <ChatComponent />
     <ChatInterface />
