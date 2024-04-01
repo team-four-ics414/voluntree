@@ -22,14 +22,13 @@ const bridge = new SimpleSchema2Bridge(formSchema);
 /* Renders the AddStuff page for adding a document. */
 const AddProfile = () => {
   const redirect = useNavigate();
-
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { firstName, lastName, email, picture, interest } = data;
+    const { firstName, lastName, email, picture, interest, role } = data;
     const owner = Meteor.user().username;
-    console.log(firstName, lastName, email, picture, interest, owner);
+    console.log(firstName, lastName, email, picture, interest, owner, role);
     UserProfiles._collection.insert(
-      { firstName, lastName, email, picture, interest, owner},
+      { firstName, lastName, email, picture, interest, owner, role},
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
