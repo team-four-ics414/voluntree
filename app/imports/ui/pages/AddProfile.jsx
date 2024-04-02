@@ -28,7 +28,7 @@ const AddProfile = () => {
     const owner = Meteor.user().username;
     console.log(firstName, lastName, email, picture, interest, owner, role);
     UserProfiles._collection.insert(
-      { firstName, lastName, email, picture, interest, owner, role},
+      { firstName, lastName, email, picture, interest, owner, role },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
