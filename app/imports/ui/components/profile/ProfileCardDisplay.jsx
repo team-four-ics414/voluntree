@@ -39,7 +39,7 @@ export default withTracker(() => {
 
   const handle = Meteor.subscribe('UserProfilesPublication');
   const isLoading = !handle.ready();
-  console.log(`isLoading: ${isLoading}`)
+  console.log(`isLoading: ${isLoading}`);
   const profile = UserProfiles.findOne({ userID: userId });
   // const profile = UserProfiles.findOne({ userId }); // this was wrong
   // admin profile doesn't show up
