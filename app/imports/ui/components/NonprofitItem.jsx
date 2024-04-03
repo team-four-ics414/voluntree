@@ -8,7 +8,7 @@ import { PropTypeNonprofit } from '../../api/propTypes/PropTypes';
 const NonprofitItem = ({ nonprofit }) => (
   <Card id={COMPONENT_IDS.NONPROFIT_CARD} className="h-100">
     <Card.Header>
-      <Card.Img variant="top" src={nonprofit.picture} style={{ height: '75px', width: 'auto', margin: 'auto' }} />
+      <Card.Img variant="top" src={nonprofit.picture} style={{ height: '100px', width: 'auto', objectFit: 'cover' }} />
       <Card.Title>{nonprofit.name}</Card.Title>
       <Card.Subtitle>{nonprofit.location}</Card.Subtitle>
     </Card.Header>

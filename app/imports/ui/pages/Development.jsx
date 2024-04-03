@@ -6,7 +6,7 @@ import ActivityDashboard from '../components/activities/ActivityDashboard';
 import ActivityList from '../components/activities/ActivityList';
 import RecentActivityList from '../components/activities/RecentActivityList';
 import CalendarWeeklyCard from '../components/calendar/CalendarWeeklyCard';
-import ProfileList from '../components/profile/ProfileList';
+// import ProfileList from '../components/profile/ProfileList';
 import ProfilesDisplay from '../components/profile/ProfileCardDisplay';
 import ChatComponent from '../chat/ChatComponent';
 import ChatInterface from '../components/chat/ChatInteface';
@@ -18,7 +18,7 @@ const Development = () => (
     <ActivityList />
     <RecentActivityList />
     <CalendarWeeklyCard />
-    {/*<ProfileList />*/}
+    {/* <ProfileList /> */}
     <ProfilesDisplay />
     <ChatComponent />
     <ChatInterface />

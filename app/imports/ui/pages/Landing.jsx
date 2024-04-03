@@ -2,9 +2,9 @@ import React from 'react';
 import { Col, Container, Row, ListGroup, Image, Accordion } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import Calendar from '../components/calendar/Calendar';
-import SideChat from '../components/SideChat';
 import CardSlider from '../components/CardSlider';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
+// import SideChat from '../components/SideChat';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
@@ -16,7 +16,7 @@ const Landing = () => (
       {/* </Col> */}
       <Col className="d-flex flex-column justify-content-center pb-5">
         <h1>Aloha! Welcome to Voluntree!</h1>
-        <SideChat />
+        {/* <SideChat /> //this is the mockup dropdown chat that was in the top right corner of landing page */}
       </Col>
       {/* <Col xs={4} className="d-flex flex-column"> */}
       {/*  <SideChat /> */}

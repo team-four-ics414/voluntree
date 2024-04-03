@@ -8,7 +8,6 @@ import Footer from '../components/Footer';
 import Landing from '../pages/Landing';
 import ListStuff from '../pages/ListStuff';
 import ListStuffAdmin from '../pages/ListStuffAdmin';
-import AddStuff from '../pages/AddStuff';
 import EditStuff from '../pages/EditStuff';
 import NotFound from '../pages/NotFound';
 import SignUp from '../pages/SignUp';
@@ -19,6 +18,7 @@ import SignIn from '../pages/SignIn';
 import AddNonprofit from '../pages/AddNonprofit';
 import EditNonprofit from '../pages/EditNonprofit';
 import ListNonprofit from '../pages/ListNonprofit';
+// eslint-disable-next-line no-unused-vars,import/no-duplicates
 import UsersProfilesPage from '../pages/UsersProfiles';
 // import ListNonprofitAdmin from '../pages/ListNonprofitAdmin';
 import NotAuthorized from '../pages/NotAuthorized';
@@ -30,13 +30,17 @@ import SideChat from '../components/SideChat';
 import ListOpportunities from '../pages/ListOpportunities';
 import ViewNonprofit from '../pages/ViewNonprofit';
 import MapSearch from '../pages/MapSearch';
+// eslint-disable-next-line no-unused-vars,import/no-duplicates
 import UserProfile from '../pages/UserProfile';
 import Development from '../pages/Development';
 import SpecificEvent from '../pages/SpecificEvent';
 import VolunteerForum from '../pages/VolunteerForum';
 import VolunteerList from '../pages/VolunteerList';
+// eslint-disable-next-line import/no-duplicates
 import UsersProfiles from '../pages/UsersProfiles';
+// eslint-disable-next-line import/no-duplicates
 import UserProfilePage from '../pages/UserProfile';
+import AddProfile from '../pages/AddProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -69,6 +73,7 @@ const App = () => {
             <Route path="/add-nonprofit" element={<ProtectedRoute><AddNonprofit /></ProtectedRoute>} />
             <Route path="/view-nonprofit/:_id" element={<ViewNonprofit />} />
             <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
+            <Route path="/addProfile" element={<ProtectedRoute><AddProfile /></ProtectedRoute>} />
             <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
             <Route path="/userprofilepage" element={<ProtectedRoute><UserProfilePage /></ProtectedRoute>} />
             <Route path="/chat" element={<ProtectedRoute><SideChat /></ProtectedRoute>} />
