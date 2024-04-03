@@ -1,41 +1,66 @@
-import React from 'react';
-import { Col, Container, Row, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Col, Container, Row, Button, Form } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
+import { BsSearch } from 'react-icons/bs';
 import { Nonprofits } from '../../api/nonprofit/NonprofitCollection';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import LoadingSpinner from '../components/LoadingSpinner';
 import NonprofitItem from '../components/NonprofitItem';
 import { COMPONENT_IDS } from '../utilities/ComponentIDs';
 
-/* Renders a table containing all of the Nonprofits documents. Use <NonprofitItem> to render each row. */
 const ListNonprofit = () => {
-  // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   const { ready, nonprofits } = useTracker(() => {
-    // Note that this subscription will get cleaned up
-    // when your component is unmounted or deps change.
-    // Get access to Nonprofits documents.
     const subscription = Nonprofits.subscribeNonprofit();
-    // Determine if the subscription is ready
-    const rdy = subscription.ready();
-    // Get the Nonprofits documents
-    const nonprofitItems = Nonprofits.find({}).fetch();
     return {
-      nonprofits: nonprofitItems,
-      ready: rdy,
+      nonprofits: Nonprofits.find({}).fetch(),
+      ready: subscription.ready(),
     };
   }, []);
+
+  const filteredNonprofits = nonprofits.filter((nonprofit) => {
+    const normalizedQuery = searchQuery.toLowerCase();
+    return nonprofit.name.toLowerCase().includes(normalizedQuery) ||
+      nonprofit.mission.toLowerCase().includes(normalizedQuery);
+
+  });
+
   return (ready ? (
     <Container id={PAGE_IDS.LIST_NONPROFIT} className="py-3">
-      <Button id={COMPONENT_IDS.NONPROFIT_ADD_BTN} href="/add-nonprofit">Add Nonprofit</Button>
-      <Row className="justify-content-center">
+      <Row className="d-flex">
         <Col md={7}>
-          <Col className="text-center">
-            <h2>Nonprofits Dashboard</h2>
+          <Col className="text-start">
+            <div className="d-flex align-items-center">
+              <BsSearch size={15} color="green" className="mr-2" />
+              <h3 className="search-header">Find Nonprofits</h3>
+            </div>
           </Col>
+          { /* Search Bar */ }
+          <Row className="mb-3">
+            <Col xs={8} md={6}>
+              <Form.Control
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={handleSearchInputChange}
+                className="search-input"
+              />
+            </Col>
+            <Col>
+              <Button variant="success" id={COMPONENT_IDS.NONPROFIT_ADD_BTN} href="/add-nonprofit">Add Nonprofit</Button>
+            </Col>
+          </Row>
         </Col>
       </Row>
       <Row xs={1} md={2} lg={3} className="g-4">
-        {nonprofits.map((nonprofit) => <Col key={nonprofit._id}><NonprofitItem nonprofit={nonprofit} /></Col>)}
+        {filteredNonprofits.map((nonprofit) => (
+          <Col key={nonprofit._id}><NonprofitItem nonprofit={nonprofit} /></Col>
+        ))}
       </Row>
     </Container>
   ) : <LoadingSpinner message="Loading Nonprofits" />);
