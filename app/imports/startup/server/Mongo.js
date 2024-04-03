@@ -6,6 +6,7 @@ import { Activity } from '../../api/activities/ActivityCollection';
 import { Calendars } from '../../api/calendar/CalendarCollection';
 import { Organizations } from '../../api/organization/OrganizationCollection';
 import { Volunteer } from '../../api/activities/VolunteerCollection';
+import { Opportunity } from '../../api/opportunities/OpportunityCollection';
 import { Pending } from '../../api/activities/PendingCollection';
 // import { Posts } from '../../api/forum/PostsCollection';
 
@@ -73,6 +74,23 @@ if (Volunteer.count() === 0) {
     console.log('Creating Default VolunteerCollection.');
     Meteor.settings.defaultVolunteer.forEach(data => addVolunteer(data));
   }
+}
+
+// add default opportunities
+function addOpportunity(opportunity) {
+  console.log(`  Adding opportunity: ${opportunity.name}`);
+  try {
+    Opportunity.define(opportunity);
+    console.log(`  Successfully added opportunity: ${opportunity.name}`);
+  } catch (error) {
+    console.error(`Error adding opportunity ${opportunity.name}: ${error}`);
+  }
+}
+
+// Initialize OpportunityCollection if empty
+if (Opportunity.count() === 0 && Meteor.settings.defaultOpportunities) {
+  console.log('Creating default opportunities.');
+  Meteor.settings.defaultOpportunities.forEach(opportunity => addOpportunity(opportunity));
 }
 
 const addEvent = (event) => {

@@ -7,6 +7,7 @@ import { Organizations } from '../../api/organization/OrganizationCollection';
 import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Messages } from '../../api/messaging/MessagesCollection';
 import { Conversations } from '../../api/messaging/ConversationsCollection';
+import { Opportunity } from '../../api/opportunities/OpportunityCollection';
 // Call publish for all the collections.
 MATPCollections.collections.forEach(c => c.publish());
 
@@ -28,6 +29,14 @@ Meteor.publish('calendar.all', function publishCalendarAll() {
 // Publish recent activities
 Meteor.publish('recentActivities.public', function publishRecentActivities() {
   return Activity.find({}, { sort: { createdAt: -1 }, limit: 3 });
+});
+
+Meteor.publish('opportunities.all', function publishOpportunitiesAll() {
+  return Opportunity.find({});
+});
+
+Meteor.publish('opportunities.default', function publishDefaultOpportunities() {
+  return Opportunity.find({});
 });
 
 // Publish this week's calendars

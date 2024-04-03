@@ -1,58 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Form, Dropdown } from 'react-bootstrap';
 import { BsSearch } from 'react-icons/bs';
+import { Opportunity } from '../../api/opportunities/OpportunityCollection';
 
 const ListOpportunities = () => {
   const [showInfo, setShowInfo] = useState(false);
   const [selectedOpportunity, setSelectedOpportunity] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [opportunities, setOpportunities] = useState([]);
 
-  // TO BE REPLACED WITH ACTUAL DATA FROM COLLECTION
-  const opportunities = [
-    {
-      name: 'Agriculture',
-      image: 'images/sample1.jpg',
-      description: 'Learn more about farming.',
-      category: 'Agriculture',
-    },
-    {
-      name: 'Cleanup',
-      image: 'images/sample3.jpg',
-      description: 'Help clean up the community.',
-      category: 'Cleanup',
-    },
-    {
-      name: 'Education',
-      image: 'images/sample2.jpg',
-      description: 'Volunteer for educational programs.',
-      category: 'Education',
-    },
-    {
-      name: 'Medicine',
-      image: 'images/sample4.jpg',
-      description: 'Assist in medical outreach programs.',
-      category: 'Medicine',
-    },
-    {
-      name: 'Arts & Culture',
-      image: 'images/sample1.jpg',
-      description: '',
-      category: 'Arts & Culture',
-    },
-    {
-      name: 'Seniors',
-      image: 'images/sample1.jpg',
-      description: '',
-      category: 'Nursing',
-    },
-    {
-      name: 'Church',
-      image: 'images/sample1.jpg',
-      description: '',
-      category: 'Faith-Based',
-    },
-  ];
+  useEffect(() => {
+    const opportunitySubscription = Opportunity.subscribeOpportunity();
+    return () => {
+      opportunitySubscription.stop();
+    };
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await Opportunity.find().fetch();
+      setOpportunities(data);
+    };
+    fetchData();
+  }, []);
 
   const handleInfoClick = (opportunity) => {
     setShowInfo(!showInfo);
@@ -155,10 +126,10 @@ const ListOpportunities = () => {
                 style={{ height: '200px', objectFit: 'cover' }}
               />
               <p>{selectedOpportunity.description}</p>
-              <p>Location:</p>
-              <p>Time:</p>
-              <p>Frequency:</p>
-              {/* TO DO: add more info */}
+              <p><strong>Location:</strong> {selectedOpportunity.location}</p>
+              <p><strong>Time:</strong> {selectedOpportunity.time}</p>
+              <p><strong>Frequency:</strong> {selectedOpportunity.frequency}</p>
+
               <Button variant="secondary" onClick={handleInfoClick}>
                 Close
               </Button>
