@@ -40,7 +40,7 @@ const VolunteerList = () => {
             <td style={{ textAlign: 'center' }}>{item.participant.length}</td>
             <td style={{ textAlign: 'center' }}>
               <Button variant="link" onClick={() => handleShowModal(item.participant)}>
-                ...View More
+                View More
               </Button>
             </td>
           </tr>
