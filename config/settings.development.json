@@ -119,28 +119,28 @@
       "activityName": "Urban Gardening in Downtown Honolulu",
       "organizationID": "admin@foo.com",
       "comment": "testing 2 if this works, confirm if it does",
-      "owner": "john@foo.com"
+      "owner": "test2@foo.com"
     },
     {
       "activityID": "FNHetKwN5oqthaqWc",
       "activityName": "Urban Gardening in Downtown Honolulu",
       "organizationID": "admin@foo.com",
       "comment": "testing 3 if this works, confirm if it does",
-      "owner": "john@foo.com"
+      "owner": "test3@foo.com"
     },
     {
       "activityID": "FNHetKwN5oqthaqWc",
       "activityName": "Urban Gardening in Downtown Honolulu",
       "organizationID": "admin@foo.com",
       "comment": "testing 4 if this works, confirm if it does",
-      "owner": "john@foo.com"
+      "owner": "test4@foo.com"
     },
     {
       "activityID": "FNHetKwN5oqthaqWc",
       "activityName": "Urban Gardening in Downtown Honolulu",
       "organizationID": "admin@foo.com",
       "comment": "testing 5 if this works, confirm if it does",
-      "owner": "john@foo.com"
+      "owner": "test5@foo.com"
     }
   ],
 

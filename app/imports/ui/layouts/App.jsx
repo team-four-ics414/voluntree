@@ -69,7 +69,6 @@ const App = () => {
             <Route path="/nonprofits" element={<ListNonprofit />} />
             <Route path="/mapsearch" element={<ProtectedRoute><MapSearch /></ProtectedRoute>} />
             <Route path="/volunteerlist" element={<ProtectedRoute><VolunteerList /></ProtectedRoute>} />
-            <Route path="/add" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
             <Route path="/add-nonprofit" element={<ProtectedRoute><AddNonprofit /></ProtectedRoute>} />
             <Route path="/view-nonprofit/:_id" element={<ViewNonprofit />} />
             <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
