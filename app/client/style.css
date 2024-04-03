@@ -209,3 +209,26 @@ body {
   color: #fff; /* white text on red background */
   padding: 2px 0; /* padding for the month part */
 }
+
+/* Pie Chart */
+.x-box{
+  width: 30vh;
+  height: 30vh;
+  border-radius: 50%;
+  background-color:white;
+
+}
+
+.x-box-cont{
+  font-size: 30px;
+}
+
+.x-box-cont h1{
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+.x-box-cont strong{
+  display: block;
+  margin-bottom: 15px;
+}
