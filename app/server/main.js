@@ -10,3 +10,5 @@ import '../imports/api/calendar/CalendarCollection.methods';
 import '../imports/api/activities/ActivityCollection.methods';
 import '../imports/api/messaging/MessageCollection.methods';
 import '../imports/api/messaging/ConversationsCollection.methods';
+import '../imports/api/activities/VolunteerCollection.methods';
+import '../imports/api/activities/PendingCollection.methods';

@@ -99,6 +99,11 @@
   },
 
   "defaultVolunteer": [
+    {
+      "activityName": "Urban Gardening in Downtown Honolulu",
+      "participant": [],
+      "owner": "admin@foo.com"
+    }
   ],
 
   "defaultPending": [

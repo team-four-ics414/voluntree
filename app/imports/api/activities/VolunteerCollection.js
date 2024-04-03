@@ -11,7 +11,7 @@ export const volunteerPublications = {
 class VolunteerCollection extends BaseCollection {
   constructor() {
     super('Volunteer', new SimpleSchema({
-      activityID: String,
+      activityName: String,
       participant: {
         type: Array,
       },
@@ -20,19 +20,19 @@ class VolunteerCollection extends BaseCollection {
     }));
   }
 
-  define({ activityID, participant, owner }) {
+  define({ activityName, participant, owner }) {
     const docID = this._collection.insert({
-      activityID,
+      activityName,
       participant,
       owner,
     });
     return docID;
   }
 
-  update(docID, { activityID, participant, owner }) {
+  update(docID, { activityName, participant, owner }) {
     const updateData = {};
-    if (activityID) {
-      updateData.activityID = activityID;
+    if (activityName) {
+      updateData.activityName = activityName;
     }
     if (participant) {
       updateData.participant = participant;
@@ -41,6 +41,14 @@ class VolunteerCollection extends BaseCollection {
       updateData.owner = owner;
     }
     this._collection.update(docID, { $set: updateData });
+  }
+
+  addToParticipant(docID, newParticipant) {
+    console.log(`Adding ${newParticipant} to ${docID}`);
+    check(docID, String);
+    check(newParticipant, String);
+    const updateData = { $addToSet: { participant: newParticipant } };
+    this._collection.update(docID, updateData);
   }
 
   removeIt(name) {
@@ -76,10 +84,10 @@ class VolunteerCollection extends BaseCollection {
 
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const activityID = doc.activityID;
+    const activityName = doc.activityName;
     const participant = doc.participant;
     const owner = doc.owner;
-    return { activityID, participant, owner };
+    return { activityName, participant, owner };
   }
 }
 

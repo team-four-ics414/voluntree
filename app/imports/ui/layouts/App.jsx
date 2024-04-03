@@ -35,6 +35,7 @@ import UserProfile from '../pages/UserProfile';
 import Development from '../pages/Development';
 import SpecificEvent from '../pages/SpecificEvent';
 import VolunteerForum from '../pages/VolunteerForum';
+import VolunteerList from '../pages/VolunteerList';
 // eslint-disable-next-line import/no-duplicates
 import UsersProfiles from '../pages/UsersProfiles';
 // eslint-disable-next-line import/no-duplicates
@@ -67,6 +68,8 @@ const App = () => {
             <Route path="/forum" element={<ProtectedRoute ready={ready}><VolunteerForum /></ProtectedRoute>} />
             <Route path="/nonprofits" element={<ListNonprofit />} />
             <Route path="/mapsearch" element={<ProtectedRoute><MapSearch /></ProtectedRoute>} />
+            <Route path="/volunteerlist" element={<ProtectedRoute><VolunteerList /></ProtectedRoute>} />
+            <Route path="/add" element={<ProtectedRoute><AddStuff /></ProtectedRoute>} />
             <Route path="/add-nonprofit" element={<ProtectedRoute><AddNonprofit /></ProtectedRoute>} />
             <Route path="/view-nonprofit/:_id" element={<ViewNonprofit />} />
             <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
