@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ProfileCardExample = ({ profile }) => (
   <div className="profile-card-example" style={{ border: '1px solid #ddd', padding: '20px', borderRadius: '5px', marginBottom: '10px' }}>
-    <h2 className="mt-3 mb-4 text-center">Profile Card Example</h2>
+    <h2 className="mt-3 mb-4 text-center">My Profile</h2>
 
     {/* Profile Image */}
     {profile.picture && (
