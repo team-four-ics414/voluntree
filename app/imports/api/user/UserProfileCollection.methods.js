@@ -17,6 +17,27 @@ export const signUpNewUserMethod = new ValidatedMethod({
 });
 
 Meteor.methods({
+  'userProfiles.insert'(profile) {
+    check(profile, {
+      firstName: String,
+      lastName: String,
+      email: String,
+      picture: String,
+      interest: String,
+      owner: String,
+      userID: String,
+      role: String,
+    });
+
+    if (!this.userId) {
+      throw new Meteor.Error('not-authorized', 'You must be logged in to insert a profile.');
+    }
+
+    return UserProfiles._collection.insert(profile);
+  },
+});
+
+Meteor.methods({
   'users.findByEmail'(email) {
     check(email, String);
     if (!this.userId) {
