@@ -17,7 +17,10 @@ const formatDate = (date) => {
 };
 
 const ActivitySchema = new SimpleSchema({
-  comment: String,
+  comment: {
+    type: String,
+    optional: true,
+  },
 });
 const schemaBridge = new SimpleSchema2Bridge(ActivitySchema);
 

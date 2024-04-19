@@ -51,15 +51,8 @@ Meteor.methods({
     if (!this.userId) {
       throw new Meteor.Error('Not authorized.');
     }
-
-    const pendingItem = Pending.findDoc(pendingId);
-
-    if (pendingItem.owner !== this.userId && !Roles.userIsInRole(this.userId, [ROLE.ADMIN])) {
-      throw new Meteor.Error('Not authorized to remove this pending item.');
-    }
-
     Pending.assertValidRoleForMethod(this.userId);
 
     return Pending.removeIt(pendingId);
-  }
+  },
 });

@@ -4,8 +4,10 @@ import { EnvelopeCheckFill, EnvelopeExclamationFill, CheckCircle, XCircle } from
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import swal from 'sweetalert';
+import { Roles } from 'meteor/alanning:roles';
 import { Pending } from '../../api/activities/PendingCollection';
 import { Volunteer } from '../../api/activities/VolunteerCollection';
+import { ROLE } from '../../api/role/Role';
 
 const MailBox = () => {
   const [show, setShow] = useState(false);
@@ -24,6 +26,8 @@ const MailBox = () => {
         id: item._id,
         title: item.activityName,
         body: `${item.owner} : ${item.comment}`,
+        organizationID: item.organizationID,
+        owner: item.owner,
       })),
       volunteerActivities: volunteerNotifications.map(item => ({
         id: item._id,
@@ -42,6 +46,33 @@ const MailBox = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const insertPending = (notification, type) => {
+    const newData = {
+      activityID: notification.id,
+      activityName: notification.title,
+      organizationID: notification.owner,
+      comment: type,
+      owner: notification.organizationID,
+    };
+    Meteor.call('pending.insert', newData, (error) => {
+      if (error) {
+        console.log('Error', error.reason, 'error');
+      } else {
+        console.log('Success', 'Your request has been submitted!', 'success');
+      }
+    });
+  };
+
+  const pendingRemove = (pendingID) => {
+    Meteor.call('pending.remove', pendingID, (error) => {
+      if (error) {
+        swal('Error', 'Could not complete request', 'error');
+      } else {
+        swal('Completed', 'Notification Deleted', 'success');
+      }
+    });
+  };
+
   const handleCheckClick = (notification) => {
     const ownerEmail = notification.body.split(' : ')[0];
     const volunteerActivity = Volunteer.findOne({ activityName: notification.title });
@@ -50,11 +81,8 @@ const MailBox = () => {
         if (error) {
           swal('Error', 'Could not add participant to volunteer activity.', 'error');
         } else {
-          Meteor.call('pending.remove', notification.id, (removeError) => {
-            if (removeError) {
-              swal('Error', 'Could not remove the pending request.', 'error');
-            }
-          });
+          insertPending(notification, 'Your Participation Request Have Been Accepted');
+          pendingRemove(notification.id);
           swal('Success', 'Participant added to volunteer activity.', 'success');
         }
       });
@@ -63,7 +91,7 @@ const MailBox = () => {
     }
   };
 
-  const handleXClick = (notificationId) => {
+  const handleXClick = (notification) => {
     swal({
       title: 'Confirm Denied?',
       text: 'Once denied, you will not be able to accept again!',
@@ -72,14 +100,9 @@ const MailBox = () => {
       dangerMode: true,
     })
       .then((willDelete) => {
+        insertPending(notification, 'Your Participation Request Have Been Denied');
         if (willDelete) {
-          Meteor.call('pending.remove', notificationId, (error) => {
-            if (error) {
-              swal('Error', 'Could not denied the volunteer.', 'error');
-            } else {
-              swal('Completed', 'Volunteer Denied.', 'success');
-            }
-          });
+          pendingRemove(notification.id);
         }
       });
   };
@@ -113,12 +136,20 @@ const MailBox = () => {
                   </Toast.Header>
                   <Toast.Body>{notification.body}</Toast.Body>
                   <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Button variant="success" onClick={() => handleCheckClick(notification)} style={{ marginRight: '10px', marginBottom: '5px' }}>
-                      <CheckCircle style={{ fontSize: '1rem' }} />
-                    </Button>
-                    <Button variant="danger" onClick={() => handleXClick(notification.id)} style={{ marginLeft: '10px', marginBottom: '5px' }}>
-                      <XCircle style={{ fontSize: '1rem' }} />
-                    </Button>
+                    {Roles.userIsInRole(Meteor.userId(), [ROLE.ADMIN]) ? (
+                      <>
+                        <Button variant="success" onClick={() => handleCheckClick(notification)} style={{ marginRight: '10px', marginBottom: '5px' }}>
+                          <CheckCircle style={{ fontSize: '1rem' }} />
+                        </Button>
+                        <Button variant="danger" onClick={() => handleXClick(notification)} style={{ marginLeft: '10px', marginBottom: '5px' }}>
+                          <XCircle style={{ fontSize: '1rem' }} />
+                        </Button>
+                      </>
+                    ) : (
+                      <Button variant="danger" onClick={() => pendingRemove(notification.id)} style={{ margin: 'auto', marginBottom: '5px' }}>
+                        <XCircle style={{ fontSize: '1rem' }} />
+                      </Button>
+                    )}
                   </div>
                 </Toast>
               ))}
