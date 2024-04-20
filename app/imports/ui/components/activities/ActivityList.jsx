@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
 import { Modal, Button } from 'react-bootstrap';
@@ -27,6 +28,7 @@ const schemaBridge = new SimpleSchema2Bridge(ActivitySchema);
 const ActivityList = ({ activities }) => {
   const [showModal, setShowModal] = useState(false);
   const [currentActivity, setCurrentActivity] = useState(null);
+  const { _id } = useParams();
 
   const handleOpenModal = (activity) => {
     setCurrentActivity(activity);
@@ -59,10 +61,10 @@ const ActivityList = ({ activities }) => {
     <div className="container mt-3">
       <h2 className="mb-4">Activities List</h2>
       <div className="row row-cols-1 row-cols-md-3 g-4">
-        {activities.map((activity) => (
+        {activities.filter(activity => !_id || activity._id === _id).map((activity) => (
           <div key={activity._id} className="col">
             <div className="card h-100">
-              <img src={activity.image || '/images/volunteers1.jpg'} className="card-img-top" alt={activity.name} />
+              <img style={{ width: '500px', height: '200px' }} src={activity.image || '/images/volunteers1.jpg'} className="card-img-top" alt={activity.name} />
               <div className="card-body">
                 <h5 className="card-title">{activity.name}</h5>
                 <p className="card-text">{activity.details}</p>

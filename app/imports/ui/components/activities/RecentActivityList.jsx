@@ -29,7 +29,7 @@ const RecentActivityList = ({ recentActivities }) => (
       {recentActivities.map((activity) => (
         <div key={activity._id} className="col">
           <div className="card h-100">
-            <img src={activity.image || '/images/volunteers1.jpg'} className="card-img-top" alt={activity.name} />
+            <img style={{ width: '500px', height: '200px' }} src={activity.image || '/images/volunteers1.jpg'} className="card-img-top" alt={activity.name} />
             <div className="card-body">
               <h5 className="card-title">{activity.name}</h5>
               <p className="card-text">{activity.details}</p>

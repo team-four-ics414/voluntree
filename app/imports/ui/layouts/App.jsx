@@ -41,6 +41,7 @@ import UsersProfiles from '../pages/UsersProfiles';
 // eslint-disable-next-line import/no-duplicates
 import UserProfilePage from '../pages/UserProfile';
 import AddProfile from '../pages/AddProfile';
+import Activity from '../pages/Activity';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -74,6 +75,8 @@ const App = () => {
             <Route path="/edit/:_id" element={<ProtectedRoute><EditStuff /></ProtectedRoute>} />
             <Route path="/addProfile" element={<ProtectedRoute><AddProfile /></ProtectedRoute>} />
             <Route path="/addactivity" element={<ProtectedRoute><AddActivity /></ProtectedRoute>} />
+            <Route path="/activity" element={<ProtectedRoute><Activity /></ProtectedRoute>} />
+            <Route path="/activity/:_id" element={<ProtectedRoute><Activity /></ProtectedRoute>} />
             <Route path="/userprofilepage" element={<ProtectedRoute><UserProfilePage /></ProtectedRoute>} />
             <Route path="/chat" element={<ProtectedRoute><SideChat /></ProtectedRoute>} />
             <Route path="/edit-nonprofit/:_id" element={<ProtectedRoute><EditNonprofit /></ProtectedRoute>} />
