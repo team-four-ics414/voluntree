@@ -7,14 +7,39 @@ import { Activity } from '../../../api/activities/ActivityCollection';
 import ActivityForm from './ActivityForm';
 import AddToCalendar from './AddToCalendar';
 import { Calendars } from '../../../api/calendar/CalendarCollection';
+import { Volunteer } from '../../../api/activities/VolunteerCollection';
 
 const ActivityDashboard = ({ activities, isLoading }) => {
   const [showModal, setShowModal] = useState(false);
   const [currentActivity, setCurrentActivity] = useState(null);
   const [error, setError] = useState('');
 
+  const notifyParticipants = (activity, comment) => {
+    const volunteer = Volunteer.findOne({ activityName: activity.name });
+    if (volunteer && volunteer.participant.length > 0) {
+      volunteer.participant.forEach((participant) => {
+        const notificationData = {
+          activityID: activity._id,
+          activityName: activity.name,
+          organizationID: participant,
+          comment: comment,
+          owner: Meteor.user()?.username,
+        };
+        // eslint-disable-next-line no-shadow
+        Meteor.call('pending.insert', notificationData, (error) => {
+          if (error) {
+            console.error(`Error inserting notification: ${error.message}`);
+          } else {
+            console.log('Notification inserted successfully');
+          }
+        });
+      });
+    }
+  };
+
   const openModal = (activity = null) => {
     setCurrentActivity(activity);
+    notifyParticipants(activity, 'Activity was edited');
     setShowModal(true);
     setError('');
   };
@@ -25,8 +50,8 @@ const ActivityDashboard = ({ activities, isLoading }) => {
     setError('');
   };
 
-  const handleDelete = (activityId) => {
-    Meteor.call('calendar.removeByActivityId', activityId, (Calendarerror, response) => {
+  const handleDelete = (activity) => {
+    Meteor.call('calendar.removeByActivityId', activity._id, (Calendarerror, response) => {
       if (Calendarerror) {
         console.error(`Error removing associated calendar events: ${Calendarerror.message}`);
       } else if (response && response.count > 0) {
@@ -34,10 +59,11 @@ const ActivityDashboard = ({ activities, isLoading }) => {
       } else {
         console.log('No calendar events found or removed.');
       }
-      Meteor.call('activity.remove', activityId, (removeError) => {
+      Meteor.call('activity.remove', activity._id, (removeError) => {
         if (removeError) {
           setError(`Error removing activity: ${removeError.message}`);
         } else {
+          notifyParticipants(activity, 'Activity was removed');
           setError('');
           alert('Activity removed successfully.');
         }
@@ -90,7 +116,7 @@ const ActivityDashboard = ({ activities, isLoading }) => {
             </div>
             <div className="flex items-center space-x-2">
               <button type="button" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded" onClick={() => openModal(activity)}>Edit</button>
-              <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onClick={() => handleDelete(activity._id)}>Delete</button>
+              <button type="button" className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded" onClick={() => handleDelete(activity)}>Delete</button>
               <button type="button" className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded" onClick={() => removeCalendarEvents(activity._id)}>Remove Calendar Events</button>
               <AddToCalendar activity={activity} isAlreadyAdded={checkActivityAddedStatus(activity._id)} />
             </div>

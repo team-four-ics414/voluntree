@@ -66,9 +66,9 @@ const MailBox = () => {
   const pendingRemove = (pendingID) => {
     Meteor.call('pending.remove', pendingID, (error) => {
       if (error) {
-        swal('Error', 'Could not complete request', 'error');
+        console.log('Error', 'Could not complete request', 'error');
       } else {
-        swal('Completed', 'Notification Deleted', 'success');
+        console.log('Completed', 'Notification Deleted', 'success');
       }
     });
   };
@@ -103,6 +103,7 @@ const MailBox = () => {
         insertPending(notification, 'Your Participation Request Have Been Denied');
         if (willDelete) {
           pendingRemove(notification.id);
+          swal('Success', 'Participant have been denied', 'success');
         }
       });
   };
