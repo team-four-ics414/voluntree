@@ -65,6 +65,17 @@ class NavBar {
       .click('#opportunities-page');
   }
 
+  /* Go to the Map Search page. */
+  async gotoMapsearchPage() {
+    const visible = await Selector(`#${COMPONENT_IDS.NAVBAR_COLLAPSE}`).visible;
+    if (!visible) {
+      await t.click('button.navbar-toggler');
+    }
+    await t
+      .click(`#${COMPONENT_IDS.NAVBAR_FIND_DROPDOWN}`)
+      .click('#map-page');
+  }
+
   /* Go to the FAQ page. */
   async gotoFAQ(testController) {
     await testController.click('#faq');
