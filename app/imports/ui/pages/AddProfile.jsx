@@ -47,6 +47,7 @@ const AddProfile = () => {
       <Row className="justify-content-center">
         <Col xs={10}>
           <Col className="text-center"><h2>Add Profile</h2></Col>
+          {/* eslint-disable-next-line no-undef */}
           <AutoForm ref={(ref) => { formRef = ref; }} schema={bridge} onSubmit={data => submit(data, formRef)}>
             <Card>
               <Card.Body>
