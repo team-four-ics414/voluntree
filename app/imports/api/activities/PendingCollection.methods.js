@@ -61,5 +61,5 @@ Meteor.methods({
     Pending.assertValidRoleForMethod(this.userId);
 
     return Pending.removeIt(pendingId);
-  }
+  },
 });
