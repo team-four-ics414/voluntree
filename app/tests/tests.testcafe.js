@@ -1,5 +1,5 @@
 // import { Selector, t, ClientFunction } from 'testcafe';
-import { /* manageDatabasePage, */ signOutPage } from './simple.page';
+import { signOutPage } from './simple.page';
 import { landingPage } from './landing.page';
 import { signInPage } from './signin.page';
 import { signUpPage } from './signup.page';
@@ -69,6 +69,13 @@ test('Test that admin pages show up', async () => {
 //
 test('Test that opportunities page works', async (testController) => {
   await navBar.gotoOpportunitiesPage(testController);
+});
+
+test('Test that map search page shows up', async (testController) => {
+  await navBar.gotoSignInPage();
+  await signInPage.signin(credentials.username, credentials.password);
+  await navBar.isLoggedIn(credentials.username);
+  await navBar.gotoMapsearchPage(testController);
 });
 
 test('Test that FAQ page shows up', async (testController) => {
