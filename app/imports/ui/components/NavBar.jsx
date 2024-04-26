@@ -38,6 +38,7 @@ const NavBar = () => {
             ) : ''}
             <Nav.Link id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/" key="landing">Home</Nav.Link>
             <NavDropdown id={COMPONENT_IDS.NAVBAR_FIND_DROPDOWN} title="Find">
+              <Nav.Link as={NavLink} to="/activity" key="activity">Activity</Nav.Link>
               <Nav.Link id={COMPONENT_IDS.NAVBAR_LIST_NONPROFIT} as={NavLink} to="/nonprofits" key="list-nonprofit">Nonprofits</Nav.Link>
               <Nav.Link id="map-page" as={NavLink} to="/mapsearch" key="map-activity">Map Search</Nav.Link>
               <Nav.Link id="opportunities-page" as={NavLink} to="/opportunities" key="list">Opportunities</Nav.Link>

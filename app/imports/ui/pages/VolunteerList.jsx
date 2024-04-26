@@ -47,8 +47,11 @@ const VolunteerList = () => {
         ))}
         {Array.from({ length: emptyRows }, (_, index) => (
           <tr key={`empty-${index}`}>
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <td>&nbsp;</td>
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <td>&nbsp;</td>
+            {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
             <td>&nbsp;</td>
           </tr>
         ))}

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTracker } from 'meteor/react-meteor-data';
 import { GoogleMap, LoadScript, StandaloneSearchBox, Marker, InfoWindow } from '@react-google-maps/api';
 import { Button } from 'react-bootstrap';
@@ -23,6 +24,7 @@ const center = {
 };
 
 const MapSearch = () => {
+  const navigate = useNavigate();
   const [mapOptions, setMapOptions] = useState({
     center: center,
     zoom: 12,
@@ -65,6 +67,10 @@ const MapSearch = () => {
         console.log(`Geocoder failed due to: ${status}`);
       }
     });
+  };
+
+  const handleMoreDetailsClick = () => {
+    navigate(`/activity/${selectedActivity._id}`); // Navigate to the activity details page
   };
 
   return (
@@ -124,7 +130,7 @@ const MapSearch = () => {
                   <h5>{selectedActivity.name}</h5>
                   <h6>Address: {selectedAddress}</h6>
                   <p>{selectedActivity.details}</p>
-                  <Button size="sm">
+                  <Button size="sm" onClick={handleMoreDetailsClick}>
                     More Details
                   </Button>
                 </div>

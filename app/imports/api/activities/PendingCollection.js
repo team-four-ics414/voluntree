@@ -14,7 +14,10 @@ class PendingCollection extends BaseCollection {
       activityID: String,
       activityName: String,
       organizationID: String,
-      comment: String,
+      comment: {
+        type: String,
+        optional: true,
+      },
       owner: String,
     }));
   }
