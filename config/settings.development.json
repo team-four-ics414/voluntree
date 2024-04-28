@@ -74,7 +74,7 @@
     }
   ],
 
-  "defaultData": [
+  "defaultDatadefaultData": [
     { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
     { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
     { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
@@ -464,5 +464,49 @@
     },
     "createdAt": "2024-02-25T18:00:00Z"
   }
+  ],
+  "defaultForumPosts": [
+    {
+      "title": "In need of Dog sitter",
+      "contents": "I need a dog sitter please please please. I am looking for someone who can sit on my dog. He is a good boy, his name is max. He is a golden retriever and very well-behaved/friendly.\n          I just need someone to take care of him for this weekend while I am out of town. Please let me know if you have any questions or are interested. Thanks!!",
+      "owner": "john@foo.com",
+      "createdAt": "2024-00-01T10:00:00Z",
+      "lastUpdated": "2024-02-25T18:00:00Z"
+    },
+    {
+      "title": "Help Needed with Moving Furniture",
+      "contents": "I require assistance with moving heavy furniture items from my old apartment to my new house. I have a sofa, a bed, and a dining table that need to be transported. If you have a truck and are available this Saturday, please let me know. Your help would be greatly appreciated!",
+      "owner": "john@foo.com",
+      "createdAt": "2024-04-10T10:00:00Z",
+      "lastUpdated": "2024-04-12T15:30:00Z"
+    },
+    {
+      "title": "Looking for Tutor for Math",
+      "contents": "I'm seeking a math tutor to help me with algebra and calculus concepts. I'm currently struggling with understanding certain topics and need some extra guidance to improve my grades. If you're patient and knowledgeable in math, please reach out to me to discuss further details. Thank you!",
+      "owner": "john@foo.com",
+      "createdAt": "2024-03-15T14:00:00Z",
+      "lastUpdated": "2024-03-17T18:45:00Z"
+    },
+    {
+      "title": "Babysitting Service Needed for Date Night",
+      "contents": "My partner and I are looking for a reliable babysitter to watch our two children (ages 4 and 7) for a few hours this Saturday evening. We'd like someone who is experienced with kids and can engage them in fun activities. If you're available and have references, please contact us. Thank you!",
+      "owner": "john@foo.com",
+      "createdAt": "2024-04-20T16:30:00Z",
+      "lastUpdated": "2024-04-21T10:20:00Z"
+    },
+    {
+      "title": "Gardening Assistance Needed",
+      "contents": "I'm in need of help with gardening tasks such as weeding, planting flowers, and trimming hedges in my backyard. If you have gardening experience and are available this weekend, I'd appreciate your assistance. Please reach out if you're interested. Thank you!",
+      "owner": "john@foo.com",
+      "createdAt": "2024-04-05T09:00:00Z",
+      "lastUpdated": "2024-04-07T14:15:00Z"
+    },
+    {
+      "title": "Computer Repair Help Needed",
+      "contents": "I'm having trouble with my laptop; it's running slow, and I suspect there might be a virus. I need someone with expertise in computer repair to diagnose and fix the issue. If you're knowledgeable about software troubleshooting and available this weekend, please get in touch. Thanks!",
+      "owner": "john@foo.com",
+      "createdAt": "2024-02-28T11:00:00Z",
+      "lastUpdated": "2024-03-01T16:40:00Z"
+    }
   ]
 }

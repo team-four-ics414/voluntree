@@ -8,6 +8,7 @@ import { Organizations } from '../../api/organization/OrganizationCollection';
 import { Volunteer } from '../../api/activities/VolunteerCollection';
 import { Opportunity } from '../../api/opportunities/OpportunityCollection';
 import { Pending } from '../../api/activities/PendingCollection';
+import { Posts } from '../../api/forum/PostsCollection';
 // import { Posts } from '../../api/forum/PostsCollection';
 
 /* eslint-disable no-console */
@@ -139,4 +140,18 @@ function addOrganization(organization) {
 if (Organizations.count() === 0 && Meteor.settings.defaultOrganizations) {
   console.log('Creating default organizations.');
   Meteor.settings.defaultOrganizations.forEach(organization => addOrganization(organization));
+}
+
+// Function to add default forum posts.
+const addForumPost = (post) => {
+  console.log(`  Adding: ${post.title} (${post.owner})`);
+  Posts.define(post);
+};
+
+// initialize the PostsCollection if empty.
+if (Posts.count() === 0 && Meteor.settings.defaultForumPosts) {
+  if (Meteor.settings.defaultForumPosts) {
+    console.log('Creating default forum posts.');
+    Meteor.settings.defaultForumPosts.forEach(post => addForumPost(post));
+  }
 }
