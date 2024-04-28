@@ -28,6 +28,7 @@ const PostsSchema = new SimpleSchema({
   },
   lastUpdated: {
     type: Date,
+    defaultValue: null,
     optional: true,
   },
   eventId: { // "Foreign key" to the optionally created event.
@@ -47,15 +48,17 @@ class PostsCollection extends BaseCollection {
    * @param title the title of the forum.
    * @param contents contents of the forum.
    * @param owner the owner of the item.
+   * @param createdAt date when the post was created.
+   * @param lastUpdated date when the post was last updated.
    * @return {String} the docID of the new document.
    */
-  define({ title, contents, owner }) {
+  define({ title, contents, owner, creationDate, dateUpdate }) {
     const docID = this._collection.insert({
-      title,
-      contents,
-      owner,
-      createdAt: new Date(),
-      lastUpdated: null,
+      title: title,
+      contents: contents,
+      owner: owner,
+      createdAt: creationDate ? new Date(creationDate) : new Date(),
+      lastUpdated: dateUpdate ? new Date(dateUpdate) : null,
     });
     return docID;
   }
@@ -74,6 +77,7 @@ class PostsCollection extends BaseCollection {
     if (contents) {
       updateData.contents = contents;
     }
+    updateData.lastUpdated = new Date();
     this._collection.update(docID, { $set: updateData });
   }
 
@@ -144,6 +148,21 @@ class PostsCollection extends BaseCollection {
    */
   assertValidRoleForMethod(userId) {
     this.assertRole(userId, [ROLE.ADMIN, ROLE.USER]);
+  }
+
+  /**
+   * Returns an object representing the definition of docID in a format appropriate to the restoreOne or define function.
+   * @param docID
+   * @return {{owner: *, createdAt: *, lastUpdated: *, contents: *, title: *}}
+   */
+  dumpOne(docID) {
+    const doc = this.findDoc(docID);
+    const title = doc.title;
+    const contents = doc.contents;
+    const owner = doc.owner;
+    const createdAt = doc.createdAt;
+    const lastUpdated = doc.lastUpdated;
+    return { title, contents, owner, createdAt, lastUpdated };
   }
 }
 
