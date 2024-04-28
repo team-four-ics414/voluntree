@@ -28,14 +28,17 @@ const PostsSchema = new SimpleSchema({
   },
   lastUpdated: {
     type: Date,
-    defaultValue: null,
     optional: true,
   },
   eventId: { // "Foreign key" to the optionally created event.
     type: String,
-    defaultValue: null,
     optional: true,
   },
+  comments: {
+    type: Array, // Array of coments' ids.
+    optional: true,
+  },
+  'comments.$': String,
 });
 
 class PostsCollection extends BaseCollection {
@@ -52,14 +55,14 @@ class PostsCollection extends BaseCollection {
    * @param lastUpdated date when the post was last updated.
    * @return {String} the docID of the new document.
    */
-  define({ title, contents, owner, creationDate, dateUpdate }) {
+  define({ title, contents, owner, createdAt, lastUpdated, ...rest }) {
     const docID = this._collection.insert({
-      title: title,
-      contents: contents,
-      owner: owner,
-      createdAt: creationDate ? new Date(creationDate) : new Date(),
-      lastUpdated: dateUpdate ? new Date(dateUpdate) : null,
-    });
+      title,
+      contents,
+      owner,
+      createdAt: createdAt ? new Date(createdAt) : new Date(),
+      lastUpdated: lastUpdated ? new Date(lastUpdated) : new Date(),
+      ...rest });
     return docID;
   }
 

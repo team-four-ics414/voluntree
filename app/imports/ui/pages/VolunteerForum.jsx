@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useTracker } from 'meteor/react-meteor-data';
 import { Col, Container, Row, Form, Button, Modal } from 'react-bootstrap';
-import ForumPostCard from '../components/forum/ForumPostCard'; // Replace with your forum post component
+import ForumPostCard from '../components/forum/ForumPostCard';
+import { Posts } from '../../api/forum/PostsCollection';
+import LoadingSpinner from '../components/LoadingSpinner';
 /** import ForumModal from '../components/forum/ForumModal'; // Replace with your forum post component */
 
 const VolunteerForum = () => {
@@ -9,7 +12,22 @@ const VolunteerForum = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  return (
+  // useTracker connects Meteor data to React components. https://guide.meteor.com/react.html#using-withTracker
+  const { ready, posts } = useTracker(() => {
+    // Note that this subscription will get cleaned up
+    // when your component is unmounted or deps change.
+    // Get access to Posts documents.
+    const subscription = Posts.subscribePosts();
+    // Determine if the subscription is ready
+    const rdy = subscription.ready();
+    // Get the Posts documents from sorted from newest to latest.
+    const postItems = Posts.find({}, { sort: { createdAt: -1 } }).fetch();
+    return {
+      posts: postItems,
+      ready: rdy,
+    };
+  }, []);
+  return (ready ? (
     <Container id="VOLUNTEER_FORUM" className="py-3">
       <Row style={{ backgroundColor: '#f0f2f5', borderRadius: '30px' }}>
         {/* Forum posts column */}
@@ -47,7 +65,9 @@ const VolunteerForum = () => {
           </Modal>
           <Form.Control type="text" placeholder="Search Forums..." style={{ display: 'flex' }} />
           <div className="d-flex flex-wrap overflow-auto mt-4" style={{ maxHeight: '700px' }}>
-            <Row>
+            {posts.map((post) => <ForumPostCard key={post._id} post={post} />)}
+            {/*{posts.map((post) => console.log(post))}*/}
+            {/* <Row>
               <ForumPostCard />
             </Row>
             <Row>
@@ -64,12 +84,12 @@ const VolunteerForum = () => {
             </Row>
             <Row>
               <ForumPostCard />
-            </Row>
+            </Row> */}
           </div>
         </Col>
       </Row>
     </Container>
-  );
+  ) : <LoadingSpinner message="Loading Forum" />);
 };
 
 export default VolunteerForum;

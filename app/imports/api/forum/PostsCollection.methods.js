@@ -12,8 +12,9 @@ Meteor.methods({
       contents: String,
       owner: String,
       createdAt: Date,
-      lastUpdated: Match.Maybe(Date), // This allows for Date or undefined
-      eventId: Match.Maybe(String),
+      lastUpdated: Match.Optional(Date), // This allows for Date or undefined
+      eventId: Match.Optional(String),
+      comments: Match.Optional(Array),
     });
 
     // Ensure the user is logged in before inserting an activity
