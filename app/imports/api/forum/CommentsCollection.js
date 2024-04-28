@@ -4,11 +4,15 @@ import SimpleSchema from 'simpl-schema';
 import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
 
-export const commentsCollection = {
+export const commentsPublications = {
   comments: 'Comments',
 };
 
 const CommentsScheme = new SimpleSchema({
+  _id: {
+    type: String,
+    required: true,
+  },
   contents: {
     type: String,
     required: true,
@@ -30,11 +34,12 @@ const CommentsScheme = new SimpleSchema({
 
 class CommentsCollection extends BaseCollection {
   constructor() {
-    super('Posts', CommentsScheme);
+    super('Comments', CommentsScheme);
   }
 
-  define({ contents, owner, creationDate, dateUpdate }) {
+  define({ _id, contents, owner, creationDate, dateUpdate }) {
     const docID = this._collection.insert({
+      _id: _id,
       contents: contents,
       owner: owner,
       createdAt: creationDate ? new Date(creationDate) : new Date(),
@@ -66,15 +71,15 @@ class CommentsCollection extends BaseCollection {
     if (Meteor.isServer) {
       const instance = this;
       /** This subscription publishes only the documents associated with the logged in user */
-      Meteor.publish(postsPublications.userPosts, function publish() {
+      /* Meteor.publish(commentsPublications.comments, function publish() {
         if (this.userId) {
           const username = Meteor.users.findOne(this.userId).username;
           return instance._collection.find({ owner: username });
         }
         return this.ready();
-      });
+      }); */
 
-      Meteor.publish(postsPublications.posts, function publish() {
+      Meteor.publish(commentsPublications.comments, function publish() {
         if (this.userId) {
           return instance._collection.find();
         }
@@ -83,16 +88,16 @@ class CommentsCollection extends BaseCollection {
     }
   }
 
-  subscribePosts() {
+  subscribeComments() {
     if (Meteor.isClient) {
-      return Meteor.subscribe(postsPublications.posts);
+      return Meteor.subscribe(commentsPublications.comments);
     }
     return null;
   }
 
   subscribeUserPosts() {
     if (Meteor.isClient) {
-      return Meteor.subscribe(postsPublications.userPosts);
+      return Meteor.subscribe(commentsPublications.comments);
     }
     return null;
   }
@@ -103,12 +108,12 @@ class CommentsCollection extends BaseCollection {
 
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const title = doc.title;
+    const _id = docID;
     const contents = doc.contents;
     const owner = doc.owner;
     const createdAt = doc.createdAt;
     const lastUpdated = doc.lastUpdated;
-    return { title, contents, owner, createdAt, lastUpdated };
+    return { _id, contents, owner, createdAt, lastUpdated };
   }
 }
 
