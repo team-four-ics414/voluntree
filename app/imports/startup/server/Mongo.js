@@ -8,6 +8,7 @@ import { Organizations } from '../../api/organization/OrganizationCollection';
 import { Volunteer } from '../../api/activities/VolunteerCollection';
 import { Opportunity } from '../../api/opportunities/OpportunityCollection';
 import { Pending } from '../../api/activities/PendingCollection';
+import { Categories } from '../../api/organization/CategoryCollection';
 // import { Posts } from '../../api/forum/PostsCollection';
 
 /* eslint-disable no-console */
@@ -139,4 +140,21 @@ function addOrganization(organization) {
 if (Organizations.count() === 0 && Meteor.settings.defaultOrganizations) {
   console.log('Creating default organizations.');
   Meteor.settings.defaultOrganizations.forEach(organization => addOrganization(organization));
+}
+
+// Function to add default categories
+function addCategory(category) {
+  console.log(`Adding category: ${category.name}`);
+  try {
+    Categories.define(category);
+    console.log(`Successfully added category: ${category.name}`);
+  } catch (error) {
+    console.error(`Error adding category ${category.name}: ${error}`);
+  }
+}
+
+// Initialize Categories if empty
+if (Categories.count() === 0 && Meteor.settings.defaultCategories) {
+  console.log('Creating default categories.');
+  Meteor.settings.defaultCategories.forEach(category => addCategory(category));
 }

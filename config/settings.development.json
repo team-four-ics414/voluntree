@@ -464,5 +464,37 @@
     },
     "createdAt": "2024-02-25T18:00:00Z"
   }
+  ],
+  "defaultCategories": [
+    { "name": "Animals", "icon": "/images/icons/animals.png" },
+    { "name": "Arts & Culture", "icon": "/images/icons/arts.png" },
+    { "name": "Children & Youth", "icon": "/images/icons/children.png" },
+    { "name": "Community & Neighborhood", "icon": "/images/icons/community.png" },
+    { "name": "Crisis Support & Care", "icon": "/images/icons/crisis.png" },
+    { "name": "Disabilities", "icon": "/images/icons/disabilities.png" },
+    { "name": "Disaster Relief", "icon": "/images/icons/disaster.png" },
+    { "name": "Domestic & Family Violence", "icon": "/images/icons/domestic.png" },
+    { "name": "Drug Abuse & Recovery", "icon": "/images/icons/drug.png" },
+    { "name": "Education & Literacy", "icon": "/images/icons/education.png" },
+    { "name": "Emergency & First Responders", "icon": "/images/icons/emergency.png" },
+    { "name": "Employment & Job Training", "icon": "/images/icons/employment.png" },
+    { "name": "Environment", "icon": "/images/icons/environment.png" },
+    { "name": "Faith-Based", "icon": "/images/icons/faith.png" },
+    { "name": "Health & Wellness", "icon": "/images/icons/health.png" },
+    { "name": "Homeless & Housing", "icon": "/images/icons/homeless.png" },
+    { "name": "Human Rights & Trafficking", "icon": "/images/icons/human_rights.png" },
+    { "name": "Hunger", "icon": "/images/icons/hunger.png" },
+    { "name": "Immigrant & Refugees", "icon": "/images/icons/immigrant.png" },
+    { "name": "International Opportunities", "icon": "/images/icons/international.png" },
+    { "name": "Justice & Legal", "icon": "/images/icons/justice.png" },
+    { "name": "Mental Health", "icon": "/images/icons/mental_health.png" },
+    { "name": "Politics", "icon": "/images/icons/politics.png" },
+    { "name": "Relationships & Parenting", "icon": "/images/icons/relationships.png" },
+    { "name": "Seniors", "icon": "/images/icons/seniors.png" },
+    { "name": "Sports & Recreation", "icon": "/images/icons/sports.png" },
+    { "name": "Technology & Media", "icon": "/images/icons/technology.png" },
+    { "name": "Urgent", "icon": "/images/icons/urgent.png" },
+    { "name": "Veterans & Military Families", "icon": "/images/icons/veterans.png" },
+    { "name": "Virtual", "icon": "/images/icons/virtual.png" }
   ]
 }
