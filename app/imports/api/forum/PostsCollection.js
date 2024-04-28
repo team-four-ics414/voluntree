@@ -56,13 +56,18 @@ class PostsCollection extends BaseCollection {
    * @return {String} the docID of the new document.
    */
   define({ title, contents, owner, createdAt, lastUpdated, ...rest }) {
+    // Convert createdAt and lastUpdated to valid date objects if provided, otherwise use current date
+    const createdDate = createdAt ? new Date(createdAt) : new Date();
+    const updatedDate = lastUpdated ? new Date(lastUpdated) : createdDate;
+
     const docID = this._collection.insert({
       title,
       contents,
       owner,
-      createdAt: createdAt ? new Date(createdAt) : new Date(),
-      lastUpdated: lastUpdated ? new Date(lastUpdated) : new Date(),
-      ...rest });
+      createdAt: createdDate,
+      lastUpdated: updatedDate,
+      ...rest,
+    });
     return docID;
   }
 
