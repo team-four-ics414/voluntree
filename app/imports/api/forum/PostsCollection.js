@@ -34,7 +34,7 @@ const PostsSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
-  comments: {
+  commentsIds: {
     type: Array, // Array of coments' ids.
     optional: true,
   },
@@ -55,14 +55,20 @@ class PostsCollection extends BaseCollection {
    * @param lastUpdated date when the post was last updated.
    * @return {String} the docID of the new document.
    */
-  define({ title, contents, owner, createdAt, lastUpdated, ...rest }) {
+  define({ title, contents, owner, createdAt, lastUpdated, eventId, commentsIds }) {
+    // Convert createdAt and lastUpdated to valid date objects if provided, otherwise use current date
+    const createdDate = createdAt ? new Date(createdAt) : new Date();
+    const updatedDate = lastUpdated ? new Date(lastUpdated) : createdDate;
+
     const docID = this._collection.insert({
       title,
       contents,
       owner,
-      createdAt: createdAt ? new Date(createdAt) : new Date(),
-      lastUpdated: lastUpdated ? new Date(lastUpdated) : new Date(),
-      ...rest });
+      createdAt: createdDate,
+      lastUpdated: updatedDate,
+      eventId,
+      commentsIds,
+    });
     return docID;
   }
 
