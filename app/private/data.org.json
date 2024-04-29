@@ -1,0 +1,1982 @@
+[
+  {
+    "name": "Animals Network",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving animals through community engagement and innovation.",
+    "contactEmail": "contact@animalsnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in animals, striving for betterment and sustainability.",
+    "email": "info@animalsnetwork.org",
+    "phoneNumber": "+18003085789",
+    "address": {
+      "street": "290 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "97666",
+      "country": "USA"
+    },
+    "causes": [
+      "Animals"
+    ],
+    "logo": "/images/logo/animals.png",
+    "createdAt": "2024-04-28T04:01:13.787496"
+  },
+  {
+    "name": "Animals Initiative",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving animals through community engagement and innovation.",
+    "contactEmail": "contact@animalsinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in animals, striving for betterment and sustainability.",
+    "email": "info@animalsinitiative.org",
+    "phoneNumber": "+18008899065",
+    "address": {
+      "street": "729 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90520",
+      "country": "USA"
+    },
+    "causes": [
+      "Animals"
+    ],
+    "logo": "/images/logo/animals.png",
+    "createdAt": "2024-04-28T04:01:13.787526"
+  },
+  {
+    "name": "Animals Alliance",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving animals through community engagement and innovation.",
+    "contactEmail": "contact@animalsalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in animals, striving for betterment and sustainability.",
+    "email": "info@animalsalliance.org",
+    "phoneNumber": "+18007083877",
+    "address": {
+      "street": "410 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "99818",
+      "country": "USA"
+    },
+    "causes": [
+      "Animals"
+    ],
+    "logo": "/images/logo/animals.png",
+    "createdAt": "2024-04-28T04:01:13.787540"
+  },
+  {
+    "name": "Arts & Culture Partnership",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving arts & culture through community engagement and innovation.",
+    "contactEmail": "contact@artsandculturepartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in arts & culture, striving for betterment and sustainability.",
+    "email": "info@artsandculturepartnership.org",
+    "phoneNumber": "+18005673789",
+    "address": {
+      "street": "586 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95588",
+      "country": "USA"
+    },
+    "causes": [
+      "Arts & Culture"
+    ],
+    "logo": "/images/logo/arts_culture.png",
+    "createdAt": "2024-04-28T04:01:13.787556"
+  },
+  {
+    "name": "Arts & Culture Project",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving arts & culture through community engagement and innovation.",
+    "contactEmail": "contact@artsandcultureproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in arts & culture, striving for betterment and sustainability.",
+    "email": "info@artsandcultureproject.org",
+    "phoneNumber": "+18002412939",
+    "address": {
+      "street": "244 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95165",
+      "country": "USA"
+    },
+    "causes": [
+      "Arts & Culture"
+    ],
+    "logo": "/images/logo/arts_culture.png",
+    "createdAt": "2024-04-28T04:01:13.787571"
+  },
+  {
+    "name": "Arts & Culture Project",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving arts & culture through community engagement and innovation.",
+    "contactEmail": "contact@artsandcultureproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in arts & culture, striving for betterment and sustainability.",
+    "email": "info@artsandcultureproject.org",
+    "phoneNumber": "+18002449969",
+    "address": {
+      "street": "952 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "97030",
+      "country": "USA"
+    },
+    "causes": [
+      "Arts & Culture"
+    ],
+    "logo": "/images/logo/arts_culture.png",
+    "createdAt": "2024-04-28T04:01:13.787585"
+  },
+  {
+    "name": "Children & Youth Initiative",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving children & youth through community engagement and innovation.",
+    "contactEmail": "contact@childrenandyouthinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in children & youth, striving for betterment and sustainability.",
+    "email": "info@childrenandyouthinitiative.org",
+    "phoneNumber": "+18002776327",
+    "address": {
+      "street": "810 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90102",
+      "country": "USA"
+    },
+    "causes": [
+      "Children & Youth"
+    ],
+    "logo": "/images/logo/children.png",
+    "createdAt": "2024-04-28T04:01:13.787605"
+  },
+  {
+    "name": "Children & Youth Network",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving children & youth through community engagement and innovation.",
+    "contactEmail": "contact@childrenandyouthnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in children & youth, striving for betterment and sustainability.",
+    "email": "info@childrenandyouthnetwork.org",
+    "phoneNumber": "+18006838131",
+    "address": {
+      "street": "790 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "93314",
+      "country": "USA"
+    },
+    "causes": [
+      "Children & Youth"
+    ],
+    "logo": "/images/logo/children.png",
+    "createdAt": "2024-04-28T04:01:13.787619"
+  },
+  {
+    "name": "Children & Youth Initiative",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving children & youth through community engagement and innovation.",
+    "contactEmail": "contact@childrenandyouthinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in children & youth, striving for betterment and sustainability.",
+    "email": "info@childrenandyouthinitiative.org",
+    "phoneNumber": "+18008496914",
+    "address": {
+      "street": "554 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91751",
+      "country": "USA"
+    },
+    "causes": [
+      "Children & Youth"
+    ],
+    "logo": "/images/logo/children.png",
+    "createdAt": "2024-04-28T04:01:13.787633"
+  },
+  {
+    "name": "Community & Neighborhood Project",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving community & neighborhood through community engagement and innovation.",
+    "contactEmail": "contact@communityandneighborhoodproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in community & neighborhood, striving for betterment and sustainability.",
+    "email": "info@communityandneighborhoodproject.org",
+    "phoneNumber": "+18001341606",
+    "address": {
+      "street": "843 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "94599",
+      "country": "USA"
+    },
+    "causes": [
+      "Community & Neighborhood"
+    ],
+    "logo": "/images/logo/community.png",
+    "createdAt": "2024-04-28T04:01:13.787648"
+  },
+  {
+    "name": "Community & Neighborhood Initiative",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving community & neighborhood through community engagement and innovation.",
+    "contactEmail": "contact@communityandneighborhoodinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in community & neighborhood, striving for betterment and sustainability.",
+    "email": "info@communityandneighborhoodinitiative.org",
+    "phoneNumber": "+18003294079",
+    "address": {
+      "street": "841 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "99076",
+      "country": "USA"
+    },
+    "causes": [
+      "Community & Neighborhood"
+    ],
+    "logo": "/images/logo/community.png",
+    "createdAt": "2024-04-28T04:01:13.787660"
+  },
+  {
+    "name": "Community & Neighborhood Initiative",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving community & neighborhood through community engagement and innovation.",
+    "contactEmail": "contact@communityandneighborhoodinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in community & neighborhood, striving for betterment and sustainability.",
+    "email": "info@communityandneighborhoodinitiative.org",
+    "phoneNumber": "+18008367960",
+    "address": {
+      "street": "680 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91580",
+      "country": "USA"
+    },
+    "causes": [
+      "Community & Neighborhood"
+    ],
+    "logo": "/images/logo/community.png",
+    "createdAt": "2024-04-28T04:01:13.787673"
+  },
+  {
+    "name": "Crisis Support & Care Project",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving crisis support & care through community engagement and innovation.",
+    "contactEmail": "contact@crisissupportandcareproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in crisis support & care, striving for betterment and sustainability.",
+    "email": "info@crisissupportandcareproject.org",
+    "phoneNumber": "+18004234400",
+    "address": {
+      "street": "765 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95655",
+      "country": "USA"
+    },
+    "causes": [
+      "Crisis Support & Care"
+    ],
+    "logo": "/images/logo/crisis.png",
+    "createdAt": "2024-04-28T04:01:13.787689"
+  },
+  {
+    "name": "Crisis Support & Care Project",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving crisis support & care through community engagement and innovation.",
+    "contactEmail": "contact@crisissupportandcareproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in crisis support & care, striving for betterment and sustainability.",
+    "email": "info@crisissupportandcareproject.org",
+    "phoneNumber": "+18001534905",
+    "address": {
+      "street": "869 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91615",
+      "country": "USA"
+    },
+    "causes": [
+      "Crisis Support & Care"
+    ],
+    "logo": "/images/logo/crisis.png",
+    "createdAt": "2024-04-28T04:01:13.787701"
+  },
+  {
+    "name": "Crisis Support & Care Alliance",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving crisis support & care through community engagement and innovation.",
+    "contactEmail": "contact@crisissupportandcarealliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in crisis support & care, striving for betterment and sustainability.",
+    "email": "info@crisissupportandcarealliance.org",
+    "phoneNumber": "+18006506149",
+    "address": {
+      "street": "670 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "93896",
+      "country": "USA"
+    },
+    "causes": [
+      "Crisis Support & Care"
+    ],
+    "logo": "/images/logo/crisis.png",
+    "createdAt": "2024-04-28T04:01:13.787714"
+  },
+  {
+    "name": "Disabilities Alliance",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving disabilities through community engagement and innovation.",
+    "contactEmail": "contact@disabilitiesalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in disabilities, striving for betterment and sustainability.",
+    "email": "info@disabilitiesalliance.org",
+    "phoneNumber": "+18006256308",
+    "address": {
+      "street": "613 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "94482",
+      "country": "USA"
+    },
+    "causes": [
+      "Disabilities"
+    ],
+    "logo": "/images/logo/disabilities.png",
+    "createdAt": "2024-04-28T04:01:13.787727"
+  },
+  {
+    "name": "Disabilities Alliance",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving disabilities through community engagement and innovation.",
+    "contactEmail": "contact@disabilitiesalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in disabilities, striving for betterment and sustainability.",
+    "email": "info@disabilitiesalliance.org",
+    "phoneNumber": "+18004331422",
+    "address": {
+      "street": "138 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "99043",
+      "country": "USA"
+    },
+    "causes": [
+      "Disabilities"
+    ],
+    "logo": "/images/logo/disabilities.png",
+    "createdAt": "2024-04-28T04:01:13.787739"
+  },
+  {
+    "name": "Disabilities Initiative",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving disabilities through community engagement and innovation.",
+    "contactEmail": "contact@disabilitiesinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in disabilities, striving for betterment and sustainability.",
+    "email": "info@disabilitiesinitiative.org",
+    "phoneNumber": "+18005994550",
+    "address": {
+      "street": "502 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "94160",
+      "country": "USA"
+    },
+    "causes": [
+      "Disabilities"
+    ],
+    "logo": "/images/logo/disabilities.png",
+    "createdAt": "2024-04-28T04:01:13.787751"
+  },
+  {
+    "name": "Disaster Relief Partnership",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving disaster relief through community engagement and innovation.",
+    "contactEmail": "contact@disasterreliefpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in disaster relief, striving for betterment and sustainability.",
+    "email": "info@disasterreliefpartnership.org",
+    "phoneNumber": "+18004075122",
+    "address": {
+      "street": "891 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "98977",
+      "country": "USA"
+    },
+    "causes": [
+      "Disaster Relief"
+    ],
+    "logo": "/images/logo/disaster.png",
+    "createdAt": "2024-04-28T04:01:13.787765"
+  },
+  {
+    "name": "Disaster Relief Partnership",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving disaster relief through community engagement and innovation.",
+    "contactEmail": "contact@disasterreliefpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in disaster relief, striving for betterment and sustainability.",
+    "email": "info@disasterreliefpartnership.org",
+    "phoneNumber": "+18005373006",
+    "address": {
+      "street": "557 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "93884",
+      "country": "USA"
+    },
+    "causes": [
+      "Disaster Relief"
+    ],
+    "logo": "/images/logo/disaster.png",
+    "createdAt": "2024-04-28T04:01:13.787777"
+  },
+  {
+    "name": "Disaster Relief Network",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving disaster relief through community engagement and innovation.",
+    "contactEmail": "contact@disasterreliefnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in disaster relief, striving for betterment and sustainability.",
+    "email": "info@disasterreliefnetwork.org",
+    "phoneNumber": "+18006079942",
+    "address": {
+      "street": "525 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96868",
+      "country": "USA"
+    },
+    "causes": [
+      "Disaster Relief"
+    ],
+    "logo": "/images/logo/disaster.png",
+    "createdAt": "2024-04-28T04:01:13.787789"
+  },
+  {
+    "name": "Domestic & Family Violence Project",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving domestic & family violence through community engagement and innovation.",
+    "contactEmail": "contact@domesticandfamilyviolenceproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in domestic & family violence, striving for betterment and sustainability.",
+    "email": "info@domesticandfamilyviolenceproject.org",
+    "phoneNumber": "+18003216454",
+    "address": {
+      "street": "238 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "92692",
+      "country": "USA"
+    },
+    "causes": [
+      "Domestic & Family Violence"
+    ],
+    "logo": "/images/logo/domestic.png",
+    "createdAt": "2024-04-28T04:01:13.787803"
+  },
+  {
+    "name": "Domestic & Family Violence Initiative",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving domestic & family violence through community engagement and innovation.",
+    "contactEmail": "contact@domesticandfamilyviolenceinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in domestic & family violence, striving for betterment and sustainability.",
+    "email": "info@domesticandfamilyviolenceinitiative.org",
+    "phoneNumber": "+18009136504",
+    "address": {
+      "street": "823 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "94472",
+      "country": "USA"
+    },
+    "causes": [
+      "Domestic & Family Violence"
+    ],
+    "logo": "/images/logo/domestic.png",
+    "createdAt": "2024-04-28T04:01:13.787816"
+  },
+  {
+    "name": "Domestic & Family Violence Alliance",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving domestic & family violence through community engagement and innovation.",
+    "contactEmail": "contact@domesticandfamilyviolencealliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in domestic & family violence, striving for betterment and sustainability.",
+    "email": "info@domesticandfamilyviolencealliance.org",
+    "phoneNumber": "+18003741270",
+    "address": {
+      "street": "581 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "94659",
+      "country": "USA"
+    },
+    "causes": [
+      "Domestic & Family Violence"
+    ],
+    "logo": "/images/logo/domestic.png",
+    "createdAt": "2024-04-28T04:01:13.787834"
+  },
+  {
+    "name": "Drug Abuse & Recovery Alliance",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving drug abuse & recovery through community engagement and innovation.",
+    "contactEmail": "contact@drugabuseandrecoveryalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in drug abuse & recovery, striving for betterment and sustainability.",
+    "email": "info@drugabuseandrecoveryalliance.org",
+    "phoneNumber": "+18005226813",
+    "address": {
+      "street": "944 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "99913",
+      "country": "USA"
+    },
+    "causes": [
+      "Drug Abuse & Recovery"
+    ],
+    "logo": "/images/logo/drug.png",
+    "createdAt": "2024-04-28T04:01:13.787847"
+  },
+  {
+    "name": "Drug Abuse & Recovery Partnership",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving drug abuse & recovery through community engagement and innovation.",
+    "contactEmail": "contact@drugabuseandrecoverypartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in drug abuse & recovery, striving for betterment and sustainability.",
+    "email": "info@drugabuseandrecoverypartnership.org",
+    "phoneNumber": "+18008015775",
+    "address": {
+      "street": "348 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "94309",
+      "country": "USA"
+    },
+    "causes": [
+      "Drug Abuse & Recovery"
+    ],
+    "logo": "/images/logo/drug.png",
+    "createdAt": "2024-04-28T04:01:13.787860"
+  },
+  {
+    "name": "Drug Abuse & Recovery Network",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving drug abuse & recovery through community engagement and innovation.",
+    "contactEmail": "contact@drugabuseandrecoverynetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in drug abuse & recovery, striving for betterment and sustainability.",
+    "email": "info@drugabuseandrecoverynetwork.org",
+    "phoneNumber": "+18007194708",
+    "address": {
+      "street": "334 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "98690",
+      "country": "USA"
+    },
+    "causes": [
+      "Drug Abuse & Recovery"
+    ],
+    "logo": "/images/logo/drug.png",
+    "createdAt": "2024-04-28T04:01:13.787873"
+  },
+  {
+    "name": "Education & Literacy Network",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving education & literacy through community engagement and innovation.",
+    "contactEmail": "contact@educationandliteracynetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in education & literacy, striving for betterment and sustainability.",
+    "email": "info@educationandliteracynetwork.org",
+    "phoneNumber": "+18001811571",
+    "address": {
+      "street": "970 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "97145",
+      "country": "USA"
+    },
+    "causes": [
+      "Education & Literacy"
+    ],
+    "logo": "/images/logo/education.png",
+    "createdAt": "2024-04-28T04:01:13.787886"
+  },
+  {
+    "name": "Education & Literacy Network",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving education & literacy through community engagement and innovation.",
+    "contactEmail": "contact@educationandliteracynetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in education & literacy, striving for betterment and sustainability.",
+    "email": "info@educationandliteracynetwork.org",
+    "phoneNumber": "+18003164510",
+    "address": {
+      "street": "134 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "97333",
+      "country": "USA"
+    },
+    "causes": [
+      "Education & Literacy"
+    ],
+    "logo": "/images/logo/education.png",
+    "createdAt": "2024-04-28T04:01:13.787899"
+  },
+  {
+    "name": "Education & Literacy Initiative",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving education & literacy through community engagement and innovation.",
+    "contactEmail": "contact@educationandliteracyinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in education & literacy, striving for betterment and sustainability.",
+    "email": "info@educationandliteracyinitiative.org",
+    "phoneNumber": "+18005927517",
+    "address": {
+      "street": "701 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95822",
+      "country": "USA"
+    },
+    "causes": [
+      "Education & Literacy"
+    ],
+    "logo": "/images/logo/education.png",
+    "createdAt": "2024-04-28T04:01:13.787911"
+  },
+  {
+    "name": "Emergency & First Responders Partnership",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving emergency & first responders through community engagement and innovation.",
+    "contactEmail": "contact@emergencyandfirstresponderspartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in emergency & first responders, striving for betterment and sustainability.",
+    "email": "info@emergencyandfirstresponderspartnership.org",
+    "phoneNumber": "+18006179813",
+    "address": {
+      "street": "185 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90410",
+      "country": "USA"
+    },
+    "causes": [
+      "Emergency & First Responders"
+    ],
+    "logo": "/images/logo/emergency.png",
+    "createdAt": "2024-04-28T04:01:13.787924"
+  },
+  {
+    "name": "Emergency & First Responders Project",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving emergency & first responders through community engagement and innovation.",
+    "contactEmail": "contact@emergencyandfirstrespondersproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in emergency & first responders, striving for betterment and sustainability.",
+    "email": "info@emergencyandfirstrespondersproject.org",
+    "phoneNumber": "+18004405251",
+    "address": {
+      "street": "734 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "92978",
+      "country": "USA"
+    },
+    "causes": [
+      "Emergency & First Responders"
+    ],
+    "logo": "/images/logo/emergency.png",
+    "createdAt": "2024-04-28T04:01:13.787938"
+  },
+  {
+    "name": "Emergency & First Responders Project",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving emergency & first responders through community engagement and innovation.",
+    "contactEmail": "contact@emergencyandfirstrespondersproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in emergency & first responders, striving for betterment and sustainability.",
+    "email": "info@emergencyandfirstrespondersproject.org",
+    "phoneNumber": "+18006019405",
+    "address": {
+      "street": "412 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "92965",
+      "country": "USA"
+    },
+    "causes": [
+      "Emergency & First Responders"
+    ],
+    "logo": "/images/logo/emergency.png",
+    "createdAt": "2024-04-28T04:01:13.787951"
+  },
+  {
+    "name": "Employment & Job Training Initiative",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving employment & job training through community engagement and innovation.",
+    "contactEmail": "contact@employmentandjobtraininginitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in employment & job training, striving for betterment and sustainability.",
+    "email": "info@employmentandjobtraininginitiative.org",
+    "phoneNumber": "+18008173625",
+    "address": {
+      "street": "394 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96313",
+      "country": "USA"
+    },
+    "causes": [
+      "Employment & Job Training"
+    ],
+    "logo": "/images/logo/employment.png",
+    "createdAt": "2024-04-28T04:01:13.787965"
+  },
+  {
+    "name": "Employment & Job Training Project",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving employment & job training through community engagement and innovation.",
+    "contactEmail": "contact@employmentandjobtrainingproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in employment & job training, striving for betterment and sustainability.",
+    "email": "info@employmentandjobtrainingproject.org",
+    "phoneNumber": "+18005892368",
+    "address": {
+      "street": "522 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "98777",
+      "country": "USA"
+    },
+    "causes": [
+      "Employment & Job Training"
+    ],
+    "logo": "/images/logo/employment.png",
+    "createdAt": "2024-04-28T04:01:13.787977"
+  },
+  {
+    "name": "Employment & Job Training Project",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving employment & job training through community engagement and innovation.",
+    "contactEmail": "contact@employmentandjobtrainingproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in employment & job training, striving for betterment and sustainability.",
+    "email": "info@employmentandjobtrainingproject.org",
+    "phoneNumber": "+18007600496",
+    "address": {
+      "street": "743 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95714",
+      "country": "USA"
+    },
+    "causes": [
+      "Employment & Job Training"
+    ],
+    "logo": "/images/logo/employment.png",
+    "createdAt": "2024-04-28T04:01:13.787989"
+  },
+  {
+    "name": "Environment Initiative",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving environment through community engagement and innovation.",
+    "contactEmail": "contact@environmentinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in environment, striving for betterment and sustainability.",
+    "email": "info@environmentinitiative.org",
+    "phoneNumber": "+18008155199",
+    "address": {
+      "street": "203 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91183",
+      "country": "USA"
+    },
+    "causes": [
+      "Environment"
+    ],
+    "logo": "/images/logo/environment.png",
+    "createdAt": "2024-04-28T04:01:13.788002"
+  },
+  {
+    "name": "Environment Partnership",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving environment through community engagement and innovation.",
+    "contactEmail": "contact@environmentpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in environment, striving for betterment and sustainability.",
+    "email": "info@environmentpartnership.org",
+    "phoneNumber": "+18007773396",
+    "address": {
+      "street": "705 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91648",
+      "country": "USA"
+    },
+    "causes": [
+      "Environment"
+    ],
+    "logo": "/images/logo/environment.png",
+    "createdAt": "2024-04-28T04:01:13.788014"
+  },
+  {
+    "name": "Environment Project",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving environment through community engagement and innovation.",
+    "contactEmail": "contact@environmentproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in environment, striving for betterment and sustainability.",
+    "email": "info@environmentproject.org",
+    "phoneNumber": "+18002557130",
+    "address": {
+      "street": "214 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "98126",
+      "country": "USA"
+    },
+    "causes": [
+      "Environment"
+    ],
+    "logo": "/images/logo/environment.png",
+    "createdAt": "2024-04-28T04:01:13.788027"
+  },
+  {
+    "name": "Faith-Based Alliance",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving faith-based through community engagement and innovation.",
+    "contactEmail": "contact@faith-basedalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in faith-based, striving for betterment and sustainability.",
+    "email": "info@faith-basedalliance.org",
+    "phoneNumber": "+18005073891",
+    "address": {
+      "street": "573 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "93853",
+      "country": "USA"
+    },
+    "causes": [
+      "Faith-Based"
+    ],
+    "logo": "/images/logo/faith.png",
+    "createdAt": "2024-04-28T04:01:13.788039"
+  },
+  {
+    "name": "Faith-Based Project",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving faith-based through community engagement and innovation.",
+    "contactEmail": "contact@faith-basedproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in faith-based, striving for betterment and sustainability.",
+    "email": "info@faith-basedproject.org",
+    "phoneNumber": "+18003363060",
+    "address": {
+      "street": "557 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96369",
+      "country": "USA"
+    },
+    "causes": [
+      "Faith-Based"
+    ],
+    "logo": "/images/logo/faith.png",
+    "createdAt": "2024-04-28T04:01:13.788052"
+  },
+  {
+    "name": "Faith-Based Project",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving faith-based through community engagement and innovation.",
+    "contactEmail": "contact@faith-basedproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in faith-based, striving for betterment and sustainability.",
+    "email": "info@faith-basedproject.org",
+    "phoneNumber": "+18008225113",
+    "address": {
+      "street": "344 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91917",
+      "country": "USA"
+    },
+    "causes": [
+      "Faith-Based"
+    ],
+    "logo": "/images/logo/faith.png",
+    "createdAt": "2024-04-28T04:01:13.788066"
+  },
+  {
+    "name": "Health & Wellness Project",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving health & wellness through community engagement and innovation.",
+    "contactEmail": "contact@healthandwellnessproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in health & wellness, striving for betterment and sustainability.",
+    "email": "info@healthandwellnessproject.org",
+    "phoneNumber": "+18009649440",
+    "address": {
+      "street": "849 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96030",
+      "country": "USA"
+    },
+    "causes": [
+      "Health & Wellness"
+    ],
+    "logo": "/images/logo/health.png",
+    "createdAt": "2024-04-28T04:01:13.788080"
+  },
+  {
+    "name": "Health & Wellness Partnership",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving health & wellness through community engagement and innovation.",
+    "contactEmail": "contact@healthandwellnesspartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in health & wellness, striving for betterment and sustainability.",
+    "email": "info@healthandwellnesspartnership.org",
+    "phoneNumber": "+18003225391",
+    "address": {
+      "street": "836 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "94301",
+      "country": "USA"
+    },
+    "causes": [
+      "Health & Wellness"
+    ],
+    "logo": "/images/logo/health.png",
+    "createdAt": "2024-04-28T04:01:13.788092"
+  },
+  {
+    "name": "Health & Wellness Network",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving health & wellness through community engagement and innovation.",
+    "contactEmail": "contact@healthandwellnessnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in health & wellness, striving for betterment and sustainability.",
+    "email": "info@healthandwellnessnetwork.org",
+    "phoneNumber": "+18009212619",
+    "address": {
+      "street": "113 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "92025",
+      "country": "USA"
+    },
+    "causes": [
+      "Health & Wellness"
+    ],
+    "logo": "/images/logo/health.png",
+    "createdAt": "2024-04-28T04:01:13.788104"
+  },
+  {
+    "name": "Homeless & Housing Network",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving homeless & housing through community engagement and innovation.",
+    "contactEmail": "contact@homelessandhousingnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in homeless & housing, striving for betterment and sustainability.",
+    "email": "info@homelessandhousingnetwork.org",
+    "phoneNumber": "+18003527128",
+    "address": {
+      "street": "129 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90245",
+      "country": "USA"
+    },
+    "causes": [
+      "Homeless & Housing"
+    ],
+    "logo": "/images/logo/homeless.png",
+    "createdAt": "2024-04-28T04:01:13.788117"
+  },
+  {
+    "name": "Homeless & Housing Partnership",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving homeless & housing through community engagement and innovation.",
+    "contactEmail": "contact@homelessandhousingpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in homeless & housing, striving for betterment and sustainability.",
+    "email": "info@homelessandhousingpartnership.org",
+    "phoneNumber": "+18008475332",
+    "address": {
+      "street": "436 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "97113",
+      "country": "USA"
+    },
+    "causes": [
+      "Homeless & Housing"
+    ],
+    "logo": "/images/logo/homeless.png",
+    "createdAt": "2024-04-28T04:01:13.788129"
+  },
+  {
+    "name": "Homeless & Housing Partnership",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving homeless & housing through community engagement and innovation.",
+    "contactEmail": "contact@homelessandhousingpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in homeless & housing, striving for betterment and sustainability.",
+    "email": "info@homelessandhousingpartnership.org",
+    "phoneNumber": "+18005795641",
+    "address": {
+      "street": "482 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90428",
+      "country": "USA"
+    },
+    "causes": [
+      "Homeless & Housing"
+    ],
+    "logo": "/images/logo/homeless.png",
+    "createdAt": "2024-04-28T04:01:13.788140"
+  },
+  {
+    "name": "Human Rights & Trafficking Project",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving human rights & trafficking through community engagement and innovation.",
+    "contactEmail": "contact@humanrightsandtraffickingproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in human rights & trafficking, striving for betterment and sustainability.",
+    "email": "info@humanrightsandtraffickingproject.org",
+    "phoneNumber": "+18002953929",
+    "address": {
+      "street": "927 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95385",
+      "country": "USA"
+    },
+    "causes": [
+      "Human Rights & Trafficking"
+    ],
+    "logo": "/images/logo/human_rights.png",
+    "createdAt": "2024-04-28T04:01:13.788157"
+  },
+  {
+    "name": "Human Rights & Trafficking Network",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving human rights & trafficking through community engagement and innovation.",
+    "contactEmail": "contact@humanrightsandtraffickingnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in human rights & trafficking, striving for betterment and sustainability.",
+    "email": "info@humanrightsandtraffickingnetwork.org",
+    "phoneNumber": "+18009158815",
+    "address": {
+      "street": "478 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "94480",
+      "country": "USA"
+    },
+    "causes": [
+      "Human Rights & Trafficking"
+    ],
+    "logo": "/images/logo/human_rights.png",
+    "createdAt": "2024-04-28T04:01:13.788169"
+  },
+  {
+    "name": "Human Rights & Trafficking Network",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving human rights & trafficking through community engagement and innovation.",
+    "contactEmail": "contact@humanrightsandtraffickingnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in human rights & trafficking, striving for betterment and sustainability.",
+    "email": "info@humanrightsandtraffickingnetwork.org",
+    "phoneNumber": "+18001573090",
+    "address": {
+      "street": "446 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "93150",
+      "country": "USA"
+    },
+    "causes": [
+      "Human Rights & Trafficking"
+    ],
+    "logo": "/images/logo/human_rights.png",
+    "createdAt": "2024-04-28T04:01:13.788182"
+  },
+  {
+    "name": "Hunger Network",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving hunger through community engagement and innovation.",
+    "contactEmail": "contact@hungernetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in hunger, striving for betterment and sustainability.",
+    "email": "info@hungernetwork.org",
+    "phoneNumber": "+18002978364",
+    "address": {
+      "street": "199 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90286",
+      "country": "USA"
+    },
+    "causes": [
+      "Hunger"
+    ],
+    "logo": "/images/logo/hunger.png",
+    "createdAt": "2024-04-28T04:01:13.788194"
+  },
+  {
+    "name": "Hunger Alliance",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving hunger through community engagement and innovation.",
+    "contactEmail": "contact@hungeralliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in hunger, striving for betterment and sustainability.",
+    "email": "info@hungeralliance.org",
+    "phoneNumber": "+18007237780",
+    "address": {
+      "street": "542 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90828",
+      "country": "USA"
+    },
+    "causes": [
+      "Hunger"
+    ],
+    "logo": "/images/logo/hunger.png",
+    "createdAt": "2024-04-28T04:01:13.788206"
+  },
+  {
+    "name": "Hunger Partnership",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving hunger through community engagement and innovation.",
+    "contactEmail": "contact@hungerpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in hunger, striving for betterment and sustainability.",
+    "email": "info@hungerpartnership.org",
+    "phoneNumber": "+18002024824",
+    "address": {
+      "street": "785 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "97627",
+      "country": "USA"
+    },
+    "causes": [
+      "Hunger"
+    ],
+    "logo": "/images/logo/hunger.png",
+    "createdAt": "2024-04-28T04:01:13.788218"
+  },
+  {
+    "name": "Immigrant & Refugees Initiative",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving immigrant & refugees through community engagement and innovation.",
+    "contactEmail": "contact@immigrantandrefugeesinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in immigrant & refugees, striving for betterment and sustainability.",
+    "email": "info@immigrantandrefugeesinitiative.org",
+    "phoneNumber": "+18002260358",
+    "address": {
+      "street": "364 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90098",
+      "country": "USA"
+    },
+    "causes": [
+      "Immigrant & Refugees"
+    ],
+    "logo": "/images/logo/immigrant.png",
+    "createdAt": "2024-04-28T04:01:13.788236"
+  },
+  {
+    "name": "Immigrant & Refugees Project",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving immigrant & refugees through community engagement and innovation.",
+    "contactEmail": "contact@immigrantandrefugeesproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in immigrant & refugees, striving for betterment and sustainability.",
+    "email": "info@immigrantandrefugeesproject.org",
+    "phoneNumber": "+18009645230",
+    "address": {
+      "street": "692 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "98621",
+      "country": "USA"
+    },
+    "causes": [
+      "Immigrant & Refugees"
+    ],
+    "logo": "/images/logo/immigrant.png",
+    "createdAt": "2024-04-28T04:01:13.788249"
+  },
+  {
+    "name": "Immigrant & Refugees Alliance",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving immigrant & refugees through community engagement and innovation.",
+    "contactEmail": "contact@immigrantandrefugeesalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in immigrant & refugees, striving for betterment and sustainability.",
+    "email": "info@immigrantandrefugeesalliance.org",
+    "phoneNumber": "+18008704905",
+    "address": {
+      "street": "911 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "98954",
+      "country": "USA"
+    },
+    "causes": [
+      "Immigrant & Refugees"
+    ],
+    "logo": "/images/logo/immigrant.png",
+    "createdAt": "2024-04-28T04:01:13.788262"
+  },
+  {
+    "name": "International Opportunities Network",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving international opportunities through community engagement and innovation.",
+    "contactEmail": "contact@internationalopportunitiesnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in international opportunities, striving for betterment and sustainability.",
+    "email": "info@internationalopportunitiesnetwork.org",
+    "phoneNumber": "+18007215465",
+    "address": {
+      "street": "868 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "99626",
+      "country": "USA"
+    },
+    "causes": [
+      "International Opportunities"
+    ],
+    "logo": "/images/logo/international.png",
+    "createdAt": "2024-04-28T04:01:13.788276"
+  },
+  {
+    "name": "International Opportunities Network",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving international opportunities through community engagement and innovation.",
+    "contactEmail": "contact@internationalopportunitiesnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in international opportunities, striving for betterment and sustainability.",
+    "email": "info@internationalopportunitiesnetwork.org",
+    "phoneNumber": "+18005811095",
+    "address": {
+      "street": "918 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "93950",
+      "country": "USA"
+    },
+    "causes": [
+      "International Opportunities"
+    ],
+    "logo": "/images/logo/international.png",
+    "createdAt": "2024-04-28T04:01:13.788288"
+  },
+  {
+    "name": "International Opportunities Project",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving international opportunities through community engagement and innovation.",
+    "contactEmail": "contact@internationalopportunitiesproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in international opportunities, striving for betterment and sustainability.",
+    "email": "info@internationalopportunitiesproject.org",
+    "phoneNumber": "+18007680636",
+    "address": {
+      "street": "472 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95424",
+      "country": "USA"
+    },
+    "causes": [
+      "International Opportunities"
+    ],
+    "logo": "/images/logo/international.png",
+    "createdAt": "2024-04-28T04:01:13.788301"
+  },
+  {
+    "name": "Justice & Legal Network",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving justice & legal through community engagement and innovation.",
+    "contactEmail": "contact@justiceandlegalnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in justice & legal, striving for betterment and sustainability.",
+    "email": "info@justiceandlegalnetwork.org",
+    "phoneNumber": "+18005258725",
+    "address": {
+      "street": "737 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96399",
+      "country": "USA"
+    },
+    "causes": [
+      "Justice & Legal"
+    ],
+    "logo": "/images/logo/justice.png",
+    "createdAt": "2024-04-28T04:01:13.788314"
+  },
+  {
+    "name": "Justice & Legal Initiative",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving justice & legal through community engagement and innovation.",
+    "contactEmail": "contact@justiceandlegalinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in justice & legal, striving for betterment and sustainability.",
+    "email": "info@justiceandlegalinitiative.org",
+    "phoneNumber": "+18007561715",
+    "address": {
+      "street": "413 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95323",
+      "country": "USA"
+    },
+    "causes": [
+      "Justice & Legal"
+    ],
+    "logo": "/images/logo/justice.png",
+    "createdAt": "2024-04-28T04:01:13.788327"
+  },
+  {
+    "name": "Justice & Legal Initiative",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving justice & legal through community engagement and innovation.",
+    "contactEmail": "contact@justiceandlegalinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in justice & legal, striving for betterment and sustainability.",
+    "email": "info@justiceandlegalinitiative.org",
+    "phoneNumber": "+18004336645",
+    "address": {
+      "street": "293 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "98887",
+      "country": "USA"
+    },
+    "causes": [
+      "Justice & Legal"
+    ],
+    "logo": "/images/logo/justice.png",
+    "createdAt": "2024-04-28T04:01:13.788339"
+  },
+  {
+    "name": "Mental Health Network",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving mental health through community engagement and innovation.",
+    "contactEmail": "contact@mentalhealthnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in mental health, striving for betterment and sustainability.",
+    "email": "info@mentalhealthnetwork.org",
+    "phoneNumber": "+18003599607",
+    "address": {
+      "street": "987 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90649",
+      "country": "USA"
+    },
+    "causes": [
+      "Mental Health"
+    ],
+    "logo": "/images/logo/mental_health.png",
+    "createdAt": "2024-04-28T04:01:13.788362"
+  },
+  {
+    "name": "Mental Health Partnership",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving mental health through community engagement and innovation.",
+    "contactEmail": "contact@mentalhealthpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in mental health, striving for betterment and sustainability.",
+    "email": "info@mentalhealthpartnership.org",
+    "phoneNumber": "+18004930143",
+    "address": {
+      "street": "173 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91712",
+      "country": "USA"
+    },
+    "causes": [
+      "Mental Health"
+    ],
+    "logo": "/images/logo/mental_health.png",
+    "createdAt": "2024-04-28T04:01:13.788375"
+  },
+  {
+    "name": "Mental Health Partnership",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving mental health through community engagement and innovation.",
+    "contactEmail": "contact@mentalhealthpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in mental health, striving for betterment and sustainability.",
+    "email": "info@mentalhealthpartnership.org",
+    "phoneNumber": "+18003346510",
+    "address": {
+      "street": "957 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "93594",
+      "country": "USA"
+    },
+    "causes": [
+      "Mental Health"
+    ],
+    "logo": "/images/logo/mental_health.png",
+    "createdAt": "2024-04-28T04:01:13.788388"
+  },
+  {
+    "name": "Politics Initiative",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving politics through community engagement and innovation.",
+    "contactEmail": "contact@politicsinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in politics, striving for betterment and sustainability.",
+    "email": "info@politicsinitiative.org",
+    "phoneNumber": "+18002757105",
+    "address": {
+      "street": "871 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95527",
+      "country": "USA"
+    },
+    "causes": [
+      "Politics"
+    ],
+    "logo": "/images/logo/politics.png",
+    "createdAt": "2024-04-28T04:01:13.788401"
+  },
+  {
+    "name": "Politics Initiative",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving politics through community engagement and innovation.",
+    "contactEmail": "contact@politicsinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in politics, striving for betterment and sustainability.",
+    "email": "info@politicsinitiative.org",
+    "phoneNumber": "+18005108383",
+    "address": {
+      "street": "103 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91069",
+      "country": "USA"
+    },
+    "causes": [
+      "Politics"
+    ],
+    "logo": "/images/logo/politics.png",
+    "createdAt": "2024-04-28T04:01:13.788412"
+  },
+  {
+    "name": "Politics Alliance",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving politics through community engagement and innovation.",
+    "contactEmail": "contact@politicsalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in politics, striving for betterment and sustainability.",
+    "email": "info@politicsalliance.org",
+    "phoneNumber": "+18003257290",
+    "address": {
+      "street": "714 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "93774",
+      "country": "USA"
+    },
+    "causes": [
+      "Politics"
+    ],
+    "logo": "/images/logo/politics.png",
+    "createdAt": "2024-04-28T04:01:13.788425"
+  },
+  {
+    "name": "Relationships & Parenting Project",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving relationships & parenting through community engagement and innovation.",
+    "contactEmail": "contact@relationshipsandparentingproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in relationships & parenting, striving for betterment and sustainability.",
+    "email": "info@relationshipsandparentingproject.org",
+    "phoneNumber": "+18006470158",
+    "address": {
+      "street": "408 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95977",
+      "country": "USA"
+    },
+    "causes": [
+      "Relationships & Parenting"
+    ],
+    "logo": "/images/logo/relationships.png",
+    "createdAt": "2024-04-28T04:01:13.788437"
+  },
+  {
+    "name": "Relationships & Parenting Network",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving relationships & parenting through community engagement and innovation.",
+    "contactEmail": "contact@relationshipsandparentingnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in relationships & parenting, striving for betterment and sustainability.",
+    "email": "info@relationshipsandparentingnetwork.org",
+    "phoneNumber": "+18009454737",
+    "address": {
+      "street": "182 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "97720",
+      "country": "USA"
+    },
+    "causes": [
+      "Relationships & Parenting"
+    ],
+    "logo": "/images/logo/relationships.png",
+    "createdAt": "2024-04-28T04:01:13.788450"
+  },
+  {
+    "name": "Relationships & Parenting Initiative",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving relationships & parenting through community engagement and innovation.",
+    "contactEmail": "contact@relationshipsandparentinginitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in relationships & parenting, striving for betterment and sustainability.",
+    "email": "info@relationshipsandparentinginitiative.org",
+    "phoneNumber": "+18004645275",
+    "address": {
+      "street": "428 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "99149",
+      "country": "USA"
+    },
+    "causes": [
+      "Relationships & Parenting"
+    ],
+    "logo": "/images/logo/relationships.png",
+    "createdAt": "2024-04-28T04:01:13.788463"
+  },
+  {
+    "name": "Seniors Network",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving seniors through community engagement and innovation.",
+    "contactEmail": "contact@seniorsnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in seniors, striving for betterment and sustainability.",
+    "email": "info@seniorsnetwork.org",
+    "phoneNumber": "+18001624466",
+    "address": {
+      "street": "305 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90678",
+      "country": "USA"
+    },
+    "causes": [
+      "Seniors"
+    ],
+    "logo": "/images/logo/seniors.png",
+    "createdAt": "2024-04-28T04:01:13.788476"
+  },
+  {
+    "name": "Seniors Network",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving seniors through community engagement and innovation.",
+    "contactEmail": "contact@seniorsnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in seniors, striving for betterment and sustainability.",
+    "email": "info@seniorsnetwork.org",
+    "phoneNumber": "+18002472914",
+    "address": {
+      "street": "432 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96999",
+      "country": "USA"
+    },
+    "causes": [
+      "Seniors"
+    ],
+    "logo": "/images/logo/seniors.png",
+    "createdAt": "2024-04-28T04:01:13.788490"
+  },
+  {
+    "name": "Seniors Partnership",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving seniors through community engagement and innovation.",
+    "contactEmail": "contact@seniorspartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in seniors, striving for betterment and sustainability.",
+    "email": "info@seniorspartnership.org",
+    "phoneNumber": "+18004803939",
+    "address": {
+      "street": "966 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91936",
+      "country": "USA"
+    },
+    "causes": [
+      "Seniors"
+    ],
+    "logo": "/images/logo/seniors.png",
+    "createdAt": "2024-04-28T04:01:13.788502"
+  },
+  {
+    "name": "Sports & Recreation Initiative",
+    "type": "Nonprofit",
+    "missionStatement": "Dedicated to improving sports & recreation through community engagement and innovation.",
+    "contactEmail": "contact@sportsandrecreationinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in sports & recreation, striving for betterment and sustainability.",
+    "email": "info@sportsandrecreationinitiative.org",
+    "phoneNumber": "+18003713457",
+    "address": {
+      "street": "610 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "99317",
+      "country": "USA"
+    },
+    "causes": [
+      "Sports & Recreation"
+    ],
+    "logo": "/images/logo/sports.png",
+    "createdAt": "2024-04-28T04:01:13.788518"
+  },
+  {
+    "name": "Sports & Recreation Partnership",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving sports & recreation through community engagement and innovation.",
+    "contactEmail": "contact@sportsandrecreationpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in sports & recreation, striving for betterment and sustainability.",
+    "email": "info@sportsandrecreationpartnership.org",
+    "phoneNumber": "+18005130061",
+    "address": {
+      "street": "251 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "90872",
+      "country": "USA"
+    },
+    "causes": [
+      "Sports & Recreation"
+    ],
+    "logo": "/images/logo/sports.png",
+    "createdAt": "2024-04-28T04:01:13.788531"
+  },
+  {
+    "name": "Sports & Recreation Project",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving sports & recreation through community engagement and innovation.",
+    "contactEmail": "contact@sportsandrecreationproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in sports & recreation, striving for betterment and sustainability.",
+    "email": "info@sportsandrecreationproject.org",
+    "phoneNumber": "+18005685728",
+    "address": {
+      "street": "480 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "92801",
+      "country": "USA"
+    },
+    "causes": [
+      "Sports & Recreation"
+    ],
+    "logo": "/images/logo/sports.png",
+    "createdAt": "2024-04-28T04:01:13.788543"
+  },
+  {
+    "name": "Technology & Media Alliance",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving technology & media through community engagement and innovation.",
+    "contactEmail": "contact@technologyandmediaalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in technology & media, striving for betterment and sustainability.",
+    "email": "info@technologyandmediaalliance.org",
+    "phoneNumber": "+18006701854",
+    "address": {
+      "street": "468 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "98250",
+      "country": "USA"
+    },
+    "causes": [
+      "Technology & Media"
+    ],
+    "logo": "/images/logo/tech_media.png",
+    "createdAt": "2024-04-28T04:01:13.788557"
+  },
+  {
+    "name": "Technology & Media Project",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving technology & media through community engagement and innovation.",
+    "contactEmail": "contact@technologyandmediaproject.org",
+    "website": "https://www.example.org",
+    "description": "A leader in technology & media, striving for betterment and sustainability.",
+    "email": "info@technologyandmediaproject.org",
+    "phoneNumber": "+18009638432",
+    "address": {
+      "street": "380 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91849",
+      "country": "USA"
+    },
+    "causes": [
+      "Technology & Media"
+    ],
+    "logo": "/images/logo/tech_media.png",
+    "createdAt": "2024-04-28T04:01:13.788569"
+  },
+  {
+    "name": "Technology & Media Partnership",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving technology & media through community engagement and innovation.",
+    "contactEmail": "contact@technologyandmediapartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in technology & media, striving for betterment and sustainability.",
+    "email": "info@technologyandmediapartnership.org",
+    "phoneNumber": "+18003013653",
+    "address": {
+      "street": "106 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96448",
+      "country": "USA"
+    },
+    "causes": [
+      "Technology & Media"
+    ],
+    "logo": "/images/logo/tech_media.png",
+    "createdAt": "2024-04-28T04:01:13.788581"
+  },
+  {
+    "name": "Urgent Alliance",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving urgent through community engagement and innovation.",
+    "contactEmail": "contact@urgentalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in urgent, striving for betterment and sustainability.",
+    "email": "info@urgentalliance.org",
+    "phoneNumber": "+18008204210",
+    "address": {
+      "street": "257 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "98541",
+      "country": "USA"
+    },
+    "causes": [
+      "Urgent"
+    ],
+    "logo": "/images/logo/urgent.png",
+    "createdAt": "2024-04-28T04:01:13.788594"
+  },
+  {
+    "name": "Urgent Network",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving urgent through community engagement and innovation.",
+    "contactEmail": "contact@urgentnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in urgent, striving for betterment and sustainability.",
+    "email": "info@urgentnetwork.org",
+    "phoneNumber": "+18005122321",
+    "address": {
+      "street": "229 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96547",
+      "country": "USA"
+    },
+    "causes": [
+      "Urgent"
+    ],
+    "logo": "/images/logo/urgent.png",
+    "createdAt": "2024-04-28T04:01:13.788605"
+  },
+  {
+    "name": "Urgent Alliance",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving urgent through community engagement and innovation.",
+    "contactEmail": "contact@urgentalliance.org",
+    "website": "https://www.example.org",
+    "description": "A leader in urgent, striving for betterment and sustainability.",
+    "email": "info@urgentalliance.org",
+    "phoneNumber": "+18004563136",
+    "address": {
+      "street": "392 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "95769",
+      "country": "USA"
+    },
+    "causes": [
+      "Urgent"
+    ],
+    "logo": "/images/logo/urgent.png",
+    "createdAt": "2024-04-28T04:01:13.788618"
+  },
+  {
+    "name": "Veterans & Military Families Initiative",
+    "type": "Community",
+    "missionStatement": "Dedicated to improving veterans & military families through community engagement and innovation.",
+    "contactEmail": "contact@veteransandmilitaryfamiliesinitiative.org",
+    "website": "https://www.example.org",
+    "description": "A leader in veterans & military families, striving for betterment and sustainability.",
+    "email": "info@veteransandmilitaryfamiliesinitiative.org",
+    "phoneNumber": "+18002269315",
+    "address": {
+      "street": "199 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "91287",
+      "country": "USA"
+    },
+    "causes": [
+      "Veterans & Military Families"
+    ],
+    "logo": "/images/logo/veterans.png",
+    "createdAt": "2024-04-28T04:01:13.788632"
+  },
+  {
+    "name": "Veterans & Military Families Network",
+    "type": "Other",
+    "missionStatement": "Dedicated to improving veterans & military families through community engagement and innovation.",
+    "contactEmail": "contact@veteransandmilitaryfamiliesnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in veterans & military families, striving for betterment and sustainability.",
+    "email": "info@veteransandmilitaryfamiliesnetwork.org",
+    "phoneNumber": "+18004716532",
+    "address": {
+      "street": "676 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96363",
+      "country": "USA"
+    },
+    "causes": [
+      "Veterans & Military Families"
+    ],
+    "logo": "/images/logo/veterans.png",
+    "createdAt": "2024-04-28T04:01:13.788645"
+  },
+  {
+    "name": "Veterans & Military Families Partnership",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving veterans & military families through community engagement and innovation.",
+    "contactEmail": "contact@veteransandmilitaryfamiliespartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in veterans & military families, striving for betterment and sustainability.",
+    "email": "info@veteransandmilitaryfamiliespartnership.org",
+    "phoneNumber": "+18006740812",
+    "address": {
+      "street": "839 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "97478",
+      "country": "USA"
+    },
+    "causes": [
+      "Veterans & Military Families"
+    ],
+    "logo": "/images/logo/veterans.png",
+    "createdAt": "2024-04-28T04:01:13.788659"
+  },
+  {
+    "name": "Virtual Partnership",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving virtual through community engagement and innovation.",
+    "contactEmail": "contact@virtualpartnership.org",
+    "website": "https://www.example.org",
+    "description": "A leader in virtual, striving for betterment and sustainability.",
+    "email": "info@virtualpartnership.org",
+    "phoneNumber": "+18004478333",
+    "address": {
+      "street": "577 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "96712",
+      "country": "USA"
+    },
+    "causes": [
+      "Virtual"
+    ],
+    "logo": "/images/logo/virtual.png",
+    "createdAt": "2024-04-28T04:01:13.788672"
+  },
+  {
+    "name": "Virtual Network",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving virtual through community engagement and innovation.",
+    "contactEmail": "contact@virtualnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in virtual, striving for betterment and sustainability.",
+    "email": "info@virtualnetwork.org",
+    "phoneNumber": "+18003071269",
+    "address": {
+      "street": "596 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "97202",
+      "country": "USA"
+    },
+    "causes": [
+      "Virtual"
+    ],
+    "logo": "/images/logo/virtual.png",
+    "createdAt": "2024-04-28T04:01:13.788683"
+  },
+  {
+    "name": "Virtual Network",
+    "type": "NGO",
+    "missionStatement": "Dedicated to improving virtual through community engagement and innovation.",
+    "contactEmail": "contact@virtualnetwork.org",
+    "website": "https://www.example.org",
+    "description": "A leader in virtual, striving for betterment and sustainability.",
+    "email": "info@virtualnetwork.org",
+    "phoneNumber": "+18004135098",
+    "address": {
+      "street": "110 Freedom Rd",
+      "city": "EcoCity",
+      "state": "EcoState",
+      "zipCode": "92617",
+      "country": "USA"
+    },
+    "causes": [
+      "Virtual"
+    ],
+    "logo": "/images/logo/virtual.png",
+    "createdAt": "2024-04-28T04:01:13.788694"
+  }
+]

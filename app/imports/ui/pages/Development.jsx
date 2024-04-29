@@ -10,6 +10,8 @@ import CalendarWeeklyCard from '../components/calendar/CalendarWeeklyCard';
 import ProfilesDisplay from '../components/profile/ProfileCardDisplay';
 import ChatComponent from '../chat/ChatComponent';
 import ChatInterface from '../components/chat/ChatInteface';
+import OrganizationList from '../components/OrgList';
+import SearchOrganizations from '../components/SearchOrganizations';
 
 const Development = () => (
   <Container id={PAGE_IDS.DEVELOPMENT}>
@@ -22,6 +24,8 @@ const Development = () => (
     <ProfilesDisplay />
     <ChatComponent />
     <ChatInterface />
+    <OrganizationList />
+    <SearchOrganizations />
   </Container>
 );
 

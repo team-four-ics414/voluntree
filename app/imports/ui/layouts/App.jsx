@@ -42,7 +42,8 @@ import UsersProfiles from '../pages/UsersProfiles';
 import UserProfilePage from '../pages/UserProfile';
 import AddProfile from '../pages/AddProfile';
 import Activity from '../pages/Activity';
-
+import OrganizationLandingPage from '../pages/OrganizationLandingPage';
+import OrganizationHub from '../components/OrganizationHub';
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
   const { ready } = useTracker(() => {
@@ -64,6 +65,8 @@ const App = () => {
             <Route path="/faq" element={<FAQ />} />
             <Route path="/opportunities" element={<ListOpportunities />} />
             <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+            <Route path="/organizations" element={<OrganizationHub />} />
+            <Route path="/organization/:id" element={<OrganizationLandingPage />} />
             <Route path="/list" element={<ProtectedRoute><ListStuff /></ProtectedRoute>} />
             <Route path="/nonprofits" element={<ProtectedRoute ready={ready}><ListNonprofit /></ProtectedRoute>} />
             <Route path="/forum" element={<ProtectedRoute ready={ready}><VolunteerForum /></ProtectedRoute>} />

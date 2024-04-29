@@ -8,6 +8,7 @@ import { UserProfiles } from '../../api/user/UserProfileCollection';
 import { Messages } from '../../api/messaging/MessagesCollection';
 import { Conversations } from '../../api/messaging/ConversationsCollection';
 import { Opportunity } from '../../api/opportunities/OpportunityCollection';
+
 // Call publish for all the collections.
 MATPCollections.collections.forEach(c => c.publish());
 
@@ -273,4 +274,13 @@ Meteor.publish('conversations.list', function () {
     conversations,
     Messages.find({ _id: { $in: latestMessageIds } }),
   ];
+});
+
+Meteor.publish('organizations.search', function (searchTerm) {
+  if (!this.userId) { // Optionally restrict this to logged-in users.
+    return this.ready();
+  }
+
+  const regex = new RegExp(searchTerm, 'i'); // Case insensitive regex search.
+  return Organizations.find({ name: { $regex: regex } }, { limit: 10 }); // Limit results and adjust fields as needed.
 });

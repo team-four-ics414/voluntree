@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import SimpleSchema from 'simpl-schema';
 import BaseCollection from '../base/BaseCollection';
+import { Causes } from './CauseCollection';
 
 // Extend SimpleSchema with custom validation rules if needed
 SimpleSchema.extendOptions(['autoform']);
@@ -27,11 +28,11 @@ const OrganizationSchema = new SimpleSchema({
   },
   email: {
     type: String,
-    regEx: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+    regEx: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
   },
   contactEmail: {
     type: String,
-    regEx: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+    regEx: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
   },
   website: {
     type: String,
@@ -86,6 +87,14 @@ const OrganizationSchema = new SimpleSchema({
     type: String,
     regEx: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
   },
+  causeIds: {
+    type: Array,
+    optional: true,
+  },
+  'causeIds.$': {
+    type: String,
+    regEx: /^[a-f\d]{24}$/i, // Updated RegExp to match a 24-character hexadecimal string
+  },
   createdAt: {
     type: Date,
   },
@@ -101,7 +110,7 @@ const OrganizationSchema = new SimpleSchema({
 
 class OrganizationCollection extends BaseCollection {
   constructor() {
-    super('Organizations', OrganizationSchema); // Ensure the collection name matches what you use in MongoDB
+    super('Organizations', OrganizationSchema);
   }
 
   /**
@@ -110,8 +119,17 @@ class OrganizationCollection extends BaseCollection {
    * @returns {String} The ID of the newly created organization.
    */
   define(organization) {
-    // Bypass the authorization check if called during server initialization
+    console.log('Attempting to insert organization with email:', organization.email); // Log the email
     if (Meteor.isServer && !this.userId) {
+      // Validate cause IDs first
+      organization.causeIds.forEach(causeId => {
+        const causeExists = Causes.findOne({ _id: causeId });
+        if (!causeExists) {
+          console.error(`Cause ID not found: ${causeId}`);
+          throw new Meteor.Error('invalid-cause', `Cause ID ${causeId} is invalid or does not exist.`);
+        }
+      });
+
       const organizationId = this._collection.insert(organization);
       return organizationId;
     }
@@ -151,6 +169,20 @@ class OrganizationCollection extends BaseCollection {
   }
 
   // Additional methods for organization-specific logic can be added here
+}
+
+if (Meteor.isServer) {
+  Meteor.publish('OrganizationsOnly', function publish() {
+    if (!this.userId) {
+      // Optionally restrict this to logged-in users
+      throw new Meteor.Error('unauthorized', 'You must be logged in to view organizations.');
+    }
+    return Organizations._collection.find({});
+  });
+}
+
+if (Meteor.isClient) {
+  Meteor.subscribe('OrganizationsOnly');
 }
 
 export const Organizations = new OrganizationCollection();
