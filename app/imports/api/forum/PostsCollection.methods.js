@@ -8,13 +8,13 @@ Meteor.methods({
   'posts.insert'(post) {
     console.log('Inserting post:', post);
     check(post, {
+      _id: String,
       title: String,
       contents: String,
       owner: String,
       createdAt: Date,
       lastUpdated: Match.Optional(Date), // This allows for Date or undefined
       eventId: Match.Optional(String),
-      comments: Match.Optional(Array),
     });
 
     // Ensure the user is logged in before inserting an activity

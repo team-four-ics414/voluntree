@@ -8,7 +8,7 @@ Meteor.methods({
   'comments.insert'(comment) {
     console.log('Inserting comments:', comment);
     check(comment, {
-      _id: String,
+      postId: String,
       contents: String,
       owner: String,
       createdAt: Date,

@@ -9,7 +9,7 @@ export const commentsPublications = {
 };
 
 const CommentsScheme = new SimpleSchema({
-  _id: {
+  postId: {
     type: String,
     required: true,
   },
@@ -37,9 +37,9 @@ class CommentsCollection extends BaseCollection {
     super('Comments', CommentsScheme);
   }
 
-  define({ _id, contents, owner, creationDate, dateUpdate }) {
+  define({ postId, contents, owner, creationDate, dateUpdate }) {
     const docID = this._collection.insert({
-      _id: _id,
+      postId: postId,
       contents: contents,
       owner: owner,
       createdAt: creationDate ? new Date(creationDate) : new Date(),
@@ -109,11 +109,12 @@ class CommentsCollection extends BaseCollection {
   dumpOne(docID) {
     const doc = this.findDoc(docID);
     const _id = docID;
+    const postId = doc.postId;
     const contents = doc.contents;
     const owner = doc.owner;
     const createdAt = doc.createdAt;
     const lastUpdated = doc.lastUpdated;
-    return { _id, contents, owner, createdAt, lastUpdated };
+    return { _id, postId, contents, owner, createdAt, lastUpdated };
   }
 }
 
