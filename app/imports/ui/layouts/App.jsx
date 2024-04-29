@@ -42,6 +42,7 @@ import UsersProfiles from '../pages/UsersProfiles';
 import UserProfilePage from '../pages/UserProfile';
 import AddProfile from '../pages/AddProfile';
 import Activity from '../pages/Activity';
+import EditProfile from '../pages/EditProfile';
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => {
@@ -87,6 +88,7 @@ const App = () => {
             <Route path="/development" element={<ProtectedRoute><Development /></ProtectedRoute>} />
             <Route path="/specificevent" element={<ProtectedRoute><SpecificEvent /></ProtectedRoute>} />
             <Route path="/usersprofile" element={<AdminProtectedRoute ready={ready}><UsersProfiles /></AdminProtectedRoute>} />
+            <Route path="/editProfile" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>

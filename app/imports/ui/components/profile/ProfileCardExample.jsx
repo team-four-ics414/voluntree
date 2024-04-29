@@ -33,6 +33,7 @@ const ProfileCardExample = ({ profile }) => (
         </ul>
       </div>
     )}
+    {/* Edit Profile */}
   </div>
 );
 
