@@ -37,13 +37,17 @@ class CommentsCollection extends BaseCollection {
     super('Comments', CommentsScheme);
   }
 
-  define({ postId, contents, owner, creationDate, dateUpdate }) {
+  define({ postId, contents, owner, createdAt, lastUpdated }) {
+
+    const createdDate = createdAt ? new Date(createdAt) : new Date();
+    const updatedDate = lastUpdated ? new Date(lastUpdated) : lastUpdated;
+
     const docID = this._collection.insert({
-      postId: postId,
-      contents: contents,
-      owner: owner,
-      createdAt: creationDate ? new Date(creationDate) : new Date(),
-      lastUpdated: dateUpdate ? new Date(dateUpdate) : null,
+      postId,
+      contents,
+      owner,
+      createdAt: createdDate,
+      lastUpdated: updatedDate,
     });
     return docID;
   }
