@@ -12,20 +12,33 @@ import { defineMethod } from '../../api/base/BaseCollection.methods';
 // const bridgePost = new SimpleSchema2Bridge(Posts.getSchema());
 
 const VolunteerForum = () => {
+  const [show, setShow] = useState(false);
+  const [addEventShow, setAddEventShow] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
   const collectionName = Posts.getCollectionName();
 
-  // handling the Modal
-  const [show, setShow] = useState(false);
   const handleClose = () => {
     setShow(false);
     // eslint-disable-next-line no-use-before-define
     setAddEventShow(false);
   };
   const handleShow = () => setShow(true);
-
-  // handling the event form
-  const [addEventShow, setAddEventShow] = useState(false);
   const handleAddEvent = () => setAddEventShow(!addEventShow);
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredPosts = () => {
+    // eslint-disable-next-line no-use-before-define
+    let filtered = posts;
+    if (searchQuery) {
+      const normalizedQuery = searchQuery.toLowerCase();
+      filtered = filtered.filter(post => post.title.toLowerCase().includes(normalizedQuery) ||
+        post.contents.toLowerCase().includes(normalizedQuery) || post.owner.toLowerCase().includes(normalizedQuery));
+    }
+    return filtered;
+  };
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -111,9 +124,15 @@ const VolunteerForum = () => {
               </Form>
             </Modal.Body>
           </Modal>
-          <Form.Control type="text" placeholder="Search Forums..." style={{ display: 'flex' }} />
+          <Form.Control
+            type="text"
+            placeholder="Search Forums..."
+            value={searchQuery}
+            onChange={handleSearchInputChange}
+            className="search-input"
+          />
           <div className="d-flex flex-wrap overflow-auto mt-4" style={{ maxHeight: '700px' }}>
-            {posts.map((post) => <ForumPostCard key={post._id} post={post} />)}
+            {filteredPosts().map((post) => <ForumPostCard key={post._id} post={post} />)}
           </div>
         </Col>
       </Row>
