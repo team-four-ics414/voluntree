@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Calendar from '../components/calendar/Calendar';
 
 const OrganizationLandingPage = ({ organization }) => {
   if (!organization) return <div>No organization selected.</div>;
 
-  // Destructure to extract address parts or provide defaults to avoid undefined values
+  const [showCalendar, setShowCalendar] = useState(false);
+
+  const toggleCalendar = () => setShowCalendar(!showCalendar);
+
   const {
     name = 'N/A',
     type = 'Unknown Type',
@@ -36,13 +41,18 @@ const OrganizationLandingPage = ({ organization }) => {
         <div className="max-w-7xl mx-auto flex justify-between items-center px-4">
           <nav className="flex space-x-4">
             <a href="#about" className="text-lg font-semibold hover:text-gray-600">About</a>
-            <a href="#calendar" className="text-lg font-semibold hover:text-gray-600">Calendar</a>
+            <button onClick={toggleCalendar} className="text-lg font-semibold hover:text-gray-600">
+              {showCalendar ? 'Hide Calendar' : 'Show Calendar'}
+            </button>
           </nav>
           <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             {joinButtonText}
           </button>
         </div>
       </div>
+
+      {/* Calendar Component */}
+      {showCalendar && <Calendar />}
 
       {/* Main Content */}
       <div className="flex-grow bg-white">
