@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col, Button, Nav } from 'react-bootstrap';
 import Calendar from '../components/calendar/Calendar';
+import RecentActivityList from '../components/activities/RecentActivityList';
 
 const OrganizationLandingPage = ({ organization }) => {
   if (!organization) return <div>No organization selected.</div>;
@@ -32,7 +33,8 @@ const OrganizationLandingPage = ({ organization }) => {
   return (
     <Container fluid className="flex-grow-1 d-flex flex-column min-vh-100">
       {/* Header Section */}
-      <Row as="header" className="bg-cover bg-center text-white py-20 px-4" style={{ backgroundImage: `url(${logo})` }}>
+      <Row as="header" className="bg-cover bg-center text-white py-20 px-4" style={{ backgroundImage: `url(${logo})`, height: '800px' }}>
+
         <Col className="text-center">
           <h1 className="display-1 font-weight-bold text-uppercase">{name}</h1>
           <p className="h4">{type}</p>
@@ -80,6 +82,9 @@ const OrganizationLandingPage = ({ organization }) => {
                 <div>No causes listed.</div>
               )}
             </section>
+            <Row>
+              <RecentActivityList />
+            </Row>
           </Col>
 
           {/* Right Column */}

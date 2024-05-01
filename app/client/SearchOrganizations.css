@@ -76,3 +76,12 @@
 .highlight {
   background-color: yellow;
 }
+
+.header-container { /* Apply to the container of your <Row> */
+  display: flex;
+  flex-direction: column; /* Make content stack vertically */
+}
+
+.large-header {
+  flex: 1; /* Allow the header to take up available space */
+}
