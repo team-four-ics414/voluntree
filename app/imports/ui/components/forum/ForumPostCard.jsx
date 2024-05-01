@@ -6,7 +6,7 @@ import swal from 'sweetalert';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Trash, Pencil } from 'react-bootstrap-icons';
 import { Comments } from '../../../api/forum/CommentsCollection';
-import { defineMethod, updateMethod } from '../../../api/base/BaseCollection.methods';
+import { defineMethod, removeItMethod, updateMethod } from '../../../api/base/BaseCollection.methods';
 import LoadingSpinner from '../LoadingSpinner';
 
 const dateFormat = (date) => `${date.getDate()}/${
@@ -23,20 +23,22 @@ const ForumPostCard = ({ post }) => {
 
   const myRef = useRef(null);
   const commentBeingUpdatedRef = useRef('');
-  const idCommentBeingUpdatedRef = useRef('');
+  const idCommentBeingReferencedRef = useRef('');
   const updateRef = useRef(false);
 
   const handleUpdate = (commentString, id) => {
     setCommentText(commentString);
     commentBeingUpdatedRef.current = commentString;
-    idCommentBeingUpdatedRef.current = id;
+    idCommentBeingReferencedRef.current = id;
     myRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
     // setUpdate(true);
     updateRef.current = true;
   };
 
-  const handleDelete = () => {
-    console.log('Delete comment');
+  const handleDelete = (id) => {
+    idCommentBeingReferencedRef.current = id;
+    // eslint-disable-next-line no-use-before-define
+    deleteComment();
   };
 
   const handleCancel = () => {
@@ -46,11 +48,14 @@ const ForumPostCard = ({ post }) => {
     console.log('Cancel comment update');
   };
 
+  const deleteComment = () => {
+    removeItMethod.callPromise({ collectionName, instance: idCommentBeingReferencedRef.current })
+      .catch(error => swal('Error', error.message, 'error'));
+    idCommentBeingReferencedRef.current = '';
+  };
+
   const submitComment = (e) => {
     e.preventDefault();
-
-    console.log(commentBeingUpdatedRef.current);
-    console.log(commentText);
 
     const insertComment = () => {
 
@@ -66,7 +71,7 @@ const ForumPostCard = ({ post }) => {
     };
 
     const updateComment = () => {
-      const dataToInsert = { id: idCommentBeingUpdatedRef.current, contents: commentText };
+      const dataToInsert = { id: idCommentBeingReferencedRef.current, contents: commentText };
 
       updateMethod.callPromise({ collectionName, updateData: dataToInsert })
         .catch(error => swal('Error', error.message, 'error'));
@@ -132,7 +137,7 @@ const ForumPostCard = ({ post }) => {
                       {Meteor.user().username === comment.owner ? (
                         <div>
                           <Button className="py-0 my-0 mx-2" variant="warning" onClick={() => handleUpdate(comment.contents, comment._id)}><Pencil /></Button>
-                          <Button className="py-0 my-0" variant="danger" onClick={handleDelete}><Trash /></Button>
+                          <Button className="py-0 my-0" variant="danger" onClick={() => handleDelete(comment._id)}><Trash /></Button>
                         </div>
                       ) : ('')}
                     </div>

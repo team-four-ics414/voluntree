@@ -5,7 +5,7 @@ import { Comments } from './CommentsCollection';
 import { ROLE } from '../role/Role';
 
 Meteor.methods({
-  'comments.insert'(comment) {
+  'Comments.insert'(comment) {
     console.log('Inserting comments:', comment);
     check(comment, {
       postId: String,
@@ -25,7 +25,7 @@ Meteor.methods({
     return Comments.define(comment);
   },
 
-  'comments.update'(commentId, changes) {
+  'Comments.update'(commentId, changes) {
     check(commentId, String);
     check(changes, Object);
 
@@ -47,7 +47,7 @@ Meteor.methods({
     return Comments.update(commentId, updates);
   },
 
-  'comment.remove'(commentId) {
+  'Comment.remove'(commentId) {
     check(commentId, String);
 
     // Ensure the user is logged in before removing an activity
