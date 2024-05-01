@@ -4,26 +4,35 @@ import PropTypes from 'prop-types';
 import { Card, Button, Accordion, Row } from 'react-bootstrap';
 import swal from 'sweetalert';
 import { useTracker } from 'meteor/react-meteor-data';
+import { Trash, Pencil } from 'react-bootstrap-icons';
 import { Comments } from '../../../api/forum/CommentsCollection';
 import { defineMethod, updateMethod } from '../../../api/base/BaseCollection.methods';
 import LoadingSpinner from '../LoadingSpinner';
 
+const dateFormat = (date) => `${date.getDate()}/${
+  date.getMonth() + 1}/${
+  date.getFullYear()} | ${
+  date.getHours()}:${
+  date.getMinutes()}`;
+
 const ForumPostCard = ({ post }) => {
 
   const [commentText, setCommentText] = useState('');
-  const [update, setUpdate] = useState(false);
+  // const [update, setUpdate] = useState(false);
   const collectionName = Comments.getCollectionName();
 
   const myRef = useRef(null);
   const commentBeingUpdatedRef = useRef('');
   const idCommentBeingUpdatedRef = useRef('');
+  const updateRef = useRef(false);
 
   const handleUpdate = (commentString, id) => {
     setCommentText(commentString);
     commentBeingUpdatedRef.current = commentString;
     idCommentBeingUpdatedRef.current = id;
     myRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setUpdate(true);
+    // setUpdate(true);
+    updateRef.current = true;
   };
 
   const handleDelete = () => {
@@ -32,7 +41,8 @@ const ForumPostCard = ({ post }) => {
 
   const handleCancel = () => {
     setCommentText('');
-    setUpdate(false);
+    // setUpdate(false);
+    updateRef.current = false;
     console.log('Cancel comment update');
   };
 
@@ -61,7 +71,8 @@ const ForumPostCard = ({ post }) => {
       updateMethod.callPromise({ collectionName, updateData: dataToInsert })
         .catch(error => swal('Error', error.message, 'error'));
 
-      setUpdate(false);
+      // setUpdate(false);
+      updateRef.current = false;
       setCommentText('');
     };
 
@@ -69,7 +80,7 @@ const ForumPostCard = ({ post }) => {
     Meteor.call('textCheck', commentText, (error) => {
       if (error) {
         swal('Error', 'Inappropriate Content Detected', 'error');
-      } else if (update) {
+      } else if (updateRef.current) {
         updateComment();
       } else {
         insertComment();
@@ -80,7 +91,7 @@ const ForumPostCard = ({ post }) => {
   const { ready, comments } = useTracker(() => {
     const subscription = Comments.subscribeComments();
     const rdy = subscription.ready();
-    const commentItems = Comments.find({ postId: post._id }, { sort: { createdAt: 1 } }).fetch();
+    const commentItems = Comments.find({ postId: post._id }, { sort: { createdAt: 1, lastUpdated: 1 } }).fetch();
     return {
       comments: commentItems,
       ready: rdy,
@@ -116,20 +127,20 @@ const ForumPostCard = ({ post }) => {
                 {/* {comments.map((comment) => (<ForumComment comment={comment} hook={setCommentText} key={comment._id} />))} */}
                 {comments.map((comment) => (
                   <div key={comment._id} style={{ backgroundColor: '#f0f2f5', padding: '10px 10px 5px 10px', borderRadius: '10px', marginBottom: '10px' }}>
-                    <div className="d-flex">
+                    <div className="d-flex justify-content-between">
                       <h6><b>{comment.owner}</b></h6>
                       {Meteor.user().username === comment.owner ? (
-                        <>
-                          <Button variant="link" onClick={() => handleUpdate(comment.contents, comment._id)}>Update</Button>
-                          <Button variant="link" onClick={handleDelete}>Delete</Button>
-                        </>
+                        <div>
+                          <Button className="py-0 my-0 mx-2" variant="warning" onClick={() => handleUpdate(comment.contents, comment._id)}><Pencil /></Button>
+                          <Button className="py-0 my-0" variant="danger" onClick={handleDelete}><Trash /></Button>
+                        </div>
                       ) : ('')}
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                      <p> |-- {comment.contents}</p>
+                      <p>{comment.contents}</p>
                       {comment.lastUpdated ? (
-                        <p>Updated {comment.lastUpdated.toDateString()}</p>
-                      ) : (<p>Posted: {comment.createdAt.toDateString()}</p>)}
+                        <p style={{ fontFamily: 'sans-serif' }}>Updated: {dateFormat(comment.lastUpdated)}</p>
+                      ) : (<p style={{ fontFamily: 'sans-serif' }}>Posted: {dateFormat(comment.createdAt)}</p>)}
                     </div>
                   </div>
                 ))}
@@ -142,12 +153,12 @@ const ForumPostCard = ({ post }) => {
                     onChange={(e) => setCommentText(e.target.value)}
                     className="form-input p-2 flex-grow-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  {update ? (
+                  {updateRef.current ? (
                     <>
-                      <button type="submit" className="submit-button" disabled={(!commentText.trim() || commentText === commentBeingUpdatedRef.current)}>Update</button>
+                      <button type="submit" className="btn btn-warning mx-3" disabled={(!commentText.trim() || commentText === commentBeingUpdatedRef.current)}>Update</button>
                       <button type="button" className="btn btn-danger" onClick={handleCancel}>Cancel</button>
                     </>
-                  ) : <button type="submit" className="submit-button" disabled={!commentText.trim()}>Submit</button> }
+                  ) : <button type="submit" className="btn btn-success mx-3" disabled={!commentText.trim()}>Submit</button> }
                 </form>
               </Accordion.Body>
             </Accordion.Item>
