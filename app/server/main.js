@@ -12,3 +12,5 @@ import '../imports/api/messaging/MessageCollection.methods';
 import '../imports/api/messaging/ConversationsCollection.methods';
 import '../imports/api/activities/VolunteerCollection.methods';
 import '../imports/api/activities/PendingCollection.methods';
+import '../imports/api/forum/CommentsCollection.methods';
+import '../imports/api/forum/PostsCollection.methods';
