@@ -144,4 +144,14 @@ OrganizationLandingPage.propTypes = {
   }),
 };
 
+OrganizationLandingPage.defaultProps = {
+  organization: {
+    name: 'N/A',
+    type: 'Unknown Type',
+    missionStatement: 'No mission statement provided.',
+    description: 'No additional information available.',
+    // ... other default values
+  },
+};
+
 export default OrganizationLandingPage;

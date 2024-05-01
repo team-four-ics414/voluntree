@@ -51,6 +51,10 @@ OrganizationList.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
+OrganizationList.defaultProps = {
+  organizations: [],
+};
+
 export default withTracker(() => {
   const handle = Meteor.subscribe('OrganizationsOnly');
   const isLoading = !handle.ready();

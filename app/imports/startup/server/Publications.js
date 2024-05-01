@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
+import { check } from 'meteor/check';
 import { MATPCollections } from '../../api/matp/MATPCollections';
 import { Calendars } from '../../api/calendar/CalendarCollection';
 import { Activity } from '../../api/activities/ActivityCollection';
@@ -281,6 +282,8 @@ Meteor.publish('organizations.search', function (searchTerm) {
   if (!this.userId) { // Optionally restrict this to logged-in users.
     return this.ready();
   }
+
+  check(searchTerm, String); // Ensure searchTerm is a string.
 
   const regex = new RegExp(searchTerm, 'i'); // Case insensitive regex search.
   return Organizations.find({ name: { $regex: regex } }, { limit: 10 }); // Limit results and adjust fields as needed.
