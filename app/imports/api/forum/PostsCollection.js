@@ -173,6 +173,10 @@ class PostsCollection extends BaseCollection {
     const lastUpdated = doc.lastUpdated;
     return { _id, title, contents, owner, createdAt, lastUpdated };
   }
+
+  getSchema() {
+    return PostsSchema;
+  }
 }
 
 export const Posts = new PostsCollection();
