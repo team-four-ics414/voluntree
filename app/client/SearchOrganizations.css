@@ -1,0 +1,78 @@
+.search-organizations {
+  padding: 20px;
+  background: #e9ecef;
+}
+
+.search-header {
+  text-align: center;
+}
+
+.search-header h2 {
+  font-size: 2rem;
+  color: #495057;
+  margin-bottom: 1rem;
+}
+
+.search-bar {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ced4da;
+}
+
+.search-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.search-button i {
+  font-size: 1.5rem;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  text-align: center;
+}
+
+.category-card {
+  padding: 1rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-icon {
+  width: 80px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.category-name {
+  font-weight: bold;
+  color: #495057;
+}
+
+/* SearchOrganizations.css */
+.highlight {
+  background-color: yellow;
+}

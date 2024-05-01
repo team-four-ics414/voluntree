@@ -93,7 +93,11 @@ const OrganizationSchema = new SimpleSchema({
   },
   'causeIds.$': {
     type: String,
-    regEx: /^[a-f\d]{24}$/i, // Updated RegExp to match a 24-character hexadecimal string
+    regEx: /^[23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrstuvwxyz]{17,}$/, // MongoDB default ID format
+  },
+  logo: {
+    type: String,
+    optional: true,
   },
   createdAt: {
     type: Date,
@@ -177,6 +181,7 @@ if (Meteor.isServer) {
       // Optionally restrict this to logged-in users
       throw new Meteor.Error('unauthorized', 'You must be logged in to view organizations.');
     }
+    // eslint-disable-next-line no-use-before-define
     return Organizations._collection.find({});
   });
 }
