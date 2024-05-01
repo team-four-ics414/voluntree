@@ -11,6 +11,8 @@ import { Pending } from '../activities/PendingCollection';
 import { Volunteer } from '../activities/VolunteerCollection';
 import { Posts } from '../forum/PostsCollection';
 import { Comments } from '../forum/CommentsCollection';
+import { Organizations } from '../organization/OrganizationCollection';
+import { Causes } from '../organization/CauseCollection';
 
 class MATPClass {
   collections;
@@ -34,6 +36,8 @@ class MATPClass {
       Pending,
       Posts,
       Comments,
+      Causes,
+      Organizations,
     ];
     /*
      * A list of collection class instances in the order required for them to be sequentially loaded from a file.
@@ -51,6 +55,8 @@ class MATPClass {
       Pending,
       Posts,
       Comments,
+      Causes,
+      Organizations,
     ];
 
     /*
