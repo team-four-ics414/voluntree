@@ -28,7 +28,7 @@ const PostsSchema = new SimpleSchema({
   },
   createdAt: {
     type: Date,
-    required: true,
+    optional: true,
   },
   lastUpdated: {
     type: Date,
@@ -57,7 +57,7 @@ class PostsCollection extends BaseCollection {
   define({ _id, title, contents, owner, createdAt, lastUpdated, eventId }) {
     // Convert createdAt and lastUpdated to valid date objects if provided, otherwise use current date
     const createdDate = createdAt ? new Date(createdAt) : new Date();
-    const updatedDate = lastUpdated ? new Date(lastUpdated) : createdDate;
+    const updatedDate = lastUpdated ? new Date(lastUpdated) : null;
 
     const docID = this._collection.insert({
       _id,

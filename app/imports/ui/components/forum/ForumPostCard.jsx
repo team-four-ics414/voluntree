@@ -104,13 +104,23 @@ const ForumPostCard = ({ post }) => {
   }, []);
 
   return (ready ? (
-    <Row>
+    <Row className="container-fluid">
       <Accordion defaultActiveKey="0">
         <Card style={{ margin: '10px 15px 10px 15px', maxWidth: '96%' }}>
           <Card.Body>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
-              <Card.Title><b>{post.title}</b></Card.Title>
-              <Button variant="success">I&apos;m Interested</Button>
+              <div className="d-flex flex-row mb-3">
+                <Card.Title><b>{post.title}</b></Card.Title>
+                <i className="mx-3">{post.owner}</i>
+                <div style={{ fontFamily: 'sans-serif' }}>
+                  {post.lastUpdated ? (
+                    <p>Updated: {dateFormat(post.lastUpdated)}</p>
+                  ) : (<p>Posted: {dateFormat(post.createdAt)}</p>) }
+                </div>
+              </div>
+              {Meteor.user().username === post.owner ? (
+                <Button className="py-0 my-0" variant="danger" onClick={() => Meteor.call('posts.remove', post._id)}>Remove</Button>
+              ) : <Button variant="success">I&apos;m Interested</Button>}
             </div>
             <Card.Text>
               {post.contents}
@@ -144,8 +154,8 @@ const ForumPostCard = ({ post }) => {
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                       <p>{comment.contents}</p>
                       {comment.lastUpdated ? (
-                        <p style={{ fontFamily: 'sans-serif' }}>Updated: {dateFormat(comment.lastUpdated)}</p>
-                      ) : (<p style={{ fontFamily: 'sans-serif' }}>Posted: {dateFormat(comment.createdAt)}</p>)}
+                        <p style={{ fontFamily: 'sans-serif' }}>Edited: {dateFormat(comment.lastUpdated)}</p>
+                      ) : (<p style={{ fontFamily: 'sans-serif' }}>{dateFormat(comment.createdAt)}</p>)}
                     </div>
                   </div>
                 ))}
