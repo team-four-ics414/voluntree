@@ -39,6 +39,8 @@ class CommentsCollection extends BaseCollection {
 
   define({ postId, contents, owner, createdAt, lastUpdated }) {
 
+    console.log('call from commentsCollection insert()');
+
     const createdDate = createdAt ? new Date(createdAt) : new Date();
     const updatedDate = lastUpdated ? new Date(lastUpdated) : lastUpdated;
 
@@ -52,11 +54,9 @@ class CommentsCollection extends BaseCollection {
     return docID;
   }
 
-  update(docID, { title, contents }) {
+  update(docID, { contents }) {
+    console.log('call from commentsCollection update()');
     const updateData = {};
-    if (title) {
-      updateData.title = title;
-    }
     if (contents) {
       updateData.contents = contents;
     }
