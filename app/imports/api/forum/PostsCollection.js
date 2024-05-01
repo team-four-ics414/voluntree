@@ -10,6 +10,10 @@ export const postsPublications = {
 };
 
 const PostsSchema = new SimpleSchema({
+  _id: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -34,11 +38,6 @@ const PostsSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
-  comments: {
-    type: Array, // Array of coments' ids.
-    optional: true,
-  },
-  'comments.$': String,
 });
 
 class PostsCollection extends BaseCollection {
@@ -55,18 +54,19 @@ class PostsCollection extends BaseCollection {
    * @param lastUpdated date when the post was last updated.
    * @return {String} the docID of the new document.
    */
-  define({ title, contents, owner, createdAt, lastUpdated, ...rest }) {
+  define({ _id, title, contents, owner, createdAt, lastUpdated, eventId }) {
     // Convert createdAt and lastUpdated to valid date objects if provided, otherwise use current date
     const createdDate = createdAt ? new Date(createdAt) : new Date();
     const updatedDate = lastUpdated ? new Date(lastUpdated) : createdDate;
 
     const docID = this._collection.insert({
+      _id,
       title,
       contents,
       owner,
       createdAt: createdDate,
       lastUpdated: updatedDate,
-      ...rest,
+      eventId,
     });
     return docID;
   }
@@ -165,12 +165,13 @@ class PostsCollection extends BaseCollection {
    */
   dumpOne(docID) {
     const doc = this.findDoc(docID);
+    const _id = docID;
     const title = doc.title;
     const contents = doc.contents;
     const owner = doc.owner;
     const createdAt = doc.createdAt;
     const lastUpdated = doc.lastUpdated;
-    return { title, contents, owner, createdAt, lastUpdated };
+    return { _id, title, contents, owner, createdAt, lastUpdated };
   }
 }
 

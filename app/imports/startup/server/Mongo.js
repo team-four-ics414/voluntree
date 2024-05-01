@@ -9,6 +9,7 @@ import { Volunteer } from '../../api/activities/VolunteerCollection';
 import { Opportunity } from '../../api/opportunities/OpportunityCollection';
 import { Pending } from '../../api/activities/PendingCollection';
 import { Posts } from '../../api/forum/PostsCollection';
+import { Comments } from '../../api/forum/CommentsCollection';
 // import { Posts } from '../../api/forum/PostsCollection';
 
 /* eslint-disable no-console */
@@ -153,5 +154,19 @@ if (Posts.count() === 0 && Meteor.settings.defaultForumPosts) {
   if (Meteor.settings.defaultForumPosts) {
     console.log('Creating default forum posts.');
     Meteor.settings.defaultForumPosts.forEach(post => addForumPost(post));
+  }
+}
+
+// Function to add default forum comments.
+const addComment = (comment) => {
+  console.log(`  Adding: ${comment.contents} (${comment.owner})`);
+  Comments.define(comment);
+};
+
+// initialize the PostsCollection if empty.
+if (Comments.count() === 0 && Meteor.settings.defaultForumComments) {
+  if (Meteor.settings.defaultForumComments) {
+    console.log('Creating default forum comments.');
+    Meteor.settings.defaultForumComments.forEach(comment => addComment(comment));
   }
 }

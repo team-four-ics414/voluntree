@@ -66,25 +66,6 @@ const VolunteerForum = () => {
           <Form.Control type="text" placeholder="Search Forums..." style={{ display: 'flex' }} />
           <div className="d-flex flex-wrap overflow-auto mt-4" style={{ maxHeight: '700px' }}>
             {posts.map((post) => <ForumPostCard key={post._id} post={post} />)}
-            {/*{posts.map((post) => console.log(post))}*/}
-            {/* <Row>
-              <ForumPostCard />
-            </Row>
-            <Row>
-              <ForumPostCard />
-            </Row>
-            <Row>
-              <ForumPostCard />
-            </Row>
-            <Row>
-              <ForumPostCard />
-            </Row>
-            <Row>
-              <ForumPostCard />
-            </Row>
-            <Row>
-              <ForumPostCard />
-            </Row> */}
           </div>
         </Col>
       </Row>

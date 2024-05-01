@@ -4,11 +4,15 @@ import SimpleSchema from 'simpl-schema';
 import BaseCollection from '../base/BaseCollection';
 import { ROLE } from '../role/Role';
 
-export const commentsCollection = {
+export const commentsPublications = {
   comments: 'Comments',
 };
 
 const CommentsScheme = new SimpleSchema({
+  postId: {
+    type: String,
+    required: true,
+  },
   contents: {
     type: String,
     required: true,
@@ -30,24 +34,29 @@ const CommentsScheme = new SimpleSchema({
 
 class CommentsCollection extends BaseCollection {
   constructor() {
-    super('Posts', CommentsScheme);
+    super('Comments', CommentsScheme);
   }
 
-  define({ contents, owner, creationDate, dateUpdate }) {
+  define({ postId, contents, owner, createdAt, lastUpdated }) {
+
+    console.log('call from commentsCollection insert()');
+
+    const createdDate = createdAt ? new Date(createdAt) : new Date();
+    const updatedDate = lastUpdated ? new Date(lastUpdated) : lastUpdated;
+
     const docID = this._collection.insert({
-      contents: contents,
-      owner: owner,
-      createdAt: creationDate ? new Date(creationDate) : new Date(),
-      lastUpdated: dateUpdate ? new Date(dateUpdate) : null,
+      postId,
+      contents,
+      owner,
+      createdAt: createdDate,
+      lastUpdated: updatedDate,
     });
     return docID;
   }
 
-  update(docID, { title, contents }) {
+  update(docID, { contents }) {
+    console.log('call from commentsCollection update()');
     const updateData = {};
-    if (title) {
-      updateData.title = title;
-    }
     if (contents) {
       updateData.contents = contents;
     }
@@ -66,15 +75,15 @@ class CommentsCollection extends BaseCollection {
     if (Meteor.isServer) {
       const instance = this;
       /** This subscription publishes only the documents associated with the logged in user */
-      Meteor.publish(postsPublications.userPosts, function publish() {
+      /* Meteor.publish(commentsPublications.comments, function publish() {
         if (this.userId) {
           const username = Meteor.users.findOne(this.userId).username;
           return instance._collection.find({ owner: username });
         }
         return this.ready();
-      });
+      }); */
 
-      Meteor.publish(postsPublications.posts, function publish() {
+      Meteor.publish(commentsPublications.comments, function publish() {
         if (this.userId) {
           return instance._collection.find();
         }
@@ -83,16 +92,16 @@ class CommentsCollection extends BaseCollection {
     }
   }
 
-  subscribePosts() {
+  subscribeComments() {
     if (Meteor.isClient) {
-      return Meteor.subscribe(postsPublications.posts);
+      return Meteor.subscribe(commentsPublications.comments);
     }
     return null;
   }
 
   subscribeUserPosts() {
     if (Meteor.isClient) {
-      return Meteor.subscribe(postsPublications.userPosts);
+      return Meteor.subscribe(commentsPublications.comments);
     }
     return null;
   }
@@ -103,12 +112,13 @@ class CommentsCollection extends BaseCollection {
 
   dumpOne(docID) {
     const doc = this.findDoc(docID);
-    const title = doc.title;
+    const _id = docID;
+    const postId = doc.postId;
     const contents = doc.contents;
     const owner = doc.owner;
     const createdAt = doc.createdAt;
     const lastUpdated = doc.lastUpdated;
-    return { title, contents, owner, createdAt, lastUpdated };
+    return { _id, postId, contents, owner, createdAt, lastUpdated };
   }
 }
 
