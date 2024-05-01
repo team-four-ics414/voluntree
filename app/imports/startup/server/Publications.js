@@ -291,5 +291,9 @@ Meteor.publish('Organizations', function () {
 });
 
 Meteor.publish('Causes', function publishCauses() {
-  return Causes.find();
+  return Causes.find(); // This publishes all causes
+});
+
+Meteor.publish('Organizations', function publishOrganizations() {
+  return Organizations.find(); // Adjust the query as needed based on your application's security and business logic requirements
 });

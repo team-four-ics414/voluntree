@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Container, Row, Col, Button, Form, Dropdown, Card } from 'react-bootstrap';
@@ -9,28 +10,26 @@ const SearchOrganizations = ({ onOrganizationSelect }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCause, setSelectedCause] = useState(null);
 
-  const organizations = useTracker(() => {
-    const handle = Meteor.subscribe('Organizations');
-    return handle.ready() ? Organizations.find().fetch() : [];
-  }, []);
+  const organizations = useTracker(() => (Meteor.subscribe('Organizations').ready() ? Organizations.find().fetch() : []), []);
 
   const causes = useTracker(() => {
     const handle = Meteor.subscribe('Causes');
-    console.log(Causes.find().fetch());
-    return handle.ready() ? Causes.find().fetch() : [];
+    const causesData = Causes.find().fetch();
+    console.log('Fetched Causes:', causesData); // This should show the causes in your console
+    return handle.ready() ? causesData : [];
   }, []);
 
   const handleSearchInputChange = (event) => {
     setSearchTerm(event.target.value.toLowerCase());
   };
 
-  const handleCauseSelect = (causeName) => {
-    setSelectedCause(causeName === selectedCause ? null : causeName);
+  const handleCauseSelect = (causeId) => {
+    setSelectedCause(causeId === selectedCause ? null : causeId);
   };
 
   const filteredOrganizations = organizations.filter(org => {
     const matchesSearch = !searchTerm || org.name.toLowerCase().includes(searchTerm) || org.description.toLowerCase().includes(searchTerm);
-    const matchesCause = !selectedCause || (org.causes && org.causes.includes(selectedCause));
+    const matchesCause = !selectedCause || (org.causeIds && org.causeIds.includes(selectedCause));
     return matchesSearch && matchesCause;
   });
 
@@ -58,13 +57,14 @@ const SearchOrganizations = ({ onOrganizationSelect }) => {
               {causes.map((cause) => (
                 <Dropdown.Item
                   key={cause._id}
-                  onClick={() => handleCauseSelect(cause.name)}
-                  active={selectedCause === cause.name}
+                  onClick={() => handleCauseSelect(cause._id)}
+                  active={selectedCause === cause._id}
                 >
                   {cause.name}
                 </Dropdown.Item>
               ))}
             </Dropdown.Menu>
+
           </Dropdown>
         </Col>
       </Row>
@@ -91,6 +91,10 @@ const SearchOrganizations = ({ onOrganizationSelect }) => {
       </Row>
     </Container>
   );
+};
+
+SearchOrganizations.propTypes = {
+  onOrganizationSelect: PropTypes.func.isRequired,
 };
 
 export default SearchOrganizations;
