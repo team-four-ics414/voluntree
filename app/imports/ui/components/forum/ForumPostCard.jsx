@@ -1,20 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Meteor } from 'meteor/meteor';
 import PropTypes from 'prop-types';
 import { Card, Button, Accordion, Row } from 'react-bootstrap';
 import swal from 'sweetalert';
 import { useTracker } from 'meteor/react-meteor-data';
-import ForumComments from './ForumComments';
 import { Comments } from '../../../api/forum/CommentsCollection';
-import { defineMethod } from '../../../api/base/BaseCollection.methods';
+import { defineMethod, updateMethod } from '../../../api/base/BaseCollection.methods';
 import LoadingSpinner from '../LoadingSpinner';
 
 const ForumPostCard = ({ post }) => {
 
   const [commentText, setCommentText] = useState('');
+  const [update, setUpdate] = useState(false);
+  const collectionName = Comments.getCollectionName();
+
+  const myRef = useRef(null);
+  const commentBeingUpdatedRef = useRef('');
+  const idCommentBeingUpdatedRef = useRef('');
+
+  const handleUpdate = (commentString, id) => {
+    setCommentText(commentString);
+    commentBeingUpdatedRef.current = commentString;
+    idCommentBeingUpdatedRef.current = id;
+    myRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    setUpdate(true);
+  };
+
+  const handleDelete = () => {
+    console.log('Delete comment');
+  };
+
+  const handleCancel = () => {
+    setCommentText('');
+    setUpdate(false);
+    console.log('Cancel comment update');
+  };
 
   const submitComment = (e) => {
     e.preventDefault();
+
+    console.log(commentBeingUpdatedRef.current);
+    console.log(commentText);
 
     const insertComment = () => {
 
@@ -23,10 +49,19 @@ const ForumPostCard = ({ post }) => {
       const dateCreated = new Date();
       const dataToInsert = { postId, contents: commentText, owner, dateCreated, undefined };
 
-      const collectionName = Comments.getCollectionName();
       defineMethod.callPromise({ collectionName, definitionData: dataToInsert })
         .catch(error => swal('Error', error.message, 'error'));
 
+      setCommentText('');
+    };
+
+    const updateComment = () => {
+      const dataToInsert = { id: idCommentBeingUpdatedRef.current, contents: commentText };
+
+      updateMethod.callPromise({ collectionName, updateData: dataToInsert })
+        .catch(error => swal('Error', error.message, 'error'));
+
+      setUpdate(false);
       setCommentText('');
     };
 
@@ -34,6 +69,8 @@ const ForumPostCard = ({ post }) => {
     Meteor.call('textCheck', commentText, (error) => {
       if (error) {
         swal('Error', 'Inappropriate Content Detected', 'error');
+      } else if (update) {
+        updateComment();
       } else {
         insertComment();
       }
@@ -76,23 +113,41 @@ const ForumPostCard = ({ post }) => {
             <Accordion.Item eventKey="1">
               <Accordion.Header>Comments</Accordion.Header>
               <Accordion.Body>
-                {comments.map((comment) => (<ForumComments comment={comment} key={comment._id} />))}
+                {/* {comments.map((comment) => (<ForumComment comment={comment} hook={setCommentText} key={comment._id} />))} */}
+                {comments.map((comment) => (
+                  <div key={comment._id} style={{ backgroundColor: '#f0f2f5', padding: '10px 10px 5px 10px', borderRadius: '10px', marginBottom: '10px' }}>
+                    <div className="d-flex">
+                      <h6><b>{comment.owner}</b></h6>
+                      {Meteor.user().username === comment.owner ? (
+                        <>
+                          <Button variant="link" onClick={() => handleUpdate(comment.contents, comment._id)}>Update</Button>
+                          <Button variant="link" onClick={handleDelete}>Delete</Button>
+                        </>
+                      ) : ('')}
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <p> |-- {comment.contents}</p>
+                      {comment.lastUpdated ? (
+                        <p>Updated {comment.lastUpdated.toDateString()}</p>
+                      ) : (<p>Posted: {comment.createdAt.toDateString()}</p>)}
+                    </div>
+                  </div>
+                ))}
                 {/** Where the user will add comments to the post */}
-                <form onSubmit={submitComment} className="flex flex-col space-y-4 p-4">
+                <form ref={myRef} onSubmit={submitComment} className="d-flex">
                   <input
                     type="text"
                     placeholder="Type a comment..."
                     value={commentText}
                     onChange={(e) => setCommentText(e.target.value)}
-                    className="form-input px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="form-input p-2 flex-grow-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <button
-                    type="submit"
-                    className="py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                    disabled={!commentText.trim()} // If field is empty.
-                  >
-                    Send
-                  </button>
+                  {update ? (
+                    <>
+                      <button type="submit" className="submit-button" disabled={(!commentText.trim() || commentText === commentBeingUpdatedRef.current)}>Update</button>
+                      <button type="button" className="btn btn-danger" onClick={handleCancel}>Cancel</button>
+                    </>
+                  ) : <button type="submit" className="submit-button" disabled={!commentText.trim()}>Submit</button> }
                 </form>
               </Accordion.Body>
             </Accordion.Item>
@@ -102,6 +157,26 @@ const ForumPostCard = ({ post }) => {
     </Row>
   ) : <LoadingSpinner message="Loading Forum" />);
 };
+
+// const ForumComment = ({ comment, hook }) => (
+//   <div style={{ backgroundColor: '#f0f2f5', padding: '10px 10px 5px 10px', borderRadius: '10px', marginBottom: '10px' }}>
+//     <div className="d-flex">
+//       <h6><b>{comment.owner}</b></h6>
+//       { Meteor.user().username === comment.owner ? (
+//         <>
+//           <Button variant="link" onClick={}>Update</Button>
+//           <Button variant="link" onClick={}>Delete</Button>
+//         </>
+//       ) : ('')}
+//     </div>
+//     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+//       <p> |-- {comment.contents}</p>
+//       {comment.lastUpdated ? (
+//         <p>Updated {comment.lastUpdated.toDateString()}</p>
+//       ) : (<p>Posted: {comment.createdAt.toDateString()}</p>)}
+//     </div>
+//   </div>
+// );
 
 // Require a document to be passed to this component.
 ForumPostCard.propTypes = {
@@ -115,5 +190,17 @@ ForumPostCard.propTypes = {
     eventId: PropTypes.string,
   }).isRequired,
 };
+
+// Require a document to be passed to this component.
+// ForumComment.propTypes = {
+//   comment: PropTypes.shape({
+//     _id: PropTypes.string.isRequired,
+//     postId: PropTypes.string.isRequired,
+//     contents: PropTypes.string.isRequired,
+//     owner: PropTypes.string.isRequired,
+//     createdAt: PropTypes.instanceOf(Date),
+//     lastUpdated: PropTypes.instanceOf(Date),
+//   }).isRequired,
+// };
 
 export default ForumPostCard;
