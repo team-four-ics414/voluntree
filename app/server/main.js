@@ -14,3 +14,5 @@ import '../imports/api/activities/VolunteerCollection.methods';
 import '../imports/api/activities/PendingCollection.methods';
 import '../imports/api/forum/PostsCollection.methods';
 import '../imports/api/forum/CommentsCollection.methods';
+import '../imports/api/opportunities/OpportunityCollection';
+import '../imports/api/opportunities/OpportunityCollection.methods';

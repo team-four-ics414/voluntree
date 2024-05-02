@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Form, Dropdown } from 'react-bootstrap';
 import { BsSearch } from 'react-icons/bs';
@@ -14,6 +15,13 @@ const ListOpportunities = () => {
     const opportunitySubscription = Opportunity.subscribeOpportunity();
     return () => {
       opportunitySubscription.stop();
+    };
+  }, []);
+
+  useEffect(() => {
+    const subscription = Meteor.subscribe('opportunities.all');
+    return () => {
+      subscription.stop();
     };
   }, []);
 
